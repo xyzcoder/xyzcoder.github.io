@@ -13,6 +13,7 @@ import cx from 'classnames';
 import Header from './Header';
 import Footer from '../Footer';
 import s from './Layout.css';
+import SideMenu from '../SideMenu';
 
 
 class Layout extends React.Component {
@@ -38,6 +39,7 @@ class Layout extends React.Component {
               <div class="row">
                   <div class="col-lg-12 col-md-10">
                       <div class="row">
+                        <SideMenu />
                       </div>
                   </div>
               </div>

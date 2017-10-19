@@ -23,4 +23,4 @@ class SideMenu extends React.Component {
   }
 }
 
-export default Layout;
+export default SideMenu;
