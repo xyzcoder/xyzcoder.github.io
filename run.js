@@ -100,6 +100,7 @@ tasks.set('publish', () => {
   const remote = {
     url: 'https://github.com/xyzcoder/xyzcoder.github.io.git', // TODO: Update deployment URL
     branch: 'master',
+    frombranch: 'gh-pages'
   };
   global.DEBUG = process.argv.includes('--debug') || false;
   const spawn = require('child_process').spawn;
@@ -121,7 +122,7 @@ tasks.set('publish', () => {
       .then(() => git('remote', 'set-url', 'origin', remote.url))
       .catch(() => git('remote', 'add', 'origin', remote.url))
     )
-    .then(() => git('ls-remote', '--exit-code', remote.url, 'gh-pages')
+    .then(() => git('ls-remote', '--exit-code', remote.url, remote.frombranch)
       .then(() => Promise.resolve()
         .then(() => git('fetch', 'origin'))
         .then(() => git('reset', `origin/${remote.branch}`, '--hard'))
