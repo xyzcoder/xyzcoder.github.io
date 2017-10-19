@@ -121,7 +121,7 @@ tasks.set('publish', () => {
       .then(() => git('remote', 'set-url', 'origin', remote.url))
       .catch(() => git('remote', 'add', 'origin', remote.url))
     )
-    .then(() => git('ls-remote', '--exit-code', remote.url, 'code')
+    .then(() => git('ls-remote', '--exit-code', remote.url, 'gh-pages')
       .then(() => Promise.resolve()
         .then(() => git('fetch', 'origin'))
         .then(() => git('reset', `origin/${remote.branch}`, '--hard'))
