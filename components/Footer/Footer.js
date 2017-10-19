@@ -43,12 +43,12 @@ function Footer() {
                             </a>
                         </li>
                     </ul>
-                    <p className="copyright text-muted">Copyright &copy; XyzCoder.com 2016</p>
+                    <p className="copyright text-muted">Copyright &copy; XyzCoder.github.io 2016</p>
                 </div>
             </div>
             <div className="row">
                 <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    {% include 'googleAdsenseAdUnit_3.html' %}
+                    googleAdsenseAdUnit_3.html
                 </div>
             </div>
         </div>
