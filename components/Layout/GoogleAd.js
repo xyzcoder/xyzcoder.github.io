@@ -1,4 +1,6 @@
-export default class GoogleAd extends Component {
+import React from 'react';
+
+class GoogleAd extends React.Component {
   static propTypes = {
     client: PropTypes.string,
     slot: PropTypes.string,
@@ -30,3 +32,5 @@ export default class GoogleAd extends Component {
     );
   }
 }
+
+export default GoogleAd;
