@@ -7,6 +7,7 @@ class FacebookPage extends React.Component {
 
   componentDidMount() {
     window.componentHandler.upgradeElement(this.root);
+    console.log("fb component loaded");
     document.addEventListener('fb_init', e => FB.XFBML.parse());
   }
 

@@ -9,6 +9,7 @@ import RecentPosts from './RecentPosts';
 class SideMenu extends React.Component {
 
   componentDidMount() {
+    console.log("sidemenu component loaded");
     window.componentHandler.upgradeElement(this.root);
   }
 
