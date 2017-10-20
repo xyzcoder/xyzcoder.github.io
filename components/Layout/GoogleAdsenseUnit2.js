@@ -4,7 +4,6 @@ import React from 'react';
 class GoogleAdsenseUnit2 extends React.Component {
 
   componentDidMount() {
-    (adsbygoogle = window.adsbygoogle || []).push({});
   }
 
   componentWillUnmount() {
