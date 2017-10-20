@@ -4,7 +4,7 @@ import cx from 'classnames';
 import SocialMediaList from './SocialMediaList';
 import FacebookPage from './FacebookPage';
 import RecentPosts from './RecentPosts';
-import GoogleAdsenseUnit2 from './GoogleAdsenseUnit2';
+import GoogleAd from './GoogleAd';
 
 class SideMenu extends React.Component {
 
@@ -18,6 +18,12 @@ class SideMenu extends React.Component {
   }
 
   render() {
+
+    const style = {
+      marginTop: '15px',
+      marginBottom: '20px'
+    };
+
     return (
       <div className="col-lg-2 col-md-10 sideMenuSocialMedia">
           <SocialMediaList />
@@ -27,7 +33,7 @@ class SideMenu extends React.Component {
               <RecentPosts />
 
               <br/>
-              <GoogleAdsenseUnit2 />
+              <GoogleAd client="ca-pub-3300393120826046" slot="3501157019" format="auto" wrapperDivStyle={style} />
               <br/>
               <br/>
 
