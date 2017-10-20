@@ -6,11 +6,11 @@ import s from '../../assets/css/sidemenu.css'
 class RecentPosts extends React.Component {
 
   componentDidMount() {
-    window.componentHandler.upgradeElement(this.root);
+    
   }
 
   componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.root);
+    
   }
 
   render() {

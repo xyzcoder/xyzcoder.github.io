@@ -10,11 +10,11 @@ class SideMenu extends React.Component {
 
   componentDidMount() {
     console.log("sidemenu component loaded");
-    window.componentHandler.upgradeElement(this.root);
+    
   }
 
   componentWillUnmount() {
-    window.componentHandler.downgradeElements(this.root);
+    
   }
 
   render() {
