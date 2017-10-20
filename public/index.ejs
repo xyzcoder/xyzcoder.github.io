@@ -31,13 +31,27 @@
 	
 	
 	    <div id="fb-root"></div>
-		<script>(function(d, s, id) {
+		<script>
+		
+		
+		(function(d, s, id) {
 		  var js, fjs = d.getElementsByTagName(s)[0];
 		  if (d.getElementById(id)) return;
 		  js = d.createElement(s); js.id = id;
 		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=150743294968497";
 		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
+		}(document, 'script', 'facebook-jssdk'));
+		
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '150743294968497',
+				xfbml: false,
+				version: 'v2.5'
+			});
+			document.dispatchEvent(new Event('fb_init'));
+		};
+		
+		</script>
 	
 	</div>
     <script src="<%= bundle %>"></script>
