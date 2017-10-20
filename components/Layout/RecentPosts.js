@@ -22,6 +22,8 @@ class RecentPosts extends React.Component {
             <ul id="menu-content" className="menu-content collapse out">
               <li>
                   <a href="/post/">Test1</a>
+              </li>
+              <li>
                   <a href="/post/">Test2</a>
               </li>
             </ul>
