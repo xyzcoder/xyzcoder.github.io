@@ -14,7 +14,7 @@ import Header from './Header';
 import Footer from '../Footer';
 import s from './Layout.css';
 import SideMenu from './SideMenu';
-
+import CustomSearch from './CustomSearch';
 
 class Layout extends React.Component {
 
@@ -34,6 +34,7 @@ class Layout extends React.Component {
     return (
       <div>
           <Header />
+          <CustomSearch />
             <div className="container-fluid">
               <div className="row">
                   <div className="col-lg-12 col-md-10">
