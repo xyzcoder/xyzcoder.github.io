@@ -1,7 +1,7 @@
 
 import React from 'react';
 import cx from 'classnames';
-
+import s from '../../assets/css/sidemenu.css'
 
 class RecentPosts extends React.Component {
 
