@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class GoogleAd extends React.Component {
   static propTypes = {
