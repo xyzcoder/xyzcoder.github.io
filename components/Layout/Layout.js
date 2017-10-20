@@ -13,7 +13,7 @@ import cx from 'classnames';
 import Header from './Header';
 import Footer from '../Footer';
 import s from './Layout.css';
-import SideMenu from '../SideMenu';
+import SideMenu from './SideMenu';
 
 
 class Layout extends React.Component {

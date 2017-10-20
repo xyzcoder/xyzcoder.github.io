@@ -10,7 +10,7 @@
 
 import React from 'react';
 import Link from '../Link';
-import SocialMediaList from '../SocialMediaList'
+import SocialMediaList from '../Layout/SocialMediaList'
 
 function Footer() {
   return (

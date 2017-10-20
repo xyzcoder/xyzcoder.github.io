@@ -1,7 +1,7 @@
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import SocialMediaList from '../SocialMediaList'
+import SocialMediaList from './SocialMediaList'
 
 
 class SideMenu extends React.Component {
