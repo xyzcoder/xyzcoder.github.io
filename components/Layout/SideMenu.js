@@ -4,7 +4,7 @@ import cx from 'classnames';
 import SocialMediaList from './SocialMediaList';
 import FacebookPage from './FacebookPage';
 import RecentPosts from './RecentPosts';
-
+import GoogleAdsenseUnit2 from './GoogleAdsenseUnit2';
 
 class SideMenu extends React.Component {
 
@@ -27,6 +27,7 @@ class SideMenu extends React.Component {
               <RecentPosts />
 
               <br/>
+              <GoogleAdsenseUnit2 />
               <br/>
               <br/>
 
