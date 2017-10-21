@@ -13,6 +13,7 @@ import cx from 'classnames';
 import Header from './Header';
 import Footer from '../Footer';
 import s from './Layout.css';
+import GoogleAd from './GoogleAd';
 
 class About extends React.Component {
 
