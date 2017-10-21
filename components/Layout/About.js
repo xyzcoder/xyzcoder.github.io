@@ -14,7 +14,7 @@ import Header from './Header';
 import Footer from '../Footer';
 import s from './Layout.css';
 
-class Layout extends React.Component {
+class About extends React.Component {
 
   componentDidMount() {
     
@@ -248,4 +248,4 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
+export default About;
