@@ -15,6 +15,7 @@ import Footer from '../Footer';
 import s from './Layout.css';
 import SideMenu from './SideMenu';
 import CustomSearch from './CustomSearch';
+import Post from './Post';
 
 class Layout extends React.Component {
 
@@ -40,6 +41,7 @@ class Layout extends React.Component {
                   <div className="col-lg-12 col-md-10">
                       <div className="row">
                         <SideMenu />
+                        <Post />
                       </div>
                   </div>
               </div>
