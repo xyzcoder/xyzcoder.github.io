@@ -46,6 +46,7 @@ tasks.set('html', () => {
   const render = ejs.compile(template, { filename: './public/index.ejs' });
   const output = render({ debug: webpackConfig.debug, bundle: assets.main.js, config });
   fs.writeFileSync('./public/index.html', output, 'utf8');
+  fs.writeFileSync('./public/404.html', output, 'utf8');
 });
 
 //
