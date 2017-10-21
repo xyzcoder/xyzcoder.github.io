@@ -10,9 +10,16 @@
 
 import React from 'react';
 import Link from '../Link';
-import SocialMediaList from '../Layout/SocialMediaList'
+import SocialMediaList from '../Layout/SocialMediaList';
+import GoogleAd from '../Layout/GoogleAd';
 
 function Footer() {
+
+    const ad_unit_3 = {
+      width: '100%',
+      height: '90px'
+    };
+    
   return (
         <footer>
         <div className="container">
@@ -24,7 +31,7 @@ function Footer() {
             </div>
             <div className="row">
                 <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    googleAdsenseAdUnit_3.html
+                    <GoogleAd client="ca-pub-3300393120826046" slot="3501157019" format="auto" wrapperDivStyle={ad_unit_3} />
                 </div>
             </div>
         </div>
