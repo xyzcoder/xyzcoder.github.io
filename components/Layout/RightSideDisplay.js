@@ -16,8 +16,7 @@ class RightSideDisplay extends React.Component {
   render() {
 
     const ad_unit_3 = {
-      width: '100%',
-      height: '90px'
+      width: '100%'
     };
 
     return (
