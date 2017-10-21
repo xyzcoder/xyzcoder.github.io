@@ -16,6 +16,7 @@ import s from './Layout.css';
 import SideMenu from './SideMenu';
 import CustomSearch from './CustomSearch';
 import Post from './Post';
+import RightSideDisplay from './RightSideDisplay';
 
 class Layout extends React.Component {
 
@@ -42,6 +43,7 @@ class Layout extends React.Component {
                       <div className="row">
                         <SideMenu />
                         <Post />
+                        <RightSideDisplay />
                       </div>
                   </div>
               </div>
