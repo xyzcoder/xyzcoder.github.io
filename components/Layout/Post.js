@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react';
 import PostTitle from './PostTitle';
 import PostDisplay from './PostDisplay';
+import GoogleAd from './GoogleAd';
 
 class Post extends React.Component {
 
