@@ -39,8 +39,8 @@ class CustomSearch extends React.Component {
   render() {
 
     return (
-        <div class="row">
-          <div class="col-lg-3 col-lg-offset-9 col-md-10 col-md-offset-1">
+        <div className="row">
+          <div className="col-lg-3 col-lg-offset-9 col-md-10 col-md-offset-1">
                 <div id='gsearch'>
                 </div>
           </div>
