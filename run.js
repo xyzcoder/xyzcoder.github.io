@@ -158,6 +158,9 @@ tasks.set('start', () => {
       const output = render({ debug: true, bundle: `/dist/${bundle}`, config });
       fs.writeFileSync('./public/index.html', output, 'utf8');
 
+
+      console.log("pavan kumar");
+
       fs.writeFileSync('./public/404.html', output, 'utf8');
 
       // Launch Browsersync after the initial bundling is complete
