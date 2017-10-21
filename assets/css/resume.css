@@ -15,29 +15,11 @@ SETTINGS
 @-ms-viewport       { width: device-width; }
 @-o-viewport        { width: device-width; }
 @viewport           { width: device-width; }
-/*******************************************
-BODY
-*******************************************/
-body{
-  font-family: 'Open Sans', Arial, Tahoma;
-  font-weight: 400;
-  font-size: 1em;
-  color: #363636;
-  background: #ededed;
-}
-/*******************************************
-CONTAINER
-*******************************************/
-.container{
-  margin-top: 80px;
-  margin-bottom: 15px;
-}
+
 /*******************************************
 PHOTO (AVATAR)
 *******************************************/
-#photo-header{
-  margin-top: -75px;
-}
+
 #photo{
   width: 160px;
   height: 160px;
@@ -55,16 +37,16 @@ PHOTO (AVATAR)
 #text-header h1{
   margin: 0;
   padding: 0;
-  font-size: 2.4em;
+  font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -1px;
 }
 #text-header h1::first-line{
-  font-size: 1.5em;
+  font-size: 15px;
   letter-spacing: -4px;
   font-weight: 800;
-  line-height: 1.5em;
+  line-height: 15px;
 }
 #text-header h1 span{
   color: #F0563D;
@@ -88,7 +70,7 @@ DEFAULT BOX
 }
 .box h2{
   color: #EC7263;
-  font-size: 1.8em;
+  font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -97,8 +79,8 @@ DEFAULT BOX
   margin-right: 5px;
 }
 .box p{
-  font-size: 1.3em;
-  line-height: 1.5em;
+  font-size: 13px;
+  line-height: 15px;
 }
 /*******************************************
 EDUCATION
@@ -106,7 +88,7 @@ EDUCATION
 #education{
   margin-top: 20px;
   position: relative;
-  padding: 1em 0;
+  padding: 1px 0;
   list-style: none;
 }
 #education:before {
@@ -136,7 +118,7 @@ EDUCATION
   width: 10%;
   background: #fff;
   padding: 10px;
-  font-size: 1.5em;
+  font-size: 15px;
   font-weight: 700;
   display: inline-block;
 }
@@ -163,13 +145,13 @@ EDUCATION
   pointer-events: none;
 }
 #education .description h3{
-  font-size: 1.6em;
+  font-size: 16px;
   margin: 0;
   padding: 0;
   font-weight: 700;
 }
 #education .description p{
-  font-size: 1.3em;
+  font-size: 13px;
   margin-top: 5px;
   padding: 0;
 }
@@ -180,20 +162,20 @@ EXPERIENCES
   margin-bottom: 15px;
 }
 .job .where{
-  font-size: 1.4em;
+  font-size: 14px;
   font-weight: bold;
 }
 .job .year{
-  font-size: 1.3em;
+  font-size: 13px;
   opacity: 0.7;
 }
 .job .profession{
-  font-size: 1.6em;
+  font-size: 16px;
   font-weight: bold;
 }
 .job .description{
-  font-size: 1.2em;
-  line-height: 1.5em;
+  font-size: 12px;
+  line-height: 15px;
 }
 /*******************************************
 CONTACT
@@ -212,12 +194,12 @@ CONTACT
   border-bottom: none;
 }
 .contact-item .fa{
-  font-size: 2em;
+  font-size: 2px;
 }
 .contact-item .title{
   width: 80%;
   width: calc(100% - 55px);
-  font-size: 1.5em;
+  font-size: 15px;
   font-weight: 700;
   opacity: 0.9;
 }
@@ -227,7 +209,7 @@ CONTACT
 .contact-item .description{
   width: 80%;
   width: calc(100% - 55px);
-  font-size: 1.2em;
+  font-size: 12px;
   opacity: 0.7;
 }
 /*******************************************
@@ -242,7 +224,7 @@ SKILLS
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1.3em;
+  font-size: 13px;
   font-weight: 600;
 }
 .skills-legend{
@@ -261,7 +243,7 @@ SKILLS
 .skills-legend div{
   width: 25%;
   display: inline-block;
-  font-size: 1.2em;
+  font-size: 12px;
   color: #a9a9a9;
   float: left;
 }
@@ -294,7 +276,7 @@ SKILLS
 LANGUAGES
 *******************************************/
 #language-skills .skill{
-  font-size: 1.3em;
+  font-size: 13px;
   margin: 10px 0;
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
@@ -318,7 +300,7 @@ HOBBIES
   padding: 5px 5px 5px 25px;
   background: #A75265;
   position: relative;
-  font-size: 1.2em;
+  font-size: 12px;
 }
 .hobby:before{
   content: "\f004";
