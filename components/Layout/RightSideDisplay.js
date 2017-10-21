@@ -21,7 +21,7 @@ class RightSideDisplay extends React.Component {
     };
 
     return (
-      <div class="col-lg-2 col-md-10 sideMenuSocialMedia">
+      <div className="col-lg-2 col-md-10 sideMenuSocialMedia">
         <GoogleAd client="ca-pub-3300393120826046" slot="7931356610" format="auto" wrapperDivStyle={ad_unit_3} />
         <br />
         <br />
