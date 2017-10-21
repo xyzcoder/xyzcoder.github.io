@@ -39,17 +39,16 @@ class About extends React.Component {
                     <div className="col-xs-12">
                       <div id="photo-header" className="text-center">
                         <div id="text-header">
-                          <h1>Hello,<br> my name is <span>Pavan Kumar Aryasomayajulu</span><sup>27yo</sup> and this is a gist of my work</h1>
+                          <h1>Hello,<br/> my name is <span>Pavan Kumar Aryasomayajulu</span><sup>27yo</sup> and this is a gist of my work</h1>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-xs-12 col-sm-7">
-                      <!-- ABOUT ME -->
 
-                      <div className="box" style={{max-width:300px;left: 30%;position: relative}}>
-                        <div className="circle-avatar" style={{background-image:url(/dist/assets/img/MyImage.jpg)}}></div>
+                      <div className="box" style={{maxWidth:'300px',left: '30%',position: 'relative'}}>
+                        <div className="circle-avatar" style={{backgroundImage:`url(/dist/assets/img/MyImage.jpg)`}}></div>
                       </div>
 
                       <div className="box">
@@ -68,14 +67,11 @@ class About extends React.Component {
                         <p>As a developer with 6+ years of experience in the industry, in the past I used to work predominantly on Microsoft Technologies. But since a year and a half , I am concentrating and working on other major technologies like Python, Node.js, AngularJs, ReactJs, Docker, Java, Bootstrap, Apache Spark and many open stack technologies. And of course my favourite Microsoft Stack 
                         </p>
                         <p>So you can expect posts from me on these technologies regularly.</p>
-                        <p>I have decided to build a blog of my own from scratch with technologies that i work and learn. I started coding using open source technologies like <b>Python, Flask Framework, MySQL, Bootstrap,Jquery,JavaScript</b>. I bought a Ubuntu server on Vultr.com 
-                        <a href="https://www.vultr.com/?ref=6998467-3B"><img src="https://www.vultr.com/media/banner_1.png" width="100%" height="90"></a> and I am deploying my blog on this Ubuntu machine using Docker containers.</p>
-                        <p>Outcome of the above process is my new blog <a href="http://xyzcoder.com">http://xyzcoder.com</a> and you can expect me to post about all my learnings in this journery</p>
+                        <p>I have decided to build a blog of my own from scratch with technologies that i work and learn. I started coding using open source technologies like <b>Python, Flask Framework, MySQL, Bootstrap,Jquery,JavaScript, ReactJs</b>. I am using github pages for deploying my site</p>
+                        <p>Outcome of the above process is my new blog and you can expect me to post about all my learnings in this journery</p>
                         <p>So all you need to do is <a className="subscribe" href="#">subscribe</a> to my new blog and I am pretty sure that together we all will learn good things.</p>
 
-                  <p>Happy Learning :)</p>
                       </div>
-                      <!-- EDUCATION -->
                       <div className="box">
                         <h2>Education</h2>
                         <ul id="education" className="clearfix">
@@ -88,12 +84,11 @@ class About extends React.Component {
                           </li>
                         </ul>
                       </div>
-                      <!-- EXPERIENCES -->
                       <div className="box">
                         <h2>Experiences</h2>
                         <div className="job clearfix">
                           <div className="col-xs-3">
-                            <div className="where">XyzCoder.com</div>
+                            <div className="where">xyzcoder.github.io</div>
                             <div className="year">2016</div>
                           </div>
                           <div className="col-xs-9">
@@ -144,7 +139,6 @@ class About extends React.Component {
                       </div>
                     </div>
                     <div className="col-xs-12 col-sm-5">
-                      <!-- CONTACT -->
                       <div className="box clearfix">
                         <h2>Contact</h2>
                         <div className="contact-item">
@@ -191,7 +185,6 @@ class About extends React.Component {
                           <div className="description pull-right">http://pavanarya.wordpress.com</div>
                         </div>
                       </div>
-                      <!-- SKILLS -->
                       <div className="box">
                         <h2>Skills</h2>
                           <div className="skills">
@@ -222,16 +215,14 @@ class About extends React.Component {
                           </div>
                         </div>
                       </div>
-                      <!-- LANGUAGES -->
                       <div className="box">
                         <h2>Languages</h2>
                         <div id="language-skills">
-                          <div className="skill">English <div className="icons pull-right"><div style={{width: 60%;}} className="icons-red"></div></div></div>
-                          <div className="skill">Telugu <div className="icons pull-right"><div style={{width: 80%;}}  className="icons-red"></div></div></div>
-                          <div className="skill">Hindi <div className="icons pull-right"><div style={{width: 60%;}}  className="icons-red"></div></div></div>
+                          <div className="skill">English <div className="icons pull-right"><div style={{width: '60%'}} className="icons-red"></div></div></div>
+                          <div className="skill">Telugu <div className="icons pull-right"><div style={{width: '80%'}}  className="icons-red"></div></div></div>
+                          <div className="skill">Hindi <div className="icons pull-right"><div style={{width: '60%'}}  className="icons-red"></div></div></div>
                         </div>
                       </div>
-                      <!-- HOBBIES -->
                       <div className="box">
                         <h2>Hobbies</h2>
                         <div className="hobby">Programming</div>
@@ -242,6 +233,7 @@ class About extends React.Component {
                       <GoogleAd client="ca-pub-3300393120826046" slot="3501157019" format="auto" wrapperDivStyle={ad_style} />
                     </div>
                   </div>
+                </div>
           <Footer />
       </div>
     );

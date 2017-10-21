@@ -13,7 +13,7 @@ import Layout from '../../components/Layout';
 import s from './styles.css';
 import { title, html } from './index.md';
 
-import About from '../../components/About';
+import About from '../../components/Layout/About';
 
 class AboutPage extends React.Component {
 
