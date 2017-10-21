@@ -20,10 +20,16 @@ class Post extends React.Component {
       left: '2%'
     };
 
+    const ad_unit_3 = {
+      width: '100%',
+      height: '90px'
+    };
+
     return (
       <div className="col-lg-8 col-md-10" style={displaystyle}>
           <PostTitle />
           <PostDisplay />
+          <GoogleAd client="ca-pub-3300393120826046" slot="7931356610" format="auto" wrapperDivStyle={ad_unit_3} />
       </div>
     );
   }

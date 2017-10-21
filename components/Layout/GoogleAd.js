@@ -20,6 +20,7 @@ class GoogleAd extends React.Component {
   // changed style from string to an object
 
   render() {
+
     return (
       <div style={this.props.wrapperDivStyle} > 
         <ins className="adsbygoogle"  
