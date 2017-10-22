@@ -13,11 +13,6 @@ import Layout from '../../components/Layout';
 import { title, html } from './index.md';
 
 class HomePage extends React.Component {
-
-  static propTypes = {
-    articles: PropTypes.array.isRequired,
-  };
-
   componentDidMount() {
     document.title = title;
   }
