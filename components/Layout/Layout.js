@@ -41,9 +41,18 @@ class Layout extends React.Component {
               <div className="row">
                   <div className="col-lg-12 col-md-10">
                       <div className="row">
-                        <SideMenu />
-                        <Post />
-                        <RightSideDisplay />
+
+                        <div className="col-lg-10 col-md-10">
+                          <div className="row">
+                            <SideMenu />
+                            <Post />
+                          </div>
+                        </div>
+                        <div className="col-lg-2 col-md-10">
+                          <div className="row">
+                            <RightSideDisplay />
+                          </div>
+                        </div>
                       </div>
                   </div>
               </div>

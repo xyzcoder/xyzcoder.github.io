@@ -25,7 +25,7 @@ class SideMenu extends React.Component {
     };
 
     return (
-      <div className="col-lg-2 col-md-10 sideMenuSocialMedia">
+      <div className="col-lg-3 col-md-10 sideMenuSocialMedia">
           <SocialMediaList />
 
           <div className="nav-side-menu col-lg-2 col-md-2">
