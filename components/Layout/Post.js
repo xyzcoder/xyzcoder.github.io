@@ -17,17 +17,13 @@ class Post extends React.Component {
 
   render() {
 
-    const displaystyle = {
-      left: '2%'
-    };
-
     const ad_unit_3 = {
       width: '100%',
       height: '90px'
     };
 
     return (
-      <div className="col-lg-9 col-md-10" style={displaystyle}>
+      <div className="col-lg-9 col-md-10">
           <PostTitle />
           <PostDisplay />
           <GoogleAd client="ca-pub-3300393120826046" slot="7931356610" format="auto" wrapperDivStyle={ad_unit_3} />
