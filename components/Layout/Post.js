@@ -7,6 +7,13 @@ import fire from './fire';
 
 class Post extends React.Component {
 
+  constructor(props) {
+      super(props);
+      
+      this.state = {
+      }
+   };
+
   componentDidMount() {
     console.log("sidemenu component loaded");
     
