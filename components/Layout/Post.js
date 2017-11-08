@@ -11,6 +11,13 @@ class Post extends React.Component {
       super(props);
       
       this.state = {
+        "post":{
+          "title":"",
+          "content":"",
+          "date":"",
+          "id":"",
+          "summary":""
+        }
       }
    };
 
