@@ -13,7 +13,7 @@ class Post extends React.Component {
   }
 
   componentWillMount(){
-      let blogsRef = fire.database().ref('blog/posts').limitToFirst(1);
+      let blogsRef = fire.database().ref('blog/posts/published').limitToFirst(1);
       blogsRef.on('value', function(data) {
          console.log(data.val());
       }, function (error) {
