@@ -3,12 +3,22 @@ import React, { PropTypes } from 'react';
 import PostTitle from './PostTitle';
 import PostDisplay from './PostDisplay';
 import GoogleAd from './GoogleAd';
+import fire from './fire';
 
 class Post extends React.Component {
 
   componentDidMount() {
     console.log("sidemenu component loaded");
     
+  }
+
+  componentWillMount(){
+      let blogsRef = fire.database().ref('blog/posts').limitToFirst(1);
+      blogsRef.on('value', function(data) {
+         console.log(data.val());
+      }, function (error) {
+         console.log("Error: " + error.code);
+      });
   }
 
   componentWillUnmount() {
