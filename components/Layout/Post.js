@@ -27,11 +27,12 @@ class Post extends React.Component {
   }
 
   componentWillMount(){
+      var that = this;
       let blogsRef = fire.database().ref('blog/posts/published').limitToFirst(1);
       blogsRef.on('value', function(post) {
          for (var key in post.val()) {
               if (post.val().hasOwnProperty(key)) {
-                  this.state.post = post.val()[key];
+                  that.setState({"post":post.val()[key]}) ;
               }
           }
       }, function (error) {
@@ -53,7 +54,7 @@ class Post extends React.Component {
     return (
       <div className="col-lg-9 col-md-10">
           <PostTitle post={this.state.post}/>
-          <PostDisplay />
+          <PostDisplay post={this.state.post} />
           <GoogleAd client="ca-pub-3300393120826046" slot="7931356610" format="auto" wrapperDivStyle={ad_unit_3} />
       </div>
     );

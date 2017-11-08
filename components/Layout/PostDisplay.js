@@ -31,9 +31,7 @@ class PostDisplay extends React.Component {
                           </div>
                           <div className="row">
                               <div className="col-lg-12 col-md-10 postData">
-                              The topic of blogging seems to come up a lot in our social media training workshops. The benefits of a quality blog are obvious – fresh content is good for your readers and your rankings. Blogs are easy to set up and even easier to update. We often tell people that if they can use Microsoft Word… they can update a blog.
-As easy as they are to set up, they can be difficult to maintain. A good blog is filled with relevant, timely content that is updated on a regular basis. New bloggers often start out with a bang but then fizzle out when they realize that creating content can be challenging.
-Let’s look at a couple of good blogs and see how they keep the quality content flowing.
+                              {this.props.post.content}
                               </div>
                           </div>
                       </div>
