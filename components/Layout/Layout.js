@@ -45,7 +45,7 @@ class Layout extends React.Component {
                         <div className="col-lg-10 col-md-10">
                           <div className="row">
                             <SideMenu />
-                            <Post />
+                            <Post postId={this.props.postId}/>
                           </div>
                         </div>
                         <div className="col-lg-2 col-md-10">

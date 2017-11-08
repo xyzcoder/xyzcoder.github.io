@@ -6,8 +6,8 @@ import FacebookPage from './FacebookPage';
 import RecentPosts from './RecentPosts';
 import GoogleAd from './GoogleAd';
 
-class SideMenu extends React.Component {
 
+class SideMenu extends React.Component {
   componentDidMount() {
     console.log("sidemenu component loaded");
     
@@ -16,6 +16,7 @@ class SideMenu extends React.Component {
   componentWillUnmount() {
     
   }
+
 
   render() {
 

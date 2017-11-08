@@ -21,7 +21,7 @@ class PostTitle extends React.Component {
 
     return (
       <div className="post-preview">
-            <a href="/post/{this.props.post.id}">
+            <a href={'/post/' + this.props.post.id}>
                 <h2 className="post-title">
                     {this.props.post.title}
                 </h2>

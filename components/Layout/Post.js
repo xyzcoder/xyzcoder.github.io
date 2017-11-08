@@ -28,16 +28,33 @@ class Post extends React.Component {
 
   componentWillMount(){
       var that = this;
-      let blogsRef = fire.database().ref('blog/posts/published').limitToFirst(1);
-      blogsRef.on('value', function(post) {
-         for (var key in post.val()) {
-              if (post.val().hasOwnProperty(key)) {
-                  that.setState({"post":post.val()[key]}) ;
+      let blogsRef;
+      if(this.props.postId){
+          blogsRef = fire.database().ref('blog/posts/published/'+this.props.postId);
+
+          blogsRef.on('value', function(post) {
+             that.setState({"post":post.val()})
+          }, function (error) {
+             console.log("Error: " + error.code);
+          });
+      }
+      else{
+          blogsRef = fire.database().ref('blog/posts/published').limitToFirst(1);
+
+          blogsRef.on('value', function(post) {
+             for (var key in post.val()) {
+                  if (post.val().hasOwnProperty(key)) {
+                      that.setState({"post":post.val()[key]}) ;
+                  }
               }
-          }
-      }, function (error) {
-         console.log("Error: " + error.code);
-      });
+          }, function (error) {
+             console.log("Error: " + error.code);
+          });
+      }
+
+      
+
+      
   }
 
   componentWillUnmount() {
