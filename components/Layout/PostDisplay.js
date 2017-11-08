@@ -31,7 +31,7 @@ class PostDisplay extends React.Component {
                           </div>
                           <div className="row">
                               <div className="col-lg-12 col-md-10 postData">
-                              {this.props.post.content}
+                               <div dangerouslySetInnerHTML={{ __html: this.props.post.content }} />
                               </div>
                           </div>
                       </div>
