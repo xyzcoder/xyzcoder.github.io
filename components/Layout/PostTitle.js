@@ -21,12 +21,12 @@ class PostTitle extends React.Component {
 
     return (
       <div className="post-preview">
-            <a href="/post/">
+            <a href="/post/{this.props.post.id}">
                 <h2 className="post-title">
-                    Test Post
+                    {this.props.post.title}
                 </h2>
             </a>
-            <p className="post-meta">Posted by <a href="#">Pavan Kumar Aryasomayajulu</a> on 10-2-2017 10:10:10</p>
+            <p className="post-meta">Posted by <a href="#">Pavan Kumar Aryasomayajulu</a> on {this.props.post.date}</p>
         </div>
     );
   }
