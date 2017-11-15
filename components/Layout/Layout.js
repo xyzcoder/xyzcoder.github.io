@@ -36,7 +36,7 @@ class Layout extends React.Component {
   render() {
 
     var page;
-    if(props.page && props.page=="postlist"){
+    if(this.props.page && this.props.page=="postlist"){
       page = <PostList />;
     }
     else{
