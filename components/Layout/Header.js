@@ -37,11 +37,15 @@ class Header extends React.Component {
 
     for (var key in localStorage){
        if(key.indexOf("authUser")>0){
-          that.setState({
+          this.setState({
               loggedInuserEmail : JSON.parse(localStorage[key]).email
           });
        }
     }
+    
+  }
+
+  logout(){
     
   }
 
@@ -54,7 +58,9 @@ class Header extends React.Component {
         // The signed-in user info.
         var user = result.user;
 
-        alert(user);
+        this.setState({
+              loggedInuserEmail : user.email
+          });
         // ...
       }).catch(function(error) {
         // Handle Errors here.
@@ -98,9 +104,17 @@ class Header extends React.Component {
                   <li>
                      <a href="/privacypolicy">Privacy Policy</a>
                   </li>
-                  <li>
-                     <a href="#" onClick={this.signin}>Login</a>
-                  </li>
+                  if(this.state.loggedInuserEmail && this.state.loggedInuserEmail!=""){
+                    <li>
+                       <a href="#" onClick={this.logout}>Logout</a>
+                    </li>
+                  }
+                  else{
+                    <li>
+                       <a href="#" onClick={this.signin}>Login</a>
+                    </li>
+                  }
+                  
                </ul>
             </div>
          </div>
