@@ -18,7 +18,7 @@ import About from '../../components/Layout/About';
 class AboutPage extends React.Component {
 
   componentDidMount() {
-    document.title = title;
+    document.title = "About";
   }
 
   render() {

@@ -18,7 +18,7 @@ import { title, html } from './index.md';
 class PostListPage extends React.Component {
 
   componentDidMount() {
-    document.title = title;
+    document.title = "List Of Posts";
   }
 
   render() {

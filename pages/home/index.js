@@ -14,7 +14,7 @@ import { title, html } from './index.md';
 
 class HomePage extends React.Component {
   componentDidMount() {
-    document.title = title;
+    document.title = "Home";
   }
 
   render() {

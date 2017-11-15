@@ -17,7 +17,7 @@ import { title, html } from './index.md';
 class PostPage extends React.Component {
 
   componentDidMount() {
-    document.title = title;
+    document.title = "Posts";
   }
 
   render() {
