@@ -17,6 +17,7 @@ import SideMenu from './SideMenu';
 import CustomSearch from './CustomSearch';
 import Post from './Post';
 import RightSideDisplay from './RightSideDisplay';
+import PostList from "./PostList";
 
 class Layout extends React.Component {
 
@@ -33,6 +34,15 @@ class Layout extends React.Component {
   }
 
   render() {
+
+    var page;
+    if(props.page && props.page=="postlist"){
+      page = <PostList />;
+    }
+    else{
+      page = <Post postId={this.props.postId}/>;
+    }
+
     return (
       <div>
           <Header />
@@ -45,7 +55,7 @@ class Layout extends React.Component {
                         <div className="col-lg-10 col-md-10">
                           <div className="row">
                             <SideMenu />
-                            <Post postId={this.props.postId}/>
+                            {page}
                           </div>
                         </div>
                         <div className="col-lg-2 col-md-10">

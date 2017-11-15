@@ -20,5 +20,9 @@
   {
     "path": "/post/:id",
     "page": "./pages/posts"
+  },
+  {
+    "path": "/postslist",
+    "page": "./pages/postslist"
   }
 ]
