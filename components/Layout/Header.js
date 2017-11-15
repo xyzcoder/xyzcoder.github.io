@@ -12,6 +12,8 @@ import React from 'react';
 import Navigation from './Navigation';
 import Link from '../Link';
 import s from './Header.css';
+import fire from './fire';
+import firebase from 'firebase'
 
 import backgroundimage from '../../assets/img/home-bg.jpg';
 
@@ -23,6 +25,30 @@ class Header extends React.Component {
 
   componentWillUnmount() {
     
+  }
+  componentWillMount(){
+    
+  }
+
+  signin(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
   }
 
   render() {
@@ -54,6 +80,9 @@ class Header extends React.Component {
                   </li>
                   <li>
                      <a href="/privacypolicy">Privacy Policy</a>
+                  </li>
+                  <li>
+                     <a href="#" onClick={this.signin}>Login</a>
                   </li>
                </ul>
             </div>
