@@ -24,6 +24,9 @@ class Header extends React.Component {
     this.state = {
         loggedInuserEmail : ""
       }
+
+      this.logout = this.logout.bind(this);
+      this.signin = this.signin.bind(this);
   };
 
   componentDidMount() {
@@ -45,11 +48,43 @@ class Header extends React.Component {
     
   }
 
+  componentDidUpdate(){
+
+  }
+
   logout(){
-    
+    var that = this;
+        firebase.auth().signOut().then(function() {
+
+            for (var key in localStorage){
+               if(key.indexOf("authUser")>0){
+                  localStorage.removeItem(key);
+               }
+            }
+
+            that.setState({
+                loggedInuserEmail : ""
+            });
+        }).catch(function(error) {
+          // An error happened.
+        });
+  }
+
+  loginButton(){
+        var loginButton;
+
+        if(this.state.loggedInuserEmail && this.state.loggedInuserEmail!=""){
+          loginButton = [<li><a href="#" onClick={this.logout}>Logout</a></li>,<li><a href="/admin">Admin</a></li>]
+        }
+        else{
+          loginButton = <li><a href="#" onClick={this.signin}>Login</a></li>
+        }
+
+        return loginButton;
   }
 
   signin(){
+    var that = this;
     var provider = new firebase.auth.GoogleAuthProvider();
 
       firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -58,7 +93,7 @@ class Header extends React.Component {
         // The signed-in user info.
         var user = result.user;
 
-        this.setState({
+        that.setState({
               loggedInuserEmail : user.email
           });
         // ...
@@ -75,7 +110,6 @@ class Header extends React.Component {
   }
 
   render() {
-
     return (
 
       <div>
@@ -104,16 +138,7 @@ class Header extends React.Component {
                   <li>
                      <a href="/privacypolicy">Privacy Policy</a>
                   </li>
-                  if(this.state.loggedInuserEmail && this.state.loggedInuserEmail!=""){
-                    <li>
-                       <a href="#" onClick={this.logout}>Logout</a>
-                    </li>
-                  }
-                  else{
-                    <li>
-                       <a href="#" onClick={this.signin}>Login</a>
-                    </li>
-                  }
+                    {this.loginButton()}
                   
                </ul>
             </div>
