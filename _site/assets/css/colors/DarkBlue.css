@@ -97,6 +97,7 @@ a.readmore:hover, a.readmore:focus, a.readmore:active {
 }
 #profile .about i.glyphicon, #profile .about label {
     color: #3B5998;
+    font-weight: bold !important;
 }
 #section-title, #categories_sidebar ul.categories li a:hover {
     background: #3B5998;

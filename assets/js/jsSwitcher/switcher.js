@@ -220,8 +220,8 @@ jQuery(document).ready(function($) {
     })
 
     $('#button-reset a').click(function(e) {
-        var bg = '#717171';
-        $('body').css('backgroundColor', '#717171').css('backgroundImage', 'none');
+        var bg = 'black';
+        $('body').css('backgroundColor', 'black').css('backgroundImage', 'none');
         $.cookie('layout_bgColors', bg);
 
     })

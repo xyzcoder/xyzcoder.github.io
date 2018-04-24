@@ -40,6 +40,6 @@
 .clean-check #s1 + label, .clean-check #sd_right + label{margin-left:22px;}
 .layouts{padding-bottom:0px;}
 .clean-check input[type="radio"]{display:none;}
-.clean-check input[type="radio"] + label{font-size:13px;color:#999;display:inline-block;margin-right:30px;}
+.clean-check input[type="radio"] + label{font-size:13px;color:black;display:inline-block;margin-right:30px;}
 .clean-check input[type="radio"] + label span{display:inline-block;width:19px;height:19px;margin:-1px 4px 0 0;vertical-align:middle;background:url(../images/check_radio_sheet.png) -38px top no-repeat;cursor:pointer;}
 .clean-check input[type="radio"]:checked + label span{background:url(../images/check_radio_sheet.png) -57px top no-repeat;}
