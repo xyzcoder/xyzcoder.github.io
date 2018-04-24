@@ -5,7 +5,7 @@
 
 @media (min-width: 1200px) {
     .container {
-        width: 1130px !important;
+        width: 98% !important;
     }
 }
 
@@ -72,9 +72,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: block;
     width: 100%;
     overflow: hidden;
-    position: absolute;
-    top: 50%; 
-    margin: -290.5px auto 0 auto;
+    position: relative;
+    top: 10%;
 }
 h1 {
     font-size: 18px;
