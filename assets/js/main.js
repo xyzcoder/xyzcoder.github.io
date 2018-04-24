@@ -129,8 +129,8 @@ jQuery(document).ready(function($) {
             $(".content_2").css("height", "100%");
         } else {
 
-            $(".resp-vtabs .resp-tabs-container").css("height", "580px");
-            $(".content_2").css("height", "580px");
+            $(".resp-vtabs .resp-tabs-container").css("height", "100%");
+            $(".content_2").css("height", "100%");
             $(".content_2").mCustomScrollbar("destroy");
             $(".content_2").mCustomScrollbar({
                 theme: "dark-2",

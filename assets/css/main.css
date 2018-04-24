@@ -254,7 +254,7 @@ h2.resp-tab-title:last-child {
     background-color: #f4f4f4;
     float: left;
     width: 88%;
-    height: 580px;
+    height: 100%;
     clear: none;
     margin-left: 13px;
 }
@@ -577,7 +577,7 @@ h2.resp-accordion:hover {
 }
 
 .content_2 {
-    height: 580px;
+    height: 100%;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;		
@@ -938,7 +938,7 @@ ul.about {
 ---------------------------------------------------*/
 
 .widget-profil{
-    height: 580px;   
+    height: 100%;   
     float: right; 
 }
 .widget-profil .circle {
