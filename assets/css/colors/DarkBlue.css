@@ -189,20 +189,20 @@ h2.resp-accordion:hover .hi-icon, .no-touch .hi-icon-effect-5 .hi-icon:hover {
     border: 10px solid #4c70ba;
 }
 .widget-profil  h1 {
-    color:#839ccf;
+    color:white;
 }
 .widget-profil  h4 {
-    color:#839ccf; 
+    color:white; 
 }
 .widget-profil  h6 {
-    color:#839ccf; 
+    color:white; 
 }
 .widget-profil  p {
-    color:#839ccf !important;
+    color:white !important;
 }
 .widget-profil #profile_desc {
-    border-bottom: 1px solid #839ccf;
-    border-top: 1px solid #839ccf;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
 }
 #profile_social a:hover {
     color : #3B5998;
