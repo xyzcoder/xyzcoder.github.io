@@ -7,12 +7,37 @@
 {% include head.html %}
 
 <body>
-    
 
-    <div class="wrapper">
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="index.html" class="active">Blog</a>
+  <a href="about.html">About Me</a>
+  <a href="#contact">Contact</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+
+
+
+
+ <div class="wrapper">
 
 <!--- .Content --> 
-<section class="tab-content">
+<!-- <section class="tab-content"> -->
 <div class="container">
 
 <div class="row">
@@ -89,7 +114,7 @@
 <!-- verticalTab menu -->
 <div id="verticalTab">
 
-    <div class="affix">
+    <!-- <div class="affix">
         <ul class="resp-tabs-list">
             <li class="tabs-blog hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5a">
                 <a href="index.html"><i class="fa fa-bullhorn icon_menu icon_menu_active"></i></a>
@@ -105,7 +130,7 @@
             </li>
 
         </ul>
-    </div>
+    </div> -->
     <!-- /resp-tabs-list -->
 
 
@@ -131,7 +156,7 @@
 
 </div><!-- End container -->
 
-</section>
+<!-- </section> -->
 <!-- End Content -->
 
 </div>

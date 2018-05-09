@@ -192,7 +192,7 @@ h2.resp-accordion {
     display: none;
 }
 .resp-tab-content {
-    display: none;
+    display: block;
 }
 .resp-tab-active {
     border-bottom: none;
@@ -253,11 +253,10 @@ h2.resp-tab-title:last-child {
     padding: 0;
     background-color: #f4f4f4;
     float: left;
-    width: 88%;
+    width: 100%;
     height: 100%;
     clear: none;
     position: relative;
-    left:8%;
 }
 .resp-vtabs .resp-tab-content {
     border: none;
