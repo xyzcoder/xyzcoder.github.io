@@ -44,23 +44,23 @@ jQuery(document).ready(function($) {
         $('html, body').animate({scrollTop: $('h2.resp-accordion').offset().top - 50}, 600);
     });
 
-    $(".resp-tabs-list li").click(function() {
-        $(this).find(".icon_menu").addClass("icon_menu_active");
-        $(".resp-tabs-list li").not(this).find(".icon_menu").removeClass("icon_menu_active");
-    });
+    // $(".resp-tabs-list li").click(function() {
+    //     $(this).find(".icon_menu").addClass("icon_menu_active");
+    //     $(".resp-tabs-list li").not(this).find(".icon_menu").removeClass("icon_menu_active");
+    // });
 
 
-    $(".resp-tabs-list li").hover(function() {
-        $(this).find(".icon_menu").addClass("icon_menu_hover");
-    }, function() {
-        $(this).find(".icon_menu").removeClass("icon_menu_hover");
-    });
+    // $(".resp-tabs-list li").hover(function() {
+    //     $(this).find(".icon_menu").addClass("icon_menu_hover");
+    // }, function() {
+    //     $(this).find(".icon_menu").removeClass("icon_menu_hover");
+    // });
 
-    $("h2.resp-accordion").hover(function() {
-        $(this).find(".icon_menu").addClass("icon_menu_hover");
-    }, function() {
-        $(this).find(".icon_menu").removeClass("icon_menu_hover");
-    });
+    // $("h2.resp-accordion").hover(function() {
+    //     $(this).find(".icon_menu").addClass("icon_menu_hover");
+    // }, function() {
+    //     $(this).find(".icon_menu").removeClass("icon_menu_hover");
+    // });
 
     /* ---------------------------------------------------------------------- */
     /* --------------------------- Scroll tabs ------------------------------ */
@@ -87,31 +87,31 @@ jQuery(document).ready(function($) {
     });
 
 
-    $('ul.resp-tabs-list li[class^=tabs-]').click(function() {
+    // $('ul.resp-tabs-list li[class^=tabs-]').click(function() {
 
-        var tab_name = $(this).attr('data-tab-name');
+    //     var tab_name = $(this).attr('data-tab-name');
 
-        $('.resp-tabs-container').addClass('animated ' + animation_style);
-        $('.resp-tabs-container').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-            $('.resp-tabs-container').removeClass('animated ' + animation_style);
-        });
+    //     $('.resp-tabs-container').addClass('animated ' + animation_style);
+    //     $('.resp-tabs-container').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    //         $('.resp-tabs-container').removeClass('animated ' + animation_style);
+    //     });
 
-        $(".content_2").mCustomScrollbar("destroy");
-        $(".content_2").mCustomScrollbar({
-            theme: "dark-2",
-            contentTouchScroll: true,
-            advanced: {
-                updateOnContentResize: true,
-                updateOnBrowserResize: true,
-                autoScrollOnFocus: false
-            }
-        });
+    //     $(".content_2").mCustomScrollbar("destroy");
+    //     $(".content_2").mCustomScrollbar({
+    //         theme: "dark-2",
+    //         contentTouchScroll: true,
+    //         advanced: {
+    //             updateOnContentResize: true,
+    //             updateOnBrowserResize: true,
+    //             autoScrollOnFocus: false
+    //         }
+    //     });
 
-        if (tab_name == "contact")
-            initialize();
+    //     if (tab_name == "contact")
+    //         initialize();
 
-        return false;
-    });
+    //     return false;
+    // });
 
     $("#verticalTab h2.resp-accordion").click(function() {
         initialize();
@@ -418,19 +418,19 @@ jQuery(document).ready(function($) {
     /* -------------------------------- skillbar ---------------------------- */
     /* ---------------------------------------------------------------------- */
 
-    $('.tabs-profile').click(function() {
+    // $('.tabs-profile').click(function() {
 
-        $('.skillbar').each(function() {
-            $(this).find('.skillbar-bar').width(0);
-        });
+    //     $('.skillbar').each(function() {
+    //         $(this).find('.skillbar-bar').width(0);
+    //     });
 
-        $('.skillbar').each(function() {
-            $(this).find('.skillbar-bar').animate({
-                width: $(this).attr('data-percent')
-            }, 2000);
-        });
+    //     $('.skillbar').each(function() {
+    //         $(this).find('.skillbar-bar').animate({
+    //             width: $(this).attr('data-percent')
+    //         }, 2000);
+    //     });
 
-    });
+    // });
 
     $('#resume').prev('h2.resp-accordion').click(function() {
 
