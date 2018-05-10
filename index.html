@@ -7,9 +7,63 @@ layout: default
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
+<div id="blog" class="content_2">
+
+
 
 {% for post in site.posts %}
-  <div class="postWrapper">
-    <h2><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a></h2>  
-  </div>
+
+<h1 class="h-bloc">Blog - My Blog</h1><br> 
+<div class="col-md-12">
+    <div class="row">
+
+        <!-- Page Blog -->
+        <div class="col-md-12" id="blog_page">
+            <!-- start Page Blog -->
+            <section id="post-1-page" class="content-post">
+                <div class="row inner">
+
+                    <div class="col-md-12" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;">
+
+                        <article class="postPage">
+
+                            <div class="title_content">
+                                <div class="text_content">{{ post.title }}</div>
+                                <div class="clear"></div>
+                            </div>
+
+                            {{ post.content }}
+
+
+                            <div class="col-md-12 first">
+                                <div class="info">
+                                    <div>
+                                        {% for category in post.categories %}
+                                            <span class="tag">#{{category}}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="clear"></div>    
+
+                                <div class="col-md-12" style="margin-top: 20px;">
+                                    <a href="#post-2" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                    <a href="#" class="readmore disabled" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                    <a href="#blog" class="readmore"><i class="glyphicon glyphicon-chevron-left"></i> All Posts</a>
+                                </div>
+
+                                <div class="clear"></div>
+
+                        </article>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+        </div>
+
+
+    </div>
+</div>
+
+
 {% endfor %}
