@@ -940,6 +940,7 @@ ul.about {
 .widget-profil{
     height: 100%;   
     float: right; 
+    top:25px;
 }
 .widget-profil .circle {
     display: block;
@@ -1110,7 +1111,7 @@ ul.about {
 
 @media only screen  and (max-width: 766px) {
     .widget-profil{ 	
-        height: 285px !important;
+        height: 320px !important;
         margin-bottom: 20px;
         float: none;
     }
