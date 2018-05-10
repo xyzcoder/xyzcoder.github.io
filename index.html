@@ -7,10 +7,9 @@ layout: default
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Laoding page -->
-<!-- <div id="preloader"><div id="spinner"></div></div> -->
 
-
-
-<!-- .wrapper --> 
-{% include /blog.html %}
+{% for post in site.posts %}
+  <div class="postWrapper">
+    <h2><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a></h2>  
+  </div>
+{% endfor %}
