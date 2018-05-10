@@ -9,9 +9,7 @@ layout: default
 
 <div id="blog" class="content_2">
 
-
-
-{% for post in site.posts %}
+{% assign post = site.posts.first %}
 
 <h1 class="h-bloc">Blog - My Blog</h1><br> 
 <div class="col-md-12">
@@ -65,5 +63,3 @@ layout: default
     </div>
 </div>
 
-
-{% endfor %}
