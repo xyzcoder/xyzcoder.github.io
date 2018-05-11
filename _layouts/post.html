@@ -32,73 +32,16 @@
 
 <div class="wrapper">
 
-    <!--- .Content --> 
-    <!-- <section class="tab-content"> -->
-        <div class="container">
+    <div class="container">
 
-            <div class="row">
+        <div class="row">
+            <div class="col-md-12">
 
-                <div class="col-md-12">
+                <div class="row">   
 
-                    <div class="row">   
-
-                        <!-- profile -->
-                        <div class="col-md-3 widget-profil">
-                            <div class="row">
-
-                                <div class="affix">
-                                    <!-- Profile Image -->
-                                    <div class="col-lg-12 col-md-12 col-sm-3 col-xs-12 ">
-                                     
-                                        <div class="image-holder one" id="pic_prof_1" style="display:block">
-                                            <img class="head-image front circle" src="{{ site.baseurl }}/images/img/0.jpg" width="150" height="150" alt="" />
-                                        </div>
-                                        
-                                        <!-- style for simple image profile -->		
-                                        <div class="circle-img" id="pic_prof_2" style="display:none"></div>
-                                    </div>
-                                    <!-- End Profile Image -->
-                                    
-                                    <!-- Begin profile information -->
-                                    <div class="col-lg-12 col-md-12 col-sm-9 col-xs-12">
-                                        <!-- Profile info -->
-                                        <div id="profile_info">
-                                            <h1 id="name" class="transition-02">{{ site.yourname }}</h1>
-                                            <h4 class="line">{{ site.title }}</h4>
-                                            <h6><span class="fa fa-map-marker"></span> {{ site.location }}</h6>
-                                        </div>
-                                        <!-- End Profile info -->  
-                                        
-                                        
-                                        <!-- Profile Description -->
-                                        <div id="profile_desc">
-                                            <p>
-                                             I am passionate programmer with good experience in building various application both enterprise level and small scale. Apart from technology I like to travel. I visited many places in India and can help people choosing travel destinations.
-                                         </p>
-                                         
-                                     </div>
-                                     <!-- End Profile Description -->  
-                                     
-                                     
-                                     <!-- Name -->
-                                     <div id="profile_social">
-                                        <h6>My Social Profiles</h6>
-                                        <div style="position:  relative;left: 30%">
-                                            <a href="{{site.facebook}}"><i class="fa fa-facebook"></i></a>
-                                            <a href="{{site.twitter}}"><i class="fa fa-twitter"></i></a>
-                                            <a href="{{site.linkedin}}"><i class="fa fa-linkedin"></i></a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                    <!-- End Name -->  
-
-                                </div>
-                                <!-- End profile information -->
-                                
-                            </div>                                      
-                        </div> 
-                        <!-- end profile -->
-                    </div>
+                    <!-- profile -->
+                    {% include profile_widget.html %}
+                    <!--end profile -->
 
                     <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
 
@@ -106,15 +49,6 @@
                         <div id="verticalTab">
                             <!-- resp-tabs-container --> 
                             <div class="resp-tabs-container">
-
-
-
-
-
-
-
-
-
 
                                 <div id="blog" class="content_2">
 
@@ -143,17 +77,17 @@
                                                             <article class="postPage">
 
                                                                 <div class="title_content">
-                                                                    <div class="text_content">{{ page.title }}</div>
+                                                                    <div class="text_content">{{ post.title }}</div>
                                                                     <div class="clear"></div>
                                                                 </div>
 
-                                                                {{ page.content }}
+                                                                {{ post.content }}
 
 
                                                                 <div class="col-md-12 first">
                                                                     <div class="info">
                                                                         <div>
-                                                                            {% for category in page.categories %}
+                                                                            {% for category in post.categories %}
                                                                             <span class="tag">#{{category}}</span>
                                                                             {% endfor %}
                                                                         </div>
@@ -168,71 +102,48 @@
                                                                     </div>
 
                                                                     <div class="clear"></div>
+                                                                </div>
 
-                                                                </article>
-                                                            </div>
-                                                            <div class="clear"></div>
+                                                            </article>
                                                         </div>
-                                                    </section>
-                                                </div>
-
-
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </section>
                                             </div>
+
+
                                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     </div>
-                                    <!-- End #resp-tabs-container --> 
-
-                                </div><!-- End verticalTab -->
-
-                            </div><!-- End flexy_content -->
 
 
-                        </div><!-- End row -->
+                                </div>
 
-                    </div><!-- End col-md-12 -->
+                            </div><!-- End verticalTab -->
 
-                </div><!-- End row -->
+                        </div><!-- End flexy_content -->
 
-            </div><!-- End container -->
 
-            <!-- </section> -->
-            <!-- End Content -->
+                    </div><!-- End row -->
 
-        </div>
-        <!-- End wrapper -->
+                </div><!-- End col-md-12 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+        <!-- </section> -->
+        <!-- End Content -->
+
+    </div>
+</div>
+
         
-        
-        <!-- </div> -->
-        
-        <!-- {% include footer.html %} -->
-        
-        {% include scripts.html %}
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </body>
-    </html> 
+{% include scripts.html %}
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</body>
+</html> 
 
