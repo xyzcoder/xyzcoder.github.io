@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: "Installing Docker On Windows"
 date: 2018-05-09 14:39:00 -0400
 categories: Docker
