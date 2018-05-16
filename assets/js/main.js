@@ -332,57 +332,57 @@ jQuery(document).ready(function($) {
     });
 
     // More blog
-    $('a.read_more').click(function() {
-        var pagina = $(this).attr('href');
-        var postdetail = pagina + '-page';
+    // $('a.read_more').click(function() {
+    //     var pagina = $(this).attr('href');
+    //     var postdetail = pagina + '-page';
 
-        if (pagina.indexOf("#post-") != -1) {
+    //     if (pagina.indexOf("#post-") != -1) {
 
-            $('#blog-page').hide();
+    //         $('#blog-page').hide();
 
-            $(postdetail).show();
-            $(".tabs-blog").trigger('click');
-        }
+    //         $(postdetail).show();
+    //         $(".tabs-blog").trigger('click');
+    //     }
 
-        return false;
+    //     return false;
 
-    });
+    // });
 
     //pagination All
-    $('.content-post a').click(function() {
-        var pagina = $(this).attr('href');
+    // $('.content-post a').click(function() {
+    //     var pagina = $(this).attr('href');
 
-        if (pagina == "#blog") {
+    //     if (pagina == "#blog") {
 
-            $('.content-post').hide();
-            $('#blog-page').show();
-            $(".tabs-blog").trigger('click');
+    //         $('.content-post').hide();
+    //         $('#blog-page').show();
+    //         $(".tabs-blog").trigger('click');
 
-        }
+    //     }
 
-        return false;
+    //     return false;
 
-    });
+    // });
 
     //pagination blog
-    $('.content-post #pagination').click(function() {
+    // $('.content-post #pagination').click(function() {
 
 
-        var pagina = $(this).attr('href');
-        var postdetail = pagina + '-page';
+    //     var pagina = $(this).attr('href');
+    //     var postdetail = pagina + '-page';
 
-        if (pagina.indexOf("#post-") != -1) {
+    //     if (pagina.indexOf("#post-") != -1) {
 
-            $('#blog-page').hide();
-            $('.content-post').hide();
+    //         $('#blog-page').hide();
+    //         $('.content-post').hide();
 
-            $(postdetail).show();
-            $(".tabs-blog").trigger('click');
-        }
+    //         $(postdetail).show();
+    //         $(".tabs-blog").trigger('click');
+    //     }
 
-        return false;
+    //     return false;
 
-    });
+    // });
 
 
     /* ---------------------------------------------------------------------- */
