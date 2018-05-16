@@ -16,6 +16,7 @@ facebook: https://www.facebook.com/paryasomayajulu  ## your facebook account url
 twitter: http://www.twitter.com  ## your twitter account url
 linkedin: https://www.linkedin.com/in/pavankumararya/  ## your linkedin account url
 
-
+plugins:
+  - jekyll-seo-tag
 
 # Update all the sections by editing the files inside _includes folder.

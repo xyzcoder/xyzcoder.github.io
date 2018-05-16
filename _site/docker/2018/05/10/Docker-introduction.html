@@ -77,68 +77,86 @@
 
 
           <style>
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+            }
 
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    top:0px;
-  }
+            .topnav {
+              overflow: hidden;
+              background-color: #333;
+              position: fixed;
+              width: 100%;
+              z-index: 1;
+              top:0px;
+            }
 
-  .topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
+            .topnav a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
 
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
+            .topnav a:hover {
+              background-color: #ddd;
+              color: black;
+            }
 
-  .active {
-    background-color: #4CAF50;
-    color: white;
-  }
+            .active {
+              background-color: #4CAF50;
+              color: white;
+            }
 
-  .topnav .icon {
-    display: none;
-  }
+            .topnav .icon {
+              display: none;
+            }
 
-  @media screen and (max-width: 600px) {
-    .topnav a:not(:first-child) {display: none;}
-    .topnav a.icon {
-      float: right;
-      display: block;
-    }
-  }
+            @media screen and (max-width: 600px) {
+              .topnav a:not(:first-child) {display: none;}
+              .topnav a.icon {
+                float: right;
+                display: block;
+              }
+            }
 
-  @media screen and (max-width: 600px) {
-    .topnav.responsive {position: relative;}
-    .topnav.responsive .icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .topnav.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-  }
-  </style>
+            @media screen and (max-width: 600px) {
+              .topnav.responsive {position: relative;}
+              .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+              }
+              .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+              }
+            }
+      </style>
 
-      </head>
+      <!-- Begin Jekyll SEO tag v2.4.0 -->
+<title>Installing Docker On Windows | Software &amp; Developer</title>
+<meta name="generator" content="Jekyll v3.8.0" />
+<meta property="og:title" content="Installing Docker On Windows" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
+<meta property="og:description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
+<link rel="canonical" href="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
+<meta property="og:url" content="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
+<meta property="og:site_name" content="Software &amp; Developer" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-10T00:09:00+05:30" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html","headline":"Installing Docker On Windows","dateModified":"2018-05-10T00:09:00+05:30","datePublished":"2018-05-10T00:09:00+05:30","description":"Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \\&quot;Expose daemon on tcp://localhost:2375 without TLS\\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html"},"@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
 
 <body>
 
