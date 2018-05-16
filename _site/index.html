@@ -323,13 +323,13 @@ A big answer to my problem in <strong>“VPC Peering”</strong>.</p>
   <li>VPC (Accepter) for this field. Login to your other account and navigate to VPC dashboard, navigate to My VPC. There copy the VPCId present under VPC ID column and past it here. Also keep a note of IPv4 CIDR in your other account.</li>
 </ol>
 
-<p><img src="/assets/images/posts/peering-screen.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+<p><img src="/assets/images/posts/peering-screen.png" alt="" style="width: 100%;height: 100%;" /></p>
 
 <ol>
   <li>After clicking on save, I got a success message . But unfortunately, In My peering connections table, status is failed. So that means our effort to create vpc peering failed. If we dont get an error it is well and good and we can proceed further, Please follow 13,14,15 steps in below side heading(How Do I solve this Overlapping CIDR ranges issue) .</li>
 </ol>
 
-<p><img src="/assets/images/posts/failed-peer.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+<p><img src="/assets/images/posts/failed-peer.png" alt="" style="width: 100%;height: 100%;" /></p>
 
 <ol>
   <li>“Failed due to incorrect VPC-ID, Account ID, or overlapping CIDR rang” Message clearly says that the error was due to invalid VPC-Id or accountid or same CIDR range for both VPC’s in different accounts.</li>
@@ -343,7 +343,7 @@ A big answer to my problem in <strong>“VPC Peering”</strong>.</p>
   <li>Now click on Create VPC.</li>
 </ol>
 
-<p><img src="/assets/images/posts/new-vpc.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+<p><img src="/assets/images/posts/new-vpc.png" alt="" style="width: 100%;height: 100%;" /></p>
 <ol>
   <li>As we already have CIDR block <strong>172.31.0.0/16</strong> in account-1 VPC, I would like to give someother range. I am giving it as <strong>172.33.0.0/16</strong></li>
   <li>Now copy new VPC Id from account-2 which is created in above step.</li>
@@ -370,7 +370,7 @@ A big answer to my problem in <strong>“VPC Peering”</strong>.</p>
   <li>For Target , select peer connection id which we got from above process.</li>
 </ol>
 
-<p><img src="/assets/images/posts/vpc-peer-route.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+<p><img src="/assets/images/posts/vpc-peer-route.png" alt="" style="width: 100%;height: 100%;" /></p>
 
 <ol>
   <li>Now navigate to Account-2 , Route tables for the VPC we are trying to peer and add a new route by providing Account-1 VPC CIDR range and then select vpc peering id for destination.</li>
@@ -391,7 +391,11 @@ Pavan</p>
                                                         
 
                                                         
-                                                            <span class="tag">#AWS,vpc</span>
+                                                            <span class="tag">#AWS</span>
+                                                        
+                                                            <span class="tag">#VPC</span>
+                                                        
+                                                            <span class="tag">#VPC-Peering</span>
                                                         
                                                     </div>
                                                 </div>
