@@ -25,13 +25,13 @@ VPC Peering is a networking connect that enables network connectivity between to
 
 I can create VPC peering between different VPC's in same account and also it is possible for us to create peering between different VPC's present in different accounts though there are few limitations.
 
-<img src="{{ site.baseurl }}/assets/images/posts/peering-intro-diagram.png"  alt="" />
+<img src="{{ site.baseurl }}/assets/images/posts/peering-intro-diagram.jpg"  alt="" />
 
 # **How Do I do VPC Peering**
 1. Login into your AWS account. From now lets consider it as Account-1
 2.  Go to your VPC dashboard. In Services search for VPC and click on it.
 
-<img src="{{ site.baseurl }}/assets/images/posts/vpc.png"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/vpc.jpg"  alt="" style="width: 100%;height: 100%;"/>
 
 3. Make a note of CIDR block present under Ipv4 CIDR column.
 4. Click on Peering Connection in side menu present under "Your VPC" and click on create peering connection button.
@@ -42,11 +42,11 @@ I can create VPC peering between different VPC's in same account and also it is 
 9. If your VPC is in same region, we can keep that radio button as it is. In case if you want to connect to a VPC present in someother region, just select that region from drop down.
 10. VPC (Accepter) for this field. Login to your other account and navigate to VPC dashboard, navigate to My VPC. There copy the VPCId present under VPC ID column and past it here. Also keep a note of IPv4 CIDR in your other account.
 
-<img src="{{ site.baseurl }}/assets/images/posts/peering-screen.png"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/peering-screen.jpg"  alt="" style="width: 100%;height: 100%;"/>
 
 11. After clicking on save, I got a success message . But unfortunately, In My peering connections table, status is failed. So that means our effort to create vpc peering failed. If we dont get an error it is well and good and we can proceed further, Please follow 13,14,15 steps in below side heading(How Do I solve this Overlapping CIDR ranges issue) .
 
-<img src="{{ site.baseurl }}/assets/images/posts/failed-peer.png"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/failed-peer.jpg"  alt="" style="width: 100%;height: 100%;"/>
 
 12. "Failed due to incorrect VPC-ID, Account ID, or overlapping CIDR rang" Message clearly says that the error was due to invalid VPC-Id or accountid or same CIDR range for both VPC's in different accounts.
 13. In our case it is because of overlapping CIDR ranges. We can check these values in My Vpc, under IPv4 CIDR
@@ -56,7 +56,7 @@ I can create VPC peering between different VPC's in same account and also it is 
 2. Select the VPC which has same CIDR block and delete it.
 3. Now click on Create VPC. 
 
-<img src="{{ site.baseurl }}/assets/images/posts/new-vpc.png"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/new-vpc.jpg"  alt="" style="width: 100%;height: 100%;"/>
 4. As we already have CIDR block **172.31.0.0/16** in account-1 VPC, I would like to give someother range. I am giving it as **172.33.0.0/16**
 5. Now copy new VPC Id from account-2 which is created in above step.
 6. Now get back to Account-1
@@ -79,7 +79,7 @@ I can create VPC peering between different VPC's in same account and also it is 
  3. Now Click on Add another route and there for "destination" provide Account-2 VPC's CIDR range
  4. For Target , select peer connection id which we got from above process.
 
-<img src="{{ site.baseurl }}/assets/images/posts/vpc-peer-route.png"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/vpc-peer-route.jpg"  alt="" style="width: 100%;height: 100%;"/>
 
 5. Now navigate to Account-2 , Route tables for the VPC we are trying to peer and add a new route by providing Account-1 VPC CIDR range and then select vpc peering id for destination.
 6. Now we can see traffic between these 2 VPC even though they were present in different accounts.
