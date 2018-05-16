@@ -142,40 +142,41 @@
 
 <body>
 
-    <div class="topnav" id="myTopnav">
-      <a href="/index.html" class="active">Blog</a>
-      <a href="/about.html">About Me</a>
-      <a href="/postlist.html">List Of Posts</a>
-      <a href="#contact">Contact</a>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
+  <div class="topnav" id="myTopnav">
+    <a href="/index.html" class="active">Blog</a>
+    <a href="/about.html">About Me</a>
+    <a href="/postlist.html">List Of Posts</a>
+    <a href="#contact">Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
     </a>
-</div>
-<script>
+  </div>
+  <script>
     function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
     }
-</script>
+  </script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
-<div class="wrapper">
+  <div class="wrapper">
 
-    <div class="container">
+      <div class="container">
 
         <div class="row">
-            <div class="col-md-12">
 
-                <div class="row">   
+          <div class="col-md-12">
 
-                    <!-- profile -->
-                    <div class="col-md-3 widget-profil">
+            <div class="row">   
+
+              <!-- profile -->
+              <div class="col-md-3 widget-profil">
 	<div class="row">
 
 		<div class="affix">
@@ -238,157 +239,146 @@
 	</div> 
 	<!-- end profile -->
 </div>
-                    <!--end profile -->
+              <!--end profile -->
 
-                    <!-- blog content -->
-                    <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
+              <!-- post_content -->
+              <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
 
-    <!-- verticalTab menu -->
-    <div id="verticalTab">
-        <!-- resp-tabs-container --> 
-        <div class="resp-tabs-container">
+                <!-- verticalTab menu -->
+                <div id="verticalTab">
+                  <!-- resp-tabs-container --> 
+                  <div class="resp-tabs-container">
 
-            <div id="blog" class="content_2">
+                   <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-                <h1 class="h-bloc">Blog - My Blog</h1><br> 
-                <div class="col-md-12">
-                    <div class="row">
+    <!-- profile -->
+    <div id="profile" class="content_2">
+        <!-- .title -->
+    <h1 class="h-bloc">List Of Posts</h1>
 
-                        <!-- Page Blog -->
-                        <div class="col-md-12" id="blog_page">
-                            <!-- start Page Blog -->
-                            <section id="post-1-page" class="content-post">
-                                <div class="row inner">
-                                    <!-- Top_above_title -->
-                                    <div class="col-md-12">
-                                        <ins class="adsbygoogle"
-                                        style="display:block"
-                                        data-ad-client="ca-pub-3300393120826046"
-                                        data-ad-slot="4927588003"
-                                        data-ad-format="auto"></ins>
-                                    </div>
-                                </div>
-                                <div class="row inner">
-
-                                    <div class="col-md-12" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;">
-
-                                        <article class="postPage">
-
-                                            <div class="title_content">
-                                                <div class="text_content">
-                                                   
-                                                    
-                                                        Installing Docker On Windows
-                                                    
-                                                    
-                                                </div>
-                                                <div class="clear"></div>
-                                            </div>
-
-                                            
-                                                <p>Hi,</p>
-<p>In this post, we will see how to install docker on windows and other basic details.</p>
-<p><br /></p>
-<p><b>System Requirements:</b></p>
-<p>1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. <br />Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.<br />Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV.</p>
-<p>2. HyperV is not supported on Home edition of windows.</p>
-<p>3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education.</p>
-<p><br /></p>
-<p>Don't worry if you don't&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.<br /><br /><b>Downloads:</b></p>
-<p>Download the installer Docker for windows from <a href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">this location</a>&nbsp;</p>
-<p>As I mentioned above, if you don't have supported version of OS, then you can download Docker Toolbox from <a href="https://download.docker.com/win/stable/DockerToolbox.exe">this location</a>.</p>
-<p><br /></p>
-<p><b>Installation steps:</b></p>
-<p>After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password.</p>
-<p>During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further.</p>
-<p>After going through the steps in the installation wizard, docker is installed on the machine and we can use it.</p>
-<p><br /></p>
-<p>In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker.</p>
-<p><br /></p>
-<p><b>Verifying your installation:<br /><br />Docker For windows.exe( Not for Docker toolbox):</b></p>
-<p>Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it.</p>
-<p><br /></p>
-<p></p>
-<p><br /></p>
-<p>Make sure that \"Expose daemon on tcp://localhost:2375 without TLS\" is checked.</p>
-<p><br /></p>
-<p>Now open command prompt and issue following command</p>
-<pre style="line-height: 1.42857;"><code class="html">docker --version</code></pre>
-<p><br /></p>
-<p>Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work.</p>
-<p><br /></p>
-<p><b>Docker Toolbox verification:</b></p>
-<p>On desktop, we can see Docker toolbox icon</p>
-<p><br /></p>
-<p><img src="https://docs.docker.com/toolbox/images/icon-set.png" alt="Desktop" /></p>
-<p><br /></p>
-<p>When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).<br /><br />Now in the command prompt, you can issue following commands<br /></p>
-<pre><code class="html">docker --version</code></pre>
-<p><br />If we get the result, then docker installation is successful.<br /></p>
-<p><br /></p>
-<p>Thanks,</p>
-<p>Pavan Kumar Aryasomayajulu</p>
-
-                                            
-
-
-                                            <div class="col-md-12 first">
-                                                <div class="info">
-                                                    <div>
-
-
-                                                        
-
-                                                        
-                                                            <span class="tag">#Docker</span>
-                                                        
-                                                    </div>
-                                                </div>
-
-                                                <div class="clear"></div>    
-
-                                                <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="#post-2" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="#" class="readmore disabled" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                                    <a href="#blog" class="readmore"><i class="glyphicon glyphicon-chevron-left"></i> All Posts</a>
-                                                </div>
-
-                                                <div class="clear"></div>
-                                            </div>
-
-                                        </article>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-
+    <div class="row top-p">
+        <div class="col-md-6 profile-l">
+            <div class="col-md-12">
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3300393120826046"
+                data-ad-slot="4927588003"
+                data-ad-format="auto"></ins>
             </div>
+        </div>
+    </div>
 
-        </div><!-- End verticalTab -->
+    <div class="row top-p">
+        <div class="col-md-12 profile-l">
+            <div class="row">
+                <div class="col-md-12" id="blog_page">
+                    <section id="blog-page">
 
-    </div><!-- End flexy_content -->
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" >AWS VPC Peering Connection</a></div>
+                                                        <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> May 15, 2018</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>AWS</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>VPC</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>VPC-Peering</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Problem I am trying to solve: Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance … I decided to spin up few...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/docker/2018/05/10/Docker-introduction.html" >Installing Docker On Windows</a></div>
+                                                        <a href="/docker/2018/05/10/Docker-introduction.html" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> May 10, 2018</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Docker</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                            
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-</div><!-- End row -->
-                    <!--blog content -->
+    <div class="clear"></div>
+    </div>
+    <!-- End .profile -->
 
-                </div><!-- End col-md-12 -->
+                 </div>
+                 <!-- End #resp-tabs-container --> 
+
+               </div><!-- End verticalTab -->
+
+              </div><!-- End post_content -->
+
 
             </div><!-- End row -->
 
-        </div><!-- End container -->
+          </div><!-- End col-md-12 -->
 
-        <!-- </section> -->
-        <!-- End Content -->
+        </div><!-- End row -->
 
-    </div>
-</div>
+      </div><!-- End container -->
 
-        
+  </div>
+
+
     <!-- jquery | jQuery 1.11.0 -->
     <!-- Credits: http://jquery.com -->
     <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
@@ -485,10 +475,8 @@
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-
 </body>
 </html> 
 
