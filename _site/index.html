@@ -303,7 +303,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        AWS VPC Peering Connection
+                                                        dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls
                                                     
                                                     
                                                 </div>
@@ -312,96 +312,79 @@
 
                                             
                                                 <h1 id="problem-i-am-trying-to-solve"><strong>Problem I am trying to solve</strong>:</h1>
-<p>Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance …
-I decided to spin up few ubuntu machines as slaves for Spark cluster. I went to Instance creation page in AWS and selected ubuntu machine, there is the first hit, I am able to create a machine with just 1gb Ram.
-Next after going through the process I came to know that under free tier I can use maximum of 30gb space. So If I want to deal with decent amount of data to play with Apache Spark, I can create a single machine with 30gb space and 1gb Ram. This will not help me out, All my hopes to create a spark cluster with decent number of ububtu machines at free of cost went down :(
-<br />
-<br />
-But I didnt give up, I decided to create multiple AWS accounts with my personal, office and my other email accounts. I was able to successfull create 3 accounts. So again with a smiling face, I logged into 3 different accounts and I am able to create 3 different ubuntu instances each with 1gb Ram and 30gb harddisk space. As these machines were provided with a external IP, I am also able to communicate with them. But the problem here is, I am able to communicate via internet but not privately. Whenever we create an instance in AWS, we are provided with an option to access via internet and also they provide us with an internal IP address which can be used with in the same VPC. But my 3 accounts will have 3 different VPC’s. 
-<br /><br />
-So I cannot use internal IP’s to communicate between these 3 machines, As I created my 3 accounts with AWS and my VPC’s are in the same region? It is something like 3 different companies created 3 different accounts with AWS but still they wanted to be in same network. I am not sure whether this a common requirement or not, but I have this requirement now.
-<br /><br />
-A big answer to my problem in <strong>“VPC Peering”</strong>.</p>
+<p>I was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll’s related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio.
+So I was searching for options to actually find out what the issue was.</p>
 
-<h1 id="what-is-vpc-peering"><strong>What is VPC Peering:</strong></h1>
-<p>VPC Peering is a networking connect that enables network connectivity between to VPC’s. In way by enabling VPC Peering, we can treat our machines as if they were in same network.</p>
-
-<p>I can create VPC peering between different VPC’s in same account and also it is possible for us to create peering between different VPC’s present in different accounts though there are few limitations.</p>
-
-<p><img src="/assets/images/posts/peering-intro-diagram.jpg" alt="" /></p>
-
-<h1 id="how-do-i-do-vpc-peering"><strong>How Do I do VPC Peering</strong></h1>
+<p>I tried following approaches:</p>
 <ol>
-  <li>Login into your AWS account. From now lets consider it as Account-1</li>
-  <li>Go to your VPC dashboard. In Services search for VPC and click on it.</li>
+  <li>Decompile the dll’s using dotPeek, JustCompile  and then create the project in visual studio but that failed.</li>
+  <li>Another option can be using Visual Studio + dotPeek( as symbol server), Even this is not successful because I am not able to attach process in visual studio, because it is failing in the load it self.</li>
 </ol>
 
-<p><img src="/assets/images/posts/vpc.jpg" alt="" style="width: 100%;height: 100%;" /></p>
+<p>Then I came accross a called <strong>“dnSpy”</strong>.</p>
 
-<ol>
-  <li>Make a note of CIDR block present under Ipv4 CIDR column.</li>
-  <li>Click on Peering Connection in side menu present under “Your VPC” and click on create peering connection button.</li>
-  <li>Give  aname for “Peering connection name tag”</li>
-  <li>For VPC (Requester).. Select VPC for which you want to create peering in Account-1. In my case I have only 1 VPC so in the drop down, I’ll get only one entry.</li>
-  <li>Now under “Select another VPC to Peer with”, Here we need to provide other vpc details and if other vpc is from another account, we need to check “other account: radio button.</li>
-  <li>Now provide accountId, this can be obtained from My Account Menu</li>
-  <li>If your VPC is in same region, we can keep that radio button as it is. In case if you want to connect to a VPC present in someother region, just select that region from drop down.</li>
-  <li>VPC (Accepter) for this field. Login to your other account and navigate to VPC dashboard, navigate to My VPC. There copy the VPCId present under VPC ID column and past it here. Also keep a note of IPv4 CIDR in your other account.</li>
-</ol>
+<h1 id="dnspy---a-fantastic-decompiler-debugger-and-editor"><strong>dnSpy - A Fantastic Decompiler, Debugger and Editor</strong>:</h1>
+<p>What? does this tool does all these things?</p>
 
-<p><img src="/assets/images/posts/peering-screen.jpg" alt="" style="width: 100%;height: 100%;" /></p>
+<p>Yes I am able to decompile my .Net dlls and then debug them and finally I am also able to edit decompiled Dll’s and run them.</p>
 
-<ol>
-  <li>After clicking on save, I got a success message . But unfortunately, In My peering connections table, status is failed. So that means our effort to create vpc peering failed. If we dont get an error it is well and good and we can proceed further, Please follow 13,14,15 steps in below side heading(How Do I solve this Overlapping CIDR ranges issue) .</li>
-</ol>
+<p>This is a list of capabilities that were mentioned in their website <a href="https://github.com/0xd4d/dnSpy">https://github.com/0xd4d/dnSpy</a></p>
 
-<p><img src="/assets/images/posts/failed-peer.jpg" alt="" style="width: 100%;height: 100%;" /></p>
+<h1 id="debugger"><strong>Debugger</strong>:</h1>
+<ul>
+  <li>Debug .NET Framework, .NET Core and Unity game assemblies, no source code required</li>
+  <li>Set breakpoints and step into any assembly</li>
+  <li>Locals, watch, autos windows</li>
+  <li>Variables windows supports saving variables (eg. decrypted byte arrays) to disk or view them in the hex editor (memory window)</li>
+  <li>Object IDs</li>
+  <li>Multiple processes can be debugged at the same time</li>
+  <li>Break on module load</li>
+  <li>Tracepoints and conditional breakpoints</li>
+  <li>Export/import breakpoints and tracepoints</li>
+  <li>Call stack, threads, modules, processes windows</li>
+  <li>Break on thrown exceptions (1st chance)</li>
+  <li>Variables windows support evaluating C# / Visual Basic expressions</li>
+  <li>Dynamic modules can be debugged (but not dynamic methods due to CLR limitations)</li>
+  <li>Output window logs various debugging events, and it shows timestamps by default :)</li>
+  <li>Assemblies that decrypt themselves at runtime can be debugged, dnSpy will use the in-memory image. You can also force dnSpy to always use in-memory images instead of disk files.</li>
+  <li>Public API, you can write an extension or use the C# Interactive window to control the debugger</li>
+</ul>
 
-<ol>
-  <li>“Failed due to incorrect VPC-ID, Account ID, or overlapping CIDR rang” Message clearly says that the error was due to invalid VPC-Id or accountid or same CIDR range for both VPC’s in different accounts.</li>
-  <li>In our case it is because of overlapping CIDR ranges. We can check these values in My Vpc, under IPv4 CIDR</li>
-</ol>
+<h1 id="assembly-editor"><strong>Assembly Editor</strong>:</h1>
+<ul>
+  <li>All metadata can be edited</li>
+  <li>Edit methods and classes in C# or Visual Basic with IntelliSense, no source code required</li>
+  <li>Add new methods, classes or members in C# or Visual Basic</li>
+  <li>IL editor for low level IL method body editing</li>
+  <li>Low level metadata tables can be edited. This uses the hex editor internally.</li>
+</ul>
 
-<h1 id="how-do-i-solve-this-overlapping-cidr-ranges-issue"><strong>How Do I solve this Overlapping CIDR ranges issue</strong></h1>
-<ol>
-  <li>Go to your other account lets say Account-2. Now Navigate to VPC dashboard.</li>
-  <li>Select the VPC which has same CIDR block and delete it.</li>
-  <li>Now click on Create VPC.</li>
-</ol>
+<h1 id="hex-editor"><strong>Hex Editor</strong>:</h1>
+<ul>
+  <li>Click on an address in the decompiled code to go to its IL code in the hex editor</li>
+  <li>Reverse of above, press F12 in an IL body in the hex editor to go to the decompiled code or other high level representation of the bits. It’s great to find out which statement a patch modified.</li>
+  <li>Highlights .NET metadata structures and PE structures</li>
+  <li>Tooltips shows more info about the selected .NET metadata / PE field</li>
+  <li>Go to position, file, RVA</li>
+  <li>Go to .NET metadata token, method body, #Blob / #Strings / #US heap offset or #GUID heap index</li>
+  <li>Follow references (Ctrl+F12)</li>
+</ul>
 
-<p><img src="/assets/images/posts/new-vpc.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-<ol>
-  <li>As we already have CIDR block <strong>172.31.0.0/16</strong> in account-1 VPC, I would like to give someother range. I am giving it as <strong>172.33.0.0/16</strong></li>
-  <li>Now copy new VPC Id from account-2 which is created in above step.</li>
-  <li>Now get back to Account-1</li>
-  <li>Click on Peering Connection in side menu present under “Your VPC” and click on create peering connection button.</li>
-  <li>Give  aname for “Peering connection name tag”</li>
-  <li>For VPC (Requester).. Select VPC for which you want to create peering in Account-1. In my case I have only 1 VPC so in the drop down, I’ll get only one entry.</li>
-  <li>Now under “Select another VPC to Peer with”, Here we need to provide other vpc details and if other vpc is from another account(account-2), we need to check “other account: radio button.</li>
-  <li>Now provide accountId, this can be obtained from My Account Menu</li>
-  <li>If your VPC is in same region, we can keep that radio button as it is. In case if you want to connect to a VPC present in someother region, just select that region from drop down.</li>
-  <li>VPC (Accepter) for this field. Login to your other account(account-2) and navigate to VPC dashboard, navigate to My VPC. There copy the VPCId present under VPC ID column and past it here. Also keep a note of IPv4 CIDR in your other account.</li>
-  <li>Now we can see success message and when we navigate to Peering Connection menu, we can see an entry with “Pending Acceptance” status. That means our VPC peering from Account-1 side is perfectly alright.</li>
-  <li>Now navigate to Account-2, Navigate to VPC dahboard and select Peering Connection menu.</li>
-  <li>There we can see an entry with “Pending Acceptance”. Select that item and click on Action menu and accept request.</li>
-</ol>
-
-<h1 id="modify-route-tables"><strong>Modify Route Tables</strong></h1>
-<p>By doing above steps, we were able to successfull create VPC peering. But still we will not be able to send traffic between these VPC’s. In order to do that, we need to follow few more steps.</p>
-<ol>
-  <li>Navigate to Route tables present under “Virtual private Cloud” menu item in Account-1</li>
-  <li>For route table which is associated with the VPC(to which we created vpc peering) in account-1, select it</li>
-  <li>Click on Routes tab at the bottom section and click on edit</li>
-  <li>Now Click on Add another route and there for “destination” provide Account-2 VPC’s CIDR range</li>
-  <li>For Target , select peer connection id which we got from above process.</li>
-</ol>
-
-<p><img src="/assets/images/posts/vpc-peer-route.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-
-<ol>
-  <li>Now navigate to Account-2 , Route tables for the VPC we are trying to peer and add a new route by providing Account-1 VPC CIDR range and then select vpc peering id for destination.</li>
-  <li>Now we can see traffic between these 2 VPC even though they were present in different accounts.</li>
-</ol>
+<h1 id="others"><strong>Others</strong>:</h1>
+<ul>
+  <li>BAML decompiler</li>
+  <li>Blue, light and dark themes (and a dark high contrast theme)</li>
+  <li>Bookmarks</li>
+  <li>C# Interactive window can be used to script dnSpy</li>
+  <li>Search assemblies for classes, methods, strings etc</li>
+  <li>Analyze class and method usage, find callers etc</li>
+  <li>Multiple tabs and tab groups</li>
+  <li>References are highlighted, use Tab / Shift+Tab to move to next reference</li>
+  <li>Go to entry point and module initializer commands</li>
+  <li>Go to metadata token or metadata row commands</li>
+  <li>Code tooltips (C# and Visual Basic)</li>
+  <li>Export to project</li>
+</ul>
 
 <p>Thanks,
 Pavan</p>
@@ -414,7 +397,7 @@ Pavan</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 221951; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 07062018318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -438,11 +421,9 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#AWS</span>
+                                                            <span class="tag">#Dll_Decompiling</span>
                                                         
-                                                            <span class="tag">#VPC</span>
-                                                        
-                                                            <span class="tag">#VPC-Peering</span>
+                                                            <span class="tag">#Decompiled_Dll_Debugging</span>
                                                         
                                                     </div>
                                                 </div>
