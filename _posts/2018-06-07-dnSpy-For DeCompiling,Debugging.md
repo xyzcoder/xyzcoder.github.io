@@ -73,6 +73,24 @@ This is a list of capabilities that were mentioned in their website [https://git
 * Code tooltips (C# and Visual Basic)
 * Export to project
 
+<br/>
+
+# **Debugging a simple application using dnSpy**: 
+
+Download latest release of dnSpy zip file from [https://github.com/0xd4d/dnSpy/releases](https://github.com/0xd4d/dnSpy/releases)
+<br/>
+<br/>
+Once it is downloaded, unzip it and go to the folder and there we have an exe with name "dnSpy". Double click and open it
+<br/>
+<br/>
+I am trying to debug a small console application exe.
+<br/>
+<br/>
+<img src="{{ site.baseurl }}/assets/images/posts/dnspy_1.gif"  alt="" style="width: 100%;height: 100%;"/>
+
+<br/>
+<br/>
+
 Thanks,
 Pavan
 

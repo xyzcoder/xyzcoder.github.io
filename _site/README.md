@@ -11,13 +11,10 @@ The theme would look like this
 
 # Installation
 
-- Fork the repository
-- Go to settings and set Github Pages source as master.
-- Your new site should be ready at https://username.github.io/PanelCV/
-
-Check out for more themes: [Jekyll Themes](http://jekylltheme.org)
+Need to execute following command:
+  bundle exec jekyll serve
 
 
-# Author
+# Points to make sure before publishing a POST:
 
-- [Locky](https://github.com/junlulocky)
+In Posts section we need to update comments meta data and also we need to have a unique value for Disqus
