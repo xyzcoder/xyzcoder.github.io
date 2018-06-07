@@ -6,6 +6,7 @@ comments: true
 categories:
 - Dll_Decompiling
 - Decompiled_Dll_Debugging
+- dnSpy
 ---
 
 # **Problem I am trying to solve**: 
@@ -24,6 +25,8 @@ What? does this tool does all these things?
 Yes I am able to decompile my .Net dlls and then debug them and finally I am also able to edit decompiled Dll's and run them. 
 
 This is a list of capabilities that were mentioned in their website [https://github.com/0xd4d/dnSpy](https://github.com/0xd4d/dnSpy)
+
+So I can say that **"dnSpy"** is a must have tool in a .Net developers toolkit.
 
 # **Debugger**: 
 * Debug .NET Framework, .NET Core and Unity game assemblies, no source code required
