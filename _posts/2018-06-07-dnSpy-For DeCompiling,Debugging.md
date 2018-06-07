@@ -91,6 +91,13 @@ I am trying to debug a small console application exe.
 <br/>
 <br/>
 
+# **Editing a simple application dll/exe using dnSpy**: 
+
+<img src="{{ site.baseurl }}/assets/images/posts/dnspy_2.gif"  alt="" style="width: 100%;height: 100%;"/>
+
+<br/>
+<br/>
+
 Thanks,
 Pavan
 
