@@ -10,7 +10,7 @@ categories:
 ---
 
 # **Problem I am trying to solve**: 
-I was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll's related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio.
+I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll's related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio.
 So I was searching for options to actually find out what the issue was.
 
 I tried following approaches:
