@@ -161,4 +161,4 @@ if __name__ == '__main__':
 
     while True:
         start = time.time()
-        request = req_proxy.generate_proxied_request(test_url)
+        request1 = req_proxy.generate_proxied_request(test_url)
