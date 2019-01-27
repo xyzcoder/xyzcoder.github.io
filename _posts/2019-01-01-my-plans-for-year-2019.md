@@ -1,0 +1,32 @@
+---
+title: My Plans For Year 2019
+---
+
+# **Happy New Year **: 
+Hello everyone, Thank you for following my blog and showing interest in reading my articles.
+In this blog post, I would like to discuss my plans for the year 2019. I'll work hard to accomplish all my goals mentioned here and share my learnings.
+
+Here is a brief list of Todo's I am planning to accomplish in 2019.
+
+1.  **"Increase my blogging frequency"**:
+                I started blogging since 5 years and during my initial years of blogging, I used to be very active at my other blog [Pavanarya.wordpress.com](https://pavanarya.wordpress.com) but unfortunately since a year I am not that active spending my time in blogging. I understand the value and importance of contributing to the community. So this year I again want to get in touch with developer communities and my fellow developers. So my target for this year and upcoming years is to post at least one article( of course useful ones) per week.
+
+2.  **"Learn Elastic Search"**:
+       This is an area of interest where I would like to excel. Elastic search is a technology which we used in one of our projects in the past but I didn't get a chance to explore much about it. Now I would like to pay attention to this technology. Is it a random technology which I selected because of external factors like 'this technology has a good job market'? Absolutely a big No.
+Since years I am using relational databases like SQL Server which mostly deal with relational data where we define a number of columns and their types well in advance. On the other hand, Elastic search is a No SQL json store which is schema free. We can insert data and it indexes and makes it searchable. Of course, if we want to avoid defaults provided by Elastic search, we can define our mappings. There are other NoSQL databases but because of full-text search capabilities and data indexing, ES is my next target to get deep into.
+
+3.  **"Use at least one programming language other than the ones which I frequently use"**:
+      A famous quote which I read sometime back... "A ship in harbor is safe — but that is not what ships are built for". So the same is the case, for years I am working on Microsoft technologies and web-like JS and its flavors, of course, I did write code in other programming languages like "PHP, Python, and Java" and did develop a good project using these technologies. But I was like a Nightwatchman ( If you follow cricket, especially test matches) working on these technologies. Of course, I strongly believe that Programming language should never be a barrier to implement ideas or thoughts for a good developer. At any given point of time, I believe that a good developer should be capable of writing code in any programming language. But of course there is a slight difference between writing code in a new programming language and excelling in that programming language. So I decided to learn and excel in "Python". Reason for choosing Python is for many years I am using C# which is statically typed and I would like to the taste the dynamic nature of python now. Also, I am planning to learn about Machine learning and Python provides some packages in those areas like NumPy, SciPi and many more. Also, another reason is I would like to explore Apache Spark and using PySpark I'll be able to write map-reduce functions.
+
+
+And the list is never ending but I would like to focus on these technologies and goals for this year and If time permits, I'll be focusing on some other topics like Natural Language Processing and others.....
+
+And once again I wish everyone a Happy New Year. Please do post your valuable suggestions, questions, and learnings, and let's try to learn as much as possible this year.
+
+Do post your plans related to learning for this year in the comments section below.
+
+
+Thanks,
+Pavan Kumar Aryasomayajulu,
+pavan.aryasomayajulu@gmail.com
+xyzcoder1989@gmail.com
