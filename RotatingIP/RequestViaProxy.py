@@ -86,12 +86,14 @@ class RequestProxy:
         try:
             request = None
             if self.proxy_list.__len__() <= 5:
-                req_proxy = RequestProxy()
+                RequestProxy()
 
             random.shuffle(self.proxy_list)
+
+            # This is to select a random useragent to make a request
             req_headers = dict(params.items() + self.generate_random_request_headers().items())
 
-            if successFulProxy != None and successFulProxy != {}:
+            if successFulProxy is not None and successFulProxy != {}:
                 rand_proxy = successFulProxy
             else:
                 rand_proxy = random.choice(self.proxy_list)
@@ -138,7 +140,7 @@ class RequestProxy:
                     return self.generate_proxied_request(url)
 
             except Exception as e:
-                print("inkedin error" + str(e))
+                print("linkedin error" + str(e))
                 maxRetriesCount = maxRetriesCount + 1
                 if maxRetriesCount == 5:
                     successFulProxy = None
