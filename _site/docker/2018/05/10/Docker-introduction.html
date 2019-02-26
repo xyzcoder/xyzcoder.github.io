@@ -139,21 +139,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>AWS VPC Peering Connection | xyzcoder.github.io</title>
+<title>Installing Docker On Windows | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="AWS VPC Peering Connection" />
+<meta property="og:title" content="Installing Docker On Windows" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Problem I am trying to solve: Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance … I decided to spin up few ubuntu machines as slaves for Spark cluster. I went to Instance creation page in AWS and selected ubuntu machine, there is the first hit, I am able to create a machine with just 1gb Ram. Next after going through the process I came to know that under free tier I can use maximum of 30gb space. So If I want to deal with decent amount of data to play with Apache Spark, I can create a single machine with 30gb space and 1gb Ram. This will not help me out, All my hopes to create a spark cluster with decent number of ububtu machines at free of cost went down :( But I didnt give up, I decided to create multiple AWS accounts with my personal, office and my other email accounts. I was able to successfull create 3 accounts. So again with a smiling face, I logged into 3 different accounts and I am able to create 3 different ubuntu instances each with 1gb Ram and 30gb harddisk space. As these machines were provided with a external IP, I am also able to communicate with them. But the problem here is, I am able to communicate via internet but not privately. Whenever we create an instance in AWS, we are provided with an option to access via internet and also they provide us with an internal IP address which can be used with in the same VPC. But my 3 accounts will have 3 different VPC’s. So I cannot use internal IP’s to communicate between these 3 machines, As I created my 3 accounts with AWS and my VPC’s are in the same region? It is something like 3 different companies created 3 different accounts with AWS but still they wanted to be in same network. I am not sure whether this a common requirement or not, but I have this requirement now. A big answer to my problem in “VPC Peering”." />
-<meta property="og:description" content="Problem I am trying to solve: Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance … I decided to spin up few ubuntu machines as slaves for Spark cluster. I went to Instance creation page in AWS and selected ubuntu machine, there is the first hit, I am able to create a machine with just 1gb Ram. Next after going through the process I came to know that under free tier I can use maximum of 30gb space. So If I want to deal with decent amount of data to play with Apache Spark, I can create a single machine with 30gb space and 1gb Ram. This will not help me out, All my hopes to create a spark cluster with decent number of ububtu machines at free of cost went down :( But I didnt give up, I decided to create multiple AWS accounts with my personal, office and my other email accounts. I was able to successfull create 3 accounts. So again with a smiling face, I logged into 3 different accounts and I am able to create 3 different ubuntu instances each with 1gb Ram and 30gb harddisk space. As these machines were provided with a external IP, I am also able to communicate with them. But the problem here is, I am able to communicate via internet but not privately. Whenever we create an instance in AWS, we are provided with an option to access via internet and also they provide us with an internal IP address which can be used with in the same VPC. But my 3 accounts will have 3 different VPC’s. So I cannot use internal IP’s to communicate between these 3 machines, As I created my 3 accounts with AWS and my VPC’s are in the same region? It is something like 3 different companies created 3 different accounts with AWS but still they wanted to be in same network. I am not sure whether this a common requirement or not, but I have this requirement now. A big answer to my problem in “VPC Peering”." />
-<link rel="canonical" href="http://localhost:4000/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/" />
-<meta property="og:url" content="http://localhost:4000/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/" />
+<meta name="description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
+<meta property="og:description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
+<link rel="canonical" href="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
+<meta property="og:url" content="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-05-15T22:19:51+05:30" />
+<meta property="article:published_time" content="2018-05-10T00:09:00+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/","headline":"AWS VPC Peering Connection","dateModified":"2018-05-15T22:19:51+05:30","datePublished":"2018-05-15T22:19:51+05:30","description":"Problem I am trying to solve: Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance … I decided to spin up few ubuntu machines as slaves for Spark cluster. I went to Instance creation page in AWS and selected ubuntu machine, there is the first hit, I am able to create a machine with just 1gb Ram. Next after going through the process I came to know that under free tier I can use maximum of 30gb space. So If I want to deal with decent amount of data to play with Apache Spark, I can create a single machine with 30gb space and 1gb Ram. This will not help me out, All my hopes to create a spark cluster with decent number of ububtu machines at free of cost went down :( But I didnt give up, I decided to create multiple AWS accounts with my personal, office and my other email accounts. I was able to successfull create 3 accounts. So again with a smiling face, I logged into 3 different accounts and I am able to create 3 different ubuntu instances each with 1gb Ram and 30gb harddisk space. As these machines were provided with a external IP, I am also able to communicate with them. But the problem here is, I am able to communicate via internet but not privately. Whenever we create an instance in AWS, we are provided with an option to access via internet and also they provide us with an internal IP address which can be used with in the same VPC. But my 3 accounts will have 3 different VPC’s. So I cannot use internal IP’s to communicate between these 3 machines, As I created my 3 accounts with AWS and my VPC’s are in the same region? It is something like 3 different companies created 3 different accounts with AWS but still they wanted to be in same network. I am not sure whether this a common requirement or not, but I have this requirement now. A big answer to my problem in “VPC Peering”.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/"},"@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html","headline":"Installing Docker On Windows","dateModified":"2018-05-10T00:09:00+05:30","datePublished":"2018-05-10T00:09:00+05:30","description":"Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \\&quot;Expose daemon on tcp://localhost:2375 without TLS\\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html"},"@type":"BlogPosting","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -307,7 +307,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        AWS VPC Peering Connection
+                                                        Installing Docker On Windows
                                                     
                                                     
                                                 </div>
@@ -315,100 +315,48 @@
                                             </div>
 
                                             
-                                                <h1 id="problem-i-am-trying-to-solve"><strong>Problem I am trying to solve</strong>:</h1>
-<p>Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance …
-I decided to spin up few ubuntu machines as slaves for Spark cluster. I went to Instance creation page in AWS and selected ubuntu machine, there is the first hit, I am able to create a machine with just 1gb Ram.
-Next after going through the process I came to know that under free tier I can use maximum of 30gb space. So If I want to deal with decent amount of data to play with Apache Spark, I can create a single machine with 30gb space and 1gb Ram. This will not help me out, All my hopes to create a spark cluster with decent number of ububtu machines at free of cost went down :(
-<br />
-<br />
-But I didnt give up, I decided to create multiple AWS accounts with my personal, office and my other email accounts. I was able to successfull create 3 accounts. So again with a smiling face, I logged into 3 different accounts and I am able to create 3 different ubuntu instances each with 1gb Ram and 30gb harddisk space. As these machines were provided with a external IP, I am also able to communicate with them. But the problem here is, I am able to communicate via internet but not privately. Whenever we create an instance in AWS, we are provided with an option to access via internet and also they provide us with an internal IP address which can be used with in the same VPC. But my 3 accounts will have 3 different VPC’s. 
-<br /><br />
-So I cannot use internal IP’s to communicate between these 3 machines, As I created my 3 accounts with AWS and my VPC’s are in the same region? It is something like 3 different companies created 3 different accounts with AWS but still they wanted to be in same network. I am not sure whether this a common requirement or not, but I have this requirement now.
-<br /><br />
-A big answer to my problem in <strong>“VPC Peering”</strong>.</p>
-
-<h1 id="what-is-vpc-peering"><strong>What is VPC Peering:</strong></h1>
-<p>VPC Peering is a networking connect that enables network connectivity between to VPC’s. In way by enabling VPC Peering, we can treat our machines as if they were in same network.</p>
-
-<p>I can create VPC peering between different VPC’s in same account and also it is possible for us to create peering between different VPC’s present in different accounts though there are few limitations.</p>
-
-<p><img src="/assets/images/posts/peering-intro-diagram.jpg" alt="" /></p>
-
-<h1 id="how-do-i-do-vpc-peering"><strong>How Do I do VPC Peering</strong></h1>
-<ol>
-  <li>Login into your AWS account. From now lets consider it as Account-1</li>
-  <li>Go to your VPC dashboard. In Services search for VPC and click on it.</li>
-</ol>
-
-<p><img src="/assets/images/posts/vpc.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-
-<ol>
-  <li>Make a note of CIDR block present under Ipv4 CIDR column.</li>
-  <li>Click on Peering Connection in side menu present under “Your VPC” and click on create peering connection button.</li>
-  <li>Give  aname for “Peering connection name tag”</li>
-  <li>For VPC (Requester).. Select VPC for which you want to create peering in Account-1. In my case I have only 1 VPC so in the drop down, I’ll get only one entry.</li>
-  <li>Now under “Select another VPC to Peer with”, Here we need to provide other vpc details and if other vpc is from another account, we need to check “other account: radio button.</li>
-  <li>Now provide accountId, this can be obtained from My Account Menu</li>
-  <li>If your VPC is in same region, we can keep that radio button as it is. In case if you want to connect to a VPC present in someother region, just select that region from drop down.</li>
-  <li>VPC (Accepter) for this field. Login to your other account and navigate to VPC dashboard, navigate to My VPC. There copy the VPCId present under VPC ID column and past it here. Also keep a note of IPv4 CIDR in your other account.</li>
-</ol>
-
-<p><img src="/assets/images/posts/peering-screen.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-
-<ol>
-  <li>After clicking on save, I got a success message . But unfortunately, In My peering connections table, status is failed. So that means our effort to create vpc peering failed. If we dont get an error it is well and good and we can proceed further, Please follow 13,14,15 steps in below side heading(How Do I solve this Overlapping CIDR ranges issue) .</li>
-</ol>
-
-<p><img src="/assets/images/posts/failed-peer.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-
-<ol>
-  <li>“Failed due to incorrect VPC-ID, Account ID, or overlapping CIDR rang” Message clearly says that the error was due to invalid VPC-Id or accountid or same CIDR range for both VPC’s in different accounts.</li>
-  <li>In our case it is because of overlapping CIDR ranges. We can check these values in My Vpc, under IPv4 CIDR</li>
-</ol>
-
-<h1 id="how-do-i-solve-this-overlapping-cidr-ranges-issue"><strong>How Do I solve this Overlapping CIDR ranges issue</strong></h1>
-<ol>
-  <li>Go to your other account lets say Account-2. Now Navigate to VPC dashboard.</li>
-  <li>Select the VPC which has same CIDR block and delete it.</li>
-  <li>Now click on Create VPC.</li>
-</ol>
-
-<p><img src="/assets/images/posts/new-vpc.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-<ol>
-  <li>As we already have CIDR block <strong>172.31.0.0/16</strong> in account-1 VPC, I would like to give someother range. I am giving it as <strong>172.33.0.0/16</strong></li>
-  <li>Now copy new VPC Id from account-2 which is created in above step.</li>
-  <li>Now get back to Account-1</li>
-  <li>Click on Peering Connection in side menu present under “Your VPC” and click on create peering connection button.</li>
-  <li>Give  aname for “Peering connection name tag”</li>
-  <li>For VPC (Requester).. Select VPC for which you want to create peering in Account-1. In my case I have only 1 VPC so in the drop down, I’ll get only one entry.</li>
-  <li>Now under “Select another VPC to Peer with”, Here we need to provide other vpc details and if other vpc is from another account(account-2), we need to check “other account: radio button.</li>
-  <li>Now provide accountId, this can be obtained from My Account Menu</li>
-  <li>If your VPC is in same region, we can keep that radio button as it is. In case if you want to connect to a VPC present in someother region, just select that region from drop down.</li>
-  <li>VPC (Accepter) for this field. Login to your other account(account-2) and navigate to VPC dashboard, navigate to My VPC. There copy the VPCId present under VPC ID column and past it here. Also keep a note of IPv4 CIDR in your other account.</li>
-  <li>Now we can see success message and when we navigate to Peering Connection menu, we can see an entry with “Pending Acceptance” status. That means our VPC peering from Account-1 side is perfectly alright.</li>
-  <li>Now navigate to Account-2, Navigate to VPC dahboard and select Peering Connection menu.</li>
-  <li>There we can see an entry with “Pending Acceptance”. Select that item and click on Action menu and accept request.</li>
-</ol>
-
-<h1 id="modify-route-tables"><strong>Modify Route Tables</strong></h1>
-<p>By doing above steps, we were able to successfull create VPC peering. But still we will not be able to send traffic between these VPC’s. In order to do that, we need to follow few more steps.</p>
-<ol>
-  <li>Navigate to Route tables present under “Virtual private Cloud” menu item in Account-1</li>
-  <li>For route table which is associated with the VPC(to which we created vpc peering) in account-1, select it</li>
-  <li>Click on Routes tab at the bottom section and click on edit</li>
-  <li>Now Click on Add another route and there for “destination” provide Account-2 VPC’s CIDR range</li>
-  <li>For Target , select peer connection id which we got from above process.</li>
-</ol>
-
-<p><img src="/assets/images/posts/vpc-peer-route.jpg" alt="" style="width: 100%;height: 100%;" /></p>
-
-<ol>
-  <li>Now navigate to Account-2 , Route tables for the VPC we are trying to peer and add a new route by providing Account-1 VPC CIDR range and then select vpc peering id for destination.</li>
-  <li>Now we can see traffic between these 2 VPC even though they were present in different accounts.</li>
-</ol>
-
-<p>Thanks,
-Pavan</p>
+                                                <p>Hi,</p>
+<p>In this post, we will see how to install docker on windows and other basic details.</p>
+<p><br /></p>
+<p><b>System Requirements:</b></p>
+<p>1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. <br />Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.<br />Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV.</p>
+<p>2. HyperV is not supported on Home edition of windows.</p>
+<p>3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education.</p>
+<p><br /></p>
+<p>Don't worry if you don't&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.<br /><br /><b>Downloads:</b></p>
+<p>Download the installer Docker for windows from <a href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">this location</a>&nbsp;</p>
+<p>As I mentioned above, if you don't have supported version of OS, then you can download Docker Toolbox from <a href="https://download.docker.com/win/stable/DockerToolbox.exe">this location</a>.</p>
+<p><br /></p>
+<p><b>Installation steps:</b></p>
+<p>After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password.</p>
+<p>During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further.</p>
+<p>After going through the steps in the installation wizard, docker is installed on the machine and we can use it.</p>
+<p><br /></p>
+<p>In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker.</p>
+<p><br /></p>
+<p><b>Verifying your installation:<br /><br />Docker For windows.exe( Not for Docker toolbox):</b></p>
+<p>Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it.</p>
+<p><br /></p>
+<p></p>
+<p><br /></p>
+<p>Make sure that \"Expose daemon on tcp://localhost:2375 without TLS\" is checked.</p>
+<p><br /></p>
+<p>Now open command prompt and issue following command</p>
+<pre style="line-height: 1.42857;"><code class="html">docker --version</code></pre>
+<p><br /></p>
+<p>Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work.</p>
+<p><br /></p>
+<p><b>Docker Toolbox verification:</b></p>
+<p>On desktop, we can see Docker toolbox icon</p>
+<p><br /></p>
+<p><img src="https://docs.docker.com/toolbox/images/icon-set.png" alt="Desktop" /></p>
+<p><br /></p>
+<p>When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).<br /><br />Now in the command prompt, you can issue following commands<br /></p>
+<pre><code class="html">docker --version</code></pre>
+<p><br />If we get the result, then docker installation is successful.<br /></p>
+<p><br /></p>
+<p>Thanks,</p>
+<p>Pavan Kumar Aryasomayajulu</p>
 
 <div id="disqus_thread"></div>
 <script>
@@ -418,7 +366,7 @@ Pavan</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 221951; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 143900; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -442,11 +390,7 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#AWS</span>
-                                                        
-                                                            <span class="tag">#VPC</span>
-                                                        
-                                                            <span class="tag">#VPC-Peering</span>
+                                                            <span class="tag">#Docker</span>
                                                         
                                                     </div>
                                                 </div>
@@ -454,8 +398,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging/" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/docker/2018/05/10/Docker-introduction/" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                     <a href="/postlist.html" class="readmore"> All Posts</a>
                                                 </div>
 
