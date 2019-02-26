@@ -5,6 +5,7 @@ title: Getting Started With Kafka and C#
 Hi,
 In this post we will see how to get started with Apache Kafka and C#. In this article I'll be using Kafka as Message Broker. So basically I'll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer.
 
+<br/>
 Here I'll basically focus on Installation and a sample C# console applications. One acts as a consumer and the other as a Producer.
 
 # Installing Kafka on Windows:
@@ -24,14 +25,16 @@ Now download Kafka  from this http url
 After downloading the file, unzip into a location on your machine.
 Now navigate to ** your_location\kafka_2.11-2.1.1\bin\windows**
 
+<br/>
 **/bin** directory represents all the binary files which are helpful to start Kafka server different operating systems. As we are working with the windows machine, there will be a folder named windows under /bin directory, which has all the windows related stuff.
 
+<br/>
 **/config** directory contains all configuration details about Kafka server, zookeeper, and logs. All configurations have their default values if you wanted to change any config details like port you can freely go an change accordingly.
 
 # Start the Zookeeper:
 
 We can start the server with default configuration
-
+<br/>
 Use the command **"zookeeper-server-start.bat ../../config/zookeeper.properties"**
 
 ```
@@ -60,24 +63,25 @@ Now we can see that both Zookeeper and Kafka servers are running successfully.
 
 # Understanding Basics Of Kafka:
 Before actually going into programming. First of all let us try to understand some of the basic terminologies involved in Kafka.
-
+<br/>
 As per the official site
 
-> > Apache Kafka® is a distributed streaming platform. What exactly does that mean?
-> >  A streaming platform has three key capabilities:
-> > 
-> > * Publish and subscribe to streams of records, similar to a message queue or enterprise messaging system.
-> > * Store streams of records in a fault-tolerant durable way.
-> > * Process streams of records as they occur.
+ > Apache Kafka® is a distributed streaming platform. What exactly does that mean?
+>  A streaming platform has three key capabilities:
+> 
+> * Publish and subscribe to streams of records, similar to a message queue or enterprise messaging system.
+> * Store streams of records in a fault-tolerant durable way.
+> * Process streams of records as they occur.
 
+<br/>
 Lets try to decode above statements. 
-
+<br/>
 Process_A(Publisher) sends data( can be multiple messages) under a common name which can be called as topic name. Now Process_B(Consumer) subscribes to the same topic and whenever there is a message or record sent by Process_A (Publisher), it is recieved and processed by Process_B(Consumer).
-
+<br/>
 In this case there are chances of Process_B(consumer) down. So Process_A sends a message but Process_B is down. 
 What is going to happen in this case? 
 Are we going to loose the message sent by Process_A? 
-
+<br/>
 No, we are not going to loose the message, Kafka takes care of this and it stores this message internally untill the message is consumed by the consumer.
 
 <br/>
@@ -87,7 +91,7 @@ No, we are not going to loose the message, Kafka takes care of this and it store
 
 # Publisher:
 Publishers are applications which send messages to a Topic. For example, I have a topic called "ResumeProcessor" and an application which extracts raw resumes by scrapping. So my application it scrapes resumes from internet and then it posts that data to my "ResumeProcessor" topic.
-
+<br/>
 # Topic:
 A topic is like a place where a publisher writes all message and a consumer picks from it. In my above example " ResumeProcessor" is my topic to which different scrapped resumes content is written and from there subscribers pick.
 
@@ -103,18 +107,18 @@ Structure of a Topic:
 
 # Consumers:
 Consumers are applications which listen to a topic and when ever a publisher sends a message, it is picked up by the consumer.
-
+<br/>
 # C# code for consumer and Producers:
 
 Now as we have kafka environment ready, lets try to publish some data and consume it using C# clients for Kafka.
-
+<br/>
 There are many clients available in the market( Nuget Packages) lets see which one to use.
 By querying Nuget site as following [https://www.nuget.org/packages?q=kafka&prerel=false](https://www.nuget.org/packages?q=kafka&prerel=false) I see that there are many packages available. 
-
+<br/>
 But among those, I see 2 predominent ones and I am planning to use **"Confluent.Kafka"** as this seems to be promising and microsft acknowledged it.
 [https://www.nuget.org/packages/Confluent.Kafka/0.11.6](https://www.nuget.org/packages/Confluent.Kafka/0.11.6)
 
-
+<br/>
 Note: When Installing this package, make sure that we have include pre-release selected. Because of the classes which I am using in my example are present in the pre-release version or else you'll be see a message ** "There is no ProducerConfig in Confluent.Kafka dll"**
 
 # Producer sample:
@@ -163,7 +167,7 @@ namespace Kafka_Producer
 <br/>
 <br/>
 Here we can see that the message is stored in the topic "resume-processor" and we have only 1 partition ( with index 0)  and the message is stored in the offset 0.
-
+<br/>
 Now when I tried to run the same application again with a different message, we can see that it is stored in the same partition 0 but in a different offset.
 
 <img src="{{ site.baseurl }}/assets/images/posts/kafka/6.png"  alt=""/>
