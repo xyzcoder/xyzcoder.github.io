@@ -139,21 +139,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls | xyzcoder.github.io</title>
+<title>Installing Docker On Windows | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls" />
+<meta property="og:title" content="Installing Docker On Windows" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Problem I am trying to solve: I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll’s related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio. So I was searching for options to actually find out what the issue was." />
-<meta property="og:description" content="Problem I am trying to solve: I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll’s related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio. So I was searching for options to actually find out what the issue was." />
-<link rel="canonical" href="http://localhost:4000/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html" />
-<meta property="og:url" content="http://localhost:4000/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html" />
+<meta name="description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
+<meta property="og:description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
+<link rel="canonical" href="http://localhost:4000/docker/2018/05/10/Docker-introduction/" />
+<meta property="og:url" content="http://localhost:4000/docker/2018/05/10/Docker-introduction/" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-06-07T15:18:06+05:30" />
+<meta property="article:published_time" content="2018-05-10T00:09:00+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html","headline":"dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls","dateModified":"2018-06-07T15:18:06+05:30","datePublished":"2018-06-07T15:18:06+05:30","description":"Problem I am trying to solve: I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll’s related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio. So I was searching for options to actually find out what the issue was.","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html"},"@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/docker/2018/05/10/Docker-introduction/","headline":"Installing Docker On Windows","dateModified":"2018-05-10T00:09:00+05:30","datePublished":"2018-05-10T00:09:00+05:30","description":"Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \\&quot;Expose daemon on tcp://localhost:2375 without TLS\\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docker/2018/05/10/Docker-introduction/"},"@type":"BlogPosting","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -307,7 +307,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls
+                                                        Installing Docker On Windows
                                                     
                                                     
                                                 </div>
@@ -315,110 +315,48 @@
                                             </div>
 
                                             
-                                                <h1 id="problem-i-am-trying-to-solve"><strong>Problem I am trying to solve</strong>:</h1>
-<p>I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll’s related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio.
-So I was searching for options to actually find out what the issue was.</p>
-
-<p>I tried following approaches:</p>
-<ol>
-  <li>Decompile the dll’s using dotPeek, JustCompile  and then create the project in visual studio but that failed.</li>
-  <li>Another option can be using Visual Studio + dotPeek( as symbol server), Even this is not successful because I am not able to attach process in visual studio, because it is failing in the load it self.</li>
-</ol>
-
-<p>Then I came accross a called <strong>“dnSpy”</strong>.</p>
-
-<h1 id="dnspy---a-fantastic-decompiler-debugger-and-editor"><strong>dnSpy - A Fantastic Decompiler, Debugger and Editor</strong>:</h1>
-<p>What? does this tool does all these things?</p>
-
-<p>Yes I am able to decompile my .Net dlls and then debug them and finally I am also able to edit decompiled Dll’s and run them.</p>
-
-<p>This is a list of capabilities that were mentioned in their website <a href="https://github.com/0xd4d/dnSpy">https://github.com/0xd4d/dnSpy</a></p>
-
-<p>So I can say that <strong>“dnSpy”</strong> is a must have tool in a .Net developers toolkit.</p>
-
-<h1 id="debugger"><strong>Debugger</strong>:</h1>
-<ul>
-  <li>Debug .NET Framework, .NET Core and Unity game assemblies, no source code required</li>
-  <li>Set breakpoints and step into any assembly</li>
-  <li>Locals, watch, autos windows</li>
-  <li>Variables windows supports saving variables (eg. decrypted byte arrays) to disk or view them in the hex editor (memory window)</li>
-  <li>Object IDs</li>
-  <li>Multiple processes can be debugged at the same time</li>
-  <li>Break on module load</li>
-  <li>Tracepoints and conditional breakpoints</li>
-  <li>Export/import breakpoints and tracepoints</li>
-  <li>Call stack, threads, modules, processes windows</li>
-  <li>Break on thrown exceptions (1st chance)</li>
-  <li>Variables windows support evaluating C# / Visual Basic expressions</li>
-  <li>Dynamic modules can be debugged (but not dynamic methods due to CLR limitations)</li>
-  <li>Output window logs various debugging events, and it shows timestamps by default :)</li>
-  <li>Assemblies that decrypt themselves at runtime can be debugged, dnSpy will use the in-memory image. You can also force dnSpy to always use in-memory images instead of disk files.</li>
-  <li>Public API, you can write an extension or use the C# Interactive window to control the debugger</li>
-</ul>
-
-<h1 id="assembly-editor"><strong>Assembly Editor</strong>:</h1>
-<ul>
-  <li>All metadata can be edited</li>
-  <li>Edit methods and classes in C# or Visual Basic with IntelliSense, no source code required</li>
-  <li>Add new methods, classes or members in C# or Visual Basic</li>
-  <li>IL editor for low level IL method body editing</li>
-  <li>Low level metadata tables can be edited. This uses the hex editor internally.</li>
-</ul>
-
-<h1 id="hex-editor"><strong>Hex Editor</strong>:</h1>
-<ul>
-  <li>Click on an address in the decompiled code to go to its IL code in the hex editor</li>
-  <li>Reverse of above, press F12 in an IL body in the hex editor to go to the decompiled code or other high level representation of the bits. It’s great to find out which statement a patch modified.</li>
-  <li>Highlights .NET metadata structures and PE structures</li>
-  <li>Tooltips shows more info about the selected .NET metadata / PE field</li>
-  <li>Go to position, file, RVA</li>
-  <li>Go to .NET metadata token, method body, #Blob / #Strings / #US heap offset or #GUID heap index</li>
-  <li>Follow references (Ctrl+F12)</li>
-</ul>
-
-<h1 id="others"><strong>Others</strong>:</h1>
-<ul>
-  <li>BAML decompiler</li>
-  <li>Blue, light and dark themes (and a dark high contrast theme)</li>
-  <li>Bookmarks</li>
-  <li>C# Interactive window can be used to script dnSpy</li>
-  <li>Search assemblies for classes, methods, strings etc</li>
-  <li>Analyze class and method usage, find callers etc</li>
-  <li>Multiple tabs and tab groups</li>
-  <li>References are highlighted, use Tab / Shift+Tab to move to next reference</li>
-  <li>Go to entry point and module initializer commands</li>
-  <li>Go to metadata token or metadata row commands</li>
-  <li>Code tooltips (C# and Visual Basic)</li>
-  <li>Export to project</li>
-</ul>
-
+                                                <p>Hi,</p>
+<p>In this post, we will see how to install docker on windows and other basic details.</p>
 <p><br /></p>
-
-<h1 id="debugging-a-simple-application-using-dnspy"><strong>Debugging a simple application using dnSpy</strong>:</h1>
-
-<p>Download latest release of dnSpy zip file from <a href="https://github.com/0xd4d/dnSpy/releases">https://github.com/0xd4d/dnSpy/releases</a>
-<br />
-<br />
-Once it is downloaded, unzip it and go to the folder and there we have an exe with name “dnSpy”. Double click and open it
-<br />
-<br />
-I am trying to debug a small console application exe.
-<br />
-<br />
-<img src="/assets/images/posts/dnspy_1.gif" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p><br />
-<br /></p>
-
-<h1 id="editing-a-simple-application-dllexe-using-dnspy"><strong>Editing a simple application dll/exe using dnSpy</strong>:</h1>
-
-<p><img src="/assets/images/posts/dnspy_2.gif" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p><br />
-<br /></p>
-
-<p>Thanks,
-Pavan</p>
+<p><b>System Requirements:</b></p>
+<p>1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. <br />Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.<br />Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV.</p>
+<p>2. HyperV is not supported on Home edition of windows.</p>
+<p>3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education.</p>
+<p><br /></p>
+<p>Don't worry if you don't&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.<br /><br /><b>Downloads:</b></p>
+<p>Download the installer Docker for windows from <a href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">this location</a>&nbsp;</p>
+<p>As I mentioned above, if you don't have supported version of OS, then you can download Docker Toolbox from <a href="https://download.docker.com/win/stable/DockerToolbox.exe">this location</a>.</p>
+<p><br /></p>
+<p><b>Installation steps:</b></p>
+<p>After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password.</p>
+<p>During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further.</p>
+<p>After going through the steps in the installation wizard, docker is installed on the machine and we can use it.</p>
+<p><br /></p>
+<p>In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker.</p>
+<p><br /></p>
+<p><b>Verifying your installation:<br /><br />Docker For windows.exe( Not for Docker toolbox):</b></p>
+<p>Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it.</p>
+<p><br /></p>
+<p></p>
+<p><br /></p>
+<p>Make sure that \"Expose daemon on tcp://localhost:2375 without TLS\" is checked.</p>
+<p><br /></p>
+<p>Now open command prompt and issue following command</p>
+<pre style="line-height: 1.42857;"><code class="html">docker --version</code></pre>
+<p><br /></p>
+<p>Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work.</p>
+<p><br /></p>
+<p><b>Docker Toolbox verification:</b></p>
+<p>On desktop, we can see Docker toolbox icon</p>
+<p><br /></p>
+<p><img src="https://docs.docker.com/toolbox/images/icon-set.png" alt="Desktop" /></p>
+<p><br /></p>
+<p>When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).<br /><br />Now in the command prompt, you can issue following commands<br /></p>
+<pre><code class="html">docker --version</code></pre>
+<p><br />If we get the result, then docker installation is successful.<br /></p>
+<p><br /></p>
+<p>Thanks,</p>
+<p>Pavan Kumar Aryasomayajulu</p>
 
 <div id="disqus_thread"></div>
 <script>
@@ -428,7 +366,7 @@ Pavan</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 07062018318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 143900; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -452,11 +390,7 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#Dll_Decompiling</span>
-                                                        
-                                                            <span class="tag">#Decompiled_Dll_Debugging</span>
-                                                        
-                                                            <span class="tag">#dnSpy</span>
+                                                            <span class="tag">#Docker</span>
                                                         
                                                     </div>
                                                 </div>
@@ -464,8 +398,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/2019/01/01/my-plans-for-year-2019.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                     <a href="/postlist.html" class="readmore"> All Posts</a>
                                                 </div>
 
