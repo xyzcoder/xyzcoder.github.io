@@ -4,11 +4,10 @@ layout: post
 date: '2019-02-26 19:51:04'
 comments: true
 categories:
-- Apache Kafka
-- Apache Kafka with C#
-- Confluent.Kafka
-- There is no ProducerConfig in Confluent.Kafka dll
-- Kafka on windows
+- Kafka
+- Kafka_Csharp
+- Confluent_Kafka
+- Kafka_on_windows
 ---
 
 Hi,
