@@ -160,6 +160,8 @@ namespace Kafka_Producer
 
 <img src="{{ site.baseurl }}/assets/images/posts/kafka/5.png"  alt=""/>
 
+<br/>
+<br/>
 Here we can see that the message is stored in the topic "resume-processor" and we have only 1 partition ( with index 0)  and the message is stored in the offset 0.
 
 Now when I tried to run the same application again with a different message, we can see that it is stored in the same partition 0 but in a different offset.
