@@ -117,7 +117,7 @@ But among those, I see 2 predominent ones and I am planning to use **"Confluent.
 
 Note: When Installing this package, make sure that we have include pre-release selected. Because of the classes which I am using in my example are present in the pre-release version or else you'll be see a message ** "There is no ProducerConfig in Confluent.Kafka dll"**
 
-**An example Producer sample:**
+# Producer sample:
 
 ```
 using System;
@@ -166,7 +166,7 @@ Now when I tried to run the same application again with a different message, we 
 
 <img src="{{ site.baseurl }}/assets/images/posts/kafka/6.png"  alt=""/>
 
-**An example Subscriber sample:**
+# Subscriber sample:
 ```
 using System;
 using System.Collections.Generic;
@@ -224,5 +224,7 @@ namespace ConsoleApp6
 
 <img src="{{ site.baseurl }}/assets/images/posts/kafka/7.png"  alt=""/>
 
+<br/>
+<br/>
 Thanks,
 Pavan
