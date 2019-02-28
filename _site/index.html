@@ -565,7 +565,9 @@
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 <script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
+  [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
+    (adsbygoogle = window.adsbygoogle || []).push({});
+});
 </script>
 </body>
 </html> 
