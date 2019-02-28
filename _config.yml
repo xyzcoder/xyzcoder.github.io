@@ -18,5 +18,6 @@ linkedin: https://www.linkedin.com/in/pavankumararya/  ## your linkedin account 
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Update all the sections by editing the files inside _includes folder.

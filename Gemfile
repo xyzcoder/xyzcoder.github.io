@@ -6,4 +6,5 @@ gem 'jekyll-geo-pattern'
 gem 'kramdown'
 gem 'jekyll-github-metadata'
 gem 'jekyll-seo-tag'
+gem 'jekyll-sitemap'
 gem 'jekyll-admin', group: :jekyll_plugins
