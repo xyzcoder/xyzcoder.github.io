@@ -167,40 +167,40 @@
 
 <body>
 
-    <div class="topnav" id="myTopnav">
-      <a href="/index.html" class="active">Blog</a>
-      <a href="/about.html">About Me</a>
-      <a href="/postlist.html">List Of Posts</a>
-      <a href="#contact">Contact</a>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
+  <div class="topnav" id="myTopnav">
+    <a href="/index.html" class="active">Blog</a>
+    <a href="/about.html">About Me</a>
+    <a href="#contact">Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
     </a>
-</div>
-<script>
+  </div>
+  <script>
     function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
     }
-</script>
+  </script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
-<div class="wrapper">
+  <div class="wrapper">
 
-    <div class="container">
+      <div class="container">
 
         <div class="row">
-            <div class="col-md-12">
 
-                <div class="row">   
+          <div class="col-md-12">
 
-                    <!-- profile -->
-                    <div class="col-md-3 widget-profil">
+            <div class="row">   
+
+              <!-- profile -->
+              <div class="col-md-3 widget-profil">
 	<div class="row">
 
 		<div class="affix">
@@ -263,381 +263,256 @@
 	</div> 
 	<!-- end profile -->
 </div>
-                    <!--end profile -->
-
-                    <!-- blog content -->
-                    <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
-
-    <!-- verticalTab menu -->
-    <div id="verticalTab">
-        <!-- resp-tabs-container --> 
-        <div class="resp-tabs-container">
-
-            <div id="blog" class="content_2">
-
-                <h1 class="h-bloc">Blog - My Blog</h1><br> 
-                <div class="col-md-12">
-                    <div class="row">
-
-                        <!-- Page Blog -->
-                        <div class="col-md-12" id="blog_page">
-                            <!-- start Page Blog -->
-                            <section id="post-1-page" class="content-post">
-                                <div class="row inner">
-                                    <!-- Top_above_title -->
-                                    <div class="col-md-12">
-                                        <ins class="adsbygoogle"
-                                        style="display:block"
-                                        data-ad-client="ca-pub-3300393120826046"
-                                        data-ad-slot="4927588003"
-                                        data-ad-format="auto"></ins>
-                                    </div>
-                                </div>
-                                <div class="row inner">
-
-                                    <div class="col-md-12" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;">
-
-                                        <article class="postPage">
-
-                                            <div class="title_content">
-                                                <div class="text_content">
-                                                   
-                                                    
-                                                        Getting Started With Kafka and C#
-                                                    
-                                                    
-                                                </div>
-                                                <div class="clear"></div>
-                                            </div>
-
-                                            
-                                                <p>Hi,
-In this post we will see how to get started with Apache Kafka and C#. In this article I’ll be using Kafka as Message Broker. So basically I’ll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer.</p>
-
-<p><br />
-Here I’ll basically focus on Installation and a sample C# console applications. One acts as a consumer and the other as a Producer.</p>
-
-<h1 id="installing-kafka-on-windows">Installing Kafka on Windows:</h1>
-<p>Download from this url <a href="http://kafka.apache.org/downloads">http://kafka.apache.org/downloads</a></p>
-
-<p><br />
-<img src="/assets/images/posts/kafka/1.png" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p><br />
-<br />
-Now download Kafka  from this http url</p>
-
-<p><img src="/assets/images/posts/kafka/2.png" alt="" style="width: 100%;height: 100%;" />
-<br />
-<br /></p>
-
-<p>After downloading the file, unzip into a location on your machine.
-Now navigate to ** your_location\kafka_2.11-2.1.1\bin\windows**</p>
-
-<p><br />
-<strong>/bin</strong> directory represents all the binary files which are helpful to start Kafka server different operating systems. As we are working with the windows machine, there will be a folder named windows under /bin directory, which has all the windows related stuff.</p>
-
-<p><br />
-<strong>/config</strong> directory contains all configuration details about Kafka server, zookeeper, and logs. All configurations have their default values if you wanted to change any config details like port you can freely go an change accordingly.</p>
-
-<h1 id="start-the-zookeeper">Start the Zookeeper:</h1>
-
-<p>We can start the server with default configuration
-<br />
-Use the command <strong>“zookeeper-server-start.bat ../../config/zookeeper.properties”</strong></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Pavan\Softwares\kafka_2.11-2.1.1\bin\windows&gt;zookeeper-server-start.bat ../../config/zookeeper.properties
-[2019-02-26 15:03:16,587] INFO Reading configuration from: ..\..\config\zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
-[2019-02-26 15:03:16,592] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
-[2019-02-26 15:03:16,593] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
-[2019-02-26 15:03:16,593] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
-[2019-02-26 15:03:16,594] WARN Either no config or no quorum defined in config, running  in standalone mode (org.apache.zookeeper.server.quorum.QuorumPeerMain)
-[2019-02-26 15:03:16,617] INFO Reading configuration from: ..\..\config\zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
-</code></pre></div></div>
-
-<h1 id="start-apache-kafka">Start Apache Kafka:</h1>
-<p>Use the command <strong>“kafka-server-start.bat ../../config/server.properties”</strong></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Pavan\Softwares\kafka_2.11-2.1.1\bin\windows&gt;kafka-server-start.bat ../../config/server.properties
-[2019-02-26 15:08:42,212] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
-[2019-02-26 15:08:42,694] INFO starting (kafka.server.KafkaServer)
-[2019-02-26 15:08:42,695] INFO Connecting to zookeeper on localhost:2181 (kafka.server.KafkaServer)
-[2019-02-26 15:08:42,720] INFO [ZooKeeperClient] Initializing a new session to localhost:2181. (kafka.zookeeper.ZooKeeperClient)
-</code></pre></div></div>
-
-<p>Now we can see that both Zookeeper and Kafka servers are running successfully.</p>
-
-<h1 id="understanding-basics-of-kafka">Understanding Basics Of Kafka:</h1>
-<p>Before actually going into programming. First of all let us try to understand some of the basic terminologies involved in Kafka.
-<br />
-As per the official site</p>
-
-<blockquote>
-  <p>Apache Kafka® is a distributed streaming platform. What exactly does that mean?
- A streaming platform has three key capabilities:</p>
-
-  <ul>
-    <li>Publish and subscribe to streams of records, similar to a message queue or enterprise messaging system.</li>
-    <li>Store streams of records in a fault-tolerant durable way.</li>
-    <li>Process streams of records as they occur.</li>
-  </ul>
-</blockquote>
-
-<p><br />
-Lets try to decode above statements. 
-<br />
-Process_A(Publisher) sends data( can be multiple messages) under a common name which can be called as topic name. Now Process_B(Consumer) subscribes to the same topic and whenever there is a message or record sent by Process_A (Publisher), it is recieved and processed by Process_B(Consumer).
-<br />
-In this case there are chances of Process_B(consumer) down. So Process_A sends a message but Process_B is down. 
-What is going to happen in this case? 
-Are we going to loose the message sent by Process_A? 
-<br />
-No, we are not going to loose the message, Kafka takes care of this and it stores this message internally untill the message is consumed by the consumer.</p>
-
-<p><br />
-<br /></p>
-
-<p><img src="/assets/images/posts/kafka/3.png" alt="" style="width: 75%;height: 100%;" /></p>
-
-<h1 id="publisher">Publisher:</h1>
-<p>Publishers are applications which send messages to a Topic. For example, I have a topic called “ResumeProcessor” and an application which extracts raw resumes by scrapping. So my application it scrapes resumes from internet and then it posts that data to my “ResumeProcessor” topic.
-<br /></p>
-<h1 id="topic">Topic:</h1>
-<p>A topic is like a place where a publisher writes all message and a consumer picks from it. In my above example “ ResumeProcessor” is my topic to which different scrapped resumes content is written and from there subscribers pick.</p>
-
-<p><br />
-<br />
-Structure of a Topic:
-<br />
-<img src="/assets/images/posts/kafka/4.png" alt="" /></p>
-
-<ul>
-  <li>Each topic is divided into configured number of partitions. By default it is based on the number of consumers ina  group.</li>
-  <li>Whenever a new message is sent, it is appended to the partition and it is immutable.</li>
-  <li>Data in a topic is persisted for a configurable amount of time ( in .properties file). For example if the retension period is set to 1 day, then the record will be stored for the next one day.</li>
-</ul>
-
-<h1 id="consumers">Consumers:</h1>
-<p>Consumers are applications which listen to a topic and when ever a publisher sends a message, it is picked up by the consumer.
-<br /></p>
-<h1 id="c-code-for-consumer-and-producers">C# code for consumer and Producers:</h1>
-
-<p>Now as we have kafka environment ready, lets try to publish some data and consume it using C# clients for Kafka.
-<br />
-There are many clients available in the market( Nuget Packages) lets see which one to use.
-By querying Nuget site as following <a href="https://www.nuget.org/packages?q=kafka&amp;prerel=false">https://www.nuget.org/packages?q=kafka&amp;prerel=false</a> I see that there are many packages available. 
-<br />
-But among those, I see 2 predominent ones and I am planning to use <strong>“Confluent.Kafka”</strong> as this seems to be promising and microsft acknowledged it.
-<a href="https://www.nuget.org/packages/Confluent.Kafka/0.11.6">https://www.nuget.org/packages/Confluent.Kafka/0.11.6</a></p>
-
-<p><br />
-Note: When Installing this package, make sure that we have include pre-release selected. Because of the classes which I am using in my example are present in the pre-release version or else you’ll be see a message ** “There is no ProducerConfig in Confluent.Kafka dll”**</p>
-
-<h1 id="producer-sample">Producer sample:</h1>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System;
-using System.Threading.Tasks;
-using Confluent.Kafka;
-
-namespace Kafka_Producer
-{
-    class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var config = new ProducerConfig { BootstrapServers = "localhost:9092" };
-
-            using (var p = new ProducerBuilder&lt;Null, string&gt;(config).Build())
-            {
-                try
-                {
-                    var dr = await p.ProduceAsync("resume-processor", new Message&lt;Null, string&gt; { Value = DateTime.Now.ToShortDateString() });
-
-                    Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
-                }
-                catch (ProduceException&lt;Null, string&gt; e)
-                {
-                    Console.WriteLine($"Delivery failed: {e.Error.Reason}");
-                }
-            }
-
-            Console.ReadLine();
-        }
-    }
-}
-
-</code></pre></div></div>
-
-<ul>
-  <li>Initially we are initializing a config which specifies details of the Kafka server</li>
-  <li>Then we are actually building the Producer by passing above config data</li>
-  <li>Now we are actually trying to produce a message to the topic “resume-processor” with a message</li>
-  <li>Once the message is written to the topic, we are getting details(DeliveryResults) related to message , this will have information related to the partition and the offset where the record is stored.</li>
-</ul>
-
-<p><img src="/assets/images/posts/kafka/5.png" alt="" /></p>
-
-<p><br />
-<br />
-Here we can see that the message is stored in the topic “resume-processor” and we have only 1 partition ( with index 0)  and the message is stored in the offset 0.
-<br />
-Now when I tried to run the same application again with a different message, we can see that it is stored in the same partition 0 but in a different offset.</p>
-
-<p><img src="/assets/images/posts/kafka/6.png" alt="" /></p>
-
-<h1 id="subscriber-sample">Subscriber sample:</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Confluent.Kafka;
-
-namespace ConsoleApp6
-{
-    class Program
-    {
-        public static void Main(string[] args)
-        {
-            var conf = new ConsumerConfig
-            {
-                GroupId = "test-consumer-group",
-                BootstrapServers = "localhost:9092"
-            };
-
-            using (var c = new ConsumerBuilder&lt;Ignore, string&gt;(conf).Build())
-            {
-                c.Subscribe("resume-processor");
-                try
-                {
-                    while (true)
-                    {
-                        try
-                        {
-                            var cr = c.Consume();
-                            Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
-                        }
-                        catch (ConsumeException e)
-                        {
-                            Console.WriteLine($"Error occured: {e.Error.Reason}");
-                        }
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                    // Ensure the consumer leaves the group cleanly and final offsets are committed.
-                    c.Close();
-                }
-            }
-        }
-    }
-}
-
-</code></pre></div></div>
-
-<ul>
-  <li>Initially we are creating a config object with server and consumer group name</li>
-  <li>Now we are actually creating a consumer and then subscribe to the same topic to which messages were sent in the Producer application</li>
-  <li>Finally we are consuming data when ever we have some data in topic.</li>
-</ul>
-
-<p><img src="/assets/images/posts/kafka/7.png" alt="" /></p>
-
-<p><br />
-<br />
-Thanks,
-Pavan</p>
-
-<div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-var disqus_config = function () {
-this.page.identifier = 02262019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://xyzcoder1.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-                                            
-
-
-                                            <div class="col-md-12 first">
-                                                <div class="info">
-                                                    <div>
-
-
-                                                        
-
-                                                        
-                                                            <span class="tag">#Apache Kafka</span>
-                                                        
-                                                            <span class="tag">#Apache Kafka with C#</span>
-                                                        
-                                                            <span class="tag">#Confluent.Kafka</span>
-                                                        
-                                                            <span class="tag">#There is no ProducerConfig in Confluent.Kafka dll</span>
-                                                        
-                                                            <span class="tag">#Kafka on windows</span>
-                                                        
-                                                    </div>
-                                                </div>
-
-                                                <div class="clear"></div>    
-
-                                                <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                                    <a href="/postlist.html" class="readmore"> All Posts</a>
-                                                </div>
-
-                                                <div class="clear"></div>
-                                            </div>
-
-                                        </article>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-
-
+              <!--end profile -->
+
+              <!-- post_content -->
+              <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
+
+                <!-- verticalTab menu -->
+                <div id="verticalTab">
+                  <!-- resp-tabs-container --> 
+                  <div class="resp-tabs-container">
+
+                   <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+    <!-- profile -->
+    <div id="profile" class="content_2">
+        <!-- .title -->
+    <h1 class="h-bloc">List Of Posts</h1>
+
+    <div class="row top-p">
+        <div class="col-md-6 profile-l">
+            <div class="col-md-12">
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3300393120826046"
+                data-ad-slot="4927588003"
+                data-ad-format="auto"></ins>
             </div>
+        </div>
+    </div>
 
-        </div><!-- End verticalTab -->
+    <div class="row top-p">
+        <div class="col-md-12 profile-l">
+            <div class="row">
+                <div class="col-md-12" id="blog_page">
+                    <section id="blog-page">
 
-    </div><!-- End flexy_content -->
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c/" >Getting Started With Kafka and C#</a></div>
+                                                        <a href="/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c/" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> February 26, 2019</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Kafka</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Kafka_Csharp</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Confluent_Kafka</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Kafka_on_windows</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Hi, In this post we will see how to get started with Apache Kafka and C#. In this article I’ll be using Kafka as Message Broker. So basically I’ll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/2019/01/01/my-plans-for-year-2019/" >My Plans For Year 2019</a></div>
+                                                        <a href="/2019/01/01/my-plans-for-year-2019/" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> January  1, 2019</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> **Happy New Year **: Hello everyone, Thank you for following my blog and showing interest in reading my articles. In this blog post, I would like to discuss my plans for the year 2019. I’ll work hard to accomplish all my goals mentioned here and share my learnings. Here is...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging/" >dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls</a></div>
+                                                        <a href="/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging/" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> June  7, 2018</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Dll_Decompiling</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Decompiled_Dll_Debugging</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>dnSpy</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Problem I am trying to solve: I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll’s related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/" >AWS VPC Peering Connection</a></div>
+                                                        <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection/" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> May 15, 2018</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>AWS</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>VPC</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>VPC-Peering</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Problem I am trying to solve: Actually I am planning to create a cluster for a spark environment using my AWS free tier account. So I created an account with AWS and was impressed by their free offerings :) 750hrs for an instance … I decided to spin up few...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content"><a href="/docker/2018/05/10/Docker-introduction/" >Installing Docker On Windows</a></div>
+                                                        <a href="/docker/2018/05/10/Docker-introduction/" class="read_m pull-right">Read More <i class='glyphicon glyphicon-chevron-right'></i></a>
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> May 10, 2018</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Docker</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                            
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-</div><!-- End row -->
-                    <!--blog content -->
+    <div class="clear"></div>
+    </div>
+    <!-- End .profile -->
 
-                </div><!-- End col-md-12 -->
+                 </div>
+                 <!-- End #resp-tabs-container --> 
+
+               </div><!-- End verticalTab -->
+
+              </div><!-- End post_content -->
+
 
             </div><!-- End row -->
 
-        </div><!-- End container -->
+          </div><!-- End col-md-12 -->
 
-        <!-- </section> -->
-        <!-- End Content -->
+        </div><!-- End row -->
 
-    </div>
-</div>
+      </div><!-- End container -->
 
-        
+  </div>
+
+
     <!-- jquery | jQuery 1.11.0 -->
     <!-- Credits: http://jquery.com -->
     <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
@@ -734,10 +609,8 @@ s.setAttribute('data-timestamp', +new Date());
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-
 </body>
 </html> 
 
