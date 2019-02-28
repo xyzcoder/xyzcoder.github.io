@@ -118,6 +118,8 @@ Structure of a Topic:
 # Consumers:
 Consumers are applications which listen to a topic and when ever a publisher sends a message, it is picked up by the consumer.
 <br/>
+
+{% include /in_article_ads.html %}
 # C# code for consumer and Producers:
 
 Now as we have kafka environment ready, lets try to publish some data and consume it using C# clients for Kafka.

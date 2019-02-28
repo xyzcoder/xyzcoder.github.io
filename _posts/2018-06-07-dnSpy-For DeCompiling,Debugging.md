@@ -81,6 +81,7 @@ So I can say that **"dnSpy"** is a must have tool in a .Net developers toolkit.
 
 <br/>
 
+{% include /in_article_ads.html %}
 # **Debugging a simple application using dnSpy**: 
 
 Download latest release of dnSpy zip file from [https://github.com/0xd4d/dnSpy/releases](https://github.com/0xd4d/dnSpy/releases)

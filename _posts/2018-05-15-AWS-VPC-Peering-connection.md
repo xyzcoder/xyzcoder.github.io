@@ -75,6 +75,7 @@ I can create VPC peering between different VPC's in same account and also it is 
 15. Now navigate to Account-2, Navigate to VPC dahboard and select Peering Connection menu. 
 16. There we can see an entry with "Pending Acceptance". Select that item and click on Action menu and accept request.
 
+{% include /in_article_ads.html %}
 # **Modify Route Tables**
  By doing above steps, we were able to successfull create VPC peering. But still we will not be able to send traffic between these VPC's. In order to do that, we need to follow few more steps.
  1. Navigate to Route tables present under "Virtual private Cloud" menu item in Account-1
