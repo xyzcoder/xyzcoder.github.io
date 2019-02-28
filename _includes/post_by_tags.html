@@ -1,0 +1,60 @@
+    <!-- profile -->
+    <div id="profile" class="content_2">
+        <!-- .title -->
+    <h1 class="h-bloc">List Of Posts</h1>
+
+    <div class="row top-p">
+        <div class="col-md-6 profile-l">
+            <div class="col-md-12">
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3300393120826046"
+                data-ad-slot="4927588003"
+                data-ad-format="auto"></ins>
+            </div>
+        </div>
+    </div>
+
+    <div class="row top-p">
+        <div class="col-md-12 profile-l">
+            <div class="row">
+                <div class="col-md-12" id="blog_page">
+                    <section id="blog-page">
+						
+						<h1>List Of Posts By Tags</h1>
+
+						{% assign sorted_tags = (site.tags | sort:0) %}
+						<ul class="tag-box">
+							{% for tag in sorted_tags %}
+								{% assign t = tag | first %}
+								{% assign posts = tag | last %}
+								<li><a href="#{{ t | downcase }}">{{ t }} <span class="size">({{ posts.size }})</span></a></li>
+							{% endfor %}
+						</ul>
+
+						{% for tag in sorted_tags %}
+						  {% assign t = tag | first %}
+						  {% assign posts = tag | last %}
+
+						<h3 id="{{ t | downcase }}"><b>{{ t }}</b></h3>
+						<ul style="left: 5%;position: relative;">
+						{% for post in posts %}
+						  {% if post.tags contains t %}
+							<li>
+							   <span class="date">{{ post.date | date: '%d %b %y' }}</span>:  <a href="{{ post.url }}">{{ post.title }}</a>
+							</li>
+						  {% endif %}
+						{% endfor %}
+						</ul>
+						{% endfor %}
+                          
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="clear"></div>
+    </div>
+    <!-- End .profile -->

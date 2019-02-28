@@ -9,6 +9,22 @@
     }
 }
 
+ul.tag-box li {
+	display: inline-block;
+	list-style: none;
+	list-style-image: none;
+	margin-bottom: 7px;
+}
+ul.tag-box li a {
+	background: #e6e6e6;
+	padding: 4px 8px;
+	border-radius: 3px;
+	color: #F76B48;
+}
+ul.tag-box li span.size {
+	font-weight: 300;
+}
+
 #preloader {
     position: fixed;
     width: 100%;
