@@ -33,7 +33,6 @@
           
           <!-- CSS | Colors -->
           <link rel="stylesheet" type="text/css" href="/assets/css/colors/DarkBlue.css" id="colors-style" />
-          <link rel="stylesheet" type="text/css" href="/assets/css/switcher.css" />
           
           <!-- CSS | Style -->
           <!-- Credits: http://themeforest.net/user/FlexyCodes -->
@@ -280,17 +279,16 @@
 
     <!-- profile -->
     <div id="profile" class="content_2">
-        <!-- .title -->
-    <h1 class="h-bloc">List Of Posts</h1>
 
     <div class="row top-p">
         <div class="col-md-6 profile-l">
             <div class="col-md-12">
-                <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-3300393120826046"
-                data-ad-slot="4927588003"
-                data-ad-format="auto"></ins>
+                    <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-3300393120826046"
+                    data-ad-slot="7976676067"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
             </div>
         </div>
     </div>
@@ -548,11 +546,7 @@
 
     <!-- Js | easyResponsiveTabs -->
     <!-- Credits: http://webtrendset.com/demo/easy-responsive-tabs/Index.html -->
-    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script> 
-
-    <!-- Js | switcher -->
-    <!-- Credits: http://themeforest.net/user/FlexyCodes -->
-    <script type="text/javascript" src="/assets/js/jsSwitcher/switcher.js"></script>    
+    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script>  
 
     <!-- Js | mCustomScrollbar -->
     <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
@@ -571,52 +565,6 @@
     <!-- Credits: http://themeforest.net/user/FlexyCodes -->
     <script type="text/javascript" src="/assets/js/main.js"></script>
 
-    <!-- code js for image rotate -->
-    <script type="text/javascript">
-
-        var mouseX;
-        var mouseY;
-        var imageOne;
-
-        /* Calling the initialization function */
-        $(init);
-
-        /* The images need to re-initialize on load and on resize, or else the areas
-         * where each image is displayed will be wrong. */
-        $(window).load(init);
-        $(window).resize(init);
-
-        /* Setting the mousemove event caller */
-        $(window).mousemove(getMousePosition);
-
-        /* This function is called on document ready, on load and on resize
-         * and initiallizes all the images */
-        function init() {
-
-            /* Instanciate the mouse position variables */
-            mouseX = 0;
-            mouseY = 0;
-
-            /* Instanciate a HeadImage class for every image */
-            imageOne = new HeadImage("one");
-
-        }
-
-        /* This function is called on mouse move and gets the mouse position. 
-         * It also calls the HeadImage function to display the correct image*/
-        function getMousePosition(event) {
-
-            /* Setting the mouse position variables */
-            mouseX = event.pageX;
-            mouseY = event.pageY;
-
-            /*Calling the setImageDirection function of the HeadImage class
-             * to display the correct image*/
-            imageOne.setImageDirection();
-
-        }
-
-    </script>
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
