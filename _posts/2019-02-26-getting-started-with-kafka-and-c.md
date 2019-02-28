@@ -8,6 +8,8 @@ categories:
 - Kafka_Csharp
 - Confluent_Kafka
 - Kafka_on_windows
+tags:
+- kafka
 ---
 
 Hi,
