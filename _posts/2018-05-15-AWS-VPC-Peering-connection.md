@@ -7,6 +7,9 @@ categories:
 - AWS
 - VPC
 - VPC-Peering
+tags:
+- VPC_Peering_AWS
+- AWS
 ---
 
 # **Problem I am trying to solve**: 

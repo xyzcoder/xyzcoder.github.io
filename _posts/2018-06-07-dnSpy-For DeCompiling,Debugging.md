@@ -7,6 +7,9 @@ categories:
 - Dll_Decompiling
 - Decompiled_Dll_Debugging
 - dnSpy
+tags:
+- Debugging_3rd_Party_Code
+- DnSpy
 ---
 
 # **Problem I am trying to solve**: 
