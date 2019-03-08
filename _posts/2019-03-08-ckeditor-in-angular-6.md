@@ -6,7 +6,7 @@ comments: true
 categories:
 - ckeditor_angular6
 - ckeditor
-tags: Angular6
+tags: Ckeditor
 ---
 
 Hi,
