@@ -1,5 +1,5 @@
 ---
-title: CKEditor In Angular 6
+title: CKEditor In Angular 6 And Adding Custom Items
 layout: post
 date: '2019-03-08 09:02:47'
 comments: true
@@ -157,6 +157,103 @@ toolbarGroups: [ // Configure Different elements present in Editor
 This is how my editor looks like now.
 
 <img src="{{ site.baseurl }}/assets/images/posts/ckeditor/2.png"  alt="" style="width: 100%;height:50%;"/>
+
+# Adding Custom Dropdown
+I am actually planning to add a custom dropdown to my editor which holds information about my merge tokens. So when I click on an item in my dropdown, we will be adding text equivalent to that item in my drop down
+
+```
+this.config = {
+      uiColor: '#ffffff',
+      on: {
+        pluginsLoaded: function() {
+          const editor = this,
+            config = editor.config;
+
+          editor.ui.addRichCombo('my-combo', {
+            label: 'Custom Feilds',
+            title: 'Custom Feilds',
+            toolbar: 'basicstyles,0',
+            panel: {
+              css: [CKEDITOR.skin.getPath('editor')].concat(config.contentsCss),
+              multiSelect: false,
+              attributes: { 'aria-label': 'Custom Feilds' }
+            },
+            init: function() {
+              this.startGroup('Section1');
+              this.add(
+                '[[##one##]]',"DisplayName_one"
+              );
+              this.add(
+                '[[##two##]]',"DisplayName_two"
+              );
+
+              this.startGroup('Section2');
+              this.add(
+                '[[##3##]]',"DisplayName_3"
+              );
+              this.add(
+                '[[##4##]]',"DisplayName_4"
+              );
+            },
+            onClick: function(value) {
+              editor.focus();
+              editor.fire('saveSnapshot');
+
+              editor.insertHtml(value);
+
+              editor.fire('saveSnapshot');
+            }
+          });
+        }
+      },
+      toolbarGroups: [
+        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }
+      ],
+      height: 500
+    };
+```
+
+Here once all the plugin's are loaded, we are defining configuration related to our dropdown. 
+<br/>
+I am trying to add a combo box with name 'my-combo' and giving title as 'Custom Fields'.
+
+```
+toolbar: 'basicstyles,0',
+```
+
+This specifies that I am trying to add my custom element to basicstyles section defined in toolbarGroups
+
+```
+ panel: {
+              css: [CKEDITOR.skin.getPath('editor')].concat(config.contentsCss),
+              multiSelect: false,
+              attributes: { 'aria-label': 'Custom Feilds' }
+            },
+```
+
+Panel attribute is to set styles
+
+```
+this.startGroup('Section1');
+              this.add(
+                '[[##one##]]',"DisplayName_one"
+              );
+              this.add(
+                '[[##two##]]',"DisplayName_two"
+              );
+
+              this.startGroup('Section2');
+              this.add(
+                '[[##3##]]',"DisplayName_3"
+              );
+              this.add(
+                '[[##4##]]',"DisplayName_4"
+              );
+```
+
+Here I am actually trying to add label and under that I wanted to add items. 
+
+<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/3.png"  alt="" />
 
 <br/>
 <br/>

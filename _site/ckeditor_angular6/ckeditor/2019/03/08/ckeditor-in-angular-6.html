@@ -138,9 +138,9 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>CKEditor In Angular 6 | xyzcoder.github.io</title>
+<title>CKEditor In Angular 6 And Adding Custom Items | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="CKEditor In Angular 6" />
+<meta property="og:title" content="CKEditor In Angular 6 And Adding Custom Items" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hi, In this post we will see how to get started with CKEditor in Angular6" />
 <meta property="og:description" content="Hi, In this post we will see how to get started with CKEditor in Angular6" />
@@ -152,7 +152,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html","description":"Hi, In this post we will see how to get started with CKEditor in Angular6","headline":"CKEditor In Angular 6","dateModified":"2019-03-08T09:02:47+05:30","datePublished":"2019-03-08T09:02:47+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html","description":"Hi, In this post we will see how to get started with CKEditor in Angular6","headline":"CKEditor In Angular 6 And Adding Custom Items","dateModified":"2019-03-08T09:02:47+05:30","datePublished":"2019-03-08T09:02:47+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -308,7 +308,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        CKEditor In Angular 6
+                                                        CKEditor In Angular 6 And Adding Custom Items
                                                     
                                                     
                                                 </div>
@@ -467,6 +467,99 @@ Here I am trying to group spellchecker and undo together and removed other items
 <p>This is how my editor looks like now.</p>
 
 <p><img src="/assets/images/posts/ckeditor/2.png" alt="" style="width: 100%;height:50%;" /></p>
+
+<h1 id="adding-custom-dropdown">Adding Custom Dropdown</h1>
+<p>I am actually planning to add a custom dropdown to my editor which holds information about my merge tokens. So when I click on an item in my dropdown, we will be adding text equivalent to that item in my drop down</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.config = {
+      uiColor: '#ffffff',
+      on: {
+        pluginsLoaded: function() {
+          const editor = this,
+            config = editor.config;
+
+          editor.ui.addRichCombo('my-combo', {
+            label: 'Custom Feilds',
+            title: 'Custom Feilds',
+            toolbar: 'basicstyles,0',
+            panel: {
+              css: [CKEDITOR.skin.getPath('editor')].concat(config.contentsCss),
+              multiSelect: false,
+              attributes: { 'aria-label': 'Custom Feilds' }
+            },
+            init: function() {
+              this.startGroup('Section1');
+              this.add(
+                '[[##one##]]',"DisplayName_one"
+              );
+              this.add(
+                '[[##two##]]',"DisplayName_two"
+              );
+
+              this.startGroup('Section2');
+              this.add(
+                '[[##3##]]',"DisplayName_3"
+              );
+              this.add(
+                '[[##4##]]',"DisplayName_4"
+              );
+            },
+            onClick: function(value) {
+              editor.focus();
+              editor.fire('saveSnapshot');
+
+              editor.insertHtml(value);
+
+              editor.fire('saveSnapshot');
+            }
+          });
+        }
+      },
+      toolbarGroups: [
+        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] }
+      ],
+      height: 500
+    };
+</code></pre></div></div>
+
+<p>Here once all the plugin’s are loaded, we are defining configuration related to our dropdown. 
+<br />
+I am trying to add a combo box with name ‘my-combo’ and giving title as ‘Custom Fields’.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>toolbar: 'basicstyles,0',
+</code></pre></div></div>
+
+<p>This specifies that I am trying to add my custom element to basicstyles section defined in toolbarGroups</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> panel: {
+              css: [CKEDITOR.skin.getPath('editor')].concat(config.contentsCss),
+              multiSelect: false,
+              attributes: { 'aria-label': 'Custom Feilds' }
+            },
+</code></pre></div></div>
+
+<p>Panel attribute is to set styles</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.startGroup('Section1');
+              this.add(
+                '[[##one##]]',"DisplayName_one"
+              );
+              this.add(
+                '[[##two##]]',"DisplayName_two"
+              );
+
+              this.startGroup('Section2');
+              this.add(
+                '[[##3##]]',"DisplayName_3"
+              );
+              this.add(
+                '[[##4##]]',"DisplayName_4"
+              );
+</code></pre></div></div>
+
+<p>Here I am actually trying to add label and under that I wanted to add items.</p>
+
+<p><img src="/assets/images/posts/ckeditor/3.png" alt="" /></p>
 
 <p><br />
 <br />
