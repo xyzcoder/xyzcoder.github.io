@@ -285,6 +285,27 @@ jQuery(document).ready(function($) {
     });
 
 
+    /* ---------------------------------------------------------------------- */
+    /* --------------------------------- Blog ------------------------------- */
+    /* ---------------------------------------------------------------------- */
+
+    // More blog
+    $('a.read_m').click(function() {
+        var pagina = $(this).attr('href');
+        var postdetail = pagina + '-page';
+
+        if (pagina.indexOf("#post-") != -1) {
+
+            $('#blog-page').hide();
+
+            $(postdetail).show();
+            $(".tabs-blog").trigger('click');
+        }
+
+        return false;
+
+    });
+
     // More blog
     // $('a.read_more').click(function() {
     //     var pagina = $(this).attr('href');

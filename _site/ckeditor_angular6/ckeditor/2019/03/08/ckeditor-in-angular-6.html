@@ -138,21 +138,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Getting Started With Kafka and C# | xyzcoder.github.io</title>
+<title>CKEditor In Angular 6 | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="Getting Started With Kafka and C#" />
+<meta property="og:title" content="CKEditor In Angular 6" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, In this post we will see how to get started with Apache Kafka and C#. In this article I’ll be using Kafka as Message Broker. So basically I’ll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer." />
-<meta property="og:description" content="Hi, In this post we will see how to get started with Apache Kafka and C#. In this article I’ll be using Kafka as Message Broker. So basically I’ll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer." />
-<link rel="canonical" href="http://localhost:4000/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html" />
-<meta property="og:url" content="http://localhost:4000/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html" />
+<meta name="description" content="Hi, In this post we will see how to get started with CKEditor in Angular6" />
+<meta property="og:description" content="Hi, In this post we will see how to get started with CKEditor in Angular6" />
+<link rel="canonical" href="http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html" />
+<meta property="og:url" content="http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-02-26T19:51:04+05:30" />
+<meta property="article:published_time" content="2019-03-08T09:02:47+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html","description":"Hi, In this post we will see how to get started with Apache Kafka and C#. In this article I’ll be using Kafka as Message Broker. So basically I’ll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer.","headline":"Getting Started With Kafka and C#","dateModified":"2019-02-26T19:51:04+05:30","datePublished":"2019-02-26T19:51:04+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html","description":"Hi, In this post we will see how to get started with CKEditor in Angular6","headline":"CKEditor In Angular 6","dateModified":"2019-03-08T09:02:47+05:30","datePublished":"2019-03-08T09:02:47+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -308,7 +308,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Getting Started With Kafka and C#
+                                                        CKEditor In Angular 6
                                                     
                                                     
                                                 </div>
@@ -317,239 +317,156 @@
 
                                             
                                                 <p>Hi,
-In this post we will see how to get started with Apache Kafka and C#. In this article I’ll be using Kafka as Message Broker. So basically I’ll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer.</p>
+In this post we will see how to get started with CKEditor in Angular6</p>
+
+<p><br /></p>
+
+<h1 id="ng2-ckeditor">ng2-ckeditor:</h1>
+<p>I decided to make use of ng2-ckeditor because of the community support and number of download in nuget packages</p>
 
 <p><br />
-Here I’ll basically focus on Installation and a sample C# console applications. One acts as a consumer and the other as a Producer.</p>
-
-<h1 id="installing-kafka-on-windows">Installing Kafka on Windows:</h1>
-<p>Download from this url <a href="http://kafka.apache.org/downloads">http://kafka.apache.org/downloads</a></p>
+We can download it from <a href="https://www.npmjs.com/package/ng2-ckeditor">ng2-ckeditor</a>.</p>
 
 <p><br />
-<img src="/assets/images/posts/kafka/1.png" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p><br />
-<br />
-Now download Kafka  from this http url</p>
-
-<p><img src="/assets/images/posts/kafka/2.png" alt="" style="width: 100%;height: 100%;" />
-<br />
+Steps:
 <br /></p>
+<ol>
+  <li>Add ng2-ckeditor to package.json file “ng2-ckeditor”: “^1.2.2”, under dependencies section</li>
+  <li>
+    <p>Now include ckeditor related js file in the head section of index.html</p>
 
-<p>After downloading the file, unzip into a location on your machine.
-Now navigate to ** your_location\kafka_2.11-2.1.1\bin\windows**</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"&gt;&lt;/script&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Include CKEditor Module in the main module where you are planning to use</p>
 
-<p><br />
-<strong>/bin</strong> directory represents all the binary files which are helpful to start Kafka server different operating systems. As we are working with the windows machine, there will be a folder named windows under /bin directory, which has all the windows related stuff.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             import { CKEditorModule } from 'ng2-ckeditor';
 
-<p><br />
-<strong>/config</strong> directory contains all configuration details about Kafka server, zookeeper, and logs. All configurations have their default values if you wanted to change any config details like port you can freely go an change accordingly.</p>
+                         @NgModule({
+                             imports: [
+                                 //......
+                                 CKEditorModule
+                             ],
+                             declarations: [//.....],
+                             bootstrap:    [ //....... ]
+                         })
+                         export class YourModule { }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Using it in the component</p>
 
-<h1 id="start-the-zookeeper">Start the Zookeeper:</h1>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         your.component.ts
+			
+         import { Component, OnInit } from '@angular/core';
 
-<p>We can start the server with default configuration
-<br />
-Use the command <strong>“zookeeper-server-start.bat ../../config/zookeeper.properties”</strong></p>
+         @Component({
+             selector: 'app-your-selector',
+             templateUrl: './your.component.html'
+         })
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Pavan\Softwares\kafka_2.11-2.1.1\bin\windows&gt;zookeeper-server-start.bat ../../config/zookeeper.properties
-[2019-02-26 15:03:16,587] INFO Reading configuration from: ..\..\config\zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
-[2019-02-26 15:03:16,592] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
-[2019-02-26 15:03:16,593] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
-[2019-02-26 15:03:16,593] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
-[2019-02-26 15:03:16,594] WARN Either no config or no quorum defined in config, running  in standalone mode (org.apache.zookeeper.server.quorum.QuorumPeerMain)
-[2019-02-26 15:03:16,617] INFO Reading configuration from: ..\..\config\zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
-</code></pre></div></div>
+         export class AdminDashboardComponent implements OnInit {
 
-<h1 id="start-apache-kafka">Start Apache Kafka:</h1>
-<p>Use the command <strong>“kafka-server-start.bat ../../config/server.properties”</strong></p>
+                 constructor() {
+                 }
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:\Pavan\Softwares\kafka_2.11-2.1.1\bin\windows&gt;kafka-server-start.bat ../../config/server.properties
-[2019-02-26 15:08:42,212] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
-[2019-02-26 15:08:42,694] INFO starting (kafka.server.KafkaServer)
-[2019-02-26 15:08:42,695] INFO Connecting to zookeeper on localhost:2181 (kafka.server.KafkaServer)
-[2019-02-26 15:08:42,720] INFO [ZooKeeperClient] Initializing a new session to localhost:2181. (kafka.zookeeper.ZooKeeperClient)
-</code></pre></div></div>
+                 ngOnInit() {
+                     ckeditorContent: string = '&lt;p&gt;This is Pavan Kumar Aryasomayajulu&lt;/p&gt;';
+                 }
+         }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Including ckeditor in template file</p>
 
-<p>Now we can see that both Zookeeper and Kafka servers are running successfully.</p>
-
-<h1 id="understanding-basics-of-kafka">Understanding Basics Of Kafka:</h1>
-<p>Before actually going into programming. First of all let us try to understand some of the basic terminologies involved in Kafka.
-<br />
-As per the official site</p>
-
-<blockquote>
-  <p>Apache Kafka® is a distributed streaming platform. What exactly does that mean?
- A streaming platform has three key capabilities:</p>
-
-  <ul>
-    <li>Publish and subscribe to streams of records, similar to a message queue or enterprise messaging system.</li>
-    <li>Store streams of records in a fault-tolerant durable way.</li>
-    <li>Process streams of records as they occur.</li>
-  </ul>
-</blockquote>
-
-<p><br />
-Lets try to decode above statements. 
-<br />
-Process_A(Publisher) sends data( can be multiple messages) under a common name which can be called as topic name. Now Process_B(Consumer) subscribes to the same topic and whenever there is a message or record sent by Process_A (Publisher), it is recieved and processed by Process_B(Consumer).
-<br />
-In this case there are chances of Process_B(consumer) down. So Process_A sends a message but Process_B is down. 
-What is going to happen in this case? 
-Are we going to loose the message sent by Process_A? 
-<br />
-No, we are not going to loose the message, Kafka takes care of this and it stores this message internally untill the message is consumed by the consumer.</p>
-
-<p><br />
-<br /></p>
-
-<p><img src="/assets/images/posts/kafka/3.png" alt="" style="width: 75%;height: 100%;" /></p>
-
-<h1 id="publisher">Publisher:</h1>
-<p>Publishers are applications which send messages to a Topic. For example, I have a topic called “ResumeProcessor” and an application which extracts raw resumes by scrapping. So my application it scrapes resumes from internet and then it posts that data to my “ResumeProcessor” topic.
-<br /></p>
-<h1 id="topic">Topic:</h1>
-<p>A topic is like a place where a publisher writes all message and a consumer picks from it. In my above example “ ResumeProcessor” is my topic to which different scrapped resumes content is written and from there subscribers pick.</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             &lt;ckeditor
+                 [(ngModel)]="ckeditorContent"
+                 [config]="{uiColor: '#99000'}"
+                 [readonly]="false"
+                 (change)="onChange($event)"
+                 (editorChange)="onEditorChange($event)" &lt;!-- CKEditor change event --&gt;
+                 (ready)="onReady($event)"
+                 (focus)="onFocus($event)"
+                 (blur)="onBlur($event)"
+                 (contentDom)="onContentDom($event)"
+                 (fileUploadRequest)="onFileUploadRequest($event)"
+                 (fileUploadResponse)="onFileUploadResponse($event)"
+                 (paste)="onPaste($event)"
+                 (drop)="onDrop($event)"
+                 debounce="500"&gt;
+             &lt;/ckeditor&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <p><br />
-<br />
-Structure of a Topic:
-<br />
-<img src="/assets/images/posts/kafka/4.png" alt="" /></p>
-
-<ul>
-  <li>Each topic is divided into configured number of partitions. By default it is based on the number of consumers ina  group.</li>
-  <li>Whenever a new message is sent, it is appended to the partition and it is immutable.</li>
-  <li>Data in a topic is persisted for a configurable amount of time ( in .properties file). For example if the retension period is set to 1 day, then the record will be stored for the next one day.</li>
-</ul>
-
-<h1 id="consumers">Consumers:</h1>
-<p>Consumers are applications which listen to a topic and when ever a publisher sends a message, it is picked up by the consumer.
-<br /></p>
+	This is how our editor looks like
+<img src="/assets/images/posts/ckeditor/1.png" alt="" style="width: 100%;height: 100%;" /></p>
 
 <p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins></p>
-<h1 id="c-code-for-consumer-and-producers">C# code for consumer and Producers:</h1>
 
-<p>Now as we have kafka environment ready, lets try to publish some data and consume it using C# clients for Kafka.
-<br />
-There are many clients available in the market( Nuget Packages) lets see which one to use.
-By querying Nuget site as following <a href="https://www.nuget.org/packages?q=kafka&amp;prerel=false">https://www.nuget.org/packages?q=kafka&amp;prerel=false</a> I see that there are many packages available. 
-<br />
-But among those, I see 2 predominent ones and I am planning to use <strong>“Confluent.Kafka”</strong> as this seems to be promising and microsft acknowledged it.
-<a href="https://www.nuget.org/packages/Confluent.Kafka/0.11.6">https://www.nuget.org/packages/Confluent.Kafka/0.11.6</a></p>
+<h1 id="configuring-ckeditor">Configuring CKEditor</h1>
+<p>CKEditor is a powerful tool and it provides a lot of flexibility to end user to configure it. lets see some basic configurations</p>
 
-<p><br />
-Note: When Installing this package, make sure that we have include pre-release selected. Because of the classes which I am using in my example are present in the pre-release version or else you’ll be see a message ** “There is no ProducerConfig in Confluent.Kafka dll”**</p>
+<p>– your.component.html</p>
 
-<h1 id="producer-sample">Producer sample:</h1>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System;
-using System.Threading.Tasks;
-using Confluent.Kafka;
-
-namespace Kafka_Producer
-{
-    class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var config = new ProducerConfig { BootstrapServers = "localhost:9092" };
-
-            using (var p = new ProducerBuilder&lt;Null, string&gt;(config).Build())
-            {
-                try
-                {
-                    var dr = await p.ProduceAsync("resume-processor", new Message&lt;Null, string&gt; { Value = DateTime.Now.ToShortDateString() });
-
-                    Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
-                }
-                catch (ProduceException&lt;Null, string&gt; e)
-                {
-                    Console.WriteLine($"Delivery failed: {e.Error.Reason}");
-                }
-            }
-
-            Console.ReadLine();
-        }
-    }
-}
-
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	&lt;ckeditor [config]="config" &gt;&lt;/ckeditor&gt;
 </code></pre></div></div>
 
-<ul>
-  <li>Initially we are initializing a config which specifies details of the Kafka server</li>
-  <li>Then we are actually building the Producer by passing above config data</li>
-  <li>Now we are actually trying to produce a message to the topic “resume-processor” with a message</li>
-  <li>Once the message is written to the topic, we are getting details(DeliveryResults) related to message , this will have information related to the partition and the offset where the record is stored.</li>
-</ul>
+<p>– your.component.ts</p>
 
-<p><img src="/assets/images/posts/kafka/5.png" alt="" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	import { Component, OnInit } from '@angular/core';
 
-<p><br />
-<br />
-Here we can see that the message is stored in the topic “resume-processor” and we have only 1 partition ( with index 0)  and the message is stored in the offset 0.
-<br />
-Now when I tried to run the same application again with a different message, we can see that it is stored in the same partition 0 but in a different offset.</p>
+	 @Component({
+		 selector: 'app-your-selector',
+		 templateUrl: './your.component.html'
+	 })
 
-<p><img src="/assets/images/posts/kafka/6.png" alt="" /></p>
+	 export class AdminDashboardComponent implements OnInit {
+			 config: any;
+			 constructor() {
+				this.config = {
+				  uiColor: '#CCEAEE', // This is to set editor color https://ckeditor.com/docs/ckeditor4/latest/examples/uicolor.html
+				  toolbarGroups: [ // Configure Different elements present in Editor
+					{ name: 'clipboard', groups: ['clipboard', 'undo'] },
+					{ name: 'editing', groups: ['find', 'selection', 'spellchecker'] },
+					{ name: 'links' },
+					{ name: 'insert' },
+					{ name: 'document', groups: ['mode', 'document', 'doctools'] },
+					{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+					{ name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'] },
+					{ name: 'styles' },
+					{ name: 'colors' }
+				  ],
+				  resize_enabled: false,
+				  height: 500 // Setting height
+				};
+			 }
 
-<h1 id="subscriber-sample">Subscriber sample:</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Confluent.Kafka;
-
-namespace ConsoleApp6
-{
-    class Program
-    {
-        public static void Main(string[] args)
-        {
-            var conf = new ConsumerConfig
-            {
-                GroupId = "test-consumer-group",
-                BootstrapServers = "localhost:9092"
-            };
-
-            using (var c = new ConsumerBuilder&lt;Ignore, string&gt;(conf).Build())
-            {
-                c.Subscribe("resume-processor");
-                try
-                {
-                    while (true)
-                    {
-                        try
-                        {
-                            var cr = c.Consume();
-                            Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
-                        }
-                        catch (ConsumeException e)
-                        {
-                            Console.WriteLine($"Error occured: {e.Error.Reason}");
-                        }
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                    // Ensure the consumer leaves the group cleanly and final offsets are committed.
-                    c.Close();
-                }
-            }
-        }
-    }
-}
-
+			 ngOnInit() {
+			 }
+	 }
 </code></pre></div></div>
 
-<ul>
-  <li>Initially we are creating a config object with server and consumer group name</li>
-  <li>Now we are actually creating a consumer and then subscribe to the same topic to which messages were sent in the Producer application</li>
-  <li>Finally we are consuming data when ever we have some data in topic.</li>
-</ul>
+<p>So basically for ckeditor component we are passing configuration using [config]=”config”.
+<br />
+If we see configurations, uiColor is used to define the color of the editor this can be used to match your company theme color
+<br />
+<strong>toolbarGroup</strong> is basically an array of objects used to configure different items in the editor toolbar and we can add or remove them based on our requirement. Each object in the array has a name and groups which is again an array containing different sections. We can also add these sections to other groups too.</p>
 
-<p><img src="/assets/images/posts/kafka/7.png" alt="" /></p>
+<p><br />
+For example:
+<br />
+Here I am trying to group spellchecker and undo together and removed other items</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>toolbarGroups: [ // Configure Different elements present in Editor
+        { name: 'clipboard', groups: ['undo', 'spellchecker'] },
+        { name: 'editing', groups: ['find', 'selection'] }
+      ]
+</code></pre></div></div>
+<p>This is how my editor looks like now.</p>
+
+<p><img src="/assets/images/posts/ckeditor/2.png" alt="" style="width: 100%;height:50%;" /></p>
 
 <p><br />
 <br />
@@ -564,7 +481,7 @@ Pavan</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 02262019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 03082019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -588,13 +505,9 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#Kafka</span>
+                                                            <span class="tag">#ckeditor_angular6</span>
                                                         
-                                                            <span class="tag">#Kafka_Csharp</span>
-                                                        
-                                                            <span class="tag">#Confluent_Kafka</span>
-                                                        
-                                                            <span class="tag">#Kafka_on_windows</span>
+                                                            <span class="tag">#ckeditor</span>
                                                         
                                                     </div>
                                                 </div>
@@ -602,8 +515,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/2019/01/01/my-plans-for-year-2019.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
