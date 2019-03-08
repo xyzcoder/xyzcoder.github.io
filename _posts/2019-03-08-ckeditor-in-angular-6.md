@@ -89,7 +89,7 @@ Steps:
 	
 <br/>
 	This is how our editor looks like
-<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/1.png"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/1.PNG"  alt="" style="width: 100%;height: 100%;"/>
 
 {% include /in_article_ads.html %}
 
@@ -156,7 +156,7 @@ toolbarGroups: [ // Configure Different elements present in Editor
 ```
 This is how my editor looks like now.
 
-<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/2.png"  alt="" style="width: 100%;height:50%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/2.PNG"  alt="" style="width: 100%;height:50%;"/>
 
 # Adding Custom Dropdown
 I am actually planning to add a custom dropdown to my editor which holds information about my merge tokens. So when I click on an item in my dropdown, we will be adding text equivalent to that item in my drop down
@@ -253,7 +253,7 @@ this.startGroup('Section1');
 
 Here I am actually trying to add label and under that I wanted to add items. 
 
-<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/3.png"  alt="" />
+<img src="{{ site.baseurl }}/assets/images/posts/ckeditor/3.PNG"  alt="" />
 
 <br/>
 <br/>
