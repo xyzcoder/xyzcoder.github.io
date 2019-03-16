@@ -474,29 +474,30 @@ s.setAttribute('data-timestamp', +new Date());
     
     <script type="text/javascript">
     var isAdBoxDisplayed = false;
-    $(window).on("scroll", function () {
-        var scrollHeight = $(document).height();
-        var scrollPosition = $(window).height() + $(window).scrollTop();
-        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
-        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
-            var txt;
-            debugger;
-            $("#myModal").modal("show");
-            isAdBoxDisplayed = true;
-        }
-    });
+    //In future I can add this to have pop on scroll bottom
+    // $(window).on("scroll", function () {
+    //     var scrollHeight = $(document).height();
+    //     var scrollPosition = $(window).height() + $(window).scrollTop();
+    //     console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    //     if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+    //         var txt;
+    //         debugger;
+    //         $("#myModal").modal("show");
+    //         isAdBoxDisplayed = true;
+    //     }
+    // });
     </script>
 <script>
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});
 });
-
-$('#myModal').on('shown.bs.modal', function (e) {
-    $(".adsense-inject").each(function () {
-            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
-            (adsbygoogle = window.adsbygoogle || []).push({});
-    });
-})
+//In future we can ad ads in popup
+// $('#myModal').on('shown.bs.modal', function (e) {
+//     $(".adsense-inject").each(function () {
+//             $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+//             (adsbygoogle = window.adsbygoogle || []).push({});
+//     });
+// })
 
 
 </script>
