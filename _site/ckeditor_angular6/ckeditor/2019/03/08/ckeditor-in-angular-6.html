@@ -655,12 +655,7 @@ s.setAttribute('data-timestamp', +new Date());
                 </div>
                 <div class="modal-body">
                   <p>Please provide your feedback in the comments section at the bottom for me to improve better</p>
-                  <ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3300393120826046"
-     data-ad-slot="9095096865"></ins>
+                  <div class="adsense-inject">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -730,6 +725,15 @@ s.setAttribute('data-timestamp', +new Date());
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});
 });
+
+$('#myModal').on('shown.bs.modal', function (e) {
+    $(".adsense-inject").each(function () {
+            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+            (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+})
+
+
 </script>
 
 
