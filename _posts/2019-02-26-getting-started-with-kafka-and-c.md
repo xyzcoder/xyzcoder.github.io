@@ -13,7 +13,7 @@ tags:
 ---
 
 Hi,
-In this post we will see how to get started with Apache Kafka and C#. In this article I'll be using Kafka as Message Broker. So basically I'll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer.
+In this post we will see how to get started with Apache Kafka C#. In this article I'll be using Kafka as Message Broker. So basically I'll have 2 different systems. One is Producer and the Other is Consumer. Basically a producer pushes message to Kafka Queue as a topic and it is consumed by my consumer.
 
 <br/>
 Here I'll basically focus on Installation and a sample C# console applications. One acts as a consumer and the other as a Producer.
@@ -241,6 +241,10 @@ namespace ConsoleApp6
 * Finally we are consuming data when ever we have some data in topic.
 
 <img src="{{ site.baseurl }}/assets/images/posts/kafka/7.png"  alt=""/>
+
+<br/>
+<br/>
+**Keywords:** kafka c#, apache kafka, kafka producer, kafka consumer, kafka server
 
 <br/>
 <br/>

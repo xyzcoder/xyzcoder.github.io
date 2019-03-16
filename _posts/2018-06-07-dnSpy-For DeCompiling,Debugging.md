@@ -12,13 +12,16 @@ tags:
 - DnSpy
 ---
 
+DnSpy is a c# reverse engineering tool which helped me to decompile a c# assembly and debug it
 # **Problem I am trying to solve**: 
 I Was having an issue with a .Net Windows Application exe throughing error message when trying to open it. I have an exe, and all dll's related to the project and a local database instance whose connectionstring is specified in a ini file. Unfortunately I dont have access to code base so that I can debug it using Visual Studio.
 So I was searching for options to actually find out what the issue was.
 
 I tried following approaches:
-1. Decompile the dll's using dotPeek, JustCompile  and then create the project in visual studio but that failed.
+1. Decompile the dll's using dotPeek( jetbrains dotpeek), JustCompile  and then create the project in visual studio but that failed.
 2. Another option can be using Visual Studio + dotPeek( as symbol server), Even this is not successful because I am not able to attach process in visual studio, because it is failing in the load it self.
+
+So I am actually looking for a reverse enginerring tool which can acts as a c# disassembler
 
 Then I came accross a called **"dnSpy"**.
 
@@ -101,6 +104,11 @@ I am trying to debug a small console application exe.
 # **Editing a simple application dll/exe using dnSpy**: 
 
 <img src="{{ site.baseurl }}/assets/images/posts/dnspy_2.gif"  alt="" style="width: 100%;height: 100%;"/>
+
+<br/>
+<br/>
+
+**Keywords**: reverse engineering tools, c# decompiler, dot net decompiler, c# disassembler, c# reverse engineering
 
 <br/>
 <br/>
