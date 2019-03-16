@@ -540,6 +540,21 @@
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript">
+    var isAdBoxDisplayed = false;
+    $(window).on("scroll", function () {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+            var txt;
+            debugger;
+            $("#myModal").modal("show");
+            isAdBoxDisplayed = true;
+        }
+    });
+    </script>
 <script>
   [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});

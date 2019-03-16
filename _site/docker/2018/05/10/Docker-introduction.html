@@ -437,6 +437,32 @@ s.setAttribute('data-timestamp', +new Date());
         <!-- </section> -->
         <!-- End Content -->
 
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" style="color: white;">Thank you for reading this article</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Please provide your feedback in the comments section at the bottom for me to improve better</p>
+                  <ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-3300393120826046"
+     data-ad-slot="9095096865"></ins>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -478,11 +504,27 @@ s.setAttribute('data-timestamp', +new Date());
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript">
+    var isAdBoxDisplayed = false;
+    $(window).on("scroll", function () {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+            var txt;
+            debugger;
+            $("#myModal").modal("show");
+            isAdBoxDisplayed = true;
+        }
+    });
+    </script>
 <script>
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});
 });
 </script>
+
 
 
 </body>
