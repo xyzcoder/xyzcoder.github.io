@@ -507,10 +507,11 @@ s.setAttribute('data-timestamp', +new Date());
                 <div class="modal-body">
                   <p>Please Enter your email</p>
                   <input type="text" id="email" style="width:100%">
+                  <br/>
                   <div class="adsense-inject">
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default">Subscribe</button>
+                  <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -593,6 +594,34 @@ s.setAttribute('data-timestamp', +new Date());
     //     email: "pavan"
     // });
 
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+                }
+            });
+           
+        }
+    }
+
 </script>
 <script>
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
@@ -600,9 +629,11 @@ s.setAttribute('data-timestamp', +new Date());
 });
 //In future we can ad ads in popup
 $('#myModal').on('shown.bs.modal', function (e) {
-    $(".adsense-inject").each(function () {
-        $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
-        (adsbygoogle = window.adsbygoogle || []).push({});
+    $(".adsense-inject").each(function (i) {
+        if(!$(this).html().includes("<ins")){
+            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
     });
 })
 

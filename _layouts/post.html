@@ -72,10 +72,11 @@
                 <div class="modal-body">
                   <p>Please Enter your email</p>
                   <input type="text" id="email" style="width:100%">
+                  <br/>
                   <div class="adsense-inject">
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default">Subscribe</button>
+                  <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -94,9 +95,11 @@
 });
 //In future we can ad ads in popup
 $('#myModal').on('shown.bs.modal', function (e) {
-    $(".adsense-inject").each(function () {
-        $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
-        (adsbygoogle = window.adsbygoogle || []).push({});
+    $(".adsense-inject").each(function (i) {
+        if(!$(this).html().includes("<ins")){
+            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
     });
 })
 
