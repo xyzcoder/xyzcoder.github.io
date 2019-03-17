@@ -89,6 +89,7 @@ For more details you can check his url
 <br/>
 [https://firebase.google.com/docs/database/security/?authuser=2](https://firebase.google.com/docs/database/security/?authuser=2)
 
+{% include /in_article_ads.html %}
 # Getting started with changes in web application
 Before actually getting started with coding, we need to initialize firebase app. Place this code in head tag
 
