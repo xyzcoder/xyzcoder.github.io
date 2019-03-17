@@ -177,7 +177,9 @@ Note: Here I am using  "firebase.database().ref('/').update" instead of "firebas
 <br/>
 This is because set will overwrite data where as update will add new item if we dont find an existing item with key else it will update the record.
 
-
+<br/>
+Finally this is how my data looks like in Firebase
+<img src="{{ site.baseurl }}/assets/images/posts/firebase/5.PNG"  alt="" style="width: 100%;height: 100%;"/>
 <br/>
 **Keywords:** firebase, firebase console, firebase database, firebase cloud messaging, firebase analytics
 
