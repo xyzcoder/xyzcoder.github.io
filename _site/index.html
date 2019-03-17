@@ -173,7 +173,7 @@
     <a href="/index.html" class="active">Blog</a>
     <a href="/about.html">About Me</a>
     <a href="/tags">Posts By Tags</a>
-    <a href="#contact">Contact</a>
+    <a href="#" onclick="subscribe()">Subscribe</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
@@ -186,6 +186,9 @@
       } else {
         x.className = "topnav";
       }
+    }
+    function subscribe(){
+        $("#myModal").modal("show");
     }
   </script>
 
@@ -302,6 +305,43 @@
                 <div class="col-md-12" id="blog_page">
                     <section id="blog-page">
 
+                        
+
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content" style="width:100%">
+                                                            <a href="/firebase/2019/03/17/firebase-real-time-database.html"  style="float:left;position:relative">Firebase Real time Database</a>
+                                                            <a href="/firebase/2019/03/17/firebase-real-time-database.html" style="float:right;position:relative">Read More </a>
+                                                        </div>
+                                                        
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> March 17, 2019</li>
+                                                        
+                                                            <li><i class="glyphicon glyphicon-tag"></i>Firebase</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog. Firebase is a realtime database and also provides many more functionalities like Hosting, Functions(Serverless Architecture) where data is stored in the form of...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
                         
 
                             <article class="blog-article">                    
@@ -592,6 +632,31 @@
                  </div>
                  <!-- End #resp-tabs-container --> 
 
+                 <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="color: white;">Thank you for reading this article</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Please Enter your email</p>
+                        <input type="text" id="email" style="width:100%">
+                        <div class="adsense-inject">
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default">Subscribe</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                
+                  </div>
+              </div>
+      
+          </div>
+
                </div><!-- End verticalTab -->
 
               </div><!-- End post_content -->
@@ -661,10 +726,36 @@
     //     }
     // });
     </script>
+
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+</script>
 <script>
   [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});
 });
+
+$('#myModal').on('shown.bs.modal', function (e) {
+    $(".adsense-inject").each(function () {
+        $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+})
 </script>
 </body>
 </html> 

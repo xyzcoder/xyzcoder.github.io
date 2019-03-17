@@ -177,7 +177,7 @@
       <a href="/index.html" class="active">Blog</a>
       <a href="/about.html">About Me</a>
       <a href="/tags">Posts By Tags</a>
-      <a href="#contact">Contact</a>
+      <a href="#" onclick="subscribe()">Subscribe</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
     </a>
@@ -190,6 +190,9 @@
         } else {
             x.className = "topnav";
         }
+    }
+    function subscribe(){
+        $("#myModal").modal("show");
     }
 </script>
 
@@ -654,10 +657,12 @@ s.setAttribute('data-timestamp', +new Date());
                   <h4 class="modal-title" style="color: white;">Thank you for reading this article</h4>
                 </div>
                 <div class="modal-body">
-                  <p>Please provide your feedback in the comments section at the bottom for me to improve better</p>
+                  <p>Please Enter your email</p>
+                  <input type="text" id="email" style="width:100%">
                   <div class="adsense-inject">
                 </div>
                 <div class="modal-footer">
+                  <button type="button" class="btn btn-default">Subscribe</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -722,17 +727,36 @@ s.setAttribute('data-timestamp', +new Date());
     //     }
     // });
     </script>
+
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+</script>
 <script>
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});
 });
 //In future we can ad ads in popup
-// $('#myModal').on('shown.bs.modal', function (e) {
-//     $(".adsense-inject").each(function () {
-//             $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
-//             (adsbygoogle = window.adsbygoogle || []).push({});
-//     });
-// })
+$('#myModal').on('shown.bs.modal', function (e) {
+    $(".adsense-inject").each(function () {
+        $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+})
 
 
 </script>

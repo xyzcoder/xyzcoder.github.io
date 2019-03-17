@@ -138,21 +138,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Installing Docker On Windows | xyzcoder.github.io</title>
+<title>Firebase Real time Database | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="Installing Docker On Windows" />
+<meta property="og:title" content="Firebase Real time Database" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
-<meta property="og:description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
-<link rel="canonical" href="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
-<meta property="og:url" content="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
+<meta name="description" content="Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog." />
+<meta property="og:description" content="Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog." />
+<link rel="canonical" href="http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html" />
+<meta property="og:url" content="http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-05-10T00:09:00+05:30" />
+<meta property="article:published_time" content="2019-03-17T12:02:33+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html","description":"Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \\&quot;Expose daemon on tcp://localhost:2375 without TLS\\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu","headline":"Installing Docker On Windows","dateModified":"2018-05-10T00:09:00+05:30","datePublished":"2018-05-10T00:09:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html","description":"Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog.","headline":"Firebase Real time Database","dateModified":"2019-03-17T12:02:33+05:30","datePublished":"2019-03-17T12:02:33+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -311,7 +311,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Installing Docker On Windows
+                                                        Firebase Real time Database
                                                     
                                                     
                                                 </div>
@@ -319,50 +319,121 @@
                                             </div>
 
                                             
-                                                <p>Hi,</p>
-<p>In this post, we will see how to install docker on windows and other basic details.</p>
-<p><br /></p>
-<p><b>System Requirements:</b></p>
-<p>1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. <br />Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.<br />Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV.</p>
-<p>2. HyperV is not supported on Home edition of windows.</p>
-<p>3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education.</p>
-<p><br /></p>
-<p>Don't worry if you don't&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.<br /><br /><b>Downloads:</b></p>
-<p>Download the installer Docker for windows from <a href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">this location</a>&nbsp;</p>
-<p>As I mentioned above, if you don't have supported version of OS, then you can download Docker Toolbox from <a href="https://download.docker.com/win/stable/DockerToolbox.exe">this location</a>.</p>
-<p><br /></p>
-<p><b>Installation steps:</b></p>
-<p>After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password.</p>
-<p>During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further.</p>
-<p>After going through the steps in the installation wizard, docker is installed on the machine and we can use it.</p>
-<p><br /></p>
-<p>In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker.</p>
-<p><br /></p>
-<p><b>Verifying your installation:<br /><br />Docker For windows.exe( Not for Docker toolbox):</b></p>
-<p>Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it.</p>
-<p><br /></p>
-<p></p>
-<p><br /></p>
-<p>Make sure that \"Expose daemon on tcp://localhost:2375 without TLS\" is checked.</p>
-<p><br /></p>
-<p>Now open command prompt and issue following command</p>
-<pre style="line-height: 1.42857;"><code class="html">docker --version</code></pre>
-<p><br /></p>
-<p>Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work.</p>
-<p><br /></p>
-<p><b>Docker Toolbox verification:</b></p>
-<p>On desktop, we can see Docker toolbox icon</p>
-<p><br /></p>
-<p><img src="https://docs.docker.com/toolbox/images/icon-set.png" alt="Desktop" /></p>
-<p><br /></p>
-<p>When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).<br /><br />Now in the command prompt, you can issue following commands<br /></p>
-<pre><code class="html">docker --version</code></pre>
-<p><br />If we get the result, then docker installation is successful.<br /></p>
-<p><br /></p>
-<p>Thanks,</p>
-<p>Pavan Kumar Aryasomayajulu</p>
+                                                <p>Hi,
+In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog.</p>
 
-<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins></p>
+<p>Firebase is a realtime database and also provides many more functionalities like Hosting, Functions(Serverless Architecture) where data is stored in the form of a json document. So my plan is to make use firebase database and firebase functions.</p>
+
+<h1 id="registering-with-firebase">Registering With Firebase:</h1>
+<ol>
+  <li>Go to <a href="https://firebase.google.com/">https://firebase.google.com/</a> and click on “ Go to Console” and register your self with your email.</li>
+  <li>Click on “Add Project” and give an appropriate name for your project</li>
+</ol>
+
+<p><br />
+<img src="/assets/images/posts/firebase/1.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+
+<h1 id="plans-provided-by-firebase">Plans Provided By Firebase:</h1>
+<p>For now I am planning to make use of spark plan which is a free option for unlimited number of days. I hope this is ok for me as of now.
+It provides me 1GB data and 100 Simultaneous connections etc</p>
+
+<p><img src="/assets/images/posts/firebase/2.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+
+<h1 id="getting-started-with-database-setup">Getting Started with Database Setup:</h1>
+<ol>
+  <li>Click on Databases on the left side menu item
+<br /></li>
+</ol>
+
+<p><img src="/assets/images/posts/firebase/3.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+
+<p><br />
+As we can see , here we can add or edit data on the fly here and also can make these changes programatically.
+<br />
+Also we can see that there is an option to called “Rules”, there we can edit different security rules on who can add data and others.
+<br />
+For example, I wanted to add data only when I am authenticated with my email address. So that no one else can modify or alter my data.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "rules": {
+    ".read": true,
+    ".write": "auth.token.email.matches(/xyzcoder1989@gmail.com$/)"
+  }
+}
+</code></pre></div></div>
+
+<p>And If I dont want anyone to read or write data, then I can simply have following rule.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// These rules don't allow anyone read or write access to your database
+{
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}
+</code></pre></div></div>
+
+<p><strong>Rule Types</strong>
+<br />
+<strong>.read</strong>	Describes if and when data is allowed to be read by users.
+<br />
+<strong>.write</strong>	Describes if and when data is allowed to be written.
+<br />
+<strong>.validate</strong>	Defines what a correctly formatted value will look like, whether it has child attributes, and the data type.</p>
+
+<p>So In my case I wanted to write data but it is not required by others to read that data. So I am going to set read as false and write true.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "rules": {
+      ".read": false,
+      ".write": true,
+      "$unknownKey": {       
+        ".validate": "newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i)"
+			}
+  }
+}
+</code></pre></div></div>
+
+<p><br />
+For more details you can check his url
+<br />
+<a href="https://firebase.google.com/docs/database/security/?authuser=2">https://firebase.google.com/docs/database/security/?authuser=2</a></p>
+
+<h1 id="getting-started-with-changes-in-web-application">Getting started with changes in web application</h1>
+<p>Before actually getting started with coding, we need to initialize firebase app</p>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "&lt;API_KEY&gt;",
+    authDomain: "&lt;PROJECT_ID&gt;.firebaseapp.com",
+    databaseURL: "https://&lt;DATABASE_NAME&gt;.firebaseio.com",
+    projectId: "&lt;PROJECT_ID&gt;",
+    storageBucket: "&lt;BUCKET&gt;.appspot.com",
+    messagingSenderId: "&lt;SENDER_ID&gt;",
+  };
+  firebase.initializeApp(config);
+&lt;/script&gt;
+</code></pre></div></div>
+
+<p><br />
+To get actual values, in Firebase console go to , click on gear icon next to “Project Overview”, click on “Project Settings”
+<br />
+Click on 3rd icon and copy code.</p>
+
+<p><img src="/assets/images/posts/firebase/4.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+
+<p><br />
+<strong>Keywords:</strong> firebase, firebase console, firebase database, firebase cloud messaging, firebase analytics</p>
+
+<p><br />
+<br />
+Thanks,
+Pavan</p>
 
 <div id="disqus_thread"></div>
 <script>
@@ -372,7 +443,7 @@
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 143900; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 03172019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -396,7 +467,7 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#Docker</span>
+                                                            <span class="tag">#Firebase</span>
                                                         
                                                     </div>
                                                 </div>
@@ -404,8 +475,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/codesnippets/github_pull_request_files_list/2019/03/14/javascript-code-snippet-for-getting-list-of-modified-files-in-a-github-pullrequest.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
