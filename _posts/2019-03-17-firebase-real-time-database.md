@@ -1,5 +1,5 @@
 ---
-title: Firebase Real time Database
+title: Firebase Real time Database For My Static Website
 layout: post
 date: '2019-03-17 12:02:33'
 comments: true
@@ -90,7 +90,7 @@ For more details you can check his url
 [https://firebase.google.com/docs/database/security/?authuser=2](https://firebase.google.com/docs/database/security/?authuser=2)
 
 # Getting started with changes in web application
-Before actually getting started with coding, we need to initialize firebase app
+Before actually getting started with coding, we need to initialize firebase app. Place this code in head tag
 
 <br/>
 
@@ -117,6 +117,66 @@ To get actual values, in Firebase console go to , click on gear icon next to "Pr
 Click on 3rd icon and copy code.
 
 <img src="{{ site.baseurl }}/assets/images/posts/firebase/4.PNG"  alt="" style="width: 100%;height: 100%;"/>
+
+# Saving Data to My Firebase DB:
+Now In my Html code, I am trying to save this data to firebase using update method
+
+<br/>
+
+```
+
+	     <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" style="color: white;">Thank you for reading this article</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Please Enter your email</p>
+                  <input type="text" id="email" style="width:100%">
+                  <br/>
+                  <div class="adsense-inject">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+          
+            </div>
+        </div>
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+                }
+            });
+           
+        }
+    }
+```
+
+Note: Here I am using  "firebase.database().ref('/').update" instead of "firebase.database().ref('/').set".
+<br/>
+This is because set will overwrite data where as update will add new item if we dont find an existing item with key else it will update the record.
+
 
 <br/>
 **Keywords:** firebase, firebase console, firebase database, firebase cloud messaging, firebase analytics

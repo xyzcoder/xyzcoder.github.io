@@ -138,9 +138,9 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Firebase Real time Database | xyzcoder.github.io</title>
+<title>Firebase Real time Database For My Static Website | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="Firebase Real time Database" />
+<meta property="og:title" content="Firebase Real time Database For My Static Website" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog." />
 <meta property="og:description" content="Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog." />
@@ -152,7 +152,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html","description":"Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog.","headline":"Firebase Real time Database","dateModified":"2019-03-17T12:02:33+05:30","datePublished":"2019-03-17T12:02:33+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html","description":"Hi, In this post I’ll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog.","headline":"Firebase Real time Database For My Static Website","dateModified":"2019-03-17T12:02:33+05:30","datePublished":"2019-03-17T12:02:33+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/firebase/2019/03/17/firebase-real-time-database.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -311,7 +311,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Firebase Real time Database
+                                                        Firebase Real time Database For My Static Website
                                                     
                                                     
                                                 </div>
@@ -400,7 +400,7 @@ For more details you can check his url
 <a href="https://firebase.google.com/docs/database/security/?authuser=2">https://firebase.google.com/docs/database/security/?authuser=2</a></p>
 
 <h1 id="getting-started-with-changes-in-web-application">Getting started with changes in web application</h1>
-<p>Before actually getting started with coding, we need to initialize firebase app</p>
+<p>Before actually getting started with coding, we need to initialize firebase app. Place this code in head tag</p>
 
 <p><br /></p>
 
@@ -426,6 +426,64 @@ To get actual values, in Firebase console go to , click on gear icon next to “
 Click on 3rd icon and copy code.</p>
 
 <p><img src="/assets/images/posts/firebase/4.PNG" alt="" style="width: 100%;height: 100%;" /></p>
+
+<h1 id="saving-data-to-my-firebase-db">Saving Data to My Firebase DB:</h1>
+<p>Now In my Html code, I am trying to save this data to firebase using update method</p>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+	     &lt;div id="myModal" class="modal fade" role="dialog"&gt;
+            &lt;div class="modal-dialog"&gt;
+          
+              &lt;!-- Modal content--&gt;
+              &lt;div class="modal-content"&gt;
+                &lt;div class="modal-header"&gt;
+                  &lt;button type="button" class="close" data-dismiss="modal"&gt;&amp;times;&lt;/button&gt;
+                  &lt;h4 class="modal-title" style="color: white;"&gt;Thank you for reading this article&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;div class="modal-body"&gt;
+                  &lt;p&gt;Please Enter your email&lt;/p&gt;
+                  &lt;input type="text" id="email" style="width:100%"&gt;
+                  &lt;br/&gt;
+                  &lt;div class="adsense-inject"&gt;
+                &lt;/div&gt;
+                &lt;div class="modal-footer"&gt;
+                  &lt;button type="button" class="btn btn-default" onclick="saveSubscribe()"&gt;Subscribe&lt;/button&gt;
+                  &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+          
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+                }
+            });
+           
+        }
+    }
+</code></pre></div></div>
+
+<p>Note: Here I am using  “firebase.database().ref(‘/’).update” instead of “firebase.database().ref(‘/’).set”.
+<br />
+This is because set will overwrite data where as update will add new item if we dont find an existing item with key else it will update the record.</p>
 
 <p><br />
 <strong>Keywords:</strong> firebase, firebase console, firebase database, firebase cloud messaging, firebase analytics</p>
