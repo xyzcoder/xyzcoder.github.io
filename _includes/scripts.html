@@ -38,18 +38,21 @@
     
     <script type="text/javascript">
     var isAdBoxDisplayed = false;
+
+    if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+        isAdBoxDisplayed = true;
+    }
+
     //In future I can add this to have pop on scroll bottom
-    // $(window).on("scroll", function () {
-    //     var scrollHeight = $(document).height();
-    //     var scrollPosition = $(window).height() + $(window).scrollTop();
-    //     console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
-    //     if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
-    //         var txt;
-    //         debugger;
-    //         $("#myModal").modal("show");
-    //         isAdBoxDisplayed = true;
-    //     }
-    // });
+    $(window).on("scroll", function () {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+            $("#myModal").modal("show");
+            isAdBoxDisplayed = true;
+        }
+    });
     </script>
 
 <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
@@ -74,6 +77,11 @@
         return re.test(email);
     }
 
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
     function saveSubscribe(){
         var id = $("#email").val();
 
@@ -91,6 +99,8 @@
                 } else {
                     $("#myModal").modal("hide");
                     alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
                 }
             });
            

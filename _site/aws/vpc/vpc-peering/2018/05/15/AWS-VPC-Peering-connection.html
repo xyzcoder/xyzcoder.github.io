@@ -501,7 +501,7 @@ s.setAttribute('data-timestamp', +new Date());
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <button type="button" class="close" onclick="closeSubscribe()">&times;</button>
                   <h4 class="modal-title" style="color: white;">Thank you for reading this article</h4>
                 </div>
                 <div class="modal-body">
@@ -512,7 +512,7 @@ s.setAttribute('data-timestamp', +new Date());
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" onclick="closeSubscribe()">Close</button>
                 </div>
               </div>
           
@@ -563,18 +563,21 @@ s.setAttribute('data-timestamp', +new Date());
     
     <script type="text/javascript">
     var isAdBoxDisplayed = false;
+
+    if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+        isAdBoxDisplayed = true;
+    }
+
     //In future I can add this to have pop on scroll bottom
-    // $(window).on("scroll", function () {
-    //     var scrollHeight = $(document).height();
-    //     var scrollPosition = $(window).height() + $(window).scrollTop();
-    //     console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
-    //     if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
-    //         var txt;
-    //         debugger;
-    //         $("#myModal").modal("show");
-    //         isAdBoxDisplayed = true;
-    //     }
-    // });
+    $(window).on("scroll", function () {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+            $("#myModal").modal("show");
+            isAdBoxDisplayed = true;
+        }
+    });
     </script>
 
 <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
@@ -599,6 +602,11 @@ s.setAttribute('data-timestamp', +new Date());
         return re.test(email);
     }
 
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
     function saveSubscribe(){
         var id = $("#email").val();
 
@@ -616,6 +624,8 @@ s.setAttribute('data-timestamp', +new Date());
                 } else {
                     $("#myModal").modal("hide");
                     alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
                 }
             });
            
