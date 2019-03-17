@@ -12,6 +12,8 @@ tags:
 Hi,
 In this post I'll explain how I am making use of firebase real time database / firebase database for storing my subscribers list of my blog.
 
+I am hosting my blog as static html pages in github pages and I dont have a feasibility to interact with traditional databases.
+
 Firebase is a realtime database and also provides many more functionalities like Hosting, Functions(Serverless Architecture) where data is stored in the form of a json document. So my plan is to make use firebase database and firebase functions.
 
 # Registering With Firebase:
