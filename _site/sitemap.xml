@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html</loc>
+<lastmod>2016-09-04T09:12:43+05:30</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/docker/2018/05/10/Docker-introduction.html</loc>
 <lastmod>2018-05-10T00:09:00+05:30</lastmod>
 </url>
@@ -36,7 +40,16 @@
 <loc>http://localhost:4000/about.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/about.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/tags</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tags</loc>
@@ -45,8 +58,15 @@
 <loc>http://localhost:4000/resume.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/resume.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/assets/css/mCSB_buttons.html</loc>
 <lastmod>2018-04-24T15:22:22+05:30</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/test.html</loc>
+<lastmod>2019-02-28T15:57:51+05:30</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/test.html</loc>

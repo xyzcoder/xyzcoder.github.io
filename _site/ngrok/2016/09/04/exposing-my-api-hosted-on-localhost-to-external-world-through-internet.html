@@ -138,21 +138,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Installing Docker On Windows | xyzcoder.github.io</title>
+<title>Exposing My API Hosted On Localhost To External World Through Internet | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="Installing Docker On Windows" />
+<meta property="og:title" content="Exposing My API Hosted On Localhost To External World Through Internet" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
-<meta property="og:description" content="Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \&quot;Expose daemon on tcp://localhost:2375 without TLS\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu" />
-<link rel="canonical" href="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
-<meta property="og:url" content="http://localhost:4000/docker/2018/05/10/Docker-introduction.html" />
+<meta name="description" content="Hi, I Just want to share details about a very useful tool, I really liked it and may be you’ll also like it. Lets say i have a Restful service(example webapi code) in my PC , i am running it on port 4000. So something like http://localhost:4000/getEmployeeDetails will display my employee details. Now I want these services to be used instantly by some mobile app or someone through the internet for testing. First of all, I don’t have a domain or server to host my service and expose it over the internet even for testing. Now what I can do is I can download an exe provided by ngrok https://ngrok.com/ You can simply download the zip file and unzip where ever we want in our file system. Let’s say I unzipped it in C:\Sotwares folder And now from command prompt execute the following command. Now follow these steps: Open the command prompt and execute the following command. So let’s say our API is exposed through port 4000. That is when I browse http://localhost:4000/getEmployeeDetails, I’ll get employee details. I need to execute below commands" />
+<meta property="og:description" content="Hi, I Just want to share details about a very useful tool, I really liked it and may be you’ll also like it. Lets say i have a Restful service(example webapi code) in my PC , i am running it on port 4000. So something like http://localhost:4000/getEmployeeDetails will display my employee details. Now I want these services to be used instantly by some mobile app or someone through the internet for testing. First of all, I don’t have a domain or server to host my service and expose it over the internet even for testing. Now what I can do is I can download an exe provided by ngrok https://ngrok.com/ You can simply download the zip file and unzip where ever we want in our file system. Let’s say I unzipped it in C:\Sotwares folder And now from command prompt execute the following command. Now follow these steps: Open the command prompt and execute the following command. So let’s say our API is exposed through port 4000. That is when I browse http://localhost:4000/getEmployeeDetails, I’ll get employee details. I need to execute below commands" />
+<link rel="canonical" href="http://localhost:4000/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html" />
+<meta property="og:url" content="http://localhost:4000/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-05-10T00:09:00+05:30" />
+<meta property="article:published_time" content="2016-09-04T09:12:43+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html","description":"Hi, In this post, we will see how to install docker on windows and other basic details. System Requirements: 1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV. 2. HyperV is not supported on Home edition of windows. 3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education. Don&#39;t worry if you don&#39;t&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.Downloads: Download the installer Docker for windows from this location&nbsp; As I mentioned above, if you don&#39;t have supported version of OS, then you can download Docker Toolbox from this location. Installation steps: After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password. During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further. After going through the steps in the installation wizard, docker is installed on the machine and we can use it. In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker. Verifying your installation:Docker For windows.exe( Not for Docker toolbox): Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it. Make sure that \\&quot;Expose daemon on tcp://localhost:2375 without TLS\\&quot; is checked. Now open command prompt and issue following command docker --version Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work. Docker Toolbox verification: On desktop, we can see Docker toolbox icon When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).Now in the command prompt, you can issue following commands docker --version If we get the result, then docker installation is successful. Thanks, Pavan Kumar Aryasomayajulu","headline":"Installing Docker On Windows","dateModified":"2018-05-10T00:09:00+05:30","datePublished":"2018-05-10T00:09:00+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docker/2018/05/10/Docker-introduction.html"},"@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html","description":"Hi, I Just want to share details about a very useful tool, I really liked it and may be you’ll also like it. Lets say i have a Restful service(example webapi code) in my PC , i am running it on port 4000. So something like http://localhost:4000/getEmployeeDetails will display my employee details. Now I want these services to be used instantly by some mobile app or someone through the internet for testing. First of all, I don’t have a domain or server to host my service and expose it over the internet even for testing. Now what I can do is I can download an exe provided by ngrok https://ngrok.com/ You can simply download the zip file and unzip where ever we want in our file system. Let’s say I unzipped it in C:\\Sotwares folder And now from command prompt execute the following command. Now follow these steps: Open the command prompt and execute the following command. So let’s say our API is exposed through port 4000. That is when I browse http://localhost:4000/getEmployeeDetails, I’ll get employee details. I need to execute below commands","headline":"Exposing My API Hosted On Localhost To External World Through Internet","dateModified":"2016-09-04T09:12:43+05:30","datePublished":"2016-09-04T09:12:43+05:30","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -311,7 +311,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Installing Docker On Windows
+                                                        Exposing My API Hosted On Localhost To External World Through Internet
                                                     
                                                     
                                                 </div>
@@ -319,50 +319,58 @@
                                             </div>
 
                                             
-                                                <p>Hi,</p>
-<p>In this post, we will see how to install docker on windows and other basic details.</p>
-<p><br /></p>
-<p><b>System Requirements:</b></p>
-<p>1. For docker to run, we need to enable virtualization in windows. Windows by default support virtualization using HyperV. <br />Restart your machine and go to boot menu and try to enable Virtualization&nbsp;there. It is mandatory to enable virtualization in the boot menu for installing HyperV.<br />Now go to control panel --&gt; Programs --&gt; Turn Windows Feature On or Off. There we can find HyperV, click on that checkbox on then OK. This will install HyperV.</p>
-<p>2. HyperV is not supported on Home edition of windows.</p>
-<p>3. The current version of Docker for Windows runs on 64bit Windows 10 Pro, Enterprise, and Education.</p>
-<p><br /></p>
-<p>Don't worry if you don't&nbsp;have above versions of Windows OS. There is an option to install docker via Docker toolbox to get started.<br /><br /><b>Downloads:</b></p>
-<p>Download the installer Docker for windows from <a href="https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe">this location</a>&nbsp;</p>
-<p>As I mentioned above, if you don't have supported version of OS, then you can download Docker Toolbox from <a href="https://download.docker.com/win/stable/DockerToolbox.exe">this location</a>.</p>
-<p><br /></p>
-<p><b>Installation steps:</b></p>
-<p>After downloading the exe,&nbsp;you can execute it and based on the permissions it may ask you for username and password.</p>
-<p>During installation, It may also prompt you to enable virtualization or install HyperV, there you can click OK and proceed further.</p>
-<p>After going through the steps in the installation wizard, docker is installed on the machine and we can use it.</p>
-<p><br /></p>
-<p>In case if you are using Docker toolbox after successful installation, we can see that Oracle Virtual Box is installed on your machine along with docker.</p>
-<p><br /></p>
-<p><b>Verifying your installation:<br /><br />Docker For windows.exe( Not for Docker toolbox):</b></p>
-<p>Docker will not start by default after installation. We need to search for docker icon on the desktop or in program files and click on it.</p>
-<p><br /></p>
-<p></p>
-<p><br /></p>
-<p>Make sure that \"Expose daemon on tcp://localhost:2375 without TLS\" is checked.</p>
-<p><br /></p>
-<p>Now open command prompt and issue following command</p>
-<pre style="line-height: 1.42857;"><code class="html">docker --version</code></pre>
-<p><br /></p>
-<p>Note: If you have any issues still, make sure that your anti-virus or firewall is blocking docker. I had this issue with Kaspersky on my machine and I need to turn off Kaspersky for my docker to work.</p>
-<p><br /></p>
-<p><b>Docker Toolbox verification:</b></p>
-<p>On desktop, we can see Docker toolbox icon</p>
-<p><br /></p>
-<p><img src="https://docs.docker.com/toolbox/images/icon-set.png" alt="Desktop" /></p>
-<p><br /></p>
-<p>When we click Docker quick start, it will open a terminal (which is a flavor of bash required by docker).<br /><br />Now in the command prompt, you can issue following commands<br /></p>
-<pre><code class="html">docker --version</code></pre>
-<p><br />If we get the result, then docker installation is successful.<br /></p>
-<p><br /></p>
-<p>Thanks,</p>
-<p>Pavan Kumar Aryasomayajulu</p>
+                                                <p>Hi,
+I Just want to share details about  a very useful tool, I really liked it and may be you’ll also like it.
+<br /><br />
+Lets say i have a Restful service(example webapi code) in my PC , i am running it on port 4000.
+<br /><br />
+So something like http://localhost:4000/getEmployeeDetails
+will display my employee details.
+<br /><br />
+Now I want these services to be used instantly by some mobile app or someone through the internet for testing.
+<br /><br />
+First of all, I don’t have a domain or server to host my service and expose it over the internet even for testing.
+<br /><br />
+Now what I can do is I can download an exe provided by ngrok
+<a href="https://ngrok.com/">https://ngrok.com/</a>
+<br /><br />
+You can simply download the zip file and unzip where ever we want in our file system.<br />
+Let’s say I unzipped it in C:\Sotwares folder
+<br /><br />
+And now from command prompt execute the following command.<br />
+Now follow these steps:
+<br /><br /></p>
+<ol>
+  <li>Open the command prompt and execute the following command.</li>
+  <li>So let’s say our API is exposed through port 4000. That is when I browse http://localhost:4000/getEmployeeDetails,</li>
+  <li>I’ll get employee details.</li>
+  <li>I need to execute below commands</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd C:\Softwares
+ngrok http 4000
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/ngrok/1.jpg" alt="" style="width: 649px;height: 282px;" /></p>
+
+<ol>
+  <li>Now it will provide you with an URL like http://abcfdd.ngrok.io
+Now I can give this URL to someone and they can access it through the internet.</li>
+</ol>
+
+<p>So to access my Employee service hosted on my local machine I need to simply give
+http://abcfdd.ngrok.io/getEmployeeDetails</p>
+
+<p>This really helps us to quickly do some testing.</p>
 
 <p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins></p>
+
+<p><strong>Keywords:</strong> Ngrok, Tunnelling</p>
+
+<p><br />
+<br />
+Thanks,
+Pavan</p>
 
 <div id="disqus_thread"></div>
 <script>
@@ -372,7 +380,7 @@
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 143900; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 03212019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -396,7 +404,7 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#Docker</span>
+                                                            <span class="tag">#ngrok</span>
                                                         
                                                     </div>
                                                 </div>
@@ -404,8 +412,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="/docker/2018/05/10/Docker-introduction.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
