@@ -19,7 +19,7 @@ Recently I am getting a weird issue in my Visual Studio. **Backspace** is not wo
 5. Now for the option "Press Shortcut Key" text box... Go and click Backsapce and it should fill text box with "Bkspce".
 6. Click Ok
 
-<img src="{{ site.baseurl }}/assets/images/posts/errors/1.PNG"  alt="" style="width: 100%;height: 100%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/Errors/1.PNG"  alt="" style="width: 100%;height: 100%;"/>
 
 {% include /in_article_ads.html %}
 
