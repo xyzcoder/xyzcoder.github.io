@@ -5,7 +5,7 @@ date: '2019-03-31 19:01:40'
 comments: true
 categories:
 - SqlServer
-- Visual Studio
+- VisualStudio
 tags:
 - SqlServer
 - Visualstudio
