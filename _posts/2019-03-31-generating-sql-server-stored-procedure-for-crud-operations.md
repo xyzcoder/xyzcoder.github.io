@@ -80,7 +80,7 @@ Click on finish and then go back to Sql server and under stored procedures, we c
 Also we can delete xsd file which we added
 
 <br/>
-<img src="{{ site.baseurl }}/assets/images/posts/sptemplate/7.PNG"  alt="" style="width:80%;height: 80%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/sptemplate/9.png"  alt="" style="width:80%;height: 80%;"/>
 <br/>
 {% include /in_article_ads.html %}
 
