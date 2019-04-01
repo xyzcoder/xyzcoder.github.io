@@ -59,7 +59,7 @@ Now in the **Create Stored Procedure ** window, please provide name for the proc
 
 # Step 7:
 Click on the Preview SQL Script.<br/>
-
+**Note: If we dont want to create these procedures in sql server, you can simply copy the content and then cancel from here**
 <br/>
 <img src="{{ site.baseurl }}/assets/images/posts/sptemplate/7.PNG"  alt="" style="width:80%;height: 80%;"/>
 <br/>
