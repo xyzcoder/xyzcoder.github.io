@@ -137,6 +137,11 @@ Below are steps for installing the beta version from appveyor<br/>
 <img src="{{ site.baseurl }}/assets/images/posts/EsMappingError/3.PNG"  alt="" style="width:80%;height: 80%;"/>
 <br/>
 
+**Step5**: Also make sure that you check "Include Prerelease", In the package manager window
+<br/>
+<img src="{{ site.baseurl }}/assets/images/posts/EsMappingError/4.PNG"  alt="" style="width:80%;height: 80%;"/>
+<br/>
+
 **Step5:**: Now when we try to install Nest package, we will see "7.1.0-ci20190412T075554" prerelease version. and we can install it now.<br/>
 
 <br/>
