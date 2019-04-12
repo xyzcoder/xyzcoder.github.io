@@ -12,11 +12,11 @@ tags:
 ---
 
 Hi,
-Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it.<br/>
+Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it.<br/><br/>
 
-I started getting an exception when trying to create an index from C#.<br/>
+I started getting an exception when trying to create an index from C#.<br/><br/>
 
-Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]<br/>
+Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]<br/><br/>
 
 ```
 Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]
@@ -25,7 +25,7 @@ Failed to parse mapping [_doc]: Root mapping definition has unsupported paramete
 </br>
 </br>
 
-Class I am trying to automap using Nest
+Class I am trying to automap using Nest<br/>
 
 ```
 		public class Employee
@@ -61,9 +61,9 @@ Class I am trying to automap using Nest
 
 # Reason For Error:
 
-With Elastic search 7.0 , types were removed and when creating a mapping it no longer accepts types which is a breaking change<br/>
+With Elastic search 7.0 , types were removed and when creating a mapping it no longer accepts types which is a breaking change<br/><br/>
 
-Previous syntax for creating a mapping:<br/>
+Previous syntax for creating a mapping:<br/><br/>
 ```
 
 
@@ -83,9 +83,9 @@ PUT wverrors1
 
 ```
 
-But this no longer work's and we need to remove _doc which is the type.<br/>
+But this no longer work's and we need to remove _doc which is the type.<br/><br/>
 
-This is working syntax<br/>
+This is working syntax<br/><br/>
 
 ```
 PUT wverrors1
@@ -101,37 +101,37 @@ PUT wverrors1
 }
 ```
 
-Reference Urls: https://www.elastic.co/guide/en/elasticsearch/reference/master/removal-of-types.html<br/>
+Reference Urls: https://www.elastic.co/guide/en/elasticsearch/reference/master/removal-of-types.html<br/><br/>
 
 # Fix From Nest side:
 As of now,from Nest side there is no alternative ( You can make use of the beta package available at https://ci.appveyor.com/nuget/elasticsearch-net) and I hope they will release a new version soon i Nugent to fix this issue and other breaking changes<br/>
 
-There is an open issue from Nest side <br/>
+There is an open issue from Nest side <br/><br/>
 
-https://github.com/elastic/elasticsearch-net/issues/3663<br/>
+https://github.com/elastic/elasticsearch-net/issues/3663<br/><br/>
 
 # Installing 7.0 Beta Nest Package 
 If you still want to try Elastic search 7.0 with with Nest then you can try beta package available at 
-https://ci.appveyor.com/nuget/elasticsearch-net<br/>
+https://ci.appveyor.com/nuget/elasticsearch-net<br/><br/>
 
-Below are steps for installing the beta version from appveyor<br/>
+Below are steps for installing the beta version from appveyor<br/><br/>
 
-**Step 1:**: In Visual Studio Nuget packages window you can see a gear icon next to Package Source dropdown. Click that gear icon<br/>
+**Step 1:**: In Visual Studio Nuget packages window you can see a gear icon next to Package Source dropdown. Click that gear icon<br/><br/>
 
 <br/>
 <img src="{{ site.baseurl }}/assets/images/posts/EsMappingError/1.PNG"  alt="" style="width:80%;height: 80%;"/>
 <br/>
 {% include /in_article_ads.html %}
-**Step2: **In the option popup there is a menu item "Nuget Package Manager"... Under that we can see "Package Source"<br/>
+**Step2: **In the option popup there is a menu item "Nuget Package Manager"... Under that we can see "Package Source"<br/><br/>
 
 
-**Step3:** Click on Plus icon (+)... Now in the source for new item give this url https://ci.appveyor.com/nuget/elasticsearch-net and click on ok<br/>
+**Step3:** Click on Plus icon (+)... Now in the source for new item give this url https://ci.appveyor.com/nuget/elasticsearch-net and click on ok<br/><br/>
 
 <br/>
 <img src="{{ site.baseurl }}/assets/images/posts/EsMappingError/2.PNG"  alt="" style="width:80%;height: 80%;"/>
 <br/>
 
-**Step4 : **Now In Nugent Package window for package source select the newly added one from dropdown<br/>
+**Step4 : **Now In Nugent Package window for package source select the newly added one from dropdown<br/><br/>
 
 <br/>
 <img src="{{ site.baseurl }}/assets/images/posts/EsMappingError/3.PNG"  alt="" style="width:80%;height: 80%;"/>

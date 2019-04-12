@@ -320,11 +320,11 @@
 
                                             
                                                 <p>Hi,
-Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it.<br /></p>
+Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it.<br /><br /></p>
 
-<p>I started getting an exception when trying to create an index from C#.<br /></p>
+<p>I started getting an exception when trying to create an index from C#.<br /><br /></p>
 
-<p>Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]<br /></p>
+<p>Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]<br /><br /></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]
 </code></pre></div></div>
@@ -332,7 +332,7 @@ Recently I installed Elastic search 7.0 on one of my machines and I am using NES
 <p>&lt;/br&gt;
 &lt;/br&gt;</p>
 
-<p>Class I am trying to automap using Nest</p>
+<p>Class I am trying to automap using Nest<br /></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		public class Employee
     {
@@ -365,9 +365,9 @@ Recently I installed Elastic search 7.0 on one of my machines and I am using NES
 
 <h1 id="reason-for-error">Reason For Error:</h1>
 
-<p>With Elastic search 7.0 , types were removed and when creating a mapping it no longer accepts types which is a breaking change<br /></p>
+<p>With Elastic search 7.0 , types were removed and when creating a mapping it no longer accepts types which is a breaking change<br /><br /></p>
 
-<p>Previous syntax for creating a mapping:<br /></p>
+<p>Previous syntax for creating a mapping:<br /><br /></p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 
 PUT wverrors1
@@ -386,9 +386,9 @@ PUT wverrors1
 
 </code></pre></div></div>
 
-<p>But this no longer work’s and we need to remove _doc which is the type.<br /></p>
+<p>But this no longer work’s and we need to remove _doc which is the type.<br /><br /></p>
 
-<p>This is working syntax<br /></p>
+<p>This is working syntax<br /><br /></p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT wverrors1
 {
@@ -403,36 +403,36 @@ PUT wverrors1
 }
 </code></pre></div></div>
 
-<p>Reference Urls: https://www.elastic.co/guide/en/elasticsearch/reference/master/removal-of-types.html<br /></p>
+<p>Reference Urls: https://www.elastic.co/guide/en/elasticsearch/reference/master/removal-of-types.html<br /><br /></p>
 
 <h1 id="fix-from-nest-side">Fix From Nest side:</h1>
 <p>As of now,from Nest side there is no alternative ( You can make use of the beta package available at https://ci.appveyor.com/nuget/elasticsearch-net) and I hope they will release a new version soon i Nugent to fix this issue and other breaking changes<br /></p>
 
-<p>There is an open issue from Nest side <br /></p>
+<p>There is an open issue from Nest side <br /><br /></p>
 
-<p>https://github.com/elastic/elasticsearch-net/issues/3663<br /></p>
+<p>https://github.com/elastic/elasticsearch-net/issues/3663<br /><br /></p>
 
 <h1 id="installing-70-beta-nest-package">Installing 7.0 Beta Nest Package</h1>
 <p>If you still want to try Elastic search 7.0 with with Nest then you can try beta package available at 
-https://ci.appveyor.com/nuget/elasticsearch-net<br /></p>
+https://ci.appveyor.com/nuget/elasticsearch-net<br /><br /></p>
 
-<p>Below are steps for installing the beta version from appveyor<br /></p>
+<p>Below are steps for installing the beta version from appveyor<br /><br /></p>
 
-<p><strong>Step 1:</strong>: In Visual Studio Nuget packages window you can see a gear icon next to Package Source dropdown. Click that gear icon<br /></p>
+<p><strong>Step 1:</strong>: In Visual Studio Nuget packages window you can see a gear icon next to Package Source dropdown. Click that gear icon<br /><br /></p>
 
 <p><br />
 <img src="/assets/images/posts/EsMappingError/1.PNG" alt="" style="width:80%;height: 80%;" />
 <br />
 <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>
-**Step2: **In the option popup there is a menu item “Nuget Package Manager”… Under that we can see “Package Source”<br /></p>
+**Step2: **In the option popup there is a menu item “Nuget Package Manager”… Under that we can see “Package Source”<br /><br /></p>
 
-<p><strong>Step3:</strong> Click on Plus icon (+)… Now in the source for new item give this url https://ci.appveyor.com/nuget/elasticsearch-net and click on ok<br /></p>
+<p><strong>Step3:</strong> Click on Plus icon (+)… Now in the source for new item give this url https://ci.appveyor.com/nuget/elasticsearch-net and click on ok<br /><br /></p>
 
 <p><br />
 <img src="/assets/images/posts/EsMappingError/2.PNG" alt="" style="width:80%;height: 80%;" />
 <br /></p>
 
-<p>**Step4 : **Now In Nugent Package window for package source select the newly added one from dropdown<br /></p>
+<p>**Step4 : **Now In Nugent Package window for package source select the newly added one from dropdown<br /><br /></p>
 
 <p><br />
 <img src="/assets/images/posts/EsMappingError/3.PNG" alt="" style="width:80%;height: 80%;" />
