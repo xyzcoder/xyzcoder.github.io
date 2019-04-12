@@ -6,7 +6,6 @@ comments: true
 categories:
 - ElasticSearch
 - Nest
-- C#
 tags:
 - Nest
 - ElasticSearch
