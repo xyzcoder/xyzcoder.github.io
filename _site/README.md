@@ -1,6 +1,6 @@
 
 
-# Installation steps
+# Installation step
 
 Need to execute following command:
   bundle exec jekyll serve
