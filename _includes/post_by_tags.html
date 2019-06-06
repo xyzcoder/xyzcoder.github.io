@@ -35,7 +35,7 @@
 						  {% assign t = tag | first %}
 						  {% assign posts = tag | last %}
 
-						<h3 id="{{ t | downcase }}"><b>{{ t }}</b></h3>
+						<h3 id="{{ t | downcase }}" class="jumptarget"><b>{{ t }}</b></h3>
 						<ul style="left: 5%;position: relative;">
 						{% for post in posts %}
 						  {% if post.tags contains t %}
