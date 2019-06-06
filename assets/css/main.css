@@ -2345,6 +2345,12 @@ ul.info-post li {
 
 }
 
+@media (min-width:641px){
+    #blog_page{
+        padding-left: 30px;
+    }
+}
+
 #loading_page {
     position: absolute;
     top: 50%;
