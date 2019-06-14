@@ -2,4 +2,4 @@
 title: Kippy
 ---
 
-<img src="images/img/kippy.PNG">
+<img src="images/img/kippy.PNG" style="width:100%">
