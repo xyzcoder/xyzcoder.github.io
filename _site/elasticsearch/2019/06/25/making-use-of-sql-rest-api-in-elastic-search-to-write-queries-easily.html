@@ -138,21 +138,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters | xyzcoder.github.io</title>
+<title>Making Use Of SQL Rest API In Elastic Search To Write Queries Easily | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters" />
+<meta property="og:title" content="Making Use Of SQL Rest API In Elastic Search To Write Queries Easily" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it." />
-<meta property="og:description" content="Hi, Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it." />
-<link rel="canonical" href="http://localhost:4000/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html" />
-<meta property="og:url" content="http://localhost:4000/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html" />
+<meta name="description" content="Hello Everyone, In this post I would like to discuss on how we can make use of SQL Rest API In Elastic Search to learn and write better queries and understand different aspects of a native elastic search query." />
+<meta property="og:description" content="Hello Everyone, In this post I would like to discuss on how we can make use of SQL Rest API In Elastic Search to learn and write better queries and understand different aspects of a native elastic search query." />
+<link rel="canonical" href="http://localhost:4000/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html" />
+<meta property="og:url" content="http://localhost:4000/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-04-12T14:11:58+05:30" />
+<meta property="article:published_time" content="2019-06-25T17:06:47+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html","headline":"Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters","dateModified":"2019-04-12T14:11:58+05:30","datePublished":"2019-04-12T14:11:58+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html"},"description":"Hi, Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it.","@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html","headline":"Making Use Of SQL Rest API In Elastic Search To Write Queries Easily","dateModified":"2019-06-25T17:06:47+05:30","datePublished":"2019-06-25T17:06:47+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html"},"description":"Hello Everyone, In this post I would like to discuss on how we can make use of SQL Rest API In Elastic Search to learn and write better queries and understand different aspects of a native elastic search query.","@type":"BlogPosting","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -312,7 +312,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters
+                                                        Making Use Of SQL Rest API In Elastic Search To Write Queries Easily
                                                     
                                                     
                                                 </div>
@@ -320,160 +320,416 @@
                                             </div>
 
                                             
-                                                <p>Hi,
-Recently I installed Elastic search 7.0 on one of my machines and I am using NEST C#(6.6.0) Client for interacting with it.<br /><br /></p>
+                                                <p>Hello Everyone,
+In this post I would like to discuss on how we can make use of <strong>SQL Rest API In Elastic Search</strong> to learn and write better queries and understand different aspects of a native elastic search query.
+<br /><br /></p>
 
-<p>I started getting an exception when trying to create an index from C#.<br /><br /></p>
+<p>Coming from SQL background , I always felt like writing queries in Elastic search is bit complex(syntax) even when we want to achieve a minor thing compared to SQL.
+<br /><br /></p>
 
-<p>Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]<br /><br /></p>
+<p>Before actually going deep into my thoughts, First of all I want to create my test data including index creation and data insertion, So that I can demo my code easily. Here I am actually trying to create an index with name <strong>customer</strong> and adding 3 docs.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters:  [employee : {properties={office_hours={type=text}, last_name={type=text}, isManager={null_value=false, store=true, type=boolean}, empl={type=nested, properties={}}, salary={coerce=true, ignore_malformed=true, type=float, doc_values=false}, first_name={norms=false, similarity=LMDirichlet, type=text}}}]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Post /customer/_doc
+{
+  "Name":"Arya Kumar",
+  "Age":21,
+  "address":{
+    "Street": "21st March",
+    "Area": "Pendurthy"
+  }
+}
+
+Post /customer/_doc
+{
+  "Name":"Pavan Kumar",
+  "Age":22,
+  "address":{
+    "Street": "21st March",
+    "Area": "Pendurthy"
+  }
+}
+
+Post /customer/_doc
+{
+  "Name":"Pavan Kumar",
+  "Age":22,
+  "address":{
+    "Street": "JanaChaitanya Layout",
+    "Area": "Pendurthy"
+  }
+}
 </code></pre></div></div>
 
-<p>&lt;/br&gt;
-&lt;/br&gt;</p>
-
-<p>Class I am trying to automap using Nest<br /></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>		public class Employee
-    {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
+<p><br /><br /></p>
+<h1 id="querying-customer-index-based-on-name">Querying Customer Index based on Name</h1>
+<p><strong>Elastic Search Query</strong>: I want to query all customers with <strong>Name = “Pavan Kumar”</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get /customer/_search
+{
+  "query":
+  {
+    "match_phrase": {
+      "Name": "Pavan Kumar"
     }
+  }
+}
 </code></pre></div></div>
 
-<p><strong>My auto indexing code:</strong></p>
+<p><br /> It looks simple and easy right, lets try to add a filter where I want customers with name <strong>‘Pavan Kumar’</strong> and also <strong>StreetName = ‘JanaChaitanya Layout’</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>					
-					var nodes = new[]
-            {
-                new Uri(ConfigurationManager.ConnectionStrings["elasticConnection"].ConnectionString)
-            };
+<p><strong>Query 1</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request:
+=========================
 
-            var connectionPool = new StaticConnectionPool(nodes);
-            var connectionSettings = new ConnectionSettings(connectionPool);
-            var client = new ElasticClient(connectionSettings);
-            
-            var isIndexExists = client.IndexExists(new IndexExistsRequest("pavan"));
-            if (!isIndexExists.Exists)
-            {
-                var createIndexResponse = client.CreateIndex("pavan", c =&gt; c
-                    .Mappings(ms =&gt; ms.Map&lt;Employee&gt;(m =&gt; m.AutoMap())));
+Get /customer/_search
+{
+    "query" : {
+    "bool" : {
+      "must" : [
+        {
+          "term" : {
+            "address.Street.keyword" : {
+              "value" : "JanaChaitanya Layout",
+              "boost" : 1.0
             }
+          }
+        },
+        {
+          "term" : {
+            "Name.keyword" : {
+              "value" : "Pavan Kumar",
+              "boost" : 1.0
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+Response:
+===============
+
+{
+  "took" : 0,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 1,
+      "relation" : "eq"
+    },
+    "max_score" : 1.4508328,
+    "hits" : [
+      {
+        "_index" : "customer",
+        "_type" : "_doc",
+        "_id" : "JEF_jmsBbbFQFY4ft0JX",
+        "_score" : 1.4508328,
+        "_source" : {
+          "Name" : "Pavan Kumar",
+          "Age" : 22,
+          "address" : {
+            "Street" : "JanaChaitanya Layout",
+            "Area" : "Pendurthy"
+          }
+        }
+      }
+    ]
+  }
+}
+
 </code></pre></div></div>
 
-<h1 id="reason-for-error">Reason For Error:</h1>
+<p><br />
+So coming from SQL background, I feel like this is bit complex, because I can achieve the same using a single line query</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * FROM customer where address.Street='JanaChaitanya Layout' and Name='Pavan Kumar'
+</code></pre></div></div>
+<p><br />
+So comparitively SQL syntax is far better and cleaner right :)
+<br /></p>
 
-<p>With Elastic search 7.0 , types were removed and when creating a mapping it no longer accepts types which is a breaking change<br /><br /></p>
+<p><strong>So do we have a way to use SQL syntax in Elastic Search….. And the answer is “YESSSSSSS”</strong></p>
 
-<p>Previous syntax for creating a mapping:<br /><br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p><br />
+<strong>Using Sql Rest API</strong>: Sql Rest API comes to our rescue and it makes life of a developer with past SQL experience easy. An Equivalent of above Json based query is</p>
 
-PUT wverrors1
+<p><strong>Query 2</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request:
+================
+
+POST /_sql?format=json
 {
-  "mappings": {
-    "_doc": {
-      "properties": {
-        "date": {
-          "type":   "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
+    "query": "SELECT * FROM customer where address.Street='JanaChaitanya Layout' and Name='Pavan Kumar'"
+}
+
+Response:
+===============
+
+{"columns":[{"name":"Age","type":"long"},{"name":"Name","type":"text"},{"name":"address.Area","type":"text"},{"name":"address.Street","type":"text"}],"rows":[[22,"Pavan Kumar","Pendurthy","JanaChaitanya Layout"]]}
+</code></pre></div></div>
+
+<p><br /></p>
+<h1 id="getting-json-based-syntax-from-an-sql-rest-api">Getting Json based syntax from an Sql Rest API</h1>
+<p>Even though we got our desired response, It is slightly different in both scenarios and I would like to write queries with my sql knowledge and convert them to Json based queries. <strong>translate</strong> api comes to our rescue in this case</p>
+
+<p><strong>Query 3</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Request:
+========================
+
+POST /_sql/translate
+{
+    "query": "SELECT * FROM customer where address.Street='JanaChaitanya Layout' and Name='Pavan Kumar'"
+}
+
+Response:
+========================
+
+{
+  "size" : 1000,
+  "query" : {
+    "bool" : {
+      "must" : [
+        {
+          "term" : {
+            "address.Street.keyword" : {
+              "value" : "JanaChaitanya Layout",
+              "boost" : 1.0
+            }
+          }
+        },
+        {
+          "term" : {
+            "Name.keyword" : {
+              "value" : "Pavan Kumar",
+              "boost" : 1.0
+            }
+          }
         }
+      ],
+      "adjust_pure_negative" : true,
+      "boost" : 1.0
+    }
+  },
+  "_source" : {
+    "includes" : [
+      "Name",
+      "address.Area",
+      "address.Street"
+    ],
+    "excludes" : [ ]
+  },
+  "docvalue_fields" : [
+    {
+      "field" : "Age"
+    }
+  ],
+  "sort" : [
+    {
+      "_doc" : {
+        "order" : "asc"
+      }
+    }
+  ]
+}
+</code></pre></div></div>
+
+<p><br />
+So we can use above response and get the results.
+<br /> For example:</p>
+
+<p><strong>Query 4</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get /customer/_search
+{
+  "size" : 1000,
+  "query" : {
+    "bool" : {
+      "must" : [
+        {
+          "term" : {
+            "address.Street.keyword" : {
+              "value" : "JanaChaitanya Layout",
+              "boost" : 1.0
+            }
+          }
+        },
+        {
+          "term" : {
+            "Name.keyword" : {
+              "value" : "Pavan Kumar",
+              "boost" : 1.0
+            }
+          }
+        }
+      ],
+      "adjust_pure_negative" : true,
+      "boost" : 1.0
+    }
+  },
+  "_source" : {
+    "includes" : [
+      "Name",
+      "address.Area",
+      "address.Street"
+    ],
+    "excludes" : [ ]
+  },
+  "docvalue_fields" : [
+    {
+      "field" : "Age"
+    }
+  ],
+  "sort" : [
+    {
+      "_doc" : {
+        "order" : "asc"
+      }
+    }
+  ]
+}
+</code></pre></div></div>
+
+<p><br />
+So my query in <strong>Query 1</strong> looks different from <strong>Query 4</strong>… And I was actually expecting that… Yes both of them are same but here Elastic search is making some true translations from SQL query to json based query
+<br />
+For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"_source" : {
+    "includes" : [
+      "Name",
+      "address.Area",
+      "address.Street"
+    ],
+    "excludes" : [ ]
+  },
+</code></pre></div></div>
+
+<p>It is to indicate that we need to include all columns and It can be ignored when we whant to get whole document.
+<br /></p>
+
+<p><strong>docvalue_fields</strong> tag can be ignored because it can be used when we want to specify custom formats on integers and Date fields and even this can be ignored if we dont want.
+<br />
+So basically what I liked here is, by using simple Sql statements which I am familiar with, I am able to easily translate my sql querying knowledge to Elastic search.
+<br /></p>
+
+<h1 id="gist">Gist:</h1>
+<ol>
+  <li>Write a SQL query in Elastic Search</li>
+  <li>Use Translate API to get actual json based query</li>
+  <li>Use the Json based query which we got from step 2.
+<br /><br /></li>
+</ol>
+
+<h1 id="some-samples-groupby-query-alias-aggregations">Some Samples: GroupBy Query Alias Aggregations</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Write Sql query and check data:
+=======================================
+
+Request:
+--------------
+
+POST /_sql?format=json&amp;pretty
+{
+    "query": "SELECT count(*),Name FROM customer group by Name,Age"
+}
+
+Response:
+--------------
+
+{"columns":[{"name":"count(*)","type":"long"},{"name":"Name","type":"text"}],"rows":[[1,"Arya Kumar"],[2,"Pavan Kumar"]],"cursor":"o6CrAwFjAQhjdXN0b21lcogBAQEJY29tcG9zaXRlB2dyb3VwYnkAAP8CAAM3MjEBDE5hbWUua2V5d29yZAAAAQAAAAM3MjABA0FnZQAAAQAA6AcBCgIDNzIxAAtQYXZhbiBLdW1hcgM3MjACAAAAAAAAABYAAgEAAAAAAQD/////DwAAAAAAAAAAAAAAAAFaAwACAgAAAAAAAP3///8PAgFrAzcyMAEBWgABawM3MjEAAVoAAQM="}
+
+2. Write Translate query:
+=======================================
+Request:
+--------------
+
+POST /_sql/translate
+{
+    "query": "SELECT count(*),Name FROM customer group by Name,Age"
+}
+
+Response:
+--------------
+
+{
+  "size" : 0,
+  "_source" : false,
+  "stored_fields" : "_none_",
+  "aggregations" : {
+    "groupby" : {
+      "composite" : {
+        "size" : 1000,
+        "sources" : [
+          {
+            "737" : {
+              "terms" : {
+                "field" : "Name.keyword",
+                "missing_bucket" : true,
+                "order" : "asc"
+              }
+            }
+          },
+          {
+            "736" : {
+              "terms" : {
+                "field" : "Age",
+                "missing_bucket" : true,
+                "order" : "asc"
+              }
+            }
+          }
+        ]
       }
     }
   }
 }
 
-</code></pre></div></div>
+3. Copy Output from Above one and Use that In Get Query:
+=================================================
 
-<p>But this no longer work’s and we need to remove _doc which is the type.<br /><br /></p>
+Request:
+--------------
 
-<p>This is working syntax<br /><br /></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT wverrors1
+Get /customer/_search
 {
-  "mappings": {
-      "properties": {
-        "date": {
-          "type":   "date",
-          "format": "yyyy-MM-dd HH:mm:ss"
-        }
+  "size" : 0,
+  "_source" : false,
+  "stored_fields" : "_none_",
+  "aggregations" : {
+    "groupby" : {
+      "composite" : {
+        "size" : 1000,
+        "sources" : [
+          {
+            "705" : {
+              "terms" : {
+                "field" : "Name.keyword",
+                "missing_bucket" : true,
+                "order" : "asc"
+              }
+            }
+          },
+          {
+            "704" : {
+              "terms" : {
+                "field" : "Age",
+                "missing_bucket" : true,
+                "order" : "asc"
+              }
+            }
+          }
+        ]
       }
+    }
   }
 }
 </code></pre></div></div>
-
-<p>Reference Urls: https://www.elastic.co/guide/en/elasticsearch/reference/master/removal-of-types.html<br /><br /></p>
-
-<h1 id="fix-from-nest-side">Fix From Nest side:</h1>
-<p>As of now,from Nest side there is no alternative ( You can make use of the beta package available at https://ci.appveyor.com/nuget/elasticsearch-net) and I hope they will release a new version soon i Nugent to fix this issue and other breaking changes<br /></p>
-
-<p>There is an open issue from Nest side <br /><br /></p>
-
-<p>https://github.com/elastic/elasticsearch-net/issues/3663<br /><br /></p>
-
-<h1 id="installing-70-beta-nest-package">Installing 7.0 Beta Nest Package</h1>
-<p>If you still want to try Elastic search 7.0 with with Nest then you can try beta package available at 
-https://ci.appveyor.com/nuget/elasticsearch-net<br /><br /></p>
-
-<p>Below are steps for installing the beta version from appveyor<br /><br /></p>
-
-<p><strong>Step 1:</strong>: In Visual Studio Nuget packages window you can see a gear icon next to Package Source dropdown. Click that gear icon<br /><br /></p>
-
-<p><br />
-<img src="/assets/images/posts/EsMappingError/1.PNG" alt="" style="width:80%;height: 80%;" />
-<br />
-<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>
-**Step2: **In the option popup there is a menu item “Nuget Package Manager”… Under that we can see “Package Source”<br /><br /></p>
-
-<p><strong>Step3:</strong> Click on Plus icon (+)… Now in the source for new item give this url https://ci.appveyor.com/nuget/elasticsearch-net and click on ok<br /><br /></p>
-
-<p><br />
-<img src="/assets/images/posts/EsMappingError/2.PNG" alt="" style="width:80%;height: 80%;" />
-<br /></p>
-
-<p>**Step4 : **Now In Nugent Package window for package source select the newly added one from dropdown<br /><br /></p>
-
-<p><br />
-<img src="/assets/images/posts/EsMappingError/3.PNG" alt="" style="width:80%;height: 80%;" />
-<br /></p>
-
-<p><strong>Step5</strong>: Also make sure that you check “Include Prerelease”, In the package manager window
-<br />
-<img src="/assets/images/posts/EsMappingError/4.PNG" alt="" style="width:80%;height: 80%;" />
-<br /></p>
-
-<p><strong>Step5:</strong>: Now when we try to install Nest package, we will see “7.1.0-ci20190412T075554” prerelease version. and we can install it now.<br /></p>
-
-<p><br />
+<p><br /><br />
 Thanks,<br />
-Pavan Kumar Aryasomayajulu
-<br /></p>
-
-<p><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>
-<strong>Keywords:</strong> Nest C# Client, Elastic search 7.0</p>
-
-<div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-var disqus_config = function () {
-this.page.identifier = 04122019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://xyzcoder1.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+Pavan Kumar Aryasomayajulu</p>
 
                                             
 
@@ -488,16 +744,14 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
                                                             <span class="tag">#ElasticSearch</span>
                                                         
-                                                            <span class="tag">#Nest</span>
-                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/sqlserver/visualstudio/2019/03/31/generating-sql-server-stored-procedure-for-crud-operations.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
