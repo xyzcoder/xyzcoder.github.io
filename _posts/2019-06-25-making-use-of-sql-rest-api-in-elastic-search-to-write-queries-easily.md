@@ -322,9 +322,9 @@ So basically what I liked here is, by using simple Sql statements which I am fam
 2. Use Translate API to get actual json based query
 3. Use the Json based query which we got from step 2.
 <br><br>
-{% include /in_article_ads.html %}
 # Some Samples: GroupBy Query Alias Aggregations
 ```
+
 1. Write Sql query and check data:
 =======================================
 
@@ -427,6 +427,8 @@ Get /customer/_search
   }
 }
 ```
+
+
 <br><br>
 Thanks,<br>
 Pavan Kumar Aryasomayajulu
