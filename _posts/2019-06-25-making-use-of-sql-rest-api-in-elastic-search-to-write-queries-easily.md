@@ -65,6 +65,8 @@ Get /customer/_search
 }
 ```
 
+{% include /in_article_ads.html %}
+
 <br> It looks simple and easy right, lets try to add a filter where I want customers with name **'Pavan Kumar'** and also **StreetName = 'JanaChaitanya Layout'**
 
 **Query 1**
@@ -168,6 +170,8 @@ Response:
 ```
 
 <br>
+
+{% include /in_article_ads.html %}
 # Getting Json based syntax from an Sql Rest API
 Even though we got our desired response, It is slightly different in both scenarios and I would like to write queries with my sql knowledge and convert them to Json based queries. **translate** api comes to our rescue in this case
 
@@ -318,7 +322,7 @@ So basically what I liked here is, by using simple Sql statements which I am fam
 2. Use Translate API to get actual json based query
 3. Use the Json based query which we got from step 2.
 <br><br>
-
+{% include /in_article_ads.html %}
 # Some Samples: GroupBy Query Alias Aggregations
 ```
 1. Write Sql query and check data:
@@ -426,3 +430,28 @@ Get /customer/_search
 <br><br>
 Thanks,<br>
 Pavan Kumar Aryasomayajulu
+
+{% include /in_article_ads.html %}
+**Keywords:**  Elastic search 7.0, Elastic search Rest API
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.identifier = 06252019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xyzcoder1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endif %}
