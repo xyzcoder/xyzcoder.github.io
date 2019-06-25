@@ -626,106 +626,64 @@ So basically what I liked here is, by using simple Sql statements which I am fam
   <li>Use Translate API to get actual json based query</li>
   <li>Use the Json based query which we got from step 2.
 <br /><br />
-    <h1 id="some-samples-groupby-query-alias-aggregations">Some Samples: GroupBy Query Alias Aggregations</h1>
-    <p>```</p>
-  </li>
-  <li>
-    <h1 id="write-sql-query-and-check-data">Write Sql query and check data:</h1>
+    <h1 id="some-samples">Some Samples</h1>
+    <p><strong>GroupBy Query Alias Aggregations</strong></p>
   </li>
 </ol>
 
-<h2 id="request">Request:</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Write Sql query and check data:
+=======================================
 
-<p>POST /_sql?format=json&amp;pretty
+Request:
+======
+
+POST /_sql?format=json&amp;pretty
 {
-    “query”: “SELECT count(*),Name FROM customer group by Name,Age”
-}</p>
+    "query": "SELECT count(*),Name FROM customer group by Name,Age"
+}
 
-<h2 id="response">Response:</h2>
+Response:
+=======
 
-<p>{“columns”:[{“name”:”count(*)”,”type”:”long”},{“name”:”Name”,”type”:”text”}],”rows”:[[1,”Arya Kumar”],[2,”Pavan Kumar”]],”cursor”:”o6CrAwFjAQhjdXN0b21lcogBAQEJY29tcG9zaXRlB2dyb3VwYnkAAP8CAAM3MjEBDE5hbWUua2V5d29yZAAAAQAAAAM3MjABA0FnZQAAAQAA6AcBCgIDNzIxAAtQYXZhbiBLdW1hcgM3MjACAAAAAAAAABYAAgEAAAAAAQD/////DwAAAAAAAAAAAAAAAAFaAwACAgAAAAAAAP3///8PAgFrAzcyMAEBWgABawM3MjEAAVoAAQM=”}</p>
+{"columns":[{"name":"count(*)","type":"long"},{"name":"Name","type":"text"}],"rows":[[1,"Arya Kumar"],[2,"Pavan Kumar"]],"cursor":"o6CrAwFjAQhjdXN0b21lcogBAQEJY29tcG9zaXRlB2dyb3VwYnkAAP8CAAM3MjEBDE5hbWUua2V5d29yZAAAAQAAAAM3MjABA0FnZQAAAQAA6AcBCgIDNzIxAAtQYXZhbiBLdW1hcgM3MjACAAAAAAAAABYAAgEAAAAAAQD/////DwAAAAAAAAAAAAAAAAFaAwACAgAAAAAAAP3///8PAgFrAzcyMAEBWgABawM3MjEAAVoAAQM="}
 
-<ol>
-  <li>
-    <h1 id="write-translate-query">Write Translate query:</h1>
-    <p>Request:
-————–</p>
-  </li>
-</ol>
+2. Write Translate query:
+=======================================
+Request:
+======
 
-<p>POST /_sql/translate
+POST /_sql/translate
 {
-    “query”: “SELECT count(*),Name FROM customer group by Name,Age”
-}</p>
+    "query": "SELECT count(*),Name FROM customer group by Name,Age"
+}
 
-<h2 id="response-1">Response:</h2>
+Response:
+=======
 
-<p>{
-  “size” : 0,
-  “<em>source” : false,
-  “stored_fields” : “_none</em>”,
-  “aggregations” : {
-    “groupby” : {
-      “composite” : {
-        “size” : 1000,
-        “sources” : [
+{
+  "size" : 0,
+  "_source" : false,
+  "stored_fields" : "_none_",
+  "aggregations" : {
+    "groupby" : {
+      "composite" : {
+        "size" : 1000,
+        "sources" : [
           {
-            “737” : {
-              “terms” : {
-                “field” : “Name.keyword”,
-                “missing_bucket” : true,
-                “order” : “asc”
+            "737" : {
+              "terms" : {
+                "field" : "Name.keyword",
+                "missing_bucket" : true,
+                "order" : "asc"
               }
             }
           },
           {
-            “736” : {
-              “terms” : {
-                “field” : “Age”,
-                “missing_bucket” : true,
-                “order” : “asc”
-              }
-            }
-          }
-        ]
-      }
-    }
-  }
-}</p>
-
-<ol>
-  <li>
-    <h1 id="copy-output-from-above-one-and-use-that-in-get-query">Copy Output from Above one and Use that In Get Query:</h1>
-  </li>
-</ol>
-
-<h2 id="request-1">Request:</h2>
-
-<p>Get /customer/<em>search
-{
-  “size” : 0,
-  “_source” : false,
-  “stored_fields” : “_none</em>”,
-  “aggregations” : {
-    “groupby” : {
-      “composite” : {
-        “size” : 1000,
-        “sources” : [
-          {
-            “705” : {
-              “terms” : {
-                “field” : “Name.keyword”,
-                “missing_bucket” : true,
-                “order” : “asc”
-              }
-            }
-          },
-          {
-            “704” : {
-              “terms” : {
-                “field” : “Age”,
-                “missing_bucket” : true,
-                “order” : “asc”
+            "736" : {
+              "terms" : {
+                "field" : "Age",
+                "missing_bucket" : true,
+                "order" : "asc"
               }
             }
           }
@@ -734,7 +692,47 @@ So basically what I liked here is, by using simple Sql statements which I am fam
     }
   }
 }
-```</p>
+
+3. Copy Output from Above one and Use that In Get Query:
+=================================================
+
+Request:
+=======
+
+Get /customer/_search
+{
+  "size" : 0,
+  "_source" : false,
+  "stored_fields" : "_none_",
+  "aggregations" : {
+    "groupby" : {
+      "composite" : {
+        "size" : 1000,
+        "sources" : [
+          {
+            "705" : {
+              "terms" : {
+                "field" : "Name.keyword",
+                "missing_bucket" : true,
+                "order" : "asc"
+              }
+            }
+          },
+          {
+            "704" : {
+              "terms" : {
+                "field" : "Age",
+                "missing_bucket" : true,
+                "order" : "asc"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre></div></div>
 
 <p><br /><br />
 Thanks,<br />

@@ -322,14 +322,16 @@ So basically what I liked here is, by using simple Sql statements which I am fam
 2. Use Translate API to get actual json based query
 3. Use the Json based query which we got from step 2.
 <br><br>
-# Some Samples: GroupBy Query Alias Aggregations
-```
+# Some Samples
+**GroupBy Query Alias Aggregations**
 
+
+```
 1. Write Sql query and check data:
 =======================================
 
 Request:
---------------
+======
 
 POST /_sql?format=json&pretty
 {
@@ -337,14 +339,14 @@ POST /_sql?format=json&pretty
 }
 
 Response:
---------------
+=======
 
 {"columns":[{"name":"count(*)","type":"long"},{"name":"Name","type":"text"}],"rows":[[1,"Arya Kumar"],[2,"Pavan Kumar"]],"cursor":"o6CrAwFjAQhjdXN0b21lcogBAQEJY29tcG9zaXRlB2dyb3VwYnkAAP8CAAM3MjEBDE5hbWUua2V5d29yZAAAAQAAAAM3MjABA0FnZQAAAQAA6AcBCgIDNzIxAAtQYXZhbiBLdW1hcgM3MjACAAAAAAAAABYAAgEAAAAAAQD/////DwAAAAAAAAAAAAAAAAFaAwACAgAAAAAAAP3///8PAgFrAzcyMAEBWgABawM3MjEAAVoAAQM="}
 
 2. Write Translate query:
 =======================================
 Request:
---------------
+======
 
 POST /_sql/translate
 {
@@ -352,7 +354,7 @@ POST /_sql/translate
 }
 
 Response:
---------------
+=======
 
 {
   "size" : 0,
@@ -391,7 +393,7 @@ Response:
 =================================================
 
 Request:
---------------
+=======
 
 Get /customer/_search
 {
@@ -427,6 +429,7 @@ Get /customer/_search
   }
 }
 ```
+
 
 
 <br><br>
