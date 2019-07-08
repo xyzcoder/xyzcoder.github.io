@@ -9,13 +9,6 @@
     }
 }
 
-.jumptarget::before {
-    content:"";
-    display:block;
-    height:50px; /* fixed header height*/
-    margin:-50px 0 0; /* negative fixed header height */
-  }
-
 ul.tag-box li {
 	display: inline-block;
 	list-style: none;
