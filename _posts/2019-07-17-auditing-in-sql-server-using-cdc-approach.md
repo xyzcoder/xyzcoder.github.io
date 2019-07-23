@@ -63,7 +63,7 @@ SELECT [name], database_id, is_cdc_enabled  FROM sys.databases
 GO  
 ```
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/1.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/1.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 <br><br>
 As you can see None of my databases have cdc enabled.
 <br><br>
@@ -112,9 +112,9 @@ Now lets try to enable CDC by running following proc and this time it is success
 ```
 
 Also we can see a new schema and few system level tables were created for cdc.<br>
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/2.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/2.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 <br>
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/3.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/3.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 <br>
 <br>
@@ -127,7 +127,7 @@ select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
 
 I have one table in my DB and we can see is_tracked_by_cdc is set to 0 ie cdc is not enabled on this table
 <br>
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/4.png" style="max-width: 100%;height: auto;" alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/4.PNG" style="max-width: 100%;height: auto;" alt=""/>
 
 # Enable CDC
 ```
@@ -162,7 +162,7 @@ select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
 <br>
 Now we can see few extra tables created in the system table
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/5.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/5.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 <br><br>
 **Testing CDC**:
@@ -182,7 +182,7 @@ SELECT * FROM [Pavan].[cdc].[change_tables]
 
 Unfortunately, I am not seeing any data in my CDC table which is opposite to my expectations
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/6.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/6.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 <br><br>
 By looking at last query results, I can see that CDC is enabled on my "Test" table but still dbo_Test_CT table is not populated with any data.
@@ -195,13 +195,13 @@ exec sys.sp_cdc_help_jobs
 select * from sys.dm_cdc_errors
 ```
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/8.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/8.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 <br><br>
 I see that there were no jobs for capture. And unfortunately I forgot to turn on my sql server agent.
 # Missing CDC capture Job when enabling CDC on table in SQL Server
 The reason behind missing data in CDC tables is because this feature depends on Sql Jobs and by default sql jobs are in stopped state and we need to enable them.
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/7.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/7.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 Now to create these missging jobs, I need to run following statements and ultimately we can see these jobs created
 
@@ -210,7 +210,7 @@ EXEC sys.sp_cdc_add_job @job_type = N'capture';
 EXEC sys.sp_cdc_add_job @job_type = N'cleanup';
 ```
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/9.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/9.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 **Note** By default if we have sql server agent running at the time of enabling cdc on a table, it will create these jobs and it is not required to run above scripts.
 
@@ -227,7 +227,7 @@ SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
 select * from test
 ```
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/10.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/10.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 So I can see my inserted values in dbo_Test_CT table but not the latest inserted one... The reason for that is there is a slight deelay of 1 sec for the change to appear and here we are querying it along with insert.
 <br><br>
@@ -251,7 +251,7 @@ SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
 select * from test
 ```
 
-<img src="{{ site.baseurl }}/assets/images/posts/cdc/11.png" style="max-width: 100%;height: auto;"  alt=""/>
+<img src="{{ site.baseurl }}/assets/images/posts/cdc/11.PNG" style="max-width: 100%;height: auto;"  alt=""/>
 
 <br>
 Row1 corresponds to insert (__operation=2) and we can see values for Id, Firstname,lastname<br>
