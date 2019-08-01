@@ -138,21 +138,21 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Auditing In SQL Server Using CDC Approach | xyzcoder.github.io</title>
+<title>An error occurred while starting the application. .NET Core Microsoft.AspNetCore.Hosting version Microsoft Windows | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.0" />
-<meta property="og:title" content="Auditing In SQL Server Using CDC Approach" />
+<meta property="og:title" content="An error occurred while starting the application. .NET Core Microsoft.AspNetCore.Hosting version Microsoft Windows" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach." />
-<meta property="og:description" content="Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach." />
-<link rel="canonical" href="http://localhost:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" />
-<meta property="og:url" content="http://localhost:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" />
+<meta name="description" content="Hi, In this post, I would like to explain how we can handle the following error that we usually get when hosting Asp.Net core application using IIS." />
+<meta property="og:description" content="Hi, In this post, I would like to explain how we can handle the following error that we usually get when hosting Asp.Net core application using IIS." />
+<link rel="canonical" href="http://localhost:4000/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html" />
+<meta property="og:url" content="http://localhost:4000/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-17T08:57:27+05:30" />
+<meta property="article:published_time" content="2019-07-31T10:15:10+05:30" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html","headline":"Auditing In SQL Server Using CDC Approach","dateModified":"2019-07-17T08:57:27+05:30","datePublished":"2019-07-17T08:57:27+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html"},"description":"Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach.","@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"url":"http://localhost:4000/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html","headline":"An error occurred while starting the application. .NET Core Microsoft.AspNetCore.Hosting version Microsoft Windows","dateModified":"2019-07-31T10:15:10+05:30","datePublished":"2019-07-31T10:15:10+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html"},"description":"Hi, In this post, I would like to explain how we can handle the following error that we usually get when hosting Asp.Net core application using IIS.","@type":"BlogPosting","@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -312,7 +312,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Auditing In SQL Server Using CDC Approach
+                                                        An error occurred while starting the application. .NET Core  | Microsoft.AspNetCore.Hosting version  | Microsoft Windows
                                                     
                                                     
                                                 </div>
@@ -321,318 +321,62 @@
 
                                             
                                                 <p>Hi, 
-In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach.</p>
+In this post, I would like to explain how we can handle the following error that we usually get when hosting Asp.Net core application using IIS.</p>
 
-<h1 id="requirement">Requirement:</h1>
-<p>In the world of transactional databases, It is always required to audit our changes to track changes like what was changed and when it was changed especially with sensitve data. For example If we are dealing with some pharmacy or someother key domains related data, then as per govt regulations it is mandatory to audit certain data.</p>
+<p><br />
+** An error occurred while starting the application. .NET Core  | Microsoft.AspNetCore.Hosting version  | Microsoft Windows **</p>
 
-<h1 id="traditional-approaches-to-audit-data">Traditional approaches to Audit Data</h1>
-<p>There many ways to audit data in Sql server, some traditional approaches are as follow:</p>
+<p><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>An error occurred while starting the application.
+
+.NET Core X86 v4.1.1.0    |   Microsoft.AspNetCore.Hosting version 1.1.1    |    Microsoft Windows 6.2.9200    |   Need help?
+</code></pre></div></div>
+
+<p>I was getting above error after publishing my code to a remote server and hosting it using IIS.
+<br />
+I was actually clueless and tried to find out what was the actual error, this particular message looks generic and there might be something that is actually causing this issue.</p>
+
+<p><br /><br />
+I tried looking at EventLogs but still, I don’t see any error message logging over there.</p>
+
+<h1 id="how-to-log-error-message-in-aspnet-core">How to log error message in Asp.Net Core</h1>
 <ol>
-  <li>
-    <p><strong>Using C# code itself</strong>
-  Where ever we have insert and update statements , there we need to have some extra logic to insert into our tracking tables for changes.</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     For example: Lets say I am trying to update "FirstName" field and In order to audit it I need to take following approach
-
-              -- Select FirstName From User where Id=10
-              -- Store this value in a variable
-              -- Update User set Firstname='New Value' where Id=10
-             -- Insert into User_Audit (Column,OldValue,NewValue,DateValue) Values ('FirstName','Old Value stored in variable','New Value',GetDate()
-</code></pre></div>    </div>
-
-    <p>So just to audit this change we need to write few extra lines of code and as the number of places to audit increases, this extra logic also increases which is a pain for maintaining.</p>
-  </li>
-  <li>
-    <p><strong>Using Triggers</strong>
-  By making use of triggers, we can avoid this extra logic but there are few scenarios where triggers dont actually fire and we need some extra configuration.
-      By default, the BULK INSERT statement do not execute triggers. However, you can enable triggers by using FIRE_TRIGGERS qualifiers.
-      Also It is a manual process to write these triggers.</p>
-  </li>
+  <li>Go to Projects Web.Config file and try to enable error by setting true to “stdoutLogEnabled” property</li>
 </ol>
 
-<p>So, In these cases we can make use of SQL Server inbuilt feature for auditing.</p>
-
-<h1 id="feature-availability">Feature Availability:</h1>
-<p>CDC approach was indroduced in MS Sql 2008 but restricted only to developer and Enterprise editions. But from Sql server 2017, It is present in Standard Edition too.</p>
-
-<h1 id="getting-started">Getting Started:</h1>
-<p>As CDC is specific to certain versions, initially lets check the version of sql server</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> select @@version
- ---Output
-Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)   Aug 22 2017 17:04:49   Copyright (C) 2017 Microsoft Corporation  Express Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 17134: ) (Hypervisor) 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;aspNetCore processPath="%LAUNCHER_PATH%" arguments="%LAUNCHER_ARGS%" stdoutLogEnabled="true" stdoutLogFile=".\logs\stdout"&gt;
+      &lt;environmentVariables /&gt;
+    &lt;/aspNetCore&gt;
 </code></pre></div></div>
-
-<p>I can see that my version of sql server in 2017 and Express Edition. So as per my understanding CDC feature is avaibale for Standard, Developer and Enterprise version of 2017 but not Express edition. But lets try</p>
-
-<p><br /><br /></p>
-<h1 id="check-if-cdc-is-enabled">Check If CDC Is Enabled:</h1>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE master 
-GO 
-SELECT [name], database_id, is_cdc_enabled  FROM sys.databases       
-GO  
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/1.PNG" style="max-width: 100%;height: auto;" alt="" />
-<br /><br />
-As you can see None of my databases have cdc enabled.
-<br /><br /></p>
-
-<p><strong>Enabling CDC</strong>:
-  You can run this stored procedure in the context of each database to enable CDC at database level</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	USE Pavan 
-	GO 
-	EXEC sys.sp_cdc_enable_db 
-	GO  
-</code></pre></div></div>
-
-<p>When I ran this command, I got following error</p>
-
-<p style="color: red !important;">Msg 22988, Level 16, State 1, Procedure sys.spcdcenabledb, Line 13 [Batch Start Line 2]
-This instance of SQL Server is the Express Edition (64-bit). Change data capture is only available in the Enterprise, Developer, Enterprise Evaluation, and Standard editions.</p>
-
-<p><br />
-So only option I have now is to install standard or developer editions and I’ll go with developer edition for now because standard edition costs me.</p>
-
-<p>After Installing Sql server devloper edition let me check the version</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> select @@version
- ---Output
-Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)   Aug 22 2017 17:04:49   Copyright (C) 2017 Microsoft Corporation  Developer Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 17134: ) (Hypervisor) 
-</code></pre></div></div>
-
-<p><strong>Note</strong>: When we have 2 different versions installed, Please make sure that we connect to appropriate server</p>
-
-<p>Now lets try to enable CDC by running following proc and this time it is successful.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	USE Pavan 
-	GO 
-	EXEC sys.sp_cdc_enable_db 
-	GO  
-
-	USE master 
-	GO 
-	SELECT [name], database_id, is_cdc_enabled  FROM sys.databases       
-	GO  
-</code></pre></div></div>
-
-<p>Also we can see a new schema and few system level tables were created for cdc.<br />
-<img src="/assets/images/posts/cdc/2.PNG" style="max-width: 100%;height: auto;" alt="" />
-<br />
-<img src="/assets/images/posts/cdc/3.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br />
-<br /></p>
-
-<p><strong>Check List Of Tables Having CDC</strong>
-<br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
-</code></pre></div></div>
-
-<p>I have one table in my DB and we can see is_tracked_by_cdc is set to 0 ie cdc is not enabled on this table
-<br />
-<img src="/assets/images/posts/cdc/4.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<h1 id="enable-cdc">Enable CDC</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_enable_table 
-@source_schema = N'dbo', 
-@source_name   = N'Test', 
-@role_name     = NULL 
-
-select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
-</code></pre></div></div>
-
-<p>Here we need to pass schema and then source table name.
-<strong>role_name</strong> is used to restrict querying cdc tables based on roles and if we want this data to be accessible for everyone, we need to pass null for this value.</p>
 
 <p><br /></p>
 
-<h1 id="enabling-cdc-for-certain-columns">Enabling CDC for certain columns:</h1>
-
-<p><br /> In case if we want to track only certain columns, then we need to pass them in the parameter <br />
-@captured_column_list = ‘[Firstname]’  to the proc sys.sp_cdc_enable_table</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_enable_table 
-@source_schema = N'dbo', 
-@source_name   = N'Test', 
-@role_name     = NULL ,
-@captured_column_list = '[Firstname]'
-
-select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
-</code></pre></div></div>
+<ol>
+  <li>Also in the config file, we see the location where errors are supposed to be written.</li>
+  <li>So by default Asp.Net core doesn’t create these folders, In our case ** “logs\stdout”<strong>. So go and create a folder by name **“logs”</strong></li>
+  <li>Go to Visual studio proj and add a folder by name “logs” at the root level and add a sample.txt file(this can be an empty one.. Just because if the content is empty then we will not get this folder in Published files)</li>
+  <li>Now publish the project and make sure that we have logs folder present.</li>
+  <li>Now when we run the application and if there are any errors, It will be logged in logs folder in server and that helps us in identifying  what the actual error is.</li>
+</ol>
 
 <p><br />
-Now we can see few extra tables created in the system table</p>
-
-<p><img src="/assets/images/posts/cdc/5.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br /><br />
-<strong>Testing CDC</strong>:</p>
-
-<p>As we enabled CDC for our test table, now lets try to test how it is actually working. I’ll insert few records into Test table and see the result.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO [dbo].[Test] 
-       (Id,Value) 
-VALUES (1,'pavan') 
-
-
-SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
-select * from test
-SELECT * FROM [Pavan].[cdc].[change_tables]
-</code></pre></div></div>
-
-<p>Unfortunately, I am not seeing any data in my CDC table which is opposite to my expectations</p>
-
-<p><img src="/assets/images/posts/cdc/6.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br /><br />
-By looking at last query results, I can see that CDC is enabled on my “Test” table but still dbo_Test_CT table is not populated with any data.</p>
-
-<p>I tried to identify errors by using these queries</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exec sys.sp_cdc_help_change_data_capture
-exec sys.sp_cdc_help_jobs
-select * from sys.dm_cdc_errors
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/8.PNG" style="max-width: 100%;height: auto;" alt="" />
-<br /><br />
-I see that there were no jobs for capture. And unfortunately I forgot to turn on my sql server agent.</p>
-<h1 id="missing-cdc-capture-job-when-enabling-cdc-on-table-in-sql-server">Missing CDC capture Job when enabling CDC on table in SQL Server</h1>
-<p>The reason behind missing data in CDC tables is because this feature depends on Sql Jobs and by default sql jobs are in stopped state and we need to enable them.</p>
-
-<p><img src="/assets/images/posts/cdc/7.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p>Now to create these missging jobs, I need to run following statements and ultimately we can see these jobs created</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_add_job @job_type = N'capture';
-EXEC sys.sp_cdc_add_job @job_type = N'cleanup';
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/9.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><strong>Note</strong> By default if we have sql server agent running at the time of enabling cdc on a table, it will create these jobs and it is not required to run above scripts.</p>
-
-<p>** Now lets test CDC again**</p>
-
-<p><strong>Insert</strong></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO [dbo].[Test] 
-       (Id,Value) 
-VALUES (3,'Satish') 
-
-SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
-select * from test
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/10.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p>So I can see my inserted values in dbo_Test_CT table but not the latest inserted one… The reason for that is there is a slight deelay of 1 sec for the change to appear and here we are querying it along with insert.
-<br /><br /></p>
-
-<p>There are two values which are very important to us is <strong>__$operation and __$update_mask</strong>.</p>
-
-<p>Column <strong>_$operation</strong> contains value which corresponds to DML Operations. Following is quick list of value and its corresponding meaning.
-<br /><br />
-Delete Statement = 1<br />
-Insert Statement = 2<br />
-Value before Update Statement = 3<br />
-Value after Update Statement = 4<br />
-<br /><br /><br /></p>
-
-<p><strong>Update</strong></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update test set value='Sai satish' where id=3
-
-SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
-select * from test
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/11.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br />
-Row1 corresponds to insert (__operation=2) and we can see values for Id, Firstname,lastname<br />
-Row2,3 corresponds to update… row 2 has previous values and row 3 has updated values.. There I update firstname and lastname<br />
-Row 4,5 corresponds to update… Here we can see that  Lastname in row 4 is null because, I am not updating it and only I updated Firstname<br />
-<br /></p>
-
-<p><strong>Understanding __update_mask</strong>:
-<br /><br />
-In the above image for rows 2,3 we have update mask value as “0x06” and the binary equivalent of this is “0110”… So from this I can say that columns 2,3 were updated which are nothing but Firstname and Lastname
 <br />
-In the same way for rows 4,5 we have a value “0x02” and the binary equivalent is “0100”… So I can say column 1 is updated.</p>
+In my case the error was something related to Entityframework and sqllite DB</p>
 
-<p><br /><br /></p>
-
-<h1 id="identifying-records-modified-in-a-specific-transaction">Identifying Records Modified In a Specific Transaction</h1>
-<p>Basically in tracking table we have data in the column __$start_lsn which is nothing but a transaction log sequence number
-<br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * FROM cdc.lsn_time_mapping 
-</code></pre></div></div>
-<p><br />
-This has info related to all transactions and it has date time
-<br /></p>
-
-<p>So In order to detect the time frame and group transactions in tracking table, we can use this query</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select Id,Firstname,Lastname,t.* from  cdc.dbo_Users_CT u inner join
-cdc.lsn_time_mapping t on u.__$start_lsn=t.start_lsn
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Application startup exception: Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Sqlite.Storage.Internal.SqliteRelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Sqlite.Storage.Internal.SqliteDatabaseCreator.Create()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreated()
+   at Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated()
 </code></pre></div></div>
 
-<h1 id="disabling-cdc-on-table">Disabling CDC On Table:</h1>
-<p><br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan; 
-GO 
-EXEC sys.sp_cdc_help_change_data_capture 
-GO
-</code></pre></div></div>
+<p>I was getting this error because  I am trying to create a SqLite DB in a subfolder and again ASP.Net core was not able to create subfolder. So I manually created the folder and it was resolved.</p>
 
-<p><br />
-By using above query, we will get different parameters required for disabling the CDC</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan;
-GO
-EXECUTE sys.sp_cdc_disable_table 
-    @source_schema = N'dbo', 
-    @source_name = N'Test',
-    @capture_instance = N'dbo_Test';
-GO
-</code></pre></div></div>
-
-<p><br />
-Once the CDC is disabled, It will delete all tracking tables too.</p>
-
-<p><br /></p>
-<h1 id="deleting-cdc-on-database">Deleting CDC on Database</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan 
-GO 
-EXEC sys.sp_cdc_disable_db 
-GO 
-</code></pre></div></div>
-
-<h1 id="data-cleanup-from-cdc-tables">Data Cleanup From CDC Tables</h1>
-<p>In a transactional database with good load, If we have this Change tracking enabled, there are chances of the database growing exponentially. So keeping that in mind, <strong>SQL server itself will clean these logs every 3 days</strong> but this is configurable.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-SELECT ([retention])/((60*24)) AS Default_Retention_days ,*
-FROM msdb.dbo.cdc_jobs
-</code></pre></div></div>
-
-<p><br />
-Initally when we created CDC on a table, it created 2 jobs. One for capture and the other for cleanup. 
-So it is the responsibility of cleanup job to clean the data
-<br />
-<strong>sys.sp_cdc_cleanup_change_table</strong></p>
-
-<p><br />
-<strong>Updating this default 3 day value</strong>:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC Pavan.sys.sp_cdc_change_job 
-@job_type=N'Cleanup'
-,@retention=20160 -- &lt;60 min *24 hrs * 14 days &gt;
-go
-
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>optionsBuilder.UseSqlite(@"Data Source=C:\Pavan\MyDatabase.db");
 </code></pre></div></div>
 
 <p><br />
@@ -650,7 +394,7 @@ Pavan Kumar Aryasomayajulu</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 07172019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 08012019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -674,20 +418,14 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#Audit_SqlServer</span>
-                                                        
-                                                            <span class="tag">#CDC</span>
-                                                        
-                                                            <span class="tag">#Tracking_Changes_In_SqlServer</span>
-                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/docker/dockerwindows/2019/07/08/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
