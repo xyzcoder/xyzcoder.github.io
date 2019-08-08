@@ -333,6 +333,16 @@
   </li>
 </ol>
 
+<p><br /></p>
+<ol>
+  <li>Search for a string accross all procedures</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT name
+FROM   sys.procedures
+WHERE  Object_definition(object_id) LIKE '%EmployeeBenefits%'
+</code></pre></div></div>
+
 <p><br />
 <br />
 Thanks,<br />

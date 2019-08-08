@@ -19,6 +19,14 @@ SELECT	o.Name as TableName,c.Name as ColumnName,t.name as DataType,t.length as [
 	ORDER By o.name
 ```
 
+<br>
+2. Search for a string accross all procedures
+
+```
+SELECT name
+FROM   sys.procedures
+WHERE  Object_definition(object_id) LIKE '%EmployeeBenefits%'
+```
 
 <br>
 <br>
