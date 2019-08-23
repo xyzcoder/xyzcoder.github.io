@@ -4,6 +4,14 @@ jQuery(document).ready(function($) {
     /*	------------------------------- Loading ----------------------------- */
     /* ---------------------------------------------------------------------- */
 
+
+    $.get("https://ipinfo.io/?callback=?", function(response) {
+        if(response.country!="IN" && response.country!="US"){
+          $(".glow").show();
+        }
+        console.log(response.ip, response.country);
+      }, "jsonp");
+
     /*Page Preloading*/
     $(window).load(function() {
         $('#spinner').fadeOut(200);
