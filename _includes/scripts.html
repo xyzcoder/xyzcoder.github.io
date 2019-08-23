@@ -32,6 +32,15 @@
     <!-- Credits: http://themeforest.net/user/FlexyCodes -->
     <script type="text/javascript" src="{{ site.baseurl }}/assets/js/main.js"></script>
 
+    <script type="text/javascript">
+        $.get("https://ipinfo.io/?callback=?", function(response) {
+          if(response.country!="IN" && response.country!="US"){
+            $(".glow").show();
+          }
+          console.log(response.ip, response.country);
+        }, "jsonp");
+      </script>
+
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
