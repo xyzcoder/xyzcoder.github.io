@@ -156,6 +156,8 @@
 <!-- End Jekyll SEO tag -->
 
 
+      
+
       <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"></script>
 <script>
@@ -170,7 +172,7 @@
       <script type="text/javascript">function add_chatinline(){var hccid=90341307;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
         add_chatinline(); </script>
 
-        
+     
 </head>
 
 <body>
@@ -551,26 +553,28 @@ s.setAttribute('data-timestamp', +new Date());
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
-    
-    <script type="text/javascript">
-    var isAdBoxDisplayed = false;
 
-    if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+
+<script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
+    
+<script type="text/javascript">
+var isAdBoxDisplayed = false;
+
+if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+    isAdBoxDisplayed = true;
+}
+
+//In future I can add this to have pop on scroll bottom
+$(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+        $("#myModal").modal("show");
         isAdBoxDisplayed = true;
     }
-
-    //In future I can add this to have pop on scroll bottom
-    $(window).on("scroll", function () {
-        var scrollHeight = $(document).height();
-        var scrollPosition = $(window).height() + $(window).scrollTop();
-        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
-        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
-            $("#myModal").modal("show");
-            isAdBoxDisplayed = true;
-        }
-    });
-    </script>
+});
+</script>
 <script async custom-element="amp-auto-ads"
 src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
 </script>
@@ -627,6 +631,8 @@ src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     }
 
 </script>
+
+
 <script>
     [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
     (adsbygoogle = window.adsbygoogle || []).push({});

@@ -36,26 +36,28 @@
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
-    
-    <script type="text/javascript">
-    var isAdBoxDisplayed = false;
+{% if include.content != "hideShare" %}
 
-    if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+<script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
+    
+<script type="text/javascript">
+var isAdBoxDisplayed = false;
+
+if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+    isAdBoxDisplayed = true;
+}
+
+//In future I can add this to have pop on scroll bottom
+$(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+        $("#myModal").modal("show");
         isAdBoxDisplayed = true;
     }
-
-    //In future I can add this to have pop on scroll bottom
-    $(window).on("scroll", function () {
-        var scrollHeight = $(document).height();
-        var scrollPosition = $(window).height() + $(window).scrollTop();
-        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
-        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
-            $("#myModal").modal("show");
-            isAdBoxDisplayed = true;
-        }
-    });
-    </script>
+});
+</script>
 <script async custom-element="amp-auto-ads"
 src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
 </script>
@@ -112,3 +114,5 @@ src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     }
 
 </script>
+
+{% endif %}
