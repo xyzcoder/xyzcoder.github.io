@@ -726,6 +726,12 @@
         </div>
         <!-- End .profile -->
 
+        <style>
+        .skillbar-title, .skillbar-bar {
+            background: #3B5998 !important;
+        }
+        </style>
+
                  </div>
                  <!-- End #resp-tabs-container --> 
 
@@ -743,6 +749,120 @@
       </div><!-- End container -->
 
   </div>
+      <!-- jquery | jQuery 1.11.0 -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+    <!-- Js | bootstrap -->
+    <!-- Credits: http://getbootstrap.com/ -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script> 
+
+    <!-- Js | jquery.cycle -->
+    <!-- Credits: https://github.com/malsup/cycle2 -->
+    <script type="text/javascript" src="/assets/js/jquery.cycle2.min.js"></script>
+
+    <!-- jquery | rotate and portfolio -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script> 
+    <script type="text/javascript" src="/assets/js/HeadImage.js"></script>
+
+    <!-- Js | easyResponsiveTabs -->
+    <!-- Credits: http://webtrendset.com/demo/easy-responsive-tabs/Index.html -->
+    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script>  
+
+    <!-- Js | mCustomScrollbar -->
+    <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+    <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>     
+
+    <!-- jquery | prettyPhoto -->
+    <!-- Credits: http://www.no-margin-for-errors.com/ -->
+    <script type="text/javascript" src="/assets/js/jquery.prettyPhoto.js"></script>
+
+
+    <!-- Js | Js -->
+    <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
+    
+    <script type="text/javascript">
+    var isAdBoxDisplayed = false;
+
+    if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+        isAdBoxDisplayed = true;
+    }
+
+    //In future I can add this to have pop on scroll bottom
+    $(window).on("scroll", function () {
+        var scrollHeight = $(document).height();
+        var scrollPosition = $(window).height() + $(window).scrollTop();
+        console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+        if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+            $("#myModal").modal("show");
+            isAdBoxDisplayed = true;
+        }
+    });
+    </script>
+<script async custom-element="amp-auto-ads"
+src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
+                }
+            });
+           
+        }
+    }
+
+</script>
 </body>
 </html> 
 
