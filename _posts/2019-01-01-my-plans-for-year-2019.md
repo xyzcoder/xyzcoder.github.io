@@ -3,7 +3,7 @@ title: My Plans For Year 2019
 ---
 
 # **Happy New Year **: 
-Hello everyone, Thank you for following my blog and showing interest in reading my articles.
+First of all, Thank you for following my blog and showing interest in reading my articles.
 In this blog post, I would like to discuss my plans for the year 2019. I'll work hard to accomplish all my goals mentioned here and share my learnings.
 
 Here is a brief list of Todo's I am planning to accomplish in 2019.
