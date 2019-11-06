@@ -31,6 +31,7 @@ RUN git clone https://github.com/xyzcoder/xyzcoder.github.io.git
 
 WORKDIR /pavan/xyzcoder.github.io
 
+RUN rm Gemfile.lock
 RUN bundle install
 
 CMD bundle exec jekyll serve

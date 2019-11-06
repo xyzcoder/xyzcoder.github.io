@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rough'
+# gem 'rough'
 gem 'jekyll-paginate'
 gem 'jekyll-geo-pattern'
 gem 'kramdown'
