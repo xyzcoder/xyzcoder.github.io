@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
-ARG GIT_USERNAME=''
-ARG GIT_Password=''
+ENV GIT_Username=''
+ENV GIT_Password=''
 
 # Installing Ruby
 

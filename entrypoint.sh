@@ -1,6 +1,10 @@
 #!/bin/bash
 
 echo "Fetching from git"
+
+git config --global user.email $GIT_Username
+git config --global user.name "Pavan"
+
 git reset --hard HEAD
 git fetch https://github.com/xyzcoder/xyzcoder.github.io.git
 git pull https://github.com/xyzcoder/xyzcoder.github.io.git
