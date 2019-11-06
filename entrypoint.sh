@@ -6,6 +6,9 @@ git config --global user.email "xyzcoder1989@gmail.com"
 git config --global user.name "xyzcoder"
 git config --global user.password $GIT_Password
 
+echo "================================"
+git config --global user.password
+
 git reset --hard HEAD
 git fetch https://github.com/xyzcoder/xyzcoder.github.io.git
 git pull https://github.com/xyzcoder/xyzcoder.github.io.git
