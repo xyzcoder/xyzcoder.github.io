@@ -31,7 +31,10 @@ RUN git clone https://github.com/xyzcoder/xyzcoder.github.io.git
 
 WORKDIR /pavan/xyzcoder.github.io
 
-RUN rm Gemfile.lock
 RUN bundle install
 
-CMD bundle exec jekyll serve
+# To avoid chache
+ARG CACHEBUST=1
+RUN echo "Hiiiiiiiiiiiiiiiii"
+CMD ["bundle", "exec", "jekyll", "serve", "--livereload", "--host", "0.0.0.0"]
+
