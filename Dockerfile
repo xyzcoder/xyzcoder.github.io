@@ -35,10 +35,3 @@ RUN chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh \
 
 ENTRYPOINT ["/pavan/xyzcoder.github.io/entrypoint.sh"]
 
-RUN bundle install
-
-# To avoid chache
-ARG CACHEBUST=1
-RUN echo "Hiiiiiiiiiiiiiiiii"
-CMD ["bundle", "exec", "jekyll", "serve", "--livereload", "--host", "0.0.0.0"]
-
