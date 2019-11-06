@@ -18,7 +18,5 @@ bundle install
 
 chmod u+x /pavan/xyzcoder.github.io/gitpush.sh
 
-rerun /pavan/xyzcoder.github.io/gitpush.sh -b
-
-bundle exec jekyll serve --livereload --host 0.0.0.0
+rerun -b -i gitpush.sh -i entrypoint.sh /pavan/xyzcoder.github.io/gitpush.sh & bundle exec jekyll serve --livereload --host 0.0.0.0
 
