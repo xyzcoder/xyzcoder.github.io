@@ -28,10 +28,14 @@ RUN git clone https://github.com/xyzcoder/xyzcoder.github.io.git
 WORKDIR /pavan/xyzcoder.github.io
 
 # Copy Entry Point
-COPY entrypoint.sh /pavan/xyzcoder.github.io
+#COPY entrypoint.sh /pavan/xyzcoder.github.io
 
-RUN chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh \
-    && ln -s /pavan/xyzcoder.github.io/entrypoint.sh /
+# Rerun to run everytime
+RUN apt-get install rerun -y
+# COPY gitpush.sh /pavan/xyzcoder.github.io
+
+ RUN chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh \
+     && ln -s /pavan/xyzcoder.github.io/entrypoint.sh /
 
 ENTRYPOINT ["/pavan/xyzcoder.github.io/entrypoint.sh"]
 
