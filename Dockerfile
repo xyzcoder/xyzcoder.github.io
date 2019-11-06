@@ -37,5 +37,8 @@ RUN apt-get install rerun -y
  RUN chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh \
      && ln -s /pavan/xyzcoder.github.io/entrypoint.sh /
 
+ RUN chmod 777 /pavan/xyzcoder.github.io/gitpush.sh \
+     && ln -s /pavan/xyzcoder.github.io/gitpush.sh /
+
 ENTRYPOINT ["/pavan/xyzcoder.github.io/entrypoint.sh"]
 

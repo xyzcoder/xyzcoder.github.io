@@ -7,11 +7,11 @@ git pull https://github.com/xyzcoder/xyzcoder.github.io.git
 
 cd /pavan/xyzcoder.github.io
 
-chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh  && ln -s /pavan/xyzcoder.github.io/entrypoint.sh /
+chmod u+x /pavan/xyzcoder.github.io/entrypoint.sh
 
 bundle install
 
-chmod u+x gitpush.sh
+chmod u+x /pavan/xyzcoder.github.io/gitpush.sh
 
 rerun /pavan/xyzcoder.github.io/gitpush.sh -b
 
