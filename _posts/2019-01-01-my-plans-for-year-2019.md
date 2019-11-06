@@ -6,7 +6,7 @@ title: My Plans For Year 2019
 First of all, Thank you for following my blog and showing interest in reading my articles.
 In this blog post, I would like to discuss my plans for the year 2019. I'll work hard to accomplish all my goals mentioned here and share my learnings.
 
-Here is a brief list of Todo's I am planning to accomplish in 2019.
+Here is a brief list of Todo's I am planning to accomplish in 2019. Let me hope that I'll accomplish these :)
 
 1.  **"Increase my blogging frequency"**:
                 I started blogging since 5 years and during my initial years of blogging, I used to be very active at my other blog [Pavanarya.wordpress.com](https://pavanarya.wordpress.com) but unfortunately since a year I am not that active spending my time in blogging. I understand the value and importance of contributing to the community. So this year I again want to get in touch with developer communities and my fellow developers. So my target for this year and upcoming years is to post at least one article( of course useful ones) per week.
