@@ -14,7 +14,7 @@ Hello Everyone,
 In this post, I would like to discuss on how I successfully built ([xyzcoder.github.io](http://xyzcoder.github.io)) my blog at free of cost and maintenance.
 <br>
 
-# Technologies I am making use of for building and maintaining my blog 
+# Technologies I am making use of for building and maintaining my blog (xyzcoder.github.io)
 1. **Jekyll**
 2. **Github Pages**
 3. **Javascript**
