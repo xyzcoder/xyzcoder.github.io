@@ -175,7 +175,7 @@ Filename: posts.html<br>
 ```
 
 **Some Key taks aways in this: **<br>
-1. ```{% include head.html %}``` All scripts and css files that needs to be included in my blog are fixed and they are same for all pages. So I wanted to have all scripts and css files references included in head.html file and I'll reuse that If I need them in any other places
+1. ``` {% raw %} {% include head.html %} {% endraw %}``` All scripts and css files that needs to be included in my blog are fixed and they are same for all pages. So I wanted to have all scripts and css files references included in head.html file and I'll reuse that If I need them in any other places
 
 <br>
 <br>
