@@ -233,7 +233,7 @@ isindex: true
 ```
 
 <br>
-**Please download the sample blog content I am using from this zip file and make use of it** {{ site.url }}/download.zip
+**Please download the sample blog content I am using from this zip file and make use of it** {{ site.url }}/download.zip 
 
 <br>
 <br>
