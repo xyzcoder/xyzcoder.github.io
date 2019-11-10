@@ -136,7 +136,7 @@ Now, I'll show you how We can configure a blog using different components presen
 **Initially I am creating a Layout file which represents by blog**
 
 ```
-
+{% raw %}
 <!DOCTYPE html>
 <html lang="no-js">
 {% include head.html %}
@@ -168,6 +168,7 @@ Now, I'll show you how We can configure a blog using different components presen
 </body>
 
 </html>
+{% endraw %}
 
 ```
 
