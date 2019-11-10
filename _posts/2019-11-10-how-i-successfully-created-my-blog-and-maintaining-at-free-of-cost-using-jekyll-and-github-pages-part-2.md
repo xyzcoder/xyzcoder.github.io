@@ -178,6 +178,63 @@ Filename: posts.html<br>
  **Some Key taks aways in this: ** <br>
 1. ``` {% raw %} {% include head.html %}  {% include profile_widget.html %}  {% include blog_content.html %}{% endraw %}``` All scripts and css files or common html that needs to be included in my blog are fixed and they are same for all pages. So I wanted to have all scripts and css files references included in head.html file and I'll reuse that If I need them in any other places.
 
+<br><br>
+**index.html**:
+
+This is my blogs index page and here I would like to list all my blog posts.<br><br>
+Here I specified my layout as "post.html" and also I am sending a custom variable "isindex". Also you can see, I am looping on posts by using following syntax
+
+<br>
+```{% raw %} {% for item in site.posts %} {% endraw %}```
+
+```
+
+{% raw %}
+---
+layout: post
+title: Xyzcoder
+isindex: true
+---
+
+<br>
+<br>
+
+<h1>List of posts</h1>
+
+{% for item in site.posts %}
+<article class="blog-article">                    
+
+    <div class="col-md-12">
+
+        <div class="row">
+            <div class="col-md-12 post_content">
+                <div class="content post_format_standart">
+                    <div class="top_c ">
+
+                        <div class="title_content">
+                            <div class="text_content" style="width:100%">
+                                <a href="{{ item.url }}"  style="float:left;position:relative">{{ item.title }}</a>
+                            </div>
+                            
+                            <div class="clear"></div>
+                        </div>
+                </div>  
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+</article>
+{% endfor %}    
+
+{% endraw %}
+
+```
+
+<br>
+**Please download the sample blog content I am using from this zip file and make use of it** {{ site.url }}/download.zip
+
 <br>
 <br>
 Thanks,<br>

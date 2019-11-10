@@ -489,6 +489,62 @@ This is placed under _layout folder.</p>
   <li><code class="highlighter-rouge"> {% include head.html %}  {% include profile_widget.html %}  {% include blog_content.html %}</code> All scripts and css files or common html that needs to be included in my blog are fixed and they are same for all pages. So I wanted to have all scripts and css files references included in head.html file and I’ll reuse that If I need them in any other places.</li>
 </ol>
 
+<p><br /><br />
+<strong>index.html</strong>:</p>
+
+<p>This is my blogs index page and here I would like to list all my blog posts.<br /><br />
+Here I specified my layout as “post.html” and also I am sending a custom variable “isindex”. Also you can see, I am looping on posts by using following syntax</p>
+
+<p><br />
+<code class="highlighter-rouge">{% for item in site.posts %}</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+---
+layout: post
+title: Xyzcoder
+isindex: true
+---
+
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;h1&gt;List of posts&lt;/h1&gt;
+
+{% for item in site.posts %}
+&lt;article class="blog-article"&gt;                    
+
+    &lt;div class="col-md-12"&gt;
+
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-12 post_content"&gt;
+                &lt;div class="content post_format_standart"&gt;
+                    &lt;div class="top_c "&gt;
+
+                        &lt;div class="title_content"&gt;
+                            &lt;div class="text_content" style="width:100%"&gt;
+                                &lt;a href="{{ item.url }}"  style="float:left;position:relative"&gt;{{ item.title }}&lt;/a&gt;
+                            &lt;/div&gt;
+                            
+                            &lt;div class="clear"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                &lt;/div&gt;  
+
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/article&gt;
+{% endfor %}    
+
+
+
+</code></pre></div></div>
+
+<p><br />
+<strong>Please download the sample blog content I am using from this zip file and make use of it</strong> http://0.0.0.0:4000/download.zip</p>
+
 <p><br />
 <br />
 Thanks,<br />
@@ -535,7 +591,7 @@ s.setAttribute('data-timestamp', +new Date());
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
                                                     <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
