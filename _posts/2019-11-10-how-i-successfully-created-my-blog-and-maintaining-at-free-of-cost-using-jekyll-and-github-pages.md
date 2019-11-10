@@ -1,6 +1,13 @@
 ---
 title: How I successfully created my Blog and maintaining at free of cost using Jekyll
   and Github Pages
+layout: post
+date: '2019-11-10 16:10:41'
+comments: true
+Categories:
+- Jekyll
+- GithubPages
+tags: Jekyll
 ---
 
 Hello Everyone,
