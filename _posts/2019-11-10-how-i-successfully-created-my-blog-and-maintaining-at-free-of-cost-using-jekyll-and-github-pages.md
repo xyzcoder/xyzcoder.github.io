@@ -34,7 +34,7 @@ If the first part of the repository doesn’t exactly match your username, it wo
 <img src="{{ site.baseurl }}/02-name-repo.png"  alt="" style="width: 80%;height: 80%;"/>
 
 <br>
-Now commit index.html page into the GitHub repository and try to browse "username.github.io". Now you should see the content of the HTML page.
+Now commit index.html page into the GitHub repository and try to browse "username.github.io".  Now you should see the content of the HTML page.
 
 # So How does Static Site Generators come to our rescue
 So in the above step, we saw how to host our HTML page in Github pages. If it is a simple application we can directly upload our HTML pages and maintain them. But what if I want to build a blog or static site with 100's of pages. Is it as simple as the above approach? A big NO. And a few reasons are...
