@@ -417,7 +417,9 @@ author: Pavan Kumar Aryasomayajulu
 <p><strong>How do we use these variables</strong>: All variables declared in a</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;h1&gt;&lt;/h1&gt;
 
-
+{ % for category in page.categories %}
+		&lt;span class="tag"&gt;#&lt;/span&gt;
+{ % endfor %}
 </code></pre></div></div>
 
 <p><strong>Important Point</strong>: It is important to note that the title, date and categories will have impact on the url of the post which is generated.
@@ -426,6 +428,7 @@ For example for the above configuration, this is how the url of my post looks li
 
 <p><img src="/jekyll1.jpg" alt="" style="width: 80%;height: 80%;" /></p>
 
+<p>So here if we see <strong>_site</strong>, This is where generated html content is stored. The location of the file is decided based on <strong>Categories, date</strong></p>
 <h1 id="assets">Assets</h1>
 
 <p><br />

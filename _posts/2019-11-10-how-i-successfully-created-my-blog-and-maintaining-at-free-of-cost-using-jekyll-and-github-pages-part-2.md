@@ -104,9 +104,9 @@ author: Pavan Kumar Aryasomayajulu
 ```
 <h1>{{ page.author }}</h1>
 
-{% for category in page.categories %}
+{ % for category in page.categories %}
 		<span class="tag">#{{category}}</span>
-{% endfor %}
+{ % endfor %}
 ```
 
 **Important Point**: It is important to note that the title, date and categories will have impact on the url of the post which is generated.
@@ -115,6 +115,7 @@ For example for the above configuration, this is how the url of my post looks li
 
 <img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
+So here if we see **_site**, This is where generated html content is stored. The location of the file is decided based on **Categories, date**
 # Assets
 
 
