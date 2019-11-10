@@ -15,6 +15,18 @@ In this post, I would like to continue on how I built my blog using GithubPages 
 <br>
 [Here is the link to my previous article](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html) 
 
+<br>
+[In my previous post](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html)  we saw what Static file generators are and how they help us, creating a site with Jekyll. In this post we will dig deep into some basic concepts of Jekyll.
+
+# Basic Building Blocks Of Jekyll
+1. **Pages**
+2. **Posts**
+3. ** Front Matter**
+4. ** Collections**
+5. **Data Files**
+6. **Assets**
+7. **Static Files**
+
 
 <br>
 <br>
