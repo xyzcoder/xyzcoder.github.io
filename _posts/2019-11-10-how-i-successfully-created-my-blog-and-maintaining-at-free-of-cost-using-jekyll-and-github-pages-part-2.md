@@ -11,12 +11,12 @@ tags:
 ---
 
 Hello Everyone,
-In this post, I would like to continue on how I built my blog using GithubPages and Jekyll at free of cost and maintenance. 
+In this post, I would like to continue how I built my blog using GitHub pages and Jekyll at free of cost and maintenance. 
 <br>
 [Here is the link to my previous article](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html) 
 
 <br>
-[In my previous post](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html)  we saw what Static file generators are and how they help us, creating a site with Jekyll. In this post we will dig deep into some basic concepts of Jekyll.
+[In my previous post](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html)  we saw what Static file generators are and how they help us, creating a site with Jekyll. In this post, we will dig deep into some basic concepts of Jekyll.
 
 # Basic Building Blocks Of Jekyll
 1. **Pages**
@@ -28,7 +28,7 @@ In this post, I would like to continue on how I built my blog using GithubPages 
 7. **Assets**
 8. **Static Files**
 
-These are the key aspects of jekyll for building a static site. Lets see each of them in detail.
+These are the key aspects of Jekyll for building a static site. Let's see each of them in detail.
 
 # Pages
 Pages are basic building blocks for content. Some examples of Pages in blogging perspective are "About Me", "Contact Us", "Areas Of Interest". If you see these pages are independent and doesnt actually deal with actual blog content like posts.
@@ -45,7 +45,7 @@ You write blog posts as text files and Jekyll provides everything you need to tu
 <br>
 The _posts folder is where your blog posts live. You typically write posts in Markdown, HTML is also supported.
 <br>
-Usually a post file name starts in this format ```YEAR-MONTH-DAY-title.md```  where year is 4 digit year, Month,Day are 2 digit. A sample post looks something like this
+Usually, a post file name starts in this format ```YEAR-MONTH-DAY-title.md```  where year is 4 digit year, Month, Day is 2 digit. A sample post looks something like this
 
 <br>
 File Name: 2019-01-01-Welcome-Post.md
@@ -61,7 +61,7 @@ title:  "Welcome to Xyzcoder.github.io"
 ```
 
 # Front Matter
-Front matter is the  section present in the starting of a file and this will be processed by Jekyll. This is the YAML syntax and it should be present in the starting and between 3 dashes as opening and closing.
+Frontmatter is the section present at the starting of a file and this will be processed by Jekyll. This is the YAML syntax and it should be present in the starting and between 3 dashes as opening and closing.
 <br>
 For example
 ```
@@ -70,7 +70,7 @@ For example
 layout: post
 title:  "Welcome to Jekyll!"
 date:   2019-11-10 17:34:24 +0530
-categories: jekyll update
+categories: Jekyll update
 ---
 
 ```
@@ -97,7 +97,7 @@ author: Pavan Kumar Aryasomayajulu
 
 **title**: Specifies the title of the page<br>
 **layout**: For specifying which layout file to be used. We will see details of a layout file shortly.<br>
-**comments**: This is a custom variable which i am using and In my case, I accept true and false for this and based on the value provided, I'll display comments section in my post.<br>
+**comments**: This is a custom variable which I am using and In my case, I accept true and false for this and based on the value provided, I'll display comments section in my post.<br>
 **categories**: This is how an array is declared in YAML and here I have 3 categories AWS, VPC and VPC-Peering
 
 **How do we use these variables**: All variables declared in a 
@@ -105,35 +105,35 @@ author: Pavan Kumar Aryasomayajulu
 <h1>{{ page.author }}</h1>
 
 { % for category in page.categories %}
-		<span class="tag">#{{category}}</span>
+        <span class="tag">#{{category}}</span>
 { % endfor %}
 ```
 
-**Important Point**: It is important to note that the title, date and categories will have impact on the url of the post which is generated.
+**Important Point**: It is important to note that the title, date, and categories will have an impact on the URL of the post which is generated.
 <br>
-For example for the above configuration, this is how the url of my post looks like because when Jekyll generates a static html page using above configuration, it creates folder structure based on the data provided.
+For example for the above configuration, this is how the URL of my post looks like because when Jekyll generates a static HTML page using the above configuration, it creates a folder structure based on the data provided.
 
 <img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
-So here if we see **_site**, This is where generated html content is stored. The location of the file is decided based on **Categories, date**
+So here if we see **_site**, This is where generated HTML content is stored. The location of the file is decided based on **Categories, date**
 # Assets and Static Files:
-This is the place where we can place our sass files, css and js files and also we can have all our static image file as subfolders under assets.
+This is the place where we can place our sass files, CSS and js files and also we can have all our static image file as subfolders under assets.
 
 
 # _includes:
-Includes folder is mainly used for storing html files which contain code which can be plugged into any pages or posts.
+Includes folder is mainly used for storing HTML files that contain code which can be plugged into any pages or posts.
 
 # How to configure a blog 
-Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.
+Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everything else is almost static HTML.
 <br><br>
-**Note:** This is the layout of a static page and my index page is almost same except that I'll list al my blogs titles over there.
+**Note:** This is the layout of a static page and my index page is almost the same except that I'll list all my blog titles over there.
 
 
 <img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
 <br><br>
 
-**Initially I am creating a Layout file which represents my blogs layout.** <br>
+**Initially I am creating a Layout file which represents the layout of my blog.** <br>
 This is placed under _layout folder. 
 
 Filename: posts.html<br>
@@ -175,14 +175,14 @@ Filename: posts.html<br>
 ```
 
 
- **Some Key taks aways in this: ** <br>
-1. ``` {% raw %} {% include head.html %}  {% include profile_widget.html %}  {% include blog_content.html %}{% endraw %}``` All scripts and css files or common html that needs to be included in my blog are fixed and they are same for all pages. So I wanted to have all scripts and css files references included in head.html file and I'll reuse that If I need them in any other places.
+ **Some Key takeaways in this: ** <br>
+1. ``` {% raw %} {% include head.html %}  {% include profile_widget.html %}  {% include blog_content.html %}{% endraw %}``` All scripts and CSS files or common HTML that needs to be included in my blog are fixed and they are same for all pages. So I wanted to have all scripts and CSS files references included in head.html file and I'll reuse that If I need them in any other places.
 
 <br><br>
 **index.html**:
 
 This is my blogs index page and here I would like to list all my blog posts.<br><br>
-Here I specified my layout as "post.html" and also I am sending a custom variable "isindex". Also you can see, I am looping on posts by using following syntax
+Here I specified my layout as "post.html" and also I am sending a custom variable "isindex". Also, you can see, I am looping on posts by using the following syntax
 
 <br>
 ```{% raw %} {% for item in site.posts %} {% endraw %}```
