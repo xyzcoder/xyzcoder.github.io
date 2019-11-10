@@ -31,7 +31,7 @@ Head over to [GitHub](http://github.com) and create a new repository named usern
 <br>
 If the first part of the repository doesn’t exactly match your username, it won’t work, so make sure to get it right.
 <br>
-<img src="{{ site.baseurl }}/02-name-repo.png"  alt="" style="width: 80%;height: 80%;"/>
+<img src="{{ site.baseurl }}/02-name-repo.PNG"  alt="" style="width: 80%;height: 80%;"/>
 
 <br>
 Now commit index.html page into the GitHub repository and try to browse "username.github.io". Now you should see the content of the HTML page.
