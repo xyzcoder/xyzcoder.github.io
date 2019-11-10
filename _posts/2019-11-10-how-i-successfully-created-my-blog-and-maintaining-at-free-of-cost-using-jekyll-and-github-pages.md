@@ -1,6 +1,6 @@
 ---
 title: How I successfully created my Blog and maintaining at free of cost using Jekyll
-  and Github Pages
+  and Github Pages -- Part1
 layout: post
 date: '2019-11-10 16:10:41'
 comments: true
@@ -82,6 +82,8 @@ Once the installation is successful, we can start building our blog with minimal
 
 <br>
 **Now we can see our blog running successfully**
+
+** Part2 of this post** [Here is the link to part2 of this article](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html) 
 
 <br>
 <br>
