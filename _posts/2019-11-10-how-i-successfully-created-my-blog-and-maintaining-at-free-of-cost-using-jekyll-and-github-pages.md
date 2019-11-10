@@ -82,8 +82,9 @@ Once the installation is successful, we can start building our blog with minimal
 
 <br>
 **Now we can see our blog running successfully**
-
+<br><br>
 ** Part2 of this post** [Here is the link to part2 of this article](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html) 
+
 
 <br>
 <br>
