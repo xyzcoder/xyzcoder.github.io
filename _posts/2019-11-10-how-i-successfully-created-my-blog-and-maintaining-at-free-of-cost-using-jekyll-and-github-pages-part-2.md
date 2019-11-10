@@ -20,12 +20,103 @@ In this post, I would like to continue on how I built my blog using GithubPages 
 
 # Basic Building Blocks Of Jekyll
 1. **Pages**
-2. **Posts**
-3. ** Front Matter**
-4. ** Collections**
-5. **Data Files**
-6. **Assets**
-7. **Static Files**
+2. **Liquid Template Language**
+3. **Posts**
+4. ** Front Matter**
+5. ** Collections**
+6. **Data Files**
+7. **Assets**
+8. **Static Files**
+
+These are the key aspects of jekyll for building a static site. Lets see each of them in detail.
+
+# Pages
+Pages are basic building blocks for content. Some examples of Pages in blogging perspective are "About Me", "Contact Us", "Areas Of Interest". If you see these pages are independent and doesnt actually deal with actual blog content like posts.
+<br>
+A simple way to create Pages is to add "Name_Of_the_file.md" in root directory
+<br>
+In the default template created, we can see "about.md" and "index.md"
+<br>
+In my blog, I use "posts_by_tags.md", "posts_by_date.md", "contact.md"
+
+<br>
+# Posts
+You write blog posts as text files and Jekyll provides everything you need to turn it into a blog.
+<br>
+The _posts folder is where your blog posts live. You typically write posts in Markdown, HTML is also supported.
+<br>
+Usually a post file name starts in this format ```YEAR-MONTH-DAY-title.md```  where year is 4 digit year, Month,Day are 2 digit. A sample post looks something like this
+
+<br>
+File Name: 2019-01-01-Welcome-Post.md
+```
+---
+layout: post
+title:  "Welcome to Xyzcoder.github.io"
+---
+
+# Hello Welcome To xyzcoder.github.io
+
+**This is a sample blog post**,  in Jekyll.
+```
+
+# Front Matter
+Front matter is the  section present in the starting of a file and this will be processed by Jekyll. This is the YAML syntax and it should be present in the starting and between 3 dashes as opening and closing.
+<br>
+For example
+```
+
+---
+layout: post
+title:  "Welcome to Jekyll!"
+date:   2019-11-10 17:34:24 +0530
+categories: jekyll update
+---
+
+```
+
+We can have predefined variables and also custom variables that can be accessed in the file's liquid tags or even in pages and also include files.
+<br>
+I'll show a sample Front Matter code which I use in almost all my blog posts<br>
+
+```
+
+---
+title: AWS VPC Peering Connection
+layout: post
+date: '2018-05-15 22:19:51'
+comments: true
+categories:
+- AWS
+- VPC
+- VPC-Peering
+author: Pavan Kumar Aryasomayajulu
+---
+
+```
+
+**title**: Specifies the title of the page<br>
+**layout**: For specifying which layout file to be used. We will see details of a layout file shortly.<br>
+**comments**: This is a custom variable which i am using and In my case, I accept true and false for this and based on the value provided, I'll display comments section in my post.<br>
+**categories**: This is how an array is declared in YAML and here I have 3 categories AWS, VPC and VPC-Peering
+
+**How do we use these variables**: All variables declared in a 
+```
+<h1>{{ page.author }}</h1>
+
+{% for category in page.categories %}
+		<span class="tag">#{{category}}</span>
+{% endfor %}
+```
+
+**Important Point**: It is important to note that the title, date and categories will have impact on the url of the post which is generated.
+<br>
+For example for the above configuration, this is how the url of my post looks like because when Jekyll generates a static html page using above configuration, it creates folder structure based on the data provided.
+
+<img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
+# Assets
+
+
 
 
 <br>
