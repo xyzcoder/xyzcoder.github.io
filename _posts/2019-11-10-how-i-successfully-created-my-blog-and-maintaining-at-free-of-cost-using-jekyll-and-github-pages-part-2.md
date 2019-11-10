@@ -116,11 +116,17 @@ For example for the above configuration, this is how the url of my post looks li
 <img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
 So here if we see **_site**, This is where generated html content is stored. The location of the file is decided based on **Categories, date**
-# Assets
+# Assets and Static Files:
+This is the place where we can place our sass files, css and js files and also we can have all our static image file as subfolders under assets.
 
 
+# _includes:
+Includes folder is mainly used for storing html files which contain code which can be plugged into any pages or posts.
 
+# How to configure a blog 
+Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog
 
+<img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
 <br>
 <br>
