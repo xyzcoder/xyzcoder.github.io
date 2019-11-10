@@ -1,0 +1,64 @@
+<p>Hello Everyone,
+In this post, I would like to discuss on how I successfully built (<a href="http://xyzcoder.github.io">xyzcoder.github.io</a>) my blog at free of cost and maintenance.
+<br /></p>
+
+<h1 id="technologies-i-am-making-use-of-for-building-and-maintaining-my-blog">Technologies I am making use of for building and maintaining my blog</h1>
+<ol>
+  <li><strong>Jekyll</strong></li>
+  <li><strong>Github Pages</strong></li>
+  <li><strong>Javascript</strong></li>
+  <li><strong>HTML</strong></li>
+  <li><strong>Ruby</strong>(But we don’t need any prior knowledge of it and it is not directly used by us)</li>
+</ol>
+
+<h1 id="what-is-github-pages">What is Github Pages</h1>
+<p>GitHub Pages are public webpages hosted for free through GitHub. GitHub users can create and host both personal websites (one allowed per user) and websites related to specific GitHub projects. Pages lets you do the same things like GitHub, but if the repository is named a certain way and files inside it are HTML or Markdown, you can view the file like any other website. Pages also come with a powerful static site generator called Jekyll, which we’ll learn more about later on.
+<br />
+In other words, Gitpages allows you to create your blog( Static) by committing HTML or markdown files into your repository.</p>
+
+<h1 id="how-to-create-github-pages">How to create Github Pages</h1>
+<p>Head over to <a href="http://github.com">GitHub</a> and create a new repository named username.github.io, where username is your username (or organization name) on GitHub.
+<br />
+If the first part of the repository doesn’t exactly match your username, it won’t work, so make sure to get it right.
+<br />
+<img src="/02-name-repo.png" alt="" style="width: 80%;height: 80%;" /></p>
+
+<p><br />
+Now commit index.html page into the GitHub repository and try to browse “username.github.io”. Now you should see the content of the HTML page.</p>
+
+<h1 id="so-how-does-static-site-generators-come-to-our-rescue">So How does Static Site Generators come to our rescue</h1>
+<p>So in the above step, we saw how to host our HTML page in Github pages. If it is a simple application we can directly upload our HTML pages and maintain them. But what if I want to build a blog or static site with 100’s of pages. Is it as simple as the above approach? A big NO. And a few reasons are…
+<br /></p>
+<ol>
+  <li>If I want to add a new URL to my menu items and if it is a small application, I can go to each page and then modify my application to add that menu item’s url. But If my application has 100’s of pages then I cannot go to every page and modify them</li>
+  <li>I want to have a theme for my blog with some static header and footer. As this is a static HTML page blog, I need to repeat the same code for the header and footer in all the pages. And It will be difficult to modify/add the content on every page.</li>
+  <li>The same is the case with including javascript or CSS pages/links common to the entire application.</li>
+  <li>Reusability– let’s say I have a small snippet of HTML code which needs to be included in all pages. For example, I need to include an HTML form on all pages. So even in this case, I need to duplicate all my code.</li>
+  <li>No database. Unlike WordPress and other content management systems (CMS), Static site generators don’t have a database. All posts and pages are converted to static HTML before publication. This is great for loading speed because no database calls are made when a page is loaded.</li>
+</ol>
+
+<h1 id="what-is-jekyll">What is Jekyll:</h1>
+<p>Jekyll is a parsing engine bundled as a ruby gem used to build static websites from dynamic components such as templates, partials, liquid code, markdown, etc. Jekyll is known as “a simple, blog-aware, static site generator”. Just like some NuGet(In .Net), Maven(in Java), NPM(In node.js, Javascript) Jekyll is a package developed in Ruby.</p>
+
+<h1 id="why-jekyll">Why Jekyll:</h1>
+<p>So once I decided to go with Static web pages for my blog, I want to go with Jekyll because it is supported by Github pages and also a few advantages which I found</p>
+
+<p><br />
+For every problem discussed in “So How does Static Site Generators come to our rescue” section can be handled easily with these static site generators like Jekyll.
+<br /></p>
+
+<ol>
+  <li>Ability to write content in markdown.</li>
+  <li>It is not required to have a separate database and hence I can go with hosting providers like GithubPages, Firebase and few more</li>
+  <li>I can run the software just in my machine for preview and I don’t need any internet.</li>
+  <li>I can make use of text editor on my local machine for writing blog posts and publish the generated content to Github pages</li>
+  <li>I can use various themes available in the market and modify them as per my requirement</li>
+  <li>I can break down my code into templates and also I can have layouts that can be used in different pages conditionally.</li>
+</ol>
+
+<p><br />
+<br />
+Thanks,<br />
+Pavan Kumar Aryasomayajulu</p>
+
+<p><br /><br /><br /></p>
