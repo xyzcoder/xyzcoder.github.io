@@ -62,7 +62,11 @@ For every problem discussed in "So How does Static Site Generators come to our r
 5. I can use various themes available in the market and modify them as per my requirement
 6. I can break down my code into templates and also I can have layouts that can be used in different pages conditionally.
 
-
+# Installing Jekyll:
+For installing Jekyll, we need to have ruby installed on our machine.
+<br>
+Please go though the official url for installation steps:<br>
+[Installation Steps](https://jekyllrb.com/docs/installation/windows/)
 
 
 <br>
