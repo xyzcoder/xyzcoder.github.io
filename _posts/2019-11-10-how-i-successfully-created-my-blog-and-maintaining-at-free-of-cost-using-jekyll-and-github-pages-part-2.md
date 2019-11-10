@@ -125,9 +125,51 @@ Includes folder is mainly used for storing html files which contain code which c
 
 # How to configure a blog 
 Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.
+<br><br>
+**Note:** This is the layout of a static page and my index page is almost same except that I'll list al my blogs titles over there.
 
 
 <img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
+
+<br><br>
+
+**Initially I am creating a Layout file which represents by blog**
+
+```
+
+<!DOCTYPE html>
+<html lang="no-js">
+{% include head.html %}
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="{{ site.baseurl }}/index.html" class="active">Blog</a>
+        <a href="{{ site.baseurl }}/about.html">About Me</a>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <!-- profile -->
+                        {% include profile_widget.html %}
+                        <!--end profile -->
+
+                        <!-- blog content -->
+                        {% include blog_content.html %}
+                        <!--blog content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include scripts.html %}
+</body>
+
+</html>
+
+```
 
 <br>
 <br>

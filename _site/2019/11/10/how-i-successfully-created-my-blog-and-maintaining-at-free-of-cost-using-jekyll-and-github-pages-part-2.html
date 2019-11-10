@@ -436,9 +436,671 @@ For example for the above configuration, this is how the url of my post looks li
 <p>Includes folder is mainly used for storing html files which contain code which can be plugged into any pages or posts.</p>
 
 <h1 id="how-to-configure-a-blog">How to configure a blog</h1>
-<p>Now, I’ll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.</p>
+<p>Now, I’ll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.
+<br /><br />
+<strong>Note:</strong> This is the layout of a static page and my index page is almost same except that I’ll list al my blogs titles over there.</p>
 
 <p><img src="/jekyll2.jpg" alt="" style="width: 80%;height: 80%;" /></p>
+
+<p><br /><br /></p>
+
+<p><strong>Initially I am creating a Layout file which represents by blog</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"no-js"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;head&gt;</span>
+
+          <span class="nt">&lt;title&gt;</span>Pavan Kumar Aryasomayajulu<span class="nt">&lt;/title&gt;</span>
+
+          <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"content-type"</span> <span class="na">content=</span><span class="s">"text/html; charset=utf-8"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge,chrome=1"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1, maximum-scale=1"</span><span class="nt">/&gt;</span>
+
+          <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"Pavan Kumar Aryasomayajulu"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"google-site-verification"</span> <span class="na">content=</span><span class="s">"LfPi7exaA4zufZ1K-jS-XMIWDVSAaczpPkTXXomezmc"</span> <span class="nt">/&gt;</span>
+
+          <span class="c">&lt;!-- CSS | bootstrap --&gt;</span>
+          <span class="c">&lt;!-- Credits: http://getbootstrap.com/ --&gt;</span>
+          <span class="nt">&lt;link</span>  <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/bootstrap.min.css"</span> <span class="nt">/&gt;</span>
+
+          <span class="c">&lt;!-- CSS | font-awesome --&gt;</span>
+          <span class="c">&lt;!-- Credits: http://fortawesome.github.io/Font-Awesome/icons/ --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/font-awesome.min.css"</span> <span class="nt">/&gt;</span>
+
+          <span class="c">&lt;!-- CSS | animate --&gt;</span>
+          <span class="c">&lt;!-- Credits: http://daneden.github.io/animate.css/ --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/animate.min.css"</span> <span class="nt">/&gt;</span>
+
+          <span class="c">&lt;!-- CSS | Normalize --&gt;</span>
+          <span class="c">&lt;!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/jquery.mCustomScrollbar.css"</span> <span class="nt">/&gt;</span>
+          
+          <span class="c">&lt;!-- CSS | Colors --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/colors/DarkBlue.css"</span> <span class="na">id=</span><span class="s">"colors-style"</span> <span class="nt">/&gt;</span>
+          
+          <span class="c">&lt;!-- CSS | Style --&gt;</span>
+          <span class="c">&lt;!-- Credits: http://themeforest.net/user/FlexyCodes --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/main.css"</span> <span class="nt">/&gt;</span>
+
+          <span class="c">&lt;!-- CSS | prettyPhoto --&gt;</span>
+          <span class="c">&lt;!-- Credits: http://www.no-margin-for-errors.com/ --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">href=</span><span class="s">"/assets/css/prettyPhoto.css"</span><span class="nt">/&gt;</span> 
+
+          <span class="c">&lt;!-- CSS | Google Fonts --&gt;</span>
+          <span class="c">&lt;!-- &lt;link href='http://fonts.useso.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'&gt; --&gt;</span>
+          <span class="c">&lt;!-- Favicon --&gt;</span>
+          <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/x-icon"</span> <span class="na">href=</span><span class="s">"/images/favicon/favicon.ico"</span><span class="nt">&gt;</span>
+
+          <span class="c">&lt;!--[if IE 7]&gt;
+                  &lt;link rel="stylesheet" type="text/css" href="assets/css/icons/font-awesome-ie7.min.css"/&gt;
+          &lt;![endif]--&gt;</span>
+
+          <span class="nt">&lt;style&gt;</span>
+              <span class="k">@media</span> <span class="n">only</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span> <span class="p">:</span> <span class="m">991px</span><span class="p">){</span>
+                  <span class="nc">.resp-vtabs</span> <span class="nc">.resp-tabs-container</span> <span class="p">{</span>
+                      <span class="nl">margin-left</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+                  <span class="p">}</span>
+              <span class="p">}</span>
+              
+              <span class="k">@media</span> <span class="n">only</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">min-width</span> <span class="p">:</span> <span class="m">800px</span><span class="p">)</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span> <span class="p">:</span> <span class="m">991px</span><span class="p">){</span>
+                  <span class="nc">.resp-vtabs</span> <span class="nc">.resp-tabs-container</span> <span class="p">{</span>
+                      <span class="nl">margin-left</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
+                      <span class="nl">width</span><span class="p">:</span><span class="m">89%</span><span class="p">;</span>
+                  <span class="p">}</span>
+              <span class="p">}</span>  
+
+
+          <span class="nt">&lt;/style&gt;</span>
+
+
+
+
+
+
+
+
+          <span class="nt">&lt;style&gt;</span>
+            <span class="nt">body</span> <span class="p">{</span>
+              <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+              <span class="nl">font-family</span><span class="p">:</span> <span class="n">Arial</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nc">.topnav</span> <span class="p">{</span>
+              <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+              <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
+              <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
+              <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+              <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+              <span class="nl">top</span><span class="p">:</span><span class="m">0px</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nc">.topnav</span> <span class="nt">a</span> <span class="p">{</span>
+              <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+              <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+              <span class="nl">color</span><span class="p">:</span> <span class="m">#f2f2f2</span><span class="p">;</span>
+              <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+              <span class="nl">padding</span><span class="p">:</span> <span class="m">14px</span> <span class="m">16px</span><span class="p">;</span>
+              <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+              <span class="nl">font-size</span><span class="p">:</span> <span class="m">17px</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nc">.topnav</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+              <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ddd</span><span class="p">;</span>
+              <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nc">.active</span> <span class="p">{</span>
+              <span class="nl">background-color</span><span class="p">:</span> <span class="m">#4CAF50</span><span class="p">;</span>
+              <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nc">.topnav</span> <span class="nc">.icon</span> <span class="p">{</span>
+              <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nc">.topnav</span> <span class="nt">a</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:first-child</span><span class="o">)</span> <span class="p">{</span><span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;}</span>
+              <span class="nc">.topnav</span> <span class="nt">a</span><span class="nc">.icon</span> <span class="p">{</span>
+                <span class="nl">float</span><span class="p">:</span> <span class="nb">right</span><span class="p">;</span>
+                <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nc">.topnav.responsive</span> <span class="p">{</span><span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span><span class="nl">z-index</span><span class="p">:</span> <span class="m">100</span><span class="p">}</span>
+              <span class="nc">.topnav.responsive</span> <span class="nc">.icon</span> <span class="p">{</span>
+                <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+                <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+                <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="nc">.topnav.responsive</span> <span class="nt">a</span> <span class="p">{</span>
+                <span class="nl">float</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+                <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+                <span class="nl">text-align</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+      <span class="nt">&lt;/style&gt;</span>
+
+      <span class="c">&lt;!-- Begin Jekyll SEO tag v2.6.1 --&gt;</span>
+<span class="nt">&lt;title&gt;</span>How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages– Part 2 | xyzcoder.github.io<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"generator"</span> <span class="na">content=</span><span class="s">"Jekyll v3.8.6"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:title"</span> <span class="na">content=</span><span class="s">"How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages– Part 2"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:locale"</span> <span class="na">content=</span><span class="s">"en_US"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"Hello Everyone, In this post, I would like to continue on how I built my blog using GithubPages and Jekyll at free of cost and maintenance. Here is the link to my previous article"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:description"</span> <span class="na">content=</span><span class="s">"Hello Everyone, In this post, I would like to continue on how I built my blog using GithubPages and Jekyll at free of cost and maintenance. Here is the link to my previous article"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span> <span class="na">href=</span><span class="s">"http://0.0.0.0:4000/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:url"</span> <span class="na">content=</span><span class="s">"http://0.0.0.0:4000/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:site_name"</span> <span class="na">content=</span><span class="s">"xyzcoder.github.io"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"og:type"</span> <span class="na">content=</span><span class="s">"article"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"article:published_time"</span> <span class="na">content=</span><span class="s">"2019-11-10T21:42:12+00:00"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:card"</span> <span class="na">content=</span><span class="s">"summary"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">"twitter:title"</span> <span class="na">content=</span><span class="s">"How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages– Part 2"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"twitter:site"</span> <span class="na">content=</span><span class="s">"@"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"application/ld+json"</span><span class="nt">&gt;</span>
+<span class="p">{</span><span class="dl">"</span><span class="s2">mainEntityOfPage</span><span class="dl">"</span><span class="p">:{</span><span class="dl">"</span><span class="s2">@type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">WebPage</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">@id</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">http://0.0.0.0:4000/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html</span><span class="dl">"</span><span class="p">},</span><span class="dl">"</span><span class="s2">@type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">BlogPosting</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">http://0.0.0.0:4000/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">headline</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages– Part 2</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">dateModified</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">2019-11-10T21:42:12+00:00</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">datePublished</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">2019-11-10T21:42:12+00:00</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">description</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">Hello Everyone, In this post, I would like to continue on how I built my blog using GithubPages and Jekyll at free of cost and maintenance. Here is the link to my previous article</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">@context</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">https://schema.org</span><span class="dl">"</span><span class="p">}</span><span class="nt">&lt;/script&gt;</span>
+<span class="c">&lt;!-- End Jekyll SEO tag --&gt;</span>
+
+
+      
+
+      <span class="c">&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">||</span> <span class="p">[];</span>
+  <span class="kd">function</span> <span class="nx">gtag</span><span class="p">(){</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);}</span>
+  <span class="nx">gtag</span><span class="p">(</span><span class="dl">'</span><span class="s1">js</span><span class="dl">'</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+
+  <span class="nx">gtag</span><span class="p">(</span><span class="dl">'</span><span class="s1">config</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">UA-119328598-1</span><span class="dl">'</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+
+
+      <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span><span class="kd">function</span> <span class="nx">add_chatinline</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">hccid</span><span class="o">=</span><span class="mi">90341307</span><span class="p">;</span><span class="kd">var</span> <span class="nx">nt</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">script</span><span class="dl">"</span><span class="p">);</span><span class="nx">nt</span><span class="p">.</span><span class="k">async</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">nt</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://mylivechat.com/chatinline.aspx?hccid=</span><span class="dl">"</span><span class="o">+</span><span class="nx">hccid</span><span class="p">;</span><span class="kd">var</span> <span class="nx">ct</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">script</span><span class="dl">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span><span class="nx">ct</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">nt</span><span class="p">,</span><span class="nx">ct</span><span class="p">);}</span>
+        <span class="nx">add_chatinline</span><span class="p">();</span> <span class="nt">&lt;/script&gt;</span>
+
+     
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"topnav"</span> <span class="na">id=</span><span class="s">"myTopnav"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/index.html"</span> <span class="na">class=</span><span class="s">"active"</span><span class="nt">&gt;</span>Blog<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/about.html"</span><span class="nt">&gt;</span>About Me<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+                        <span class="c">&lt;!-- profile --&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-3 widget-profil"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"affix"</span><span class="nt">&gt;</span>
+			<span class="c">&lt;!-- Profile Image --&gt;</span>
+			<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-lg-12 col-md-12 col-sm-3 col-xs-12 "</span><span class="nt">&gt;</span>
+
+				<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"image-holder one"</span> <span class="na">id=</span><span class="s">"pic_prof_1"</span> <span class="na">style=</span><span class="s">"display:block"</span><span class="nt">&gt;</span>
+					<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"head-image front circle"</span> <span class="na">src=</span><span class="s">"/images/img/0.jpg"</span> <span class="na">width=</span><span class="s">"150"</span> <span class="na">height=</span><span class="s">"150"</span> <span class="na">alt=</span><span class="s">""</span> <span class="nt">/&gt;</span>
+				<span class="nt">&lt;/div&gt;</span>
+
+				<span class="c">&lt;!-- style for simple image profile --&gt;</span>		
+				<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"circle-img"</span> <span class="na">id=</span><span class="s">"pic_prof_2"</span> <span class="na">style=</span><span class="s">"display:none"</span><span class="nt">&gt;&lt;/div&gt;</span>
+			<span class="nt">&lt;/div&gt;</span>
+			<span class="c">&lt;!-- End Profile Image --&gt;</span>
+
+			<span class="c">&lt;!-- Begin profile information --&gt;</span>
+			<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-lg-12 col-md-12 col-sm-9 col-xs-12"</span><span class="nt">&gt;</span>
+				<span class="c">&lt;!-- Profile info --&gt;</span>
+				<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"profile_info"</span><span class="nt">&gt;</span>
+					<span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">"name"</span> <span class="na">class=</span><span class="s">"transition-02"</span> <span class="na">style=</span><span class="s">"color: white;text-align:  center;margin-top: 0px;"</span><span class="nt">&gt;</span>Pavan Kumar Aryasomayajulu<span class="nt">&lt;/h3&gt;</span>
+				<span class="nt">&lt;/div&gt;</span>
+				<span class="c">&lt;!-- End Profile info --&gt;</span>  
+
+
+				<span class="c">&lt;!-- Profile Description --&gt;</span>
+				<span class="c">&lt;!-- &lt;div id="profile_desc"&gt;
+					&lt;p&gt;
+						I am passionate programmer with good experience in building various application both enterprise level and small scale. Apart from technology I like to travel. I visited many places in India and can help people choosing travel destinations.
+					&lt;/p&gt;
+
+				&lt;/div&gt; --&gt;</span>
+				<span class="c">&lt;!-- End Profile Description --&gt;</span>  
+
+
+				<span class="c">&lt;!-- Name --&gt;</span>
+				<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"profile_social"</span> <span class="na">style=</span><span class="s">"padding-top: 0px;"</span><span class="nt">&gt;</span>
+					<span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"position:  relative;left: 30%"</span><span class="nt">&gt;</span>
+						<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.facebook.com/paryasomayajulu"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-facebook"</span><span class="nt">&gt;&lt;/i&gt;&lt;/a&gt;</span>
+						<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://www.twitter.com"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-twitter"</span><span class="nt">&gt;&lt;/i&gt;&lt;/a&gt;</span>
+						<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.linkedin.com/in/pavankumararya/"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-linkedin"</span><span class="nt">&gt;&lt;/i&gt;&lt;/a&gt;</span>
+					<span class="nt">&lt;/div&gt;</span>
+					<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"clear"</span><span class="nt">&gt;&lt;/div&gt;</span>
+				<span class="nt">&lt;/div&gt;</span>
+				<span class="nt">&lt;br&gt;</span>
+				<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"profile_desc"</span><span class="nt">&gt;</span>
+					<span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"glow"</span> <span class="na">style=</span><span class="s">"font-size:20px;"</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">onclick=</span><span class="s">"subscribe()"</span><span class="nt">&gt;</span>Subscribe<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+					<span class="nt">&lt;ins</span> <span class="na">class=</span><span class="s">"adsbygoogle"</span>
+				     <span class="na">style=</span><span class="s">"display:block"</span>
+				     <span class="na">data-ad-client=</span><span class="s">"ca-pub-3300393120826046"</span>
+				     <span class="na">data-ad-slot=</span><span class="s">"6654590880"</span>
+				     <span class="na">data-ad-format=</span><span class="s">"auto"</span><span class="nt">&gt;</span>
+				     <span class="nt">&lt;/ins&gt;</span>
+				<span class="nt">&lt;/div&gt;</span>
+				<span class="c">&lt;!-- End Name --&gt;</span>  
+
+			<span class="nt">&lt;/div&gt;</span>
+			<span class="c">&lt;!-- End profile information --&gt;</span>
+
+		<span class="nt">&lt;/div&gt;</span>                                      
+	<span class="nt">&lt;/div&gt;</span> 
+	<span class="c">&lt;!-- end profile --&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+                        <span class="c">&lt;!--end profile --&gt;</span>
+
+                        <span class="c">&lt;!-- blog content --&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-9 flexy_content"</span> <span class="na">style=</span><span class="s">"padding-left: 0;padding-right: 0;"</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- verticalTab menu --&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"verticalTab"</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- resp-tabs-container --&gt;</span> 
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"resp-tabs-container"</span><span class="nt">&gt;</span>
+
+            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"blog"</span> <span class="na">class=</span><span class="s">"content_2"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+
+                        <span class="c">&lt;!-- Page Blog --&gt;</span>
+                        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span> <span class="na">id=</span><span class="s">"blog_page"</span><span class="nt">&gt;</span>
+                            <span class="c">&lt;!-- start Page Blog --&gt;</span>
+                            <span class="nt">&lt;section</span> <span class="na">id=</span><span class="s">"post-1-page"</span> <span class="na">class=</span><span class="s">"content-post"</span><span class="nt">&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row inner"</span><span class="nt">&gt;</span>
+                                    <span class="c">&lt;!-- Top_above_title --&gt;</span>
+                                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span><span class="nt">&gt;</span>
+                                            <span class="nt">&lt;ins</span> <span class="na">class=</span><span class="s">"adsbygoogle"</span>
+                                            <span class="na">style=</span><span class="s">"display:block"</span>
+                                            <span class="na">data-ad-client=</span><span class="s">"ca-pub-3300393120826046"</span>
+                                            <span class="na">data-ad-slot=</span><span class="s">"7976676067"</span>
+                                            <span class="na">data-ad-format=</span><span class="s">"auto"</span>
+                                            <span class="na">data-full-width-responsive=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/ins&gt;</span>
+                                    <span class="nt">&lt;/div&gt;</span>
+                                <span class="nt">&lt;/div&gt;</span>
+                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row inner"</span><span class="nt">&gt;</span>
+
+                                    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span> <span class="na">style=</span><span class="s">"width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;padding-left: 30px;"</span><span class="nt">&gt;</span>
+
+                                        <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"postPage"</span><span class="nt">&gt;</span>
+
+                                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"title_content"</span><span class="nt">&gt;</span>
+                                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text_content"</span><span class="nt">&gt;</span>
+                                                   
+                                                    
+                                                        How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages-- Part 2
+                                                    
+                                                    
+                                                <span class="nt">&lt;/div&gt;</span>
+                                                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"clear"</span><span class="nt">&gt;&lt;/div&gt;</span>
+                                            <span class="nt">&lt;/div&gt;</span>
+
+                                            
+                                                Hello Everyone,
+In this post, I would like to continue on how I built my blog using GithubPages and Jekyll at free of cost and maintenance. 
+<span class="nt">&lt;br&gt;</span>
+[Here is the link to my previous article](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html) 
+
+<span class="nt">&lt;br&gt;</span>
+[In my previous post](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html)  we saw what Static file generators are and how they help us, creating a site with Jekyll. In this post we will dig deep into some basic concepts of Jekyll.
+
+# Basic Building Blocks Of Jekyll
+1. **Pages**
+2. **Liquid Template Language**
+3. **Posts**
+4. ** Front Matter**
+5. ** Collections**
+6. **Data Files**
+7. **Assets**
+8. **Static Files**
+
+These are the key aspects of jekyll for building a static site. Lets see each of them in detail.
+
+# Pages
+Pages are basic building blocks for content. Some examples of Pages in blogging perspective are "About Me", "Contact Us", "Areas Of Interest". If you see these pages are independent and doesnt actually deal with actual blog content like posts.
+<span class="nt">&lt;br&gt;</span>
+A simple way to create Pages is to add "Name_Of_the_file.md" in root directory
+<span class="nt">&lt;br&gt;</span>
+In the default template created, we can see "about.md" and "index.md"
+<span class="nt">&lt;br&gt;</span>
+In my blog, I use "posts_by_tags.md", "posts_by_date.md", "contact.md"
+
+<span class="nt">&lt;br&gt;</span>
+# Posts
+You write blog posts as text files and Jekyll provides everything you need to turn it into a blog.
+<span class="nt">&lt;br&gt;</span>
+The _posts folder is where your blog posts live. You typically write posts in Markdown, HTML is also supported.
+<span class="nt">&lt;br&gt;</span>
+Usually a post file name starts in this format ```YEAR-MONTH-DAY-title.md```  where year is 4 digit year, Month,Day are 2 digit. A sample post looks something like this
+
+<span class="nt">&lt;br&gt;</span>
+File Name: 2019-01-01-Welcome-Post.md
+</code></pre></div></div>
+<hr />
+<p>layout: post
+title:  “Welcome to Xyzcoder.github.io”
+—</p>
+
+<h1 id="hello-welcome-to-xyzcodergithubio">Hello Welcome To xyzcoder.github.io</h1>
+
+<p><strong>This is a sample blog post</strong>,  in Jekyll.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# Front Matter
+Front matter is the  section present in the starting of a file and this will be processed by Jekyll. This is the YAML syntax and it should be present in the starting and between 3 dashes as opening and closing.
+&lt;br&gt;
+For example
+</code></pre></div></div>
+
+<hr />
+<p>layout: post
+title:  “Welcome to Jekyll!”
+date:   2019-11-10 17:34:24 +0530
+categories: jekyll update
+—</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+We can have predefined variables and also custom variables that can be accessed in the file's liquid tags or even in pages and also include files.
+&lt;br&gt;
+I'll show a sample Front Matter code which I use in almost all my blog posts&lt;br&gt;
+
+</code></pre></div></div>
+
+<hr />
+<p>title: AWS VPC Peering Connection
+layout: post
+date: ‘2018-05-15 22:19:51’
+comments: true
+categories:</p>
+<ul>
+  <li>AWS</li>
+  <li>VPC</li>
+  <li>VPC-Peering
+author: Pavan Kumar Aryasomayajulu
+—</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+**title**: Specifies the title of the page&lt;br&gt;
+**layout**: For specifying which layout file to be used. We will see details of a layout file shortly.&lt;br&gt;
+**comments**: This is a custom variable which i am using and In my case, I accept true and false for this and based on the value provided, I'll display comments section in my post.&lt;br&gt;
+**categories**: This is how an array is declared in YAML and here I have 3 categories AWS, VPC and VPC-Peering
+
+**How do we use these variables**: All variables declared in a 
+</code></pre></div></div>
+<h1>{{ page.author }}</h1>
+
+<p>{ % for category in page.categories %}
+		<span class="tag">#{{category}}</span>
+{ % endfor %}</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+**Important Point**: It is important to note that the title, date and categories will have impact on the url of the post which is generated.
+&lt;br&gt;
+For example for the above configuration, this is how the url of my post looks like because when Jekyll generates a static html page using above configuration, it creates folder structure based on the data provided.
+
+&lt;img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/&gt;
+
+So here if we see **_site**, This is where generated html content is stored. The location of the file is decided based on **Categories, date**
+# Assets and Static Files:
+This is the place where we can place our sass files, css and js files and also we can have all our static image file as subfolders under assets.
+
+
+# _includes:
+Includes folder is mainly used for storing html files which contain code which can be plugged into any pages or posts.
+
+# How to configure a blog 
+Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.
+&lt;br&gt;&lt;br&gt;
+**Note:** This is the layout of a static page and my index page is almost same except that I'll list al my blogs titles over there.
+
+
+&lt;img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+**Initially I am creating a Layout file which represents by blog**
+
+</code></pre></div></div>
+
+<p>&lt;!DOCTYPE html&gt;</p>
+<html lang="no-js">
+{% include head.html %}
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="{{ site.baseurl }}/index.html" class="active">Blog</a>
+        <a href="{{ site.baseurl }}/about.html">About Me</a>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <!-- profile -->
+                        {% include profile_widget.html %}
+                        <!--end profile -->
+
+                        <!-- blog content -->
+                        {% include blog_content.html %}
+                        <!--blog content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include scripts.html %}
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+```
+
+<br />
+<br />
+Thanks,<br />
+Pavan Kumar Aryasomayajulu
+
+<br /><br /><br />
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.identifier = 11102019312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xyzcoder1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endif %}
+                                            
+
+
+                                            <div class="col-md-12 first">
+                                                <div class="info">
+                                                    <div>
+
+
+                                                        
+
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>    
+
+                                                <div class="col-md-12" style="margin-top: 20px;">
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                </div>
+
+                                                <div class="clear"></div>
+                                            </div>
+
+                                        &lt;/article&gt;
+                                        <amp-auto-ads type="adsense" data-ad-client="ca-pub-3300393120826046">
+</amp-auto-ads>
+                                    </div>
+                                    <div class="clear"></div>
+                                &lt;/div&gt;
+                            &lt;/section&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+
+            &lt;/div&gt;
+
+        &lt;/div&gt;<!-- End verticalTab -->
+
+    &lt;/div&gt;<!-- End flexy_content -->
+
+
+&lt;/div&gt;<!-- End row -->
+                        <!--blog content -->
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+            <!-- jquery | jQuery 1.11.0 -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+    <!-- Js | bootstrap -->
+    <!-- Credits: http://getbootstrap.com/ -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script> 
+
+    <!-- Js | jquery.cycle -->
+    <!-- Credits: https://github.com/malsup/cycle2 -->
+    <script type="text/javascript" src="/assets/js/jquery.cycle2.min.js"></script>
+
+    <!-- jquery | rotate and portfolio -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script> 
+    <script type="text/javascript" src="/assets/js/HeadImage.js"></script>
+
+    <!-- Js | easyResponsiveTabs -->
+    <!-- Credits: http://webtrendset.com/demo/easy-responsive-tabs/Index.html -->
+    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script>  
+
+    <!-- Js | mCustomScrollbar -->
+    <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+    <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>     
+
+    <!-- jquery | prettyPhoto -->
+    <!-- Credits: http://www.no-margin-for-errors.com/ -->
+    <script type="text/javascript" src="/assets/js/jquery.prettyPhoto.js"></script>
+
+
+    <!-- Js | Js -->
+    <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+
+&lt;script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&amp;product="sticky-share-buttons"&gt;&lt;/script&gt;
+    
+<script type="text/javascript">
+var isAdBoxDisplayed = false;
+
+if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+    isAdBoxDisplayed = true;
+}
+
+//In future I can add this to have pop on scroll bottom
+$(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+        $("#myModal").modal("show");
+        isAdBoxDisplayed = true;
+    }
+});
+</script>
+<script async="" custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
+                }
+            });
+           
+        }
+    }
+
+</script>
+
+
+</body>
+
+</html>
+
+<p>```</p>
 
 <p><br />
 <br />
