@@ -124,7 +124,7 @@ This is the place where we can place our sass files, css and js files and also w
 Includes folder is mainly used for storing html files which contain code which can be plugged into any pages or posts.
 
 # How to configure a blog 
-Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog
+Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.
 
 <img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
