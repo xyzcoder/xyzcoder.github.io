@@ -74,6 +74,9 @@ Once the installation is successful, we can start building our blog with minal e
 **Steps for Getting Started**:
 1. Navigate to the folder where you would like to create your website code
 2. ``` jekyll new YOUR_REPO_NAME ```
+3. Once we use the above command it will create a gem file and few other files required to get started. GemFile is similat to Package.json in Node. It also installs required packages mentioned in the GemFile
+4. Now running ``` jekyll build YOUR_REPO_NAME```. This will build the code and it will create a folder called **_sites** which has generated html code.
+5.  
 
 
 <br>
