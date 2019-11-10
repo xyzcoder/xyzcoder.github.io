@@ -68,6 +68,13 @@ For installing Jekyll, we need to have ruby installed on our machine.
 Please go though the official url for installation steps:<br>
 [Installation Steps](https://jekyllrb.com/docs/installation/windows/)
 
+# Getting started with Jekyll
+Once the installation is successful, we can start building our blog with minal effort.
+<br>
+**Steps for Getting Started**:
+1. Navigate to the folder where you would like to create your website code
+2. ``` jekyll new YOUR_REPO_NAME ```
+
 
 <br>
 <br>
