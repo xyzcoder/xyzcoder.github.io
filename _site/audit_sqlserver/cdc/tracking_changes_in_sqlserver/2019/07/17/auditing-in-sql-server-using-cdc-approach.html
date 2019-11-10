@@ -1,0 +1,901 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> 
+<html lang="no-js"> <!--<![endif]-->  
+      <head>
+
+          <title>Pavan Kumar Aryasomayajulu</title>
+
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+          <meta name="description" content="Pavan Kumar Aryasomayajulu"/>
+          <meta name="google-site-verification" content="LfPi7exaA4zufZ1K-jS-XMIWDVSAaczpPkTXXomezmc" />
+
+          <!-- CSS | bootstrap -->
+          <!-- Credits: http://getbootstrap.com/ -->
+          <link  rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+
+          <!-- CSS | font-awesome -->
+          <!-- Credits: http://fortawesome.github.io/Font-Awesome/icons/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css" />
+
+          <!-- CSS | animate -->
+          <!-- Credits: http://daneden.github.io/animate.css/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css" />
+
+          <!-- CSS | Normalize -->
+          <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css" />
+          
+          <!-- CSS | Colors -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/colors/DarkBlue.css" id="colors-style" />
+          
+          <!-- CSS | Style -->
+          <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+          <!-- CSS | prettyPhoto -->
+          <!-- Credits: http://www.no-margin-for-errors.com/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/prettyPhoto.css"/> 
+
+          <!-- CSS | Google Fonts -->
+          <!-- <link href='http://fonts.useso.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> -->
+          <!-- Favicon -->
+          <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+
+          <!--[if IE 7]>
+                  <link rel="stylesheet" type="text/css" href="assets/css/icons/font-awesome-ie7.min.css"/>
+          <![endif]-->
+
+          <style>
+              @media only screen and (max-width : 991px){
+                  .resp-vtabs .resp-tabs-container {
+                      margin-left: 13px;
+                  }
+              }
+              
+              @media only screen and (min-width : 800px) and (max-width : 991px){
+                  .resp-vtabs .resp-tabs-container {
+                      margin-left: 13px;
+                      width:89%;
+                  }
+              }  
+
+
+          </style>
+
+
+
+
+
+
+
+
+          <style>
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .topnav {
+              overflow: hidden;
+              background-color: #333;
+              position: fixed;
+              width: 100%;
+              z-index: 1;
+              top:0px;
+            }
+
+            .topnav a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+
+            .topnav a:hover {
+              background-color: #ddd;
+              color: black;
+            }
+
+            .active {
+              background-color: #4CAF50;
+              color: white;
+            }
+
+            .topnav .icon {
+              display: none;
+            }
+
+            @media screen and (max-width: 600px) {
+              .topnav a:not(:first-child) {display: none;}
+              .topnav a.icon {
+                float: right;
+                display: block;
+              }
+            }
+
+            @media screen and (max-width: 600px) {
+              .topnav.responsive {position: fixed;z-index: 100}
+              .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+              }
+              .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+              }
+            }
+      </style>
+
+      <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Auditing In SQL Server Using CDC Approach | xyzcoder.github.io</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Auditing In SQL Server Using CDC Approach" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach." />
+<meta property="og:description" content="Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach." />
+<link rel="canonical" href="http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" />
+<meta property="og:site_name" content="xyzcoder.github.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-17T08:57:27+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Auditing In SQL Server Using CDC Approach" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html","headline":"Auditing In SQL Server Using CDC Approach","dateModified":"2019-07-17T08:57:27+00:00","datePublished":"2019-07-17T08:57:27+00:00","description":"Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+      
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119328598-1');
+</script>
+
+
+      <script type="text/javascript">function add_chatinline(){var hccid=90341307;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+        add_chatinline(); </script>
+
+     
+</head>
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+      <a href="/index.html" class="active">Blog</a>
+      <a href="/about.html">About Me</a>
+      <a href="/tags">Posts By Tags</a>
+      <a href="#" onclick="subscribe()">Subscribe</a>
+      <a href="/tags#elasticsearch">Elastic Search</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+    function subscribe(){
+        $("#myModal").modal("show");
+    }
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<div class="wrapper">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">   
+
+                    <!-- profile -->
+                    <div class="col-md-3 widget-profil">
+	<div class="row">
+
+		<div class="affix">
+			<!-- Profile Image -->
+			<div class="col-lg-12 col-md-12 col-sm-3 col-xs-12 ">
+
+				<div class="image-holder one" id="pic_prof_1" style="display:block">
+					<img class="head-image front circle" src="/images/img/0.jpg" width="150" height="150" alt="" />
+				</div>
+
+				<!-- style for simple image profile -->		
+				<div class="circle-img" id="pic_prof_2" style="display:none"></div>
+			</div>
+			<!-- End Profile Image -->
+
+			<!-- Begin profile information -->
+			<div class="col-lg-12 col-md-12 col-sm-9 col-xs-12">
+				<!-- Profile info -->
+				<div id="profile_info">
+					<h3 id="name" class="transition-02" style="color: white;text-align:  center;margin-top: 0px;">Pavan Kumar Aryasomayajulu</h3>
+				</div>
+				<!-- End Profile info -->  
+
+
+				<!-- Profile Description -->
+				<!-- <div id="profile_desc">
+					<p>
+						I am passionate programmer with good experience in building various application both enterprise level and small scale. Apart from technology I like to travel. I visited many places in India and can help people choosing travel destinations.
+					</p>
+
+				</div> -->
+				<!-- End Profile Description -->  
+
+
+				<!-- Name -->
+				<div id="profile_social" style="padding-top: 0px;">
+					<div style="position:  relative;left: 30%">
+						<a href="https://www.facebook.com/paryasomayajulu"><i class="fa fa-facebook"></i></a>
+						<a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a>
+						<a href="https://www.linkedin.com/in/pavankumararya/"><i class="fa fa-linkedin"></i></a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<br>
+				<div id="profile_desc">
+					<h1 class="glow" style="font-size:20px;"><a href="#" onclick="subscribe()">Subscribe</a></h1>
+					<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-3300393120826046"
+				     data-ad-slot="6654590880"
+				     data-ad-format="auto">
+				     </ins>
+				</div>
+				<!-- End Name -->  
+
+			</div>
+			<!-- End profile information -->
+
+		</div>                                      
+	</div> 
+	<!-- end profile -->
+</div>
+                    <!--end profile -->
+
+                    <!-- blog content -->
+                    <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
+
+    <!-- verticalTab menu -->
+    <div id="verticalTab">
+        <!-- resp-tabs-container --> 
+        <div class="resp-tabs-container">
+
+            <div id="blog" class="content_2">
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <!-- Page Blog -->
+                        <div class="col-md-12" id="blog_page">
+                            <!-- start Page Blog -->
+                            <section id="post-1-page" class="content-post">
+                                <div class="row inner">
+                                    <!-- Top_above_title -->
+                                    <div class="col-md-12">
+                                            <ins class="adsbygoogle"
+                                            style="display:block"
+                                            data-ad-client="ca-pub-3300393120826046"
+                                            data-ad-slot="7976676067"
+                                            data-ad-format="auto"
+                                            data-full-width-responsive="true"></ins>
+                                    </div>
+                                </div>
+                                <div class="row inner">
+
+                                    <div class="col-md-12" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;padding-left: 30px;">
+
+                                        <article class="postPage">
+
+                                            <div class="title_content">
+                                                <div class="text_content">
+                                                   
+                                                    
+                                                        Auditing In SQL Server Using CDC Approach
+                                                    
+                                                    
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+
+                                            
+                                                <p>Hi, 
+In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach.</p>
+
+<h1 id="requirement">Requirement:</h1>
+<p>In the world of transactional databases, It is always required to audit our changes to track changes like what was changed and when it was changed especially with sensitve data. For example If we are dealing with some pharmacy or someother key domains related data, then as per govt regulations it is mandatory to audit certain data.</p>
+
+<h1 id="traditional-approaches-to-audit-data">Traditional approaches to Audit Data</h1>
+<p>There many ways to audit data in Sql server, some traditional approaches are as follow:</p>
+<ol>
+  <li>
+    <p><strong>Using C# code itself</strong>
+  Where ever we have insert and update statements , there we need to have some extra logic to insert into our tracking tables for changes.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     For example: Lets say I am trying to update "FirstName" field and In order to audit it I need to take following approach
+
+              -- Select FirstName From User where Id=10
+              -- Store this value in a variable
+              -- Update User set Firstname='New Value' where Id=10
+             -- Insert into User_Audit (Column,OldValue,NewValue,DateValue) Values ('FirstName','Old Value stored in variable','New Value',GetDate()
+</code></pre></div>    </div>
+
+    <p>So just to audit this change we need to write few extra lines of code and as the number of places to audit increases, this extra logic also increases which is a pain for maintaining.</p>
+  </li>
+  <li>
+    <p><strong>Using Triggers</strong>
+  By making use of triggers, we can avoid this extra logic but there are few scenarios where triggers dont actually fire and we need some extra configuration.
+      By default, the BULK INSERT statement do not execute triggers. However, you can enable triggers by using FIRE_TRIGGERS qualifiers.
+      Also It is a manual process to write these triggers.</p>
+  </li>
+</ol>
+
+<p>So, In these cases we can make use of SQL Server inbuilt feature for auditing.</p>
+
+<h1 id="feature-availability">Feature Availability:</h1>
+<p>CDC approach was indroduced in MS Sql 2008 but restricted only to developer and Enterprise editions. But from Sql server 2017, It is present in Standard Edition too.</p>
+
+<h1 id="getting-started">Getting Started:</h1>
+<p>As CDC is specific to certain versions, initially lets check the version of sql server</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> select @@version
+ ---Output
+Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)   Aug 22 2017 17:04:49   Copyright (C) 2017 Microsoft Corporation  Express Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 17134: ) (Hypervisor) 
+</code></pre></div></div>
+
+<p>I can see that my version of sql server in 2017 and Express Edition. So as per my understanding CDC feature is avaibale for Standard, Developer and Enterprise version of 2017 but not Express edition. But lets try</p>
+
+<p><br /><br /></p>
+<h1 id="check-if-cdc-is-enabled">Check If CDC Is Enabled:</h1>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE master 
+GO 
+SELECT [name], database_id, is_cdc_enabled  FROM sys.databases       
+GO  
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/cdc/1.PNG" style="max-width: 100%;height: auto;" alt="" />
+<br /><br />
+As you can see None of my databases have cdc enabled.
+<br /><br /></p>
+
+<p><strong>Enabling CDC</strong>:
+  You can run this stored procedure in the context of each database to enable CDC at database level</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	USE Pavan 
+	GO 
+	EXEC sys.sp_cdc_enable_db 
+	GO  
+</code></pre></div></div>
+
+<p>When I ran this command, I got following error</p>
+
+<p style="color: red !important;">Msg 22988, Level 16, State 1, Procedure sys.spcdcenabledb, Line 13 [Batch Start Line 2]
+This instance of SQL Server is the Express Edition (64-bit). Change data capture is only available in the Enterprise, Developer, Enterprise Evaluation, and Standard editions.</p>
+
+<p><br />
+So only option I have now is to install standard or developer editions and I’ll go with developer edition for now because standard edition costs me.</p>
+
+<p>After Installing Sql server devloper edition let me check the version</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> select @@version
+ ---Output
+Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)   Aug 22 2017 17:04:49   Copyright (C) 2017 Microsoft Corporation  Developer Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 17134: ) (Hypervisor) 
+</code></pre></div></div>
+
+<p><strong>Note</strong>: When we have 2 different versions installed, Please make sure that we connect to appropriate server</p>
+
+<p>Now lets try to enable CDC by running following proc and this time it is successful.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	USE Pavan 
+	GO 
+	EXEC sys.sp_cdc_enable_db 
+	GO  
+
+	USE master 
+	GO 
+	SELECT [name], database_id, is_cdc_enabled  FROM sys.databases       
+	GO  
+</code></pre></div></div>
+
+<p>Also we can see a new schema and few system level tables were created for cdc.<br />
+<img src="/assets/images/posts/cdc/2.PNG" style="max-width: 100%;height: auto;" alt="" />
+<br />
+<img src="/assets/images/posts/cdc/3.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p><br />
+<br /></p>
+
+<p><strong>Check List Of Tables Having CDC</strong>
+<br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
+</code></pre></div></div>
+
+<p>I have one table in my DB and we can see is_tracked_by_cdc is set to 0 ie cdc is not enabled on this table
+<br />
+<img src="/assets/images/posts/cdc/4.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<h1 id="enable-cdc">Enable CDC</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_enable_table 
+@source_schema = N'dbo', 
+@source_name   = N'Test', 
+@role_name     = NULL 
+
+select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
+</code></pre></div></div>
+
+<p>Here we need to pass schema and then source table name.
+<strong>role_name</strong> is used to restrict querying cdc tables based on roles and if we want this data to be accessible for everyone, we need to pass null for this value.</p>
+
+<p><br /></p>
+
+<h1 id="enabling-cdc-for-certain-columns">Enabling CDC for certain columns:</h1>
+
+<p><br /> In case if we want to track only certain columns, then we need to pass them in the parameter <br />
+@captured_column_list = ‘[Firstname]’  to the proc sys.sp_cdc_enable_table</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_enable_table 
+@source_schema = N'dbo', 
+@source_name   = N'Test', 
+@role_name     = NULL ,
+@captured_column_list = '[Firstname]'
+
+select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
+</code></pre></div></div>
+
+<p><br />
+Now we can see few extra tables created in the system table</p>
+
+<p><img src="/assets/images/posts/cdc/5.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p><br /><br />
+<strong>Testing CDC</strong>:</p>
+
+<p>As we enabled CDC for our test table, now lets try to test how it is actually working. I’ll insert few records into Test table and see the result.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO [dbo].[Test] 
+       (Id,Value) 
+VALUES (1,'pavan') 
+
+
+SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
+select * from test
+SELECT * FROM [Pavan].[cdc].[change_tables]
+</code></pre></div></div>
+
+<p>Unfortunately, I am not seeing any data in my CDC table which is opposite to my expectations</p>
+
+<p><img src="/assets/images/posts/cdc/6.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p><br /><br />
+By looking at last query results, I can see that CDC is enabled on my “Test” table but still dbo_Test_CT table is not populated with any data.</p>
+
+<p>I tried to identify errors by using these queries</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exec sys.sp_cdc_help_change_data_capture
+exec sys.sp_cdc_help_jobs
+select * from sys.dm_cdc_errors
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/cdc/8.PNG" style="max-width: 100%;height: auto;" alt="" />
+<br /><br />
+I see that there were no jobs for capture. And unfortunately I forgot to turn on my sql server agent.</p>
+<h1 id="missing-cdc-capture-job-when-enabling-cdc-on-table-in-sql-server">Missing CDC capture Job when enabling CDC on table in SQL Server</h1>
+<p>The reason behind missing data in CDC tables is because this feature depends on Sql Jobs and by default sql jobs are in stopped state and we need to enable them.</p>
+
+<p><img src="/assets/images/posts/cdc/7.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p>Now to create these missging jobs, I need to run following statements and ultimately we can see these jobs created</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_add_job @job_type = N'capture';
+EXEC sys.sp_cdc_add_job @job_type = N'cleanup';
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/cdc/9.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p><strong>Note</strong> By default if we have sql server agent running at the time of enabling cdc on a table, it will create these jobs and it is not required to run above scripts.</p>
+
+<p>** Now lets test CDC again**</p>
+
+<p><strong>Insert</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO [dbo].[Test] 
+       (Id,Value) 
+VALUES (3,'Satish') 
+
+SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
+select * from test
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/cdc/10.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p>So I can see my inserted values in dbo_Test_CT table but not the latest inserted one… The reason for that is there is a slight deelay of 1 sec for the change to appear and here we are querying it along with insert.
+<br /><br /></p>
+
+<p>There are two values which are very important to us is <strong>__$operation and __$update_mask</strong>.</p>
+
+<p>Column <strong>_$operation</strong> contains value which corresponds to DML Operations. Following is quick list of value and its corresponding meaning.
+<br /><br />
+Delete Statement = 1<br />
+Insert Statement = 2<br />
+Value before Update Statement = 3<br />
+Value after Update Statement = 4<br />
+<br /><br /><br /></p>
+
+<p><strong>Update</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update test set value='Sai satish' where id=3
+
+SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
+select * from test
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/cdc/11.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p><br />
+Row1 corresponds to insert (__operation=2) and we can see values for Id, Firstname,lastname<br />
+Row2,3 corresponds to update… row 2 has previous values and row 3 has updated values.. There I update firstname and lastname<br />
+Row 4,5 corresponds to update… Here we can see that  Lastname in row 4 is null because, I am not updating it and only I updated Firstname<br />
+<br /></p>
+
+<p><strong>Understanding __update_mask</strong>:
+<br /><br />
+In the above image for rows 2,3 we have update mask value as “0x06” and the binary equivalent of this is “0110”… So from this I can say that columns 2,3 were updated which are nothing but Firstname and Lastname
+<br />
+In the same way for rows 4,5 we have a value “0x02” and the binary equivalent is “0100”… So I can say column 1 is updated.</p>
+
+<p><br /><br /></p>
+
+<h1 id="identifying-records-modified-in-a-specific-transaction">Identifying Records Modified In a Specific Transaction</h1>
+<p>Basically in tracking table we have data in the column __$start_lsn which is nothing but a transaction log sequence number
+<br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * FROM cdc.lsn_time_mapping 
+</code></pre></div></div>
+<p><br />
+This has info related to all transactions and it has date time
+<br /></p>
+
+<p>So In order to detect the time frame and group transactions in tracking table, we can use this query</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select Id,Firstname,Lastname,t.* from  cdc.dbo_Users_CT u inner join
+cdc.lsn_time_mapping t on u.__$start_lsn=t.start_lsn
+</code></pre></div></div>
+
+<h1 id="disabling-cdc-on-table">Disabling CDC On Table:</h1>
+<p><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan; 
+GO 
+EXEC sys.sp_cdc_help_change_data_capture 
+GO
+</code></pre></div></div>
+
+<p><br />
+By using above query, we will get different parameters required for disabling the CDC</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan;
+GO
+EXECUTE sys.sp_cdc_disable_table 
+    @source_schema = N'dbo', 
+    @source_name = N'Test',
+    @capture_instance = N'dbo_Test';
+GO
+</code></pre></div></div>
+
+<p><br />
+Once the CDC is disabled, It will delete all tracking tables too.</p>
+
+<p><br /></p>
+<h1 id="deleting-cdc-on-database">Deleting CDC on Database</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan 
+GO 
+EXEC sys.sp_cdc_disable_db 
+GO 
+</code></pre></div></div>
+
+<h1 id="data-cleanup-from-cdc-tables">Data Cleanup From CDC Tables</h1>
+<p>In a transactional database with good load, If we have this Change tracking enabled, there are chances of the database growing exponentially. So keeping that in mind, <strong>SQL server itself will clean these logs every 3 days</strong> but this is configurable.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+SELECT ([retention])/((60*24)) AS Default_Retention_days ,*
+FROM msdb.dbo.cdc_jobs
+</code></pre></div></div>
+
+<p><br />
+Initally when we created CDC on a table, it created 2 jobs. One for capture and the other for cleanup. 
+So it is the responsibility of cleanup job to clean the data
+<br />
+<strong>sys.sp_cdc_cleanup_change_table</strong></p>
+
+<p><br />
+<strong>Updating this default 3 day value</strong>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC Pavan.sys.sp_cdc_change_job 
+@job_type=N'Cleanup'
+,@retention=20160 -- &lt;60 min *24 hrs * 14 days &gt;
+go
+
+</code></pre></div></div>
+
+<p><br />
+<br />
+Thanks,<br />
+Pavan Kumar Aryasomayajulu</p>
+
+<p><br /><br /><br /></p>
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.identifier = 07172019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xyzcoder1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                                            
+
+
+                                            <div class="col-md-12 first">
+                                                <div class="info">
+                                                    <div>
+
+
+                                                        
+
+                                                        
+                                                            <span class="tag">#Audit_SqlServer</span>
+                                                        
+                                                            <span class="tag">#CDC</span>
+                                                        
+                                                            <span class="tag">#Tracking_Changes_In_SqlServer</span>
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>    
+
+                                                <div class="col-md-12" style="margin-top: 20px;">
+                                                    <a href="/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/docker/dockerwindows/2019/07/08/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                </div>
+
+                                                <div class="clear"></div>
+                                            </div>
+
+                                        </article>
+                                        <amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-3300393120826046">
+</amp-auto-ads>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div><!-- End verticalTab -->
+
+    </div><!-- End flexy_content -->
+
+
+</div><!-- End row -->
+                    <!--blog content -->
+
+                </div><!-- End col-md-12 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+        <!-- </section> -->
+        <!-- End Content -->
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" onclick="closeSubscribe()">&times;</button>
+                  <h4 class="modal-title" style="color: white;">Thank you for reading this article- Subscribe To Recieve My Future Articles</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Please Enter your email</p>
+                  <input type="text" id="email" style="width:100%">
+                  <br/>
+                  <br/>
+                  <div class="adsense-inject">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
+                  <button type="button" class="btn btn-default" onclick="closeSubscribe()">Close</button>
+                </div>
+              </div>
+          
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        
+    <!-- jquery | jQuery 1.11.0 -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+    <!-- Js | bootstrap -->
+    <!-- Credits: http://getbootstrap.com/ -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script> 
+
+    <!-- Js | jquery.cycle -->
+    <!-- Credits: https://github.com/malsup/cycle2 -->
+    <script type="text/javascript" src="/assets/js/jquery.cycle2.min.js"></script>
+
+    <!-- jquery | rotate and portfolio -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script> 
+    <script type="text/javascript" src="/assets/js/HeadImage.js"></script>
+
+    <!-- Js | easyResponsiveTabs -->
+    <!-- Credits: http://webtrendset.com/demo/easy-responsive-tabs/Index.html -->
+    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script>  
+
+    <!-- Js | mCustomScrollbar -->
+    <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+    <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>     
+
+    <!-- jquery | prettyPhoto -->
+    <!-- Credits: http://www.no-margin-for-errors.com/ -->
+    <script type="text/javascript" src="/assets/js/jquery.prettyPhoto.js"></script>
+
+
+    <!-- Js | Js -->
+    <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+
+<script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
+    
+<script type="text/javascript">
+var isAdBoxDisplayed = false;
+
+if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+    isAdBoxDisplayed = true;
+}
+
+//In future I can add this to have pop on scroll bottom
+$(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+        $("#myModal").modal("show");
+        isAdBoxDisplayed = true;
+    }
+});
+</script>
+<script async custom-element="amp-auto-ads"
+src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
+                }
+            });
+           
+        }
+    }
+
+</script>
+
+
+<script>
+    [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
+    (adsbygoogle = window.adsbygoogle || []).push({});
+});
+//In future we can ad ads in popup
+$('#myModal').on('shown.bs.modal', function (e) {
+    $(".adsense-inject").each(function (i) {
+        if(!$(this).html().includes("<ins")){
+            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    });
+})
+
+
+</script>
+
+
+
+</body>
+</html> 
+
