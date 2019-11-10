@@ -114,6 +114,7 @@ author: Pavan Kumar Aryasomayajulu
 For example for the above configuration, this is how the url of my post looks like because when Jekyll generates a static html page using above configuration, it creates folder structure based on the data provided.
 
 <img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
+
 # Assets
 
 
