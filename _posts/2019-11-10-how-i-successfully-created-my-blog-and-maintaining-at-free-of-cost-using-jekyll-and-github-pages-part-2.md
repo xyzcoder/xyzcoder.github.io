@@ -126,6 +126,7 @@ Includes folder is mainly used for storing html files which contain code which c
 # How to configure a blog 
 Now, I'll show you how We can configure a blog using different components present in Jekyll. This is the layout of my blog and we can see except blog content, everyting else is almost static html.
 
+
 <img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
 <br>
