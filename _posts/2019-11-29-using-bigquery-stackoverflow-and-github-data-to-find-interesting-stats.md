@@ -662,6 +662,8 @@ SELECT distinct(lang.name) as lang FROM `bigquery-public-data.github_repos.langu
 </table>
 
 
+
+
 <br>
 **Please download the sample blog content I am using from this zip file and make use of it** {{ site.url }}/download.zip
 <br>
