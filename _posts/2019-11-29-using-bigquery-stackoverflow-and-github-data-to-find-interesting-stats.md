@@ -669,7 +669,7 @@ SELECT distinct(lang.name) as lang FROM `bigquery-public-data.github_repos.langu
 <br>
 <br>
 Thanks,<br>
-Pavan Kumar Aryasomayajula
+Pavan Kumar Aryasomayajulu
 
 <br><br><br>
 {% if page.comments %}
