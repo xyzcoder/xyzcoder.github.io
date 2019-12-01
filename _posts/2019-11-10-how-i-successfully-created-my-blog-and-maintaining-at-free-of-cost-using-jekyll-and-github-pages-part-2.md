@@ -113,7 +113,7 @@ author: Pavan Kumar Aryasomayajulu
 <br>
 For example for the above configuration, this is how the URL of my post looks like because when Jekyll generates a static HTML page using the above configuration, it creates a folder structure based on the data provided.
 
-<img src="{{ site.baseurl }}/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/jekyll_1/jekyll1.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
 So here if we see **_site**, This is where generated HTML content is stored. The location of the file is decided based on **Categories, date**
 # Assets and Static Files:
@@ -129,7 +129,7 @@ Now, I'll show you how We can configure a blog using different components presen
 **Note:** This is the layout of a static page and my index page is almost the same except that I'll list all my blog titles over there.
 
 
-<img src="{{ site.baseurl }}/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/jekyll_1/jekyll2.jpg"  alt="" style="width: 80%;height: 80%;"/>
 
 <br><br>
 

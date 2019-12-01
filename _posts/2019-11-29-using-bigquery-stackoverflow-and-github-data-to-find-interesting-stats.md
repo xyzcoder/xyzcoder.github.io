@@ -37,10 +37,10 @@ Navigate to [https://console.cloud.google.com/bigquery] (https://console.cloud.g
 <br>
 Login with your gmail account
 <br>
-<img src="{{ site.baseurl }}/bigquery1.JPG"  alt="" style="width: 80%;height: 80%;"/>
+<img src="{{ site.baseurl }}/assets/images/posts/bigquery/bigquery1.JPG"  alt="" style="width: 80%;height: 80%;"/>
 <br>
 Click on select project and add a new project if you dont have one or the quota got expired for existing one. Once we are done with the project creation, following screen appears.<br>
-<img src="{{ site.baseurl }}/bigquery2.JPG"  alt="" style="width: 80%;height: 80%;"/><br>
+<img src="{{ site.baseurl }}/assets/images/posts/bigquery/bigquery2.JPG"  alt="" style="width: 80%;height: 80%;"/><br>
 At the bottom we can see **bigquery-public-data** and there we can see different public datasets. I am more interested in **github_repos** and **stackoverflow** datasets.
 <br>
 When we expand **github_repos** we can see different tables available and when we click on a table name we can see schema. If we click on preview, we can see sample data.
@@ -65,7 +65,7 @@ SELECT lang.name as lang FROM `bigquery-public-data.github_repos.languages`, UNN
 Google also provides us with the ability to plot various graphs and visualizations based on the data which we got. Once we get the query result, there is an option called "Explore with Datastudio". We can assiociate our account to make use of that feature and there we can plot different graphs.<br>
 
 
-<img src="{{ site.baseurl }}/bigquery3.JPG"  alt="" style="width: 80%;height: 80%;"/><br>
+<img src="{{ site.baseurl }}/assets/images/posts/bigquery/bigquery3.JPG"  alt="" style="width: 80%;height: 80%;"/><br>
 **Note:** In my case, I need to set **Metric** as **"count"** instead of the default value **"Record Count"** uder data or else we will not get appropriate results.
 
 <br>
