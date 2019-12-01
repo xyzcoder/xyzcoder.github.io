@@ -1,6 +1,6 @@
 ---
-title: Using BigQuery Stackoverflow and Github Data To Find Interesting Stats
 layout: post
+title: Using BigQuery Stackoverflow and Github Data To Find Interesting Stats
 date: '2019-11-29 13:28:40'
 comments: true
 Categories:
@@ -62,11 +62,12 @@ SELECT lang.name as lang FROM `bigquery-public-data.github_repos.languages`, UNN
 <br>
 **Explore with DataStudio**
 <br>
-Google also provides us with the ability to plot various graphs and visualizations based on the data which we got. Once we get the query result, there is an option called "Explore with Datastudio". We can assiociate our account to make use of that feature and there we can plot different graphs.<br>
+Google also provides us with the ability to plot various graphs and visualizations based on the data which we got. Once we get the query result, there is an option called "Explore with Datastudio". We can assiociate our account to make use of that feature and there we can plot different graphs.<br><br>
 
 
-<img src="{{ site.baseurl }}/assets/images/posts/bigquery/bigquery3.JPG"  alt="" style="width: 80%;height: 80%;"/><br>
+<img src="{{ site.baseurl }}/assets/images/posts/bigquery/bigquery3.JPG"  alt="" style="width: 80%;height: 80%;"/><br><br><br>
 **Note:** In my case, I need to set **Metric** as **"count"** instead of the default value **"Record Count"** uder data or else we will not get appropriate results.
+
 
 <br>
 <br>

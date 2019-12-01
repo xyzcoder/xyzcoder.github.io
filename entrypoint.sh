@@ -8,5 +8,5 @@ chmod u+x /pavan/xyzcoder.github.io/entrypoint.sh
 
 bundle install
 
-bundle exec jekyll serve --host 0.0.0.0
+bundle exec jekyll serve --watch --host 0.0.0.0
 
