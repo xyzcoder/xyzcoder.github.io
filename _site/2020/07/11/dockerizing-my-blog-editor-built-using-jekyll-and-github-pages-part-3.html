@@ -459,8 +459,67 @@ git clone https://github.com/xyzcoder/xyzcoder.github.io.git
 
 <p>Once code is cloned(It will take hardly 1min) Now I’ll run the image that i created in previous steps( One uploaded to docker hub).</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -it -d -p 4000:4000 -v $PWD/xyzcoder.github.io:/pavan/xyzcoder.github.io paryasomayajulu/jekyll
 </code></pre></div></div>
+
+<p>Here I am saying that I want to run docker container in backgroud (-it d) options and exposing port 4000 that is where Jekyll runs.<br />
+I am mounting my blog code to docker container using <br />
+-v $PWD/xyzcoder.github.io:/pavan/xyzcoder.github.io
+<br />
+<br />
+It is something like I am saying docker that please mount my folder current_directory/xyzcoder.github.io to pavan/xyzcoder.github.io folder in docker container. Reason why I am copying it to pavan/xyzcoder.github.io folder is, that is my working directory which I specified in docker file in step1.
+<br />
+<br /></p>
+
+<p>Once this command is executed, we can see port 4000 is hyperlinked at the top on page. Once we click on it, we can run our blog admin part.
+<br />
+<br />
+For example , I my case this is the url created</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://ip172-18-0-15-bs4qvgroudsg00d9isig-4000.direct.labs.play-with-docker.com/
+</code></pre></div></div>
+
+<p>I can browse http://ip172-18-0-15-bs4qvgroudsg00d9isig-4000.direct.labs.play-with-docker.com/admin and edit my posts successfully.
+<br />
+We can repeat Step4 any number of times and where ever we want.
+<br /><br />
+Finally after making any changes to posts from the UI screen, we need to commit changed files so that these posts reflect on your blog</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add -A
+git commit -m "Automatic update of modified files" &amp;&amp; git push
+
+</code></pre></div></div>
+
+<p><br /></p>
+<h1 id="note-step-4-can-be-used-even-on-windows-machines-where-we-have-docker-installed-and-this-reduces-the-burden-of-installing-ruby-and-other-required-softwares-for-editing-our-blog-posts">Note: Step 4 can be used even on windows machines where we have docker installed and this reduces the burden of installing Ruby and other required softwares for editing our blog posts</h1>
+
+<p><br />
+<br />
+Thanks,<br />
+Pavan Kumar Aryasomayajulu</p>
+
+<p><br /><br /><br /></p>
+
+<div id="disqus_thread"></div>
+<script>
+	
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.identifier = 11072020312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xyzcoder1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 
                                             
 
