@@ -93,6 +93,10 @@
 <lastmod>2019-11-29T13:28:40+00:00</lastmod>
 </url>
 <url>
+<loc>http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html</loc>
+<lastmod>2020-07-11T15:55:33+00:00</lastmod>
+</url>
+<url>
 <loc>http://0.0.0.0:4000/about.html</loc>
 </url>
 <url>
@@ -113,6 +117,6 @@
 </url>
 <url>
 <loc>http://0.0.0.0:4000/test.html</loc>
-<lastmod>2020-07-08T11:35:19+00:00</lastmod>
+<lastmod>2020-07-09T05:39:51+00:00</lastmod>
 </url>
 </urlset>

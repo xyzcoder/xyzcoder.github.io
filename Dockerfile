@@ -2,6 +2,8 @@ FROM ubuntu:latest
 
 # Installing Ruby
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update
 RUN apt-get install ruby-full make gcc nodejs build-essential patch -y
 

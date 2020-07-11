@@ -138,22 +138,22 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Auditing In SQL Server Using CDC Approach | xyzcoder.github.io</title>
+<title>Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3 | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Auditing In SQL Server Using CDC Approach" />
+<meta property="og:title" content="Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach." />
-<meta property="og:description" content="Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach." />
-<link rel="canonical" href="http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" />
+<meta name="description" content="Running Jekyll Anywhere Using Docker My Custom Image: Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog. Part 1: How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1" />
+<meta property="og:description" content="Running Jekyll Anywhere Using Docker My Custom Image: Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog. Part 1: How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1" />
+<link rel="canonical" href="http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-07-17T08:57:27+00:00" />
+<meta property="article:published_time" content="2020-07-11T15:55:33+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Auditing In SQL Server Using CDC Approach" />
+<meta property="twitter:title" content="Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html","headline":"Auditing In SQL Server Using CDC Approach","dateModified":"2019-07-17T08:57:27+00:00","datePublished":"2019-07-17T08:57:27+00:00","description":"Hi, In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html","headline":"Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3","dateModified":"2020-07-11T15:55:33+00:00","datePublished":"2020-07-11T15:55:33+00:00","description":"Running Jekyll Anywhere Using Docker My Custom Image: Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog. Part 1: How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -306,7 +306,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Auditing In SQL Server Using CDC Approach
+                                                        Dockerizing My Blog Editor Built Using Jekyll and Github Pages-- Part 3
                                                     
                                                     
                                                 </div>
@@ -314,348 +314,153 @@
                                             </div>
 
                                             
-                                                <p>Hi, 
-In this post I would like to explain how we can audit tables in SQL server using Change data capture ( CDC) approach.</p>
+                                                <h1 id="running-jekyll-anywhere-using-docker-my-custom-image">Running Jekyll Anywhere Using Docker My Custom Image:</h1>
+<p>Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog.
+<br />
+<br />
+Part 1: <a href="http://https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html">How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1</a>
+<br /></p>
 
-<h1 id="requirement">Requirement:</h1>
-<p>In the world of transactional databases, It is always required to audit our changes to track changes like what was changed and when it was changed especially with sensitve data. For example If we are dealing with some pharmacy or someother key domains related data, then as per govt regulations it is mandatory to audit certain data.</p>
+<p>Part 2: <a href="https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html">How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages– Part 2</a>
+<br />
+<br />
+So in these 2 parts I discussed about how to make use of various technologies like Github pages, Jekyll, Ruby and Firebase for hosting your website and giving some dynamicness to my blog.
+<br /></p>
 
-<h1 id="traditional-approaches-to-audit-data">Traditional approaches to Audit Data</h1>
-<p>There many ways to audit data in Sql server, some traditional approaches are as follow:</p>
+<p>Previously I used to blog using Wordpress and my blog address is <a href="https://pavanarya.wordpress.com/">https://pavanarya.wordpress.com/</a>.<br />
+One thing that I liked with wordpress, is the admin portal where I can simply login and using the interface provided by them, I am able to add new posts and moderate comments. Its like an all in one place where I am able to create content for my blog. I really loved it.
+<br /><br /></p>
+
+<p>But the draw back is with free edition, we have limited choice and control on the blog. So the developer in me wanted to take that control.
+I want to customize and create my blog in the way I wanted to.<br />
+That is when I opted for Github pages and Jekyll. But still I have few concerns when compared to wordpress. And they are
+<br /><br /></p>
+
 <ol>
-  <li>
-    <p><strong>Using C# code itself</strong>
-  Where ever we have insert and update statements , there we need to have some extra logic to insert into our tracking tables for changes.</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     For example: Lets say I am trying to update "FirstName" field and In order to audit it I need to take following approach
-
-              -- Select FirstName From User where Id=10
-              -- Store this value in a variable
-              -- Update User set Firstname='New Value' where Id=10
-             -- Insert into User_Audit (Column,OldValue,NewValue,DateValue) Values ('FirstName','Old Value stored in variable','New Value',GetDate()
-</code></pre></div>    </div>
-
-    <p>So just to audit this change we need to write few extra lines of code and as the number of places to audit increases, this extra logic also increases which is a pain for maintaining.</p>
-  </li>
-  <li>
-    <p><strong>Using Triggers</strong>
-  By making use of triggers, we can avoid this extra logic but there are few scenarios where triggers dont actually fire and we need some extra configuration.
-      By default, the BULK INSERT statement do not execute triggers. However, you can enable triggers by using FIRE_TRIGGERS qualifiers.
-      Also It is a manual process to write these triggers.</p>
-  </li>
+  <li><strong>Software installation:  I cannot login from any random system and edit my blogs or create new posts. Reason for that is , I need to have a complete setup of Jekyll on that machine and for that I need to install Ruby and other required peices of software. This might not be possible all the time. And more over Ruby is not something I work on regularly.</strong>
+<br /><br /></li>
 </ol>
 
-<p>So, In these cases we can make use of SQL Server inbuilt feature for auditing.</p>
-
-<h1 id="feature-availability">Feature Availability:</h1>
-<p>CDC approach was indroduced in MS Sql 2008 but restricted only to developer and Enterprise editions. But from Sql server 2017, It is present in Standard Edition too.</p>
-
-<h1 id="getting-started">Getting Started:</h1>
-<p>As CDC is specific to certain versions, initially lets check the version of sql server</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> select @@version
- ---Output
-Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)   Aug 22 2017 17:04:49   Copyright (C) 2017 Microsoft Corporation  Express Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 17134: ) (Hypervisor) 
-</code></pre></div></div>
-
-<p>I can see that my version of sql server in 2017 and Express Edition. So as per my understanding CDC feature is avaibale for Standard, Developer and Enterprise version of 2017 but not Express edition. But lets try</p>
-
-<p><br /><br /></p>
-<h1 id="check-if-cdc-is-enabled">Check If CDC Is Enabled:</h1>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE master 
-GO 
-SELECT [name], database_id, is_cdc_enabled  FROM sys.databases       
-GO  
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/1.PNG" style="max-width: 100%;height: auto;" alt="" />
+<p>This is a major concern for me and the solution for that is my fav piece of technology “<strong>Docker</strong>” is my saviour.
 <br /><br />
-As you can see None of my databases have cdc enabled.
-<br /><br /></p>
+Now we will see how I leveraged Docker to handle my problem discussed above.</p>
 
-<p><strong>Enabling CDC</strong>:
-  You can run this stored procedure in the context of each database to enable CDC at database level</p>
+<h1 id="step1-setting-up-jekyll-using-docker-containers-one-time-step">Step1: Setting up Jekyll using Docker Containers (One time Step)</h1>
+<p>As a part of solving above problem, my first step is to create a docker image.
+<br /><br />
+Here is my docker file</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	USE Pavan 
-	GO 
-	EXEC sys.sp_cdc_enable_db 
-	GO  
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:latest
+
+# Installing Ruby
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update
+RUN apt-get install ruby-full make gcc nodejs build-essential patch -y
+
+# Setting Jekyll
+
+RUN gem install jekyll bundler
+RUN useradd jekyll
+
+RUN mkdir pavan/
+RUN mkdir xyzcoder.github.io
+WORKDIR /pavan/xyzcoder.github.io
+
+ADD  entrypoint.sh /pavan/xyzcoder.github.io/
+
+ RUN chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh \
+     &amp;&amp; ln -s /pavan/xyzcoder.github.io/entrypoint.sh /
+
+ENTRYPOINT ["/pavan/xyzcoder.github.io/entrypoint.sh"]
+
 </code></pre></div></div>
-
-<p>When I ran this command, I got following error</p>
-
-<p style="color: red !important;">Msg 22988, Level 16, State 1, Procedure sys.spcdcenabledb, Line 13 [Batch Start Line 2]
-This instance of SQL Server is the Express Edition (64-bit). Change data capture is only available in the Enterprise, Developer, Enterprise Evaluation, and Standard editions.</p>
-
-<p><br />
-So only option I have now is to install standard or developer editions and I’ll go with developer edition for now because standard edition costs me.</p>
-
-<p>After Installing Sql server devloper edition let me check the version</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> select @@version
- ---Output
-Microsoft SQL Server 2017 (RTM) - 14.0.1000.169 (X64)   Aug 22 2017 17:04:49   Copyright (C) 2017 Microsoft Corporation  Developer Edition (64-bit) on Windows 10 Pro 10.0 &lt;X64&gt; (Build 17134: ) (Hypervisor) 
-</code></pre></div></div>
-
-<p><strong>Note</strong>: When we have 2 different versions installed, Please make sure that we connect to appropriate server</p>
-
-<p>Now lets try to enable CDC by running following proc and this time it is successful.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	USE Pavan 
-	GO 
-	EXEC sys.sp_cdc_enable_db 
-	GO  
-
-	USE master 
-	GO 
-	SELECT [name], database_id, is_cdc_enabled  FROM sys.databases       
-	GO  
-</code></pre></div></div>
-
-<p>Also we can see a new schema and few system level tables were created for cdc.<br />
-<img src="/assets/images/posts/cdc/2.PNG" style="max-width: 100%;height: auto;" alt="" />
-<br />
-<img src="/assets/images/posts/cdc/3.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br />
-<br /></p>
-
-<p><strong>Check List Of Tables Having CDC</strong>
-<br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
-</code></pre></div></div>
-
-<p>I have one table in my DB and we can see is_tracked_by_cdc is set to 0 ie cdc is not enabled on this table
-<br />
-<img src="/assets/images/posts/cdc/4.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<h1 id="enable-cdc">Enable CDC</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_enable_table 
-@source_schema = N'dbo', 
-@source_name   = N'Test', 
-@role_name     = NULL 
-
-select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
-</code></pre></div></div>
-
-<p>Here we need to pass schema and then source table name.
-<strong>role_name</strong> is used to restrict querying cdc tables based on roles and if we want this data to be accessible for everyone, we need to pass null for this value.</p>
-
-<p><br /></p>
-
-<h1 id="enabling-cdc-for-certain-columns">Enabling CDC for certain columns:</h1>
-
-<p><br /> In case if we want to track only certain columns, then we need to pass them in the parameter <br />
-@captured_column_list = ‘[Firstname]’  to the proc sys.sp_cdc_enable_table</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_enable_table 
-@source_schema = N'dbo', 
-@source_name   = N'Test', 
-@role_name     = NULL ,
-@captured_column_list = '[Firstname]'
-
-select is_tracked_by_cdc,* from sys.tables where is_ms_shipped=0
-</code></pre></div></div>
-
-<p><br />
-Now we can see few extra tables created in the system table</p>
-
-<p><img src="/assets/images/posts/cdc/5.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
 
 <p><br /><br />
-<strong>Testing CDC</strong>:</p>
-
-<p>As we enabled CDC for our test table, now lets try to test how it is actually working. I’ll insert few records into Test table and see the result.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO [dbo].[Test] 
-       (Id,Value) 
-VALUES (1,'pavan') 
-
-
-SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
-select * from test
-SELECT * FROM [Pavan].[cdc].[change_tables]
-</code></pre></div></div>
-
-<p>Unfortunately, I am not seeing any data in my CDC table which is opposite to my expectations</p>
-
-<p><img src="/assets/images/posts/cdc/6.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br /><br />
-By looking at last query results, I can see that CDC is enabled on my “Test” table but still dbo_Test_CT table is not populated with any data.</p>
-
-<p>I tried to identify errors by using these queries</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exec sys.sp_cdc_help_change_data_capture
-exec sys.sp_cdc_help_jobs
-select * from sys.dm_cdc_errors
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/8.PNG" style="max-width: 100%;height: auto;" alt="" />
-<br /><br />
-I see that there were no jobs for capture. And unfortunately I forgot to turn on my sql server agent.</p>
-<h1 id="missing-cdc-capture-job-when-enabling-cdc-on-table-in-sql-server">Missing CDC capture Job when enabling CDC on table in SQL Server</h1>
-<p>The reason behind missing data in CDC tables is because this feature depends on Sql Jobs and by default sql jobs are in stopped state and we need to enable them.</p>
-
-<p><img src="/assets/images/posts/cdc/7.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p>Now to create these missging jobs, I need to run following statements and ultimately we can see these jobs created</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC sys.sp_cdc_add_job @job_type = N'capture';
-EXEC sys.sp_cdc_add_job @job_type = N'cleanup';
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/9.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><strong>Note</strong> By default if we have sql server agent running at the time of enabling cdc on a table, it will create these jobs and it is not required to run above scripts.</p>
-
-<p>** Now lets test CDC again**</p>
-
-<p><strong>Insert</strong></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO [dbo].[Test] 
-       (Id,Value) 
-VALUES (3,'Satish') 
-
-SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
-select * from test
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/10.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p>So I can see my inserted values in dbo_Test_CT table but not the latest inserted one… The reason for that is there is a slight deelay of 1 sec for the change to appear and here we are querying it along with insert.
-<br /><br /></p>
-
-<p>There are two values which are very important to us is <strong>__$operation and __$update_mask</strong>.</p>
-
-<p>Column <strong>_$operation</strong> contains value which corresponds to DML Operations. Following is quick list of value and its corresponding meaning.
-<br /><br />
-Delete Statement = 1<br />
-Insert Statement = 2<br />
-Value before Update Statement = 3<br />
-Value after Update Statement = 4<br />
-<br /><br /><br /></p>
-
-<p><strong>Update</strong></p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update test set value='Sai satish' where id=3
-
-SELECT * FROM [Pavan].[cdc].[dbo_Test_CT]
-select * from test
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/cdc/11.PNG" style="max-width: 100%;height: auto;" alt="" /></p>
-
-<p><br />
-Row1 corresponds to insert (__operation=2) and we can see values for Id, Firstname,lastname<br />
-Row2,3 corresponds to update… row 2 has previous values and row 3 has updated values.. There I update firstname and lastname<br />
-Row 4,5 corresponds to update… Here we can see that  Lastname in row 4 is null because, I am not updating it and only I updated Firstname<br />
+entrypoint.sh
 <br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 
-<p><strong>Understanding __update_mask</strong>:
-<br /><br />
-In the above image for rows 2,3 we have update mask value as “0x06” and the binary equivalent of this is “0110”… So from this I can say that columns 2,3 were updated which are nothing but Firstname and Lastname
+<span class="nb">cd</span> /pavan/xyzcoder.github.io
+
+<span class="nb">ls
+
+chmod </span>u+x /pavan/xyzcoder.github.io/entrypoint.sh
+
+bundle <span class="nb">install
+
+</span>bundle <span class="nb">exec </span>jekyll serve <span class="nt">--watch</span> <span class="nt">--host</span> 0.0.0.0
+
+</code></pre></div></div>
+
+<p>Let me explain each step, I am having in the docker file.<br /><br /></p>
+<ol>
+  <li>I took ubuntu image as my base image</li>
+  <li>Then I am actually executing some linux commands to update and then installing Ruby</li>
+  <li>Here I am actually trying to install Jekyll package</li>
+  <li>I am creating few folders in my ubuntu container and that is the place, where I would like to have my blog code.</li>
+  <li>I copied a sh file where I have few command to install required Jekyll packages and start jekyll server. Note: This file is actually copied to my image and we are not running anything yet.</li>
+  <li>Finally we are specifying that entrypoint.sh as an entry point when we run that image. An entry point is nothing but we are specifying docker that we want to execute that command when docker container starts.</li>
+</ol>
+
+<h1 id="step-2-creating-image-and-pushing-it-to-docker-hub-one-time-step">Step 2: Creating Image and pushing it to docker hub (One time step)</h1>
+<p>Once we are done with docker file creation, we can create a docker image from that docker file. For that we need to execute following command.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build . -t paryasomayajulu/xyzcoderjekyll
+</code></pre></div></div>
+
+<p>“docker build” is the command used to build a docker image. “<strong>.</strong>” is used to specify the path and I have my docker file present in the same path so I am using dot. And -t is used to specify a tag for our image.<br />
+Once we run this command, it will execute each of the steps mentioned in our docker file.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
+</code></pre></div></div>
+<p>Above command is used to list all images present on our machine and make sure that we have our newly created image in the list.</p>
+
+<h1 id="step-3-create-an-account-with-docker-hub-and-push-our-image-to-docker-hub-repository">Step 3: Create an account with Docker hub and push our image to docker hub repository.</h1>
+<p>Create an account in <a href="https://hub.docker.com/">https://hub.docker.com/</a>
 <br />
-In the same way for rows 4,5 we have a value “0x02” and the binary equivalent is “0100”… So I can say column 1 is updated.</p>
-
-<p><br /><br /></p>
-
-<h1 id="identifying-records-modified-in-a-specific-transaction">Identifying Records Modified In a Specific Transaction</h1>
-<p>Basically in tracking table we have data in the column __$start_lsn which is nothing but a transaction log sequence number
-<br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * FROM cdc.lsn_time_mapping 
+<br />
+Now login into docker hub from your console</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login
 </code></pre></div></div>
 <p><br />
-This has info related to all transactions and it has date time
-<br /></p>
+Now create an alias for your image and to list your images use the command</p>
 
-<p>So In order to detect the time frame and group transactions in tracking table, we can use this query</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select Id,Firstname,Lastname,t.* from  cdc.dbo_Users_CT u inner join
-cdc.lsn_time_mapping t on u.__$start_lsn=t.start_lsn
+# Above command will list all images... Copy Image Id
+
+ docker tag &lt;ImageIdFromAboveList&gt; &lt;dockerhub_user_name&gt;/&lt;name_of_image&gt;
+ 
 </code></pre></div></div>
 
-<h1 id="disabling-cdc-on-table">Disabling CDC On Table:</h1>
-<p><br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan; 
-GO 
-EXEC sys.sp_cdc_help_change_data_capture 
-GO
+<p>Once tag is created use this command to push the image to docker hub</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker push &lt;dockerhub_user_name&gt;/&lt;name_of_image&gt;
 </code></pre></div></div>
+
+<p>Once this is successful, you can login to <a href="https://hub.docker.com/">https://hub.docker.com/</a> and see your image.</p>
+
+<h1 id="step-4-using-your-docker-image-anywhere-where-you-have-internet-and-browser">Step 4: Using your docker image anywhere where you have internet and browser.</h1>
+<p>There is a nice tool called “Docker Playgroud”. As the name suggests this is where you can play like anything with docker. So I am going to use this website as a host to blog.
+<br />
+<br />
+Login into <a href="https://labs.play-with-docker.com/">https://labs.play-with-docker.com/</a> using your docker hub credentials. And you’ll get a session where you can create an instance and play with docker.</p>
 
 <p><br />
-By using above query, we will get different parameters required for disabling the CDC</p>
+<br />
+Now I’ll use git commands to fetch my blog code on to this instance( In this example I am getting my code)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan;
-GO
-EXECUTE sys.sp_cdc_disable_table 
-    @source_schema = N'dbo', 
-    @source_name = N'Test',
-    @capture_instance = N'dbo_Test';
-GO
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.email "YOUR_EMAIL"
+git config --global user.name "YOUR_USERNAME"
+git clone https://github.com/xyzcoder/xyzcoder.github.io.git
 </code></pre></div></div>
 
-<p><br />
-Once the CDC is disabled, It will delete all tracking tables too.</p>
-
-<p><br /></p>
-<h1 id="deleting-cdc-on-database">Deleting CDC on Database</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USE Pavan 
-GO 
-EXEC sys.sp_cdc_disable_db 
-GO 
-</code></pre></div></div>
-
-<h1 id="data-cleanup-from-cdc-tables">Data Cleanup From CDC Tables</h1>
-<p>In a transactional database with good load, If we have this Change tracking enabled, there are chances of the database growing exponentially. So keeping that in mind, <strong>SQL server itself will clean these logs every 3 days</strong> but this is configurable.</p>
+<p>Once code is cloned(It will take hardly 1min) Now I’ll run the image that i created in previous steps( One uploaded to docker hub).</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-SELECT ([retention])/((60*24)) AS Default_Retention_days ,*
-FROM msdb.dbo.cdc_jobs
 </code></pre></div></div>
-
-<p><br />
-Initally when we created CDC on a table, it created 2 jobs. One for capture and the other for cleanup. 
-So it is the responsibility of cleanup job to clean the data
-<br />
-<strong>sys.sp_cdc_cleanup_change_table</strong></p>
-
-<p><br />
-<strong>Updating this default 3 day value</strong>:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EXEC Pavan.sys.sp_cdc_change_job 
-@job_type=N'Cleanup'
-,@retention=20160 -- &lt;60 min *24 hrs * 14 days &gt;
-go
-
-</code></pre></div></div>
-
-<p><br />
-<br />
-Thanks,<br />
-Pavan Kumar Aryasomayajulu</p>
-
-<p><br /><br /><br /></p>
-
-<div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-
-var disqus_config = function () {
-this.page.identifier = 07172019318; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://xyzcoder1.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
                                             
 
@@ -668,20 +473,14 @@ s.setAttribute('data-timestamp', +new Date());
                                                         
 
                                                         
-                                                            <span class="tag">#Audit_SqlServer</span>
-                                                        
-                                                            <span class="tag">#CDC</span>
-                                                        
-                                                            <span class="tag">#Tracking_Changes_In_SqlServer</span>
-                                                        
                                                     </div>
                                                 </div>
 
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/docker/dockerwindows/2019/07/08/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2019/11/29/using-bigquery-stackoverflow-and-github-data-to-find-interesting-stats.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
