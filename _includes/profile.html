@@ -1,4 +1,4 @@
-    <!-- profile -->
+<!-- profile -->
     <div id="profile" class="content_2">
 
         <div class="row top-p">
@@ -58,6 +58,18 @@
                         <i class="glyphicon glyphicon-globe"></i>
                         <label>Website</label>
                         <span class="value"><a href="#" target="_blank">xyzcoder.github.io</a></span>
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        <label>Github Profile</label>
+                        <span class="value"><a href="#" target="_blank">https://github.com/pavanarya</a></span>
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+                        <i class="glyphicon glyphicon-globe"></i>
+                        <label>Stackoverflow Profile</label>
+                        <span class="value"><a href="#" target="_blank">https://stackoverflow.com/users/1415739/pavan-kumar-aryasomayajulu</a></span>
                         <div class="clear"></div>
                     </li>
     
@@ -343,19 +355,24 @@
             <div class="col-md-12 profile-l">
                 <p style="margin-bottom:20px">
                     <i class="fa fa-quote-left"></i> 
-    
-                    <h5><b> Work Opportunity Tax Credit</b></h5>
-                    The Work Opportunity Tax Credit (WOTC) is a federal program that provides tax incentives to employers for hiring and retaining individuals from targeted groups. To claim the credit, an employer must identify a potential hire as being eligible for one of the target groups, on or before the day of the job offer. The credit is open to any tax paying company in the 50 United States, The US Virgin Islands, and Puerto Rico.
-    
-                    <h5><b>1. Continuous Build and Continuous Integration ( CI & CD)</b></h5>
+
+                    <h5><b>https://www.wageverify.com</b></h5>
+                    WAGEverify was built with the employee in mind while being the perfect verification solution for employers and verifiers
+
+                    <h5><b>1. DataPipeline for ingesting data into Elastic Search from different payroll Sources and processing</b></h5>
+                    Employee Payroll data is the backbone for this application. We recieve payroll data from almost 10+ sources and out of that Payroll feed from Paychex(, Inc. is an American provider of human resource, payroll, and benefits outsourcing services for small- to medium-sized businesses. With headquarters in Rochester, New York, the company has more than 100 offices serving approximately 670,000 payroll clients in the U.S. and Europe). 
+                    So with these many data sources in place, it will be a big task to handle them efficiently. So We usually read different formats of payroll data and finally convert that into MongoDB and at the same time ingest individual employee pay records into Kafka and finally process that data and insert it into Elastic Search.
+                    On the otherhand we allow verifiers to register in our application and they can search for employees and purchase their reports.
+
+                    <h5><b>2. Continuous Build and Continuous Integration ( CI & CD)</b></h5>
                     I was using Jenkins and few plugins provided by community for continuous integrationa nd continuous deployments of one of our products at Sails.
                     The main idea behind this was to deploy code and execute unit test cases with a single click.
                     As a part of this project, I wrote Jenkins scripts, MS Build scripts and also scripts for interacting with AWS from command line interface.
                     <br/>
-                    <h5><b>2. Building Lambda In AWS</b></h5>
+                    <h5><b>3. Building Lambda In AWS</b></h5>
                     One of our clients were in a need to execute some code in the background. There are quite a few of them and I suggested them to go with Server less architecture. For this we choose AWS Lambda's and we implemented them using Asp.Net Core.
                     
-                    <h5><b>2. Making use of AWS Capabilites in our Product</b></h5>
+                    <h5><b>4. Making use of AWS Capabilites in our Product</b></h5>
                     There are many AWS features which we were using frequently in our day to day implementations.Few of them are <br/>
                      i. Aws Lambdas<br/>
                      ii. AWS Cloud Instances<br/>
@@ -363,6 +380,10 @@
                      iV. SES ( Simple Email Services) - For Inbound and Outbound Mail communications from our applications<br/>
                      V. S3 buckets - For storage purposes<br/>
                     </p>
+    
+                    <h5><b> Work Opportunity Tax Credit</b></h5>
+                    The Work Opportunity Tax Credit (WOTC) is a federal program that provides tax incentives to employers for hiring and retaining individuals from targeted groups. To claim the credit, an employer must identify a potential hire as being eligible for one of the target groups, on or before the day of the job offer. The credit is open to any tax paying company in the 50 United States, The US Virgin Islands, and Puerto Rico.
+                    This is another component where we use processed payroll records and also using certain questionnaire and certain criteria, we decide whether an employee is eligible for certain tax credits. 
             </div>
     
             <div class="col-md-12 profile-l">
