@@ -138,22 +138,22 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3 | xyzcoder.github.io</title>
+<title>How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image? | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3" />
+<meta property="og:title" content="How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Running Jekyll Anywhere Using Docker My Custom Image: Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog. Part 1: How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1" />
-<meta property="og:description" content="Running Jekyll Anywhere Using Docker My Custom Image: Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog. Part 1: How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1" />
-<link rel="canonical" href="http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html" />
+<meta name="description" content="Hi, In this post I’ll discuss on how to deploy Elastic Search docker images as a cluster on multiple hosts ( Note: This is not about single host machine running multiple elastic search containers). This is all about having multiple Linux/Windows machines in a network and on each machine we will deploy one elastic search docker container as a node. Initially, I want to discuss about various problems that I faced with various solutions and finally working one. ElasticSearch 7 start up error - the default discovery settings are unsuitable for production use; master not discovered yet, this node has not previously joined a bootstrapped (v7+) cluster, and [cluster.initial_master_nodes] is empty on this node This is because I didn’t actually specify a few env variables required for ES to form the cluster So in order to avoid these errors, we need to consider the following things: All hosts must be inter-connected Ports 9200 and 9300 should be open We need to pass all participating nodes IP address and at the same time specify master nodes IP address" />
+<meta property="og:description" content="Hi, In this post I’ll discuss on how to deploy Elastic Search docker images as a cluster on multiple hosts ( Note: This is not about single host machine running multiple elastic search containers). This is all about having multiple Linux/Windows machines in a network and on each machine we will deploy one elastic search docker container as a node. Initially, I want to discuss about various problems that I faced with various solutions and finally working one. ElasticSearch 7 start up error - the default discovery settings are unsuitable for production use; master not discovered yet, this node has not previously joined a bootstrapped (v7+) cluster, and [cluster.initial_master_nodes] is empty on this node This is because I didn’t actually specify a few env variables required for ES to form the cluster So in order to avoid these errors, we need to consider the following things: All hosts must be inter-connected Ports 9200 and 9300 should be open We need to pass all participating nodes IP address and at the same time specify master nodes IP address" />
+<link rel="canonical" href="http://0.0.0.0:4000/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-07-11T15:55:33+00:00" />
+<meta property="article:published_time" content="2020-07-22T11:23:24+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3" />
+<meta property="twitter:title" content="How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html","headline":"Dockerizing My Blog Editor Built Using Jekyll and Github Pages– Part 3","dateModified":"2020-07-11T15:55:33+00:00","datePublished":"2020-07-11T15:55:33+00:00","description":"Running Jekyll Anywhere Using Docker My Custom Image: Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog. Part 1: How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html","headline":"How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?","dateModified":"2020-07-22T11:23:24+00:00","datePublished":"2020-07-22T11:23:24+00:00","description":"Hi, In this post I’ll discuss on how to deploy Elastic Search docker images as a cluster on multiple hosts ( Note: This is not about single host machine running multiple elastic search containers). This is all about having multiple Linux/Windows machines in a network and on each machine we will deploy one elastic search docker container as a node. Initially, I want to discuss about various problems that I faced with various solutions and finally working one. ElasticSearch 7 start up error - the default discovery settings are unsuitable for production use; master not discovered yet, this node has not previously joined a bootstrapped (v7+) cluster, and [cluster.initial_master_nodes] is empty on this node This is because I didn’t actually specify a few env variables required for ES to form the cluster So in order to avoid these errors, we need to consider the following things: All hosts must be inter-connected Ports 9200 and 9300 should be open We need to pass all participating nodes IP address and at the same time specify master nodes IP address","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -306,7 +306,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Dockerizing My Blog Editor Built Using Jekyll and Github Pages-- Part 3
+                                                        How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?
                                                     
                                                     
                                                 </div>
@@ -314,183 +314,102 @@
                                             </div>
 
                                             
-                                                <h1 id="running-jekyll-anywhere-using-docker-my-custom-image">Running Jekyll Anywhere Using Docker My Custom Image:</h1>
-<p>Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog.
+                                                <p>Hi,
+In this post I’ll discuss on how to deploy Elastic Search docker images as a cluster on multiple hosts ( Note: This is not about single host machine running multiple elastic search containers). This is all about having multiple Linux/Windows machines in a network  and on each machine we will deploy one elastic search docker container as a node.
 <br />
 <br />
-Part 1: <a href="http://https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html">How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages – Part1</a>
-<br /></p>
-
-<p>Part 2: <a href="https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html">How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages– Part 2</a>
+Initially, I want to discuss about various problems that I faced with various solutions and finally working one.
+<br /><br />
+<strong>ElasticSearch 7 start up error - the default discovery settings are unsuitable for production use;</strong>
+<br />
+<strong>master not discovered yet, this node has not previously joined a bootstrapped (v7+) cluster, and [cluster.initial_master_nodes] is empty on this node</strong>
+<br /><br />
+This is because I didn’t actually specify a few env variables required for ES to form the cluster
 <br />
 <br />
-So in these 2 parts, I discussed how to make use of various technologies like Github pages, Jekyll, Ruby, and Firebase for hosting your website and giving some dynamic behavior to my blog.
-<br /></p>
-
-<p>Previously I used to blog using Wordpress and my blog address is <a href="https://pavanarya.wordpress.com/">https://pavanarya.wordpress.com/</a>.<br />
-One thing that I liked with WordPress, is the admin portal where I can simply log in, and using the interface provided by them, I can add new posts and moderate comments. It’s like an all in one place where I can create content for my blog. I loved it.
-<br /><br /></p>
-
-<p>But the drawback is with the free edition, we have limited choice and control on the blog. So the developer in me wanted to take that control.
-I want to customize and create my blog in the way I wanted to.<br />
-That is when I opted for Github pages and Jekyll. But still, I have a few concerns when compared to WordPress. And they are
-<br /><br /></p>
-
+So in order to avoid these errors, we need to consider the following things:<br /></p>
 <ol>
-  <li><strong>Software installation:  I cannot log in from any random system and edit my blogs or create new posts. The reason for that is, I need to have a complete setup of Jekyll on that machine and for that, I need to install Ruby and other required pieces of software. This might not be possible all the time. And moreover Ruby is not something I work on regularly.</strong>
-<br /><br /></li>
+  <li>All hosts must be inter-connected</li>
+  <li>Ports 9200 and 9300 should be open</li>
+  <li>We need to pass all participating nodes IP address and at the same time specify master nodes IP address</li>
 </ol>
 
-<p>This is a major concern for me and the solution for that is my fav piece of technology “<strong>Docker</strong>” is my saviour.
-<br /><br />
-Now we will see how I leveraged Docker to handle my problem discussed above.</p>
+<p><br /><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# These 2 commands should be executed on my host machine with IP 192.168.0.24
+docker network create somenetwork
 
-<h1 id="step1-setting-up-jekyll-using-docker-containers-one-time-step">Step1: Setting up Jekyll using Docker Containers (One time Step)</h1>
-<p>As a part of solving the above problem, my first step is to create a docker image.
-<br /><br />
-Here is my docker file</p>
+docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 --name elasticsearch \
+-e "discovery.seed_hosts=192.168.0.25,192.168.0.26,192.168.0.27,192.168.0.28" \
+-e "node.name=es01" \
+-e "cluster.initial_master_nodes=es01,es02,es03,es04,es05" \
+-e "network.publish_host=192.168.0.24" \
+docker.elastic.co/elasticsearch/elasticsearch:7.8.0
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM ubuntu:latest
 
-# Installing Ruby
+# This commands should be executed on my host machine with IP 192.168.0.25
 
-ENV DEBIAN_FRONTEND=noninteractive
+docker run -p 9200:9200 -p 9300:9300 \
+-e "discovery.seed_hosts=192.168.0.24,192.168.0.26,192.168.0.27,192.168.0.28" \
+-e "node.name=es02" \
+-e "cluster.initial_master_nodes=es01,es02,es03,es04,es05" \
+-e "network.publish_host=192.168.0.25" \
+docker.elastic.co/elasticsearch/elasticsearch:7.8.0
 
-RUN apt-get update
-RUN apt-get install ruby-full make gcc nodejs build-essential patch -y
+# This commands should be executed on my host machine with IP 192.168.0.26
 
-# Setting Jekyll
+docker run -p 9200:9200 -p 9300:9300 \
+-e "discovery.seed_hosts=192.168.0.24,192.168.0.25,192.168.0.27,192.168.0.28" \
+-e "node.name=es03" \
+-e "cluster.initial_master_nodes=es01,es02,es03,es04,es05" \
+-e "network.publish_host=192.168.0.26" \
+docker.elastic.co/elasticsearch/elasticsearch:7.8.0
 
-RUN gem install jekyll bundler
-RUN useradd jekyll
 
-RUN mkdir pavan/
-RUN mkdir xyzcoder.github.io
-WORKDIR /pavan/xyzcoder.github.io
+# This commands should be executed on my host machine with IP 192.168.0.27
 
-ADD  entrypoint.sh /pavan/xyzcoder.github.io/
+docker run -p 9200:9200 -p 9300:9300 \
+-e "discovery.seed_hosts=192.168.0.24,192.168.0.25,192.168.0.26,192.168.0.28" \
+-e "node.name=es04" \
+-e "cluster.initial_master_nodes=es01,es02,es03,es04,es05" \
+-e "network.publish_host=192.168.0.27" \
+docker.elastic.co/elasticsearch/elasticsearch:7.8.0
 
- RUN chmod 777 /pavan/xyzcoder.github.io/entrypoint.sh \
-     &amp;&amp; ln -s /pavan/xyzcoder.github.io/entrypoint.sh /
+# This commands should be executed on my host machine with IP 192.168.0.28
 
-ENTRYPOINT ["/pavan/xyzcoder.github.io/entrypoint.sh"]
+docker run -p 9200:9200 -p 9300:9300 \
+-e "discovery.seed_hosts=192.168.0.24,192.168.0.25,192.168.0.26,192.168.0.27" \
+-e "node.name=es05" \
+-e "cluster.initial_master_nodes=es01,es02,es03,es04,es05" \
+-e "network.publish_host=192.168.0.28" \
+docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+
+# This commands should be executed on my host machine with IP 192.168.0.24 where we are planning to install Kibana
+
+docker run -d -p 5601:5601 --network somenetwork -e "ELASTICSEARCH_HOSTS=http://192.168.0.24:9200" kibana:7.8.0
 
 </code></pre></div></div>
+
+<p>So let me explain on what is happening here.<br /><br /></p>
+<ol>
+  <li>Initially I am creating a network on which I am actually planning to install docker and also Kibana</li>
+  <li>These are my private IP addresses of my host machines and I am actually planning to have a cluster with 5 nodes</li>
+  <li><strong>192.168.0.24,192.168.0.25,192.168.0.26,192.168.0.27,192.168.0.28</strong> These are my host machine IP addresses</li>
+  <li>So I have 5 docker run commands and each one should be executed on respective machines.</li>
+  <li>If we closely monitor each of these docker run commands, I am specifying a <strong>node name</strong> to identify the node</li>
+  <li>Next  <strong>cluster.initial_master_nodes</strong>, This is to specify all my master eligible nodes. So even if one goes down then one of the other nodes will act as a master</li>
+  <li><strong>discovery.seed_hosts</strong> you should use the discovery.seed_hosts setting to provide a list of other nodes in the cluster that are master-eligible and likely to be live and contactable in order to seed the discovery process. This setting should be a list of the addresses of all the master-eligible nodes in the cluster. Each address can be either an IP address or a hostname which resolves to one or more IP addresses via DNS.</li>
+  <li><strong>network.publish_host</strong> This is to specify that my other nodes in the cluster can connect to this node using this IP address.</li>
+  <li>docker.elastic.co/elasticsearch/elasticsearch:7.8.0 Is my docker image and 7.8.0 is the version of Elastic search</li>
+</ol>
 
 <p><br /><br />
-entrypoint.sh
-<br /></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-
-<span class="nb">cd</span> /pavan/xyzcoder.github.io
-
-<span class="nb">ls
-
-chmod </span>u+x /pavan/xyzcoder.github.io/entrypoint.sh
-
-bundle <span class="nb">install
-
-</span>bundle <span class="nb">exec </span>jekyll serve <span class="nt">--watch</span> <span class="nt">--host</span> 0.0.0.0
-
-</code></pre></div></div>
-
-<p>Let me explain each step, I am having in the docker file.<br /><br /></p>
-<ol>
-  <li>I took the ubuntu image as my base image</li>
-  <li>Then I am executing some Linux commands to update and then installing Ruby</li>
-  <li>Here I am trying to install Jekyll package</li>
-  <li>I am creating a few folders in my ubuntu container and that is the place, where I would like to have my blog code.</li>
-  <li>I copied a sh file where I have a few commands to install required Jekyll packages and start the Jekyll server. Note: This file is copied to my image and we are not running anything yet.</li>
-  <li>Finally, we are specifying that entrypoint.sh as an entry point when we run that image. An entry point is nothing but we are specifying docker that we want to execute that command when docker container starts.</li>
-</ol>
-
-<h1 id="step-2-creating-image-and-pushing-it-to-docker-hub-one-time-step">Step 2: Creating Image and pushing it to docker hub (One time step)</h1>
-<p>Once we are done with docker file creation, we can create a docker image from that docker file. For that, we need to execute the following command.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build . -t paryasomayajulu/xyzcoderjekyll
-</code></pre></div></div>
-
-<p>“docker build” is the command used to build a docker image. “<strong>.</strong>” is used to specify the path and I have my docker file present in the same path so I am using a dot. And -t is used to specify a tag for our image.<br />
-Once we run this command, it will execute each of the steps mentioned in our docker file.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
-</code></pre></div></div>
-<p>The above command is used to list all images present on our machine and make sure that we have our newly created image in the list.</p>
-
-<h1 id="step-3-create-an-account-with-docker-hub-and-push-our-image-to-docker-hub-repository">Step 3: Create an account with Docker hub and push our image to docker hub repository.</h1>
-<p>Create an account in <a href="https://hub.docker.com/">https://hub.docker.com/</a>
+So if you quickly want to play with Elastic search cluster creation, then you can try it on <a href="https://labs.play-with-docker.com/">Docker Playground</a> where you can try to create docker containers.
 <br />
-<br />
-Now login into docker hub from your console</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login
-</code></pre></div></div>
-<p><br />
-Now create an alias for your image and to list your images use the command</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
-
-# Above command will list all images... Copy Image Id
-
- docker tag &lt;ImageIdFromAboveList&gt; &lt;dockerhub_user_name&gt;/&lt;name_of_image&gt;
- 
-</code></pre></div></div>
-
-<p>Once tag is created use this command to push the image to docker hub</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker push &lt;dockerhub_user_name&gt;/&lt;name_of_image&gt;
-</code></pre></div></div>
-
-<p>Once this is successful, you can login to <a href="https://hub.docker.com/">https://hub.docker.com/</a> and see your image.</p>
-
-<h1 id="step-4-using-your-docker-image-anywhere-where-you-have-internet-and-browser">Step 4: Using your docker image anywhere where you have internet and browser.</h1>
-<p>There is a nice tool called “Docker Playgroud”. As the name suggests this is where you can play like anything with docker. So I am going to use this website as a host to blog.
-<br />
-<br />
-Login into <a href="https://labs.play-with-docker.com/">https://labs.play-with-docker.com/</a> using your docker hub credentials. And you’ll get a session where you can create an instance and play with docker.</p>
-
-<p><br />
-<br />
-Now I’ll use git commands to fetch my blog code on to this instance( In this example I am getting my code)</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.email "YOUR_EMAIL"
-git config --global user.name "YOUR_USERNAME"
-git clone https://github.com/xyzcoder/xyzcoder.github.io.git
-</code></pre></div></div>
-
-<p>Once code is cloned(It will take hardly 1min) Now I’ll run the image that i created in previous steps( One uploaded to docker hub).</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -it -d -p 4000:4000 -v $PWD/xyzcoder.github.io:/pavan/xyzcoder.github.io paryasomayajulu/jekyll
-</code></pre></div></div>
-
-<p>Here I am saying that I want to run docker container in backgroud (-it d) options and exposing port 4000 that is where Jekyll runs.<br />
-I am mounting my blog code to docker container using <br />
--v $PWD/xyzcoder.github.io:/pavan/xyzcoder.github.io
-<br />
-<br />
-It is something like I am saying docker that please mount my folder current_directory/xyzcoder.github.io to pavan/xyzcoder.github.io folder in the Docker container. The reason why I am copying it to pavan/xyzcoder.github.io folder is, that is my working directory which I specified in the docker file in step1.
-<br />
-<br /></p>
-
-<p>Once this command is executed, we can see port 4000 is hyperlinked at the top on the page. Once we click on it, we can run our blog admin part.
-<br />
-<br />
-For example , I my case this is the url created</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://ip172-18-0-15-bs4qvgroudsg00d9isig-4000.direct.labs.play-with-docker.com/
-</code></pre></div></div>
-
-<p>I can browse http://ip172-18-0-15-bs4qvgroudsg00d9isig-4000.direct.labs.play-with-docker.com/admin and edit my posts successfully.
-<br />
-We can repeat Step4 any number of times and where ever we want.
-<br /><br />
-Finally after making any changes to posts from the UI screen, we need to commit changed files so that these posts reflect on your blog</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add -A
-git commit -m "Automatic update of modified files" &amp;&amp; git push
-
-</code></pre></div></div>
-
-<p><br /></p>
-<h1 id="note-step-4-can-be-used-even-on-windows-machines-where-we-have-docker-installed-and-this-reduces-the-burden-of-installing-ruby-and-other-required-software-for-editing-our-blog-posts">Note: Step 4 can be used even on windows machines where we have docker installed and this reduces the burden of installing Ruby and other required software for editing our blog posts</h1>
+All you need to do is create an account, and then after you login. Create 5 different nodes by using the button <strong>Add New Instances</strong> 5 times. You’ll see 5 different instances with different IPs.<br />
+Now execute these commands on each of these instances and make sure you’ll have appropriate IP addresses.<br />
+Also, you need to wait for some time like 2-3mins for ES to start. Finally, you’ll see 9200 port open at the top of Docker playground web page and click on that button and it will open a new tab with Elastic search address.<br /><br />
+Now you can use postman to issue commands to Elastic search or a Curl client.</p>
 
 <p><br />
 <br />
@@ -507,7 +426,7 @@ Pavan Kumar Aryasomayajulu</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 11072020312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 22072020312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -538,8 +457,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/2019/11/29/using-bigquery-stackoverflow-and-github-data-to-find-interesting-stats.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
