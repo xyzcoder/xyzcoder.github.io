@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Elastic Search Cheatsheet
+title: Elastic Search -- Clusters, Nodes, and Shards
 comments: true
 date: '2020-07-23 15:00:32'
 Categories:
