@@ -107,6 +107,17 @@ Also, you need to wait for some time like 2-3mins for ES to start. Finally, you'
 Now you can use postman to issue commands to Elastic search or a Curl client.
 
 
+# Want to try just Single instance of Elastic search On Docker Playground or Docker?
+
+You can use these commands to start Elastic search and also Kibana
+
+```
+docker network create somenetwork
+docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.8.0
+docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:7.8.0
+```
+
+
 <br>
 <br>
 Thanks,<br>
