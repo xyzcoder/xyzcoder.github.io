@@ -203,6 +203,101 @@ output {
 
 So I am making use of filters component and for each record, I am getting corresponding User details and I am making use of **jdbc_streaming**
 
+# Logstash Nested document Mapping Using Aggregate
+
+```
+input {
+    jdbc {
+           jdbc_driver_library => "/usr/share/logstash/javalib/mssql-jdbc-8.2.2.jre11.jar"
+           jdbc_driver_class => "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+           jdbc_connection_string => "jdbc:sqlserver://host.docker.internal;database=StackOverflow2010;user=pavan;password=pavankumar@123"
+           jdbc_user => "pavan"
+           jdbc_password => "pavankumar@123"
+           statement => "select top 500 p.Id as PostId,p.AcceptedAnswerId,p.AnswerCount,p.Body,u.Id as userid,u.DisplayName,u.Location
+						from StackOverflow2010.dbo.Posts p inner join StackOverflow2010.dbo.Users u
+						on p.OwnerUserId=u.Id"
+        }
+}
+
+filter {
+    aggregate {
+        task_id => "%{postid}"
+        code => "
+            map['postid'] = event.get('postid')
+            map['accepted_answer_id'] = event.get('acceptedanswerid')
+            map['answer_count'] = event.get('answercount')
+            map['body'] = event.get('body')
+			map['user'] ||= []
+            map['user'] << {
+                'id' => event.get('userid'),
+                'displayname' => event.get('displayname'),
+                'location' => event.get('location')
+            }
+        event.cancel()"
+        push_previous_map_as_event => true
+        timeout => 30
+    }
+}
+
+output {
+    elasticsearch {
+        hosts => ["http://elasticsearch:9200", "http://elasticsearch:9200"]
+		index => "stackoverflow_top"
+    }
+    stdout {
+        codec => rubydebug
+    }
+}
+```
+So in the above example we are trying to using joins in sql and then trying to map the data accordingly. 
+
+# Logstash Single Nested Object instead of an array
+So in the above example we can see that we have an array of user object but I am 200% sure that there will be only one item. In that case we can use this config
+
+```
+input {
+    jdbc {
+           jdbc_driver_library => "/usr/share/logstash/javalib/mssql-jdbc-8.2.2.jre11.jar"
+           jdbc_driver_class => "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+           jdbc_connection_string => "jdbc:sqlserver://host.docker.internal;database=StackOverflow2010;user=pavan;password=pavankumar@123"
+           jdbc_user => "pavan"
+           jdbc_password => "pavankumar@123"
+           statement => "select top 500 p.Id as PostId,p.AcceptedAnswerId,p.AnswerCount,p.Body,u.Id as userid,u.DisplayName,u.Location
+						from StackOverflow2010.dbo.Posts p inner join StackOverflow2010.dbo.Users u
+						on p.OwnerUserId=u.Id"
+        }
+}
+
+filter {
+    aggregate {
+        task_id => "%{postid}"
+        code => "
+            map['postid'] = event.get('postid')
+            map['accepted_answer_id'] = event.get('acceptedanswerid')
+            map['answer_count'] = event.get('answercount')
+            map['body'] = event.get('body')
+            map['user'] = {
+                'id' => event.get('userid'),
+                'displayname' => event.get('displayname'),
+                'location' => event.get('location')
+            }
+        event.cancel()"
+        push_previous_map_as_event => true
+        timeout => 30
+    }
+}
+
+output {
+    elasticsearch {
+        hosts => ["http://elasticsearch:9200", "http://elasticsearch:9200"]
+		index => "stackoverflow_top"
+    }
+    stdout {
+        codec => rubydebug
+    }
+}
+```
+
 # Indexing Data with Python Highlevel client
 I know Logstash is powerful and we can have multiple transformations. But In my case, as a developer, I feel comfortable with programming languages and I prefer C# or Python which are my fav programming languages. If I want to make complex transformations, then I prefer these instead of logstash and it is all choice.
 <br><br>
