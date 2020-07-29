@@ -105,6 +105,10 @@
 <lastmod>2020-07-23T15:00:32+00:00</lastmod>
 </url>
 <url>
+<loc>http://0.0.0.0:4000/2020/07/29/indexing-documents-using-logstash-and-python.html</loc>
+<lastmod>2020-07-29T14:06:18+00:00</lastmod>
+</url>
+<url>
 <loc>http://0.0.0.0:4000/about.html</loc>
 </url>
 <url>
@@ -125,7 +129,7 @@
 </url>
 <url>
 <loc>http://0.0.0.0:4000/resume.pdf</loc>
-<lastmod>2020-07-16T13:40:53+00:00</lastmod>
+<lastmod>2020-07-29T06:39:50+00:00</lastmod>
 </url>
 <url>
 <loc>http://0.0.0.0:4000/test.html</loc>

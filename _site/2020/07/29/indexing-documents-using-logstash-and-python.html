@@ -138,22 +138,22 @@
       </style>
 
       <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Elastic Search – Clusters, Nodes, and Shards | xyzcoder.github.io</title>
+<title>Indexing Documents Using Logstash SQL Server and also Python HighLevel Client | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Elastic Search – Clusters, Nodes, and Shards" />
+<meta property="og:title" content="Indexing Documents Using Logstash SQL Server and also Python HighLevel Client" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="In this post, I am actually writing all queries that we use day to day as a cheat sheet." />
-<meta property="og:description" content="In this post, I am actually writing all queries that we use day to day as a cheat sheet." />
-<link rel="canonical" href="http://0.0.0.0:4000/2020/07/23/elastic-search-cheetsheet.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/2020/07/23/elastic-search-cheetsheet.html" />
+<meta name="description" content="Hi, In my previous posts, we saw how we can create an Elastic search cluster using Docker. Please refer to that post https://xyzcoder.github.io/2020/07/23/elastic-search-cheetsheet.html." />
+<meta property="og:description" content="Hi, In my previous posts, we saw how we can create an Elastic search cluster using Docker. Please refer to that post https://xyzcoder.github.io/2020/07/23/elastic-search-cheetsheet.html." />
+<link rel="canonical" href="http://0.0.0.0:4000/2020/07/29/indexing-documents-using-logstash-and-python.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2020/07/29/indexing-documents-using-logstash-and-python.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-07-23T15:00:32+00:00" />
+<meta property="article:published_time" content="2020-07-29T14:06:18+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Elastic Search – Clusters, Nodes, and Shards" />
+<meta property="twitter:title" content="Indexing Documents Using Logstash SQL Server and also Python HighLevel Client" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2020/07/23/elastic-search-cheetsheet.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2020/07/23/elastic-search-cheetsheet.html","headline":"Elastic Search – Clusters, Nodes, and Shards","dateModified":"2020-07-23T15:00:32+00:00","datePublished":"2020-07-23T15:00:32+00:00","description":"In this post, I am actually writing all queries that we use day to day as a cheat sheet.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2020/07/29/indexing-documents-using-logstash-and-python.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2020/07/29/indexing-documents-using-logstash-and-python.html","headline":"Indexing Documents Using Logstash SQL Server and also Python HighLevel Client","dateModified":"2020-07-29T14:06:18+00:00","datePublished":"2020-07-29T14:06:18+00:00","description":"Hi, In my previous posts, we saw how we can create an Elastic search cluster using Docker. Please refer to that post https://xyzcoder.github.io/2020/07/23/elastic-search-cheetsheet.html.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -306,7 +306,7 @@
                                                 <div class="text_content">
                                                    
                                                     
-                                                        Elastic Search -- Clusters, Nodes, and Shards
+                                                        Indexing Documents Using Logstash  SQL Server and also Python HighLevel Client
                                                     
                                                     
                                                 </div>
@@ -314,70 +314,235 @@
                                             </div>
 
                                             
-                                                <p>In this post, I am actually writing all queries that we use day to day as a cheat sheet.<br /><br /></p>
+                                                <p>Hi,
+In my previous posts, we saw how we can create an Elastic search cluster using Docker. Please refer to that post  <a href="https://xyzcoder.github.io/2020/07/23/elastic-search-cheetsheet.html">https://xyzcoder.github.io/2020/07/23/elastic-search-cheetsheet.html</a>.</p>
 
-<p><strong>Are you thinking of trying Elastic Search for a long time and didn’t get a chance or proper infrastructure. Then you can try creating Elastic search in Docker Playground and play with it.</strong>
-<br /></p>
+<p>I also have a video recorded for that and you can visit it at 
+<a href="https://www.youtube.com/watch?v=v1s3bUcN3E4">https://www.youtube.com/watch?v=v1s3bUcN3E4</a>
+<br /><br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Login to https://labs.play-with-docker.com/ and create an instance and excute following single cluster commands.
- If you have Docker installed on your developer machine well just ignore Docker Playground
+<p>Now in this post, we will see how we can add data to elastic search using various options. So that we can play with our Elastic Search indexed data in the next posts.
+<br /><br />
+There are multiple ways of ingesting data into Elastic search. But in this post, I’ll focus on <strong>Logstash</strong> and <strong>Python</strong> high-level client.</p>
+<h1 id="dataset-for-indexing">Dataset for indexing</h1>
+<p>So in order to index data, I choose the StackOverflow data dump. Brent Ozar is a SQL Server guy who usually takes these StackOverflow dumps and converts it into SqlServer backup. So for this demo, I’ll download (1GB compressed torrent)10GB of StackOverflow data dump and I’ll extract it into SQL Server and then I’ll index that into Elastic search using logstash.
+<br /><br />
+Also to just show an example, I’ll also create a JSON file with 500 Posts and then I’ll index that Json file into Elastic search using Python’s high-level client.</p>
 
-docker network create somenetwork
-docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.8.0
-docker run -d --name kibana --net somenetwork -p 5601:5601 kibana:7.8.0
-</code></pre></div></div>
+<h1 id="using-logstash-docker-conatiner-for-indexing-data-from-sql-server">Using Logstash docker conatiner For Indexing Data From Sql Server</h1>
 
-<p>If you want to try multi-cluster setup visit my another blog post <a href="https://xyzcoder.github.io/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html">How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?</a></p>
+<p>Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a “stash” like Elasticsearch. Apart from that, it can also be used to read data from ES and push that data to somewhere else.
+<br /><br />
+Logstash mainly works by making use of   <strong>Even processing Pipelines</strong> . A pipeline is a configuration file, which consists of 3 stages
+inputs → filters → outputs <br /><br />
+<strong>Inputs</strong> is used to specify the source of data. Logstash supports plugins related to various formats like JDBC plugin for Databases. Streaming and queuing platforms like Kafka, Azure Even hub, Kinesis. A list of supported input plugins can be found here 
+<a href="https://www.elastic.co/guide/en/logstash/current/input-plugins.html">https://www.elastic.co/guide/en/logstash/current/input-plugins.html</a> <br /><br /></p>
+
+<p>As I already mentioned, In this post I’ll deal with Sql server as my input and Elastic Search as my destination.
+<br /><br />
+Please do follow these steps:<br /></p>
+<ol>
+  <li>Download SQL JDBC driver zip <a href="https://go.microsoft.com/fwlink/?linkid=2122433">https://go.microsoft.com/fwlink/?linkid=2122433</a></li>
+  <li>Now extract the content of this jar to a folder called a <strong>lib</strong> somewhere in your drives. In my case, I am extracting it to “D:\LogstashSample\lib”. So you should see <strong>mssql-jdbc-8.2.2.jre11</strong></li>
+  <li>Now create a file called <strong>logstash.conf</strong> in another folder called <strong>pipeline</strong> in the same level as <strong>lib</strong> folder.</li>
+  <li>So our file structure looks like <br />
+   D: <br />
+     |—–LogstashSample <br />
+          |——-lib <br />
+                           |——-mssql-jdbc-8.2.2.jre11 <br />
+                     |——-pipeline <br />
+                           |——-logstash.conf <br /></li>
+</ol>
 
 <p><br /><br /></p>
-<h1 id="cluster-and-node-status">Cluster and node status<br /></h1>
-<p>An Elastic search cluster is a combination of multiple nodes (Can be physical Machines or VM’s or multiple docker containers on the same host or multiple docker containers on different hosts).</p>
 
-<p>Usually, In the Production environment, we will have a cluster with more than 1 shard. But usually, in Dev environment we can go with a cluster with 1 Node.<br /><br />
-<strong>Index</strong> is a collection of documents of the same type and <strong>Shard</strong> is a Lucene index that contains documents of a specific index.<br /></p>
+<p>logstash.conf</p>
 
-<p><strong>Replica Shard</strong> is a copy of Primary Shard. The main reason for having a replica shard is to make sure that even if the primary shard /node is down, but still we want our application to run.
-Now let’s see when we need to go with Multinode cluster or single node cluster and also when we should do sharding.
-<br /><br />
-<strong>Example 1: We are expecting to store documents related to a Q&amp;A site. I am expecting that the overall load of my site will never exceed 50GB. My machine size is around 1TB and I gave a good amount of RAM. I am not worried even If my site is down for a certain time(even hrs) and I can restore data from somewhere or ok to loose data during downtime or ok even if the data is completely lost because of a hardware failure. —  1Node 1shard 0Replica Shards</strong> <br /><br />
-That is because, our index data will easily fit in this machine. Even if my node is down I am sure it will not impact my business and I can run some tools or scripts  to copy data from other DB’s like RDBMS(Only if we have the data stored in RDBMS) or If we dont have this data at other places, even then I am ok to loose complete data.<br /><br />
-<img src="/assets/images/posts/ES_Cheatsheet/1.png" alt="" style="width: 100%;height: 100%;" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>input {
+    jdbc {
+           jdbc_driver_library =&gt; "/usr/share/logstash/javalib/mssql-jdbc-8.2.2.jre11.jar"
+           jdbc_driver_class =&gt; "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+           jdbc_connection_string =&gt; "jdbc:sqlserver://host.docker.internal;database=StackOverflow2010;user=pavan;password=pavankumar@123"
+           jdbc_user =&gt; "pavan"
+           jdbc_password =&gt; "pavankumar@123"
+           statement =&gt; "select top 500 * from StackOverflow2010.dbo.Posts"
+        }
+}
 
-<p><strong>Example 2: We are expecting to store documents related to a Q&amp;A site. I am expecting that the overall load of my site will never exceed 50GB. My machine size is around 1TB and I gave a good amount of RAM. I am not worried even If my site is down for a certain time(even hrs) and I can restore data from the snapshot and It is ok to lose data during downtime but not complete data. —  1Node 1shard 0Replica Shards</strong> <br /><br />
-That is because our index data will easily fit in this machine. Even if my node is down I am sure it will not impact my business and I can run some tools or scripts to copy data from other DB’s like RDBMS(Only if we have the data stored in RDBMS) and also I can get to the previous state using a snapshot and it is ok to lose the latest data that is not present in the snapshot. <br /><br /></p>
-
-<p><strong>Example 3: We are expecting to store documents related to a Q&amp;A site. I am expecting that the overall load of my site will never exceed 50GB. My machine size is around 1TB and I gave a good amount of RAM. I want to make sure that we will  not have any downtime but I am ok to take the minimal chance of downtime. —  2Node 1shard 1 or more Replica Shards</strong> <br /><br />
-In this case, I am sure that all my data will fit into my single node but I need to have another node(or multiple nodes based on the number of replica shards we want). This is because In order to have replication(copy of primary shard) to minimize downtime we need another node. Ideally, we cannot have Primary shard and replication shards on the same node and that will not solve the purpose of replication because let’s assume the node is down, then both primary and replica shards will be down and there is no point in replication. But if we distribute primary and replica shards between 2 nodes, then even though 1st node with primary shard is down, we can still serve results from replica shard present in 2nd node. But in unfortunate conditions where both the nodes go down then no one can save us :(<br /><br />
-<img src="/assets/images/posts/ES_Cheatsheet/2.png" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p><strong>Example 4: We are expecting to store documents related to a Q&amp;A site. I am expecting that the overall load of my site might be around 1.5TB. My machine size is around 1TB and I gave a good amount of RAM. I want to make sure that we will  not have any downtime but I am ok to take the minimal chance of downtime. —  Now read below section and decide :)</strong> <br /><br />
-In this case, I am sure that my data will not fit into a single machine, so I need to divide data. <br /><br />
-Let’s say I want to go with 2 shards(750GB each) and 2 nodes. So I’ll have S1, S2(each 750GB) and I also want to have replication and I want to have 1 replica for each shard. So this will add another 2 shards(replica shards) each with 750GB. So in total we will have 4 shards(S1, S2, P1, P2) and total size is 750*4=3TB but I have only 2TB and <strong>this will not work out.</strong> <br /><br />
-<img src="/assets/images/posts/ES_Cheatsheet/3.png" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p>Now let’s say we want to go with 3Nodes and 2 shards. So I’ll have S1, S2(each 750GB) and I also want to have replication and I want to have 1 replica for each shard. So this will add another 2 shards(replica shards) each with 750GB. So in total, we will have 4 shards(S1, S2, P1, P2) and the total size is 750*4=3TB, and I have 3 nodes each with 1TB. <strong>So is this going to work out?</strong>  Let’s see, Node1 will take Shard1(Shard1 will occupy 750GB out of 1TB, so we cannot accommodate any replica or primary shard here.). Next, Shard2 gets allocated on Node2(so this will occupy 750GB and 250GB free space left unused and I cannot accommodate Replica1 or 2). Now we are left with Node3 (with 1TB). But here I cannot accommodate my 2 replicas(750GB+750GB != 1TB). <strong>SO THIS WILL FAIL</strong>.<br /><br />
-<img src="/assets/images/posts/ES_Cheatsheet/4.png" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p>Now let’s say we want to go with 4Nodes and 2 shards. So I’ll have S1, S2(each 750GB) and I also want to have replication and I want to have 1 replica for each shard. So this will add another 2 shards(replica shards) each with 750GB. So in total, we will have 4 shards(S1, S2, P1, P2) and the total size is 750*4=3TB, and I have 4 nodes each with 1TB. <strong>So is this going to work out?</strong> Let’s see Node1 will take Shard1(Shard1 will occupy 750GB out of 1TB, so we cannot accommodate any replica or primary shard here.). Next, Shard2 gets allocated on Node2(so this will occupy 750GB and 250GB free space left unused and I cannot accommodate Replica1 or 2). Now we are left with Node3  and Node4(with 1TB each). So I can add these 2 replicas on to these 2 nodes(Node3 and Node4).<br /><br />
-<img src="/assets/images/posts/ES_Cheatsheet/5.png" alt="" style="width: 100%;height: 100%;" /></p>
-
-<p><br />
-<strong>But No I want to go with only 3 Nodes. Can I somehow accommodate my data?</strong><br />
-Let me try to reduce the shard size to 500GB. So to accommodate 1.5TB, I need to have 3 primary shards(p1,p2,p3), and also as I want to have replication, I need to have another 3 replicas for each primary shard(R1, R2, R3). So let’s assume that Node1 takes P1+R2(1TB)(We cannot have Primary and Replica shard on the same node because, If that node is down we will lose all data). Now, Node2 will take P2+R3(1TB) and Node3 will take P3+R1(1TB). So this way by increasing the number of shards, I am able to adjust all data in 3 nodes. <br /><br />
-Let’s say my Node1 is down, So I can still fetch data Shard1 data from R1 present in Node3 and the downtime is zero.<br /><br />
-<img src="/assets/images/posts/ES_Cheatsheet/6.png" alt="" style="width: 100%;height: 100%;" />
-<br /><br />
-These are the commands to get information related to clusters and nodes.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_cluster/health?pretty
-GET /_cluster/health?wait_for_status=yellow&amp;timeout=50s
-GET /_cluster/state
-GET /_cluster/stats?human&amp;pretty
-GET /_cluster/pending_tasks
-GET /_nodes
-GET /_nodes/stats
-GET /_nodes/nodeId1,nodeId2/stats
+output {
+    elasticsearch {
+        hosts =&gt; ["http://elasticsearch:9200", "http://elasticsearch:9200"]
+		index =&gt; "stackoverflow_top"
+    }
+    stdout {
+        codec =&gt; rubydebug
+    }
+}
 </code></pre></div></div>
+
+<p>So, in the input plugin, we are specifying the path to our jar file. Note, this is the path in container. Don’t get confused with D:\LogstashSamples\lib\mssql-jdbc-8.2.2.jre11.jar. We will map do that volume mounting in next steps.<br />
+Next, as I am connecting to SqlServer I am using SQLServerDriver.<br /><br />
+Now I am passing the JDBC connection string. As I am connecting to SQL Server that was hosted on my host machine(My windows machine) from logstash container, I can connect using <strong>host.docker.internal</strong> and this will resolve to my local ip address. In case, if you would like to connect to remote SQL Server, please do specify that IP address.<br /><br /></p>
+
+<p>Finally, I am giving a SQL Statement and results of that query will get ingested into my ES index which is specified in output.<br /><br />
+Now as the last step, I need to run my Logstash Docker container and at the same time mount my folders <strong>lib</strong> and <strong>pipeline</strong> to respective folders in a container, so that my logstash container will pick them.<br /><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -it --net somenetwork -v $PWD/lib:/usr/share/logstash/javalib -v $PWD/pipeline/:/usr/share/logstash/pipeline/ docker.elastic.co/logstash/logstash:7.8.0
+</code></pre></div></div>
+
+<p>Open Powershell and command prompt and execute this command in the folder which contains <strong>lib</strong> and <strong>plugin</strong> folders. In my case, it is <strong>D:\LogstashSample</strong>. So in this docker command, we are mounting folders on my host machine to logstash container and starting logstash.<br /><br /></p>
+
+<p>Watch the output and also you can see records inserted into Elastic Search</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /stackoverflow/_count
+{
+  "query": {
+    "match_all": {}
+  }
+}
+</code></pre></div></div>
+
+<p>So this is simple and straight forward. Now let’s try to add a bit of complexity to our problem.</p>
+
+<h1 id="nested-document-to-elasticsearch-using-logstash">Nested document to elasticsearch using logstash</h1>
+<p>In the above example, we saw how we can stream Posts table data into Elastic search. Now I also wanted to have users data added to the same ES document.<br /><br /></p>
+
+<p>The relation between Posts tables and Users table is OwnerUserId in the Posts table refers to Id in Users table</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select top 500 * from StackOverflow2010.dbo.Posts p inner join StackOverflow2010.dbo.Users u
+on p.OwnerUserId=u.Id
+</code></pre></div></div>
+
+<p>If I give this query in the above logstash pipeline, I’ll be able to copy data but user data will be in the same level and the document looks something like this.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+        "_index" : "stackoverflow_top",
+        "_type" : "_doc",
+        "_id" : "58UEmnMBrXsRTNbKoRrK",
+        "_score" : 1.0,
+        "_source" : {
+          "title" : "Percentage width child element in absolutely positioned parent on Internet Explorer 7",
+          "acceptedanswerid" : 31,
+          "location" : "Oakland, CA",
+          "aboutme" : """<span class="nt">&lt;p&gt;</span>Independent software engineer<span class="nt">&lt;/p&gt;</span>
+""",
+          "displayname" : "Kevin Dente",
+          "@timestamp" : "2020-07-29T10:00:58.900Z",
+          "closeddate" : null,
+          "accountid" : 7,
+          "favoritecount" : 10,
+          "upvotes" : 46,
+          "downvotes" : 4,
+          "websiteurl" : "http://weblogs.asp.net/kdente",
+          "id" : 9,
+          "lasteditordisplayname" : "Rich B",
+          "reputation" : 14337,
+          "viewcount" : 16306,
+          "@version" : "1",
+          "creationdate" : "2008-07-31T21:35:26.517Z",
+          "commentcount" : 0,
+          "body" : """<span class="nt">&lt;p&gt;</span>I have an absolutely positioned <span class="nt">&lt;code&gt;</span>div<span class="nt">&lt;/code&gt;</span> containing several children, one of which is a relatively positioned <span class="nt">&lt;code&gt;</span>div<span class="nt">&lt;/code&gt;</span>. When I use a <span class="nt">&lt;strong&gt;</span>percentage-based width<span class="nt">&lt;/strong&gt;</span> on the child <span class="nt">&lt;code&gt;</span>div<span class="nt">&lt;/code&gt;</span>, it collapses to '0' width on <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://en.wikipedia.org/wiki/Internet_Explorer_7"</span> <span class="na">rel=</span><span class="s">"noreferrer"</span><span class="nt">&gt;</span>Internet<span class="ni">&amp;nbsp;</span>Explorer<span class="ni">&amp;nbsp;</span>7<span class="nt">&lt;/a&gt;</span>, but not on Firefox or Safari.<span class="nt">&lt;/p&gt;</span>
+""",
+          "score" : 256,
+          "parentid" : 0,
+          "age" : null,
+          "communityowneddate" : null,
+          "lasteditdate" : "2016-03-19T06:05:48.487Z",
+          "views" : 4949,
+          "lastactivitydate" : "2016-03-19T06:10:52.170Z",
+          "emailhash" : null,
+          "lasteditoruserid" : 63550,
+          "answercount" : 5,
+          "posttypeid" : 1,
+          "lastaccessdate" : "2018-08-30T18:18:03.423Z",
+          "owneruserid" : 9,
+          "tags" : "<span class="nt">&lt;html&gt;&lt;css&gt;&lt;css3&gt;&lt;internet-explorer-7&gt;</span>"
+        }
+      }
+</code></pre></div></div>
+
+<p>But I am expecting user data to be part of a nested object and not like above one.<br /><br /></p>
+
+<p>My new logstash.conf plugin file would be</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>input {
+    jdbc {
+           jdbc_driver_library =&gt; "/usr/share/logstash/javalib/mssql-jdbc-8.2.2.jre11.jar"
+           jdbc_driver_class =&gt; "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+           jdbc_connection_string =&gt; "jdbc:sqlserver://host.docker.internal;database=StackOverflow2010;user=pavan;password=pavankumar@123"
+           jdbc_user =&gt; "pavan"
+           jdbc_password =&gt; "pavankumar@123"
+           statement =&gt; "select top 500 * from StackOverflow2010.dbo.Posts p "
+        }
+}
+
+filter{
+	jdbc_streaming {
+	jdbc_driver_library =&gt; "/usr/share/logstash/javalib/mssql-jdbc-8.2.2.jre11.jar"
+	jdbc_driver_class =&gt; "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	jdbc_connection_string =&gt; "jdbc:sqlserver://host.docker.internal;database=StackOverflow2010;user=pavan;password=pavankumar@123"
+	jdbc_user =&gt; "pavan"
+    jdbc_password =&gt; "pavankumar@123"
+	statement =&gt; "select * from StackOverflow2010.dbo.Users u where u.Id = :owneruserid"
+	parameters =&gt; {"owneruserid" =&gt; "owneruserid"}
+	target =&gt; "user_details"
+	}
+}
+
+output {
+    elasticsearch {
+        hosts =&gt; ["http://elasticsearch:9200", "http://elasticsearch:9200"]
+		index =&gt; "stackoverflow_top_user"
+    }
+    stdout {
+        codec =&gt; rubydebug
+    }
+}
+</code></pre></div></div>
+
+<p>So I am making use of filters component and for each record, I am getting corresponding User details and I am making use of <strong>jdbc_streaming</strong></p>
+
+<h1 id="indexing-data-with-python-highlevel-client">Indexing Data with Python Highlevel client</h1>
+<p>I know Logstash is powerful and we can have multiple transformations. But In my case, as a developer, I feel comfortable with programming languages and I prefer C# or Python which are my fav programming languages. If I want to make complex transformations, then I prefer these instead of logstash and it is all choice.
+<br /><br />
+Before executing the python file, you need to install an elastic search package</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 install elasticsearch
+</code></pre></div></div>
+
+<p>Now let’s see how we can index data using Python and you need to have JSON file in the same directory where this python file is present in my sample.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from datetime import datetime
+from elasticsearch import Elasticsearch
+import json 
+import os
+
+es = Elasticsearch(['&lt;es ip address&gt;'])
+
+THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+my_file = os.path.join(THIS_FOLDER, 'test.json')
+#f = open(my_file,'r') 
+#data = json.load(f, strict=False) 
+
+file1 = open(my_file, 'r',  encoding="utf8") 
+Lines = file1.readlines() 
+
+ii=0
+for i in Lines:
+    doc = json.loads(i.rstrip("\n"))
+    res = es.index(index="test-index", id=ii, body=doc)
+    print(res['result'])
+    ii=ii+1
+  
+# Closing file 
+file1.close()
+</code></pre></div></div>
+
+<p>In this example, I am trying to read data from a JSON file and trying to index it. We can also replace reading from Json with many things that logstash input is doing like Streams, PubSub queues, Databases, and many more.
+<br />
+If you want to try this, you can download this python file and also sample 500 StackOverflow records from my google drive</p>
+
+<p><a href="https://drive.google.com/file/d/1AH_oK9Gmj7_IUjA0TVa4zD4iXURMWbwx/view">https://drive.google.com/file/d/1AH_oK9Gmj7_IUjA0TVa4zD4iXURMWbwx/view</a></p>
 
 <p><br />
 <br />
@@ -394,7 +559,7 @@ Pavan Kumar Aryasomayajulu</p>
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
 var disqus_config = function () {
-this.page.identifier = 23072020312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+this.page.identifier = 29072020312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -425,8 +590,8 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="/2020/07/29/indexing-documents-using-logstash-and-python.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                                                    <a href="/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2020/07/23/elastic-search-cheetsheet.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 
                                                 <div class="clear"></div>
