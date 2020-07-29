@@ -8,8 +8,6 @@
                     <section id="blog-page">
                         {% assign counter = 1 %}
                         {% for post in site.posts %}
-
-                        {% increment counter %}
                             <article class="blog-article">                    
 
                                 <div class="col-md-12">
@@ -21,7 +19,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="{{ post.url }}"  style="float:left;position:relative">{{counter }}. {{ post.title }}</a>
+                                                            <a href="{{ post.url }}"  style="float:left;position:relative">{% increment counter %}. {{ post.title }}</a>
                                                             <a href="{{ post.url }}" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
