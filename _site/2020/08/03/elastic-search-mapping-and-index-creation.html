@@ -515,7 +515,7 @@ Get testindex1/_mapping
 </code></pre></div></div>
 <p>We can see field3 is added and its datatype is integer.</p>
 
-<h1 id="that-is-cool-so-every-time-do-i-need-to-update-this-mapping-manually-whenever-i-want-to-add-a-new-column-or-is-it-possible-for-elastic-search-to-guess-the-type-and-add-it-to-mapping">That is Cool… So every time do I need to update this mapping manually whenever I want to add a new column. or Is it possible for Elastic search to guess the type and add it to mapping?</h1>
+<h1 id="that-is-cool-but-still-do-i-need-to-update-this-mapping-manually-whenever-i-want-to-add-a-new-column-or-is-it-possible-for-elastic-search-to-guess-the-type-and-add-it-to-mapping">That is Cool but still do I need to update this mapping manually whenever I want to add a new column. or Is it possible for Elastic search to guess the type and add it to mapping?</h1>
 <p>Yes ofcource Elastic search can guess the datatype and simply add the new property to mapping when we add a new column at the time of document update or document insertion. Lets see how it does that.<br /><br /></p>
 
 <p>Make sure that the new field you are trying to add is not present in existing mapping by issuing Get mapping command</p>
@@ -533,6 +533,114 @@ Get testindex1/_mapping
 </code></pre></div></div>
 
 <p>Now If we see mapping, we can see our new field5 is automatically added to mapping without us giving any mapping update command.</p>
+
+<h1 id="though-we-see-few-benifits-of-automatic-mapping-there-are-few-cons-too">Though we see few benifits of automatic mapping there are few cons too:</h1>
+<p>Yes that is correct. Even though the feature auto mapping looks fancy,  it has problems too.Lets take a small example, previously I already have a field withname “field1” but unfortunately when adding a document, I gace my field name as “<strong>Field1</strong>” and the only difference there is <strong>F</strong> capital. Lets try to index it and see what the mapping looks like.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Post testindex1/_doc
+{
+  "Field1":"aa"
+}
+</code></pre></div></div>
+
+<p>And lets observe mapping now</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Get testindex1/_mapping
+
+\\\\\\\\\\\\\\\\\\    Result \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+{
+  "testindex1" : {
+    "mappings" : {
+      "properties" : {
+        "Field1" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "field1" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+</code></pre></div></div>
+
+<p>So if we observe we have 2 fields created, <strong>field1</strong> and also <strong>Field1</strong>. Though it is a one time mistake, it is costly over a period of time because people usually get confused on what is the right field.<br />
+<br />
+In the same way if dynamic mapping is allowed, over a period of time there are chances of mapping getting polluted.</p>
+
+<h1 id="solution-to-above-problem-is-to-have-strict-mapping">Solution to above problem is to have strict mapping</h1>
+<p>So strict mapping comes to our rescue for above problem. Usually when we have mapping set to strict, we will not be able to add new fields via update or insert document.
+<br /><br />
+**How to set mapping as strict **:<br />
+So the same update mapping can be used to set mapping as strict</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Put testindex1/_mapping
+{
+  "dynamic":"strict"
+}
+</code></pre></div></div>
+
+<p>Now lets try to add a new document with a new field</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Post testindex1/_doc
+{
+  "field10":"aa"
+}
+</code></pre></div></div>
+
+<p>Result after executing this</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "error" : {
+    "root_cause" : [
+      {
+        "type" : "strict_dynamic_mapping_exception",
+        "reason" : "mapping set to strict, dynamic introduction of [field10] within [_doc] is not allowed"
+      }
+    ],
+    "type" : "strict_dynamic_mapping_exception",
+    "reason" : "mapping set to strict, dynamic introduction of [field10] within [_doc] is not allowed"
+  },
+  "status" : 400
+}
+
+</code></pre></div></div>
+<p>It is throwing an error</p>
+
+<h1 id="options-for-dynamic-mapping">Options for Dynamic Mapping</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Put testindex1/_mapping
+{
+  "dynamic":"strict"
+}
+</code></pre></div></div>
+<p>With strict, we will not be able to add new fields via update or insert</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Put testindex1/_mapping
+{
+  "dynamic":"true"
+}
+</code></pre></div></div>
+<p>With dynamic=true, we will be able to add new fields via update or insert and mapping will be automatically updated and in this case ES will infer field type unless we specify it using update/insert mapping</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Put testindex1/_mapping
+{
+  "dynamic":"false"
+}
+</code></pre></div></div>
+<p>When we set dynamic=false, we will we able to add fields to document, but they will not be indexed and we will not be able to search documents based on these fields.</p>
 
 <p><br />
 <br />

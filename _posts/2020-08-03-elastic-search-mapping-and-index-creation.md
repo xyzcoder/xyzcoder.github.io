@@ -208,7 +208,7 @@ Get testindex1/_mapping
 ```
 We can see field3 is added and its datatype is integer.
 
-# That is Cool... So every time do I need to update this mapping manually whenever I want to add a new column. or Is it possible for Elastic search to guess the type and add it to mapping?
+# That is Cool but still do I need to update this mapping manually whenever I want to add a new column. or Is it possible for Elastic search to guess the type and add it to mapping?
 Yes ofcource Elastic search can guess the datatype and simply add the new property to mapping when we add a new column at the time of document update or document insertion. Lets see how it does that.<br><br>
 
 Make sure that the new field you are trying to add is not present in existing mapping by issuing Get mapping command
@@ -228,6 +228,122 @@ Post testindex1/_doc
 ```
 
 Now If we see mapping, we can see our new field5 is automatically added to mapping without us giving any mapping update command.
+
+# Though we see few benifits of automatic mapping there are few cons too:
+Yes that is correct. Even though the feature auto mapping looks fancy,  it has problems too.Lets take a small example, previously I already have a field withname "field1" but unfortunately when adding a document, I gace my field name as "**Field1**" and the only difference there is **F** capital. Lets try to index it and see what the mapping looks like.
+
+```
+Post testindex1/_doc
+{
+  "Field1":"aa"
+}
+```
+
+And lets observe mapping now
+
+```
+Get testindex1/_mapping
+
+\\\\\\\\\\\\\\\\\\    Result \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+{
+  "testindex1" : {
+    "mappings" : {
+      "properties" : {
+        "Field1" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "field1" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+So if we observe we have 2 fields created, **field1** and also **Field1**. Though it is a one time mistake, it is costly over a period of time because people usually get confused on what is the right field.<br>
+<br>
+In the same way if dynamic mapping is allowed, over a period of time there are chances of mapping getting polluted.
+
+# Solution to above problem is to have strict mapping
+So strict mapping comes to our rescue for above problem. Usually when we have mapping set to strict, we will not be able to add new fields via update or insert document.
+<br><br>
+**How to set mapping as strict **:<br>
+So the same update mapping can be used to set mapping as strict
+
+```
+Put testindex1/_mapping
+{
+  "dynamic":"strict"
+}
+```
+
+Now lets try to add a new document with a new field
+
+```
+Post testindex1/_doc
+{
+  "field10":"aa"
+}
+```
+
+Result after executing this
+
+```
+{
+  "error" : {
+    "root_cause" : [
+      {
+        "type" : "strict_dynamic_mapping_exception",
+        "reason" : "mapping set to strict, dynamic introduction of [field10] within [_doc] is not allowed"
+      }
+    ],
+    "type" : "strict_dynamic_mapping_exception",
+    "reason" : "mapping set to strict, dynamic introduction of [field10] within [_doc] is not allowed"
+  },
+  "status" : 400
+}
+
+```
+It is throwing an error
+
+# Options for Dynamic Mapping
+```
+Put testindex1/_mapping
+{
+  "dynamic":"strict"
+}
+```
+With strict, we will not be able to add new fields via update or insert
+
+```
+Put testindex1/_mapping
+{
+  "dynamic":"true"
+}
+```
+With dynamic=true, we will be able to add new fields via update or insert and mapping will be automatically updated and in this case ES will infer field type unless we specify it using update/insert mapping
+
+```
+Put testindex1/_mapping
+{
+  "dynamic":"false"
+}
+```
+When we set dynamic=false, we will we able to add fields to document, but they will not be indexed and we will not be able to search documents based on these fields.
 
 <br>
 <br>
