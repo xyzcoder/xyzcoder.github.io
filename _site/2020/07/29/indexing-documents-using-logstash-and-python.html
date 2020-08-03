@@ -162,6 +162,13 @@
       <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"></script>
 <script>
+var host = window.location.hostname;
+debugger;
+if(host.indexOf("localhost")>=0 || host.indexOf("127.0.0.1")>=0)
+{
+    return;
+}
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -683,7 +690,7 @@ s.setAttribute('data-timestamp', +new Date());
                                                 <div class="clear"></div>    
 
                                                 <div class="col-md-12" style="margin-top: 20px;">
-                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2020/08/03/elastic-search-mapping-and-index-creation.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
                                                     <a href="/2020/07/23/elastic-search-cheetsheet.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
                                                 </div>
 

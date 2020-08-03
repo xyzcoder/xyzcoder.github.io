@@ -158,6 +158,13 @@
       <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"></script>
 <script>
+var host = window.location.hostname;
+debugger;
+if(host.indexOf("localhost")>=0 || host.indexOf("127.0.0.1")>=0)
+{
+    return;
+}
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -310,7 +317,41 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2020/07/29/indexing-documents-using-logstash-and-python.html"  style="float:left;position:relative">0. Indexing Documents Using Logstash  SQL Server and also Python HighLevel Client</a>
+                                                            <a href="/2020/08/03/elastic-search-mapping-and-index-creation.html"  style="float:left;position:relative">0. Elastic Search Mapping and Index Creation</a>
+                                                            <a href="/2020/08/03/elastic-search-mapping-and-index-creation.html" style="float:right;position:relative">Read More </a>
+                                                        </div>
+                                                        
+                                                        <div class="clear"></div>
+                                                    </div>
+
+                                                    <ul class="info">
+                                                        <li><i class="glyphicon glyphicon-time"></i> August  3, 2020</li>
+                                                        
+                                                    </ul>
+
+                                                    <div class="blog-content">
+                                                        <p><i class="fa fa-quote-left"></i> Hi, In my previous posts we saw how we can leverage docker playground to install Elastic Search and then creating cluster and also indexing data into Elastic cluster. You can find these links here Starting Elastic Search cluster using Docker and Docker Play ground Cluster, Nodes and Shards in Elastic...</p></div>
+                                                </div>
+                                            </div>  
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </article>
+                        
+                            <article class="blog-article">                    
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 post_content">
+                                            <div class="content post_format_standart">
+                                                <div class="top_c ">
+
+                                                    <div class="title_content">
+                                                        <div class="text_content" style="width:100%">
+                                                            <a href="/2020/07/29/indexing-documents-using-logstash-and-python.html"  style="float:left;position:relative">1. Indexing Documents Using Logstash  SQL Server and also Python HighLevel Client</a>
                                                             <a href="/2020/07/29/indexing-documents-using-logstash-and-python.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -344,7 +385,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2020/07/23/elastic-search-cheetsheet.html"  style="float:left;position:relative">1. Elastic Search -- Clusters, Nodes, and Shards</a>
+                                                            <a href="/2020/07/23/elastic-search-cheetsheet.html"  style="float:left;position:relative">2. Elastic Search -- Clusters, Nodes, and Shards</a>
                                                             <a href="/2020/07/23/elastic-search-cheetsheet.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -378,7 +419,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html"  style="float:left;position:relative">2. How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?</a>
+                                                            <a href="/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html"  style="float:left;position:relative">3. How to deploy an Elastic Search cluster consisting of multiple hosts using ES docker image?</a>
                                                             <a href="/2020/07/22/how-to-deploy-an-elastic-search-cluster-consisting-of-multiple-hosts-using-es-docker-image.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -412,7 +453,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html"  style="float:left;position:relative">3. Dockerizing My Blog Editor Built Using Jekyll and Github Pages-- Part 3</a>
+                                                            <a href="/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html"  style="float:left;position:relative">4. Dockerizing My Blog Editor Built Using Jekyll and Github Pages-- Part 3</a>
                                                             <a href="/2020/07/11/dockerizing-my-blog-editor-built-using-jekyll-and-github-pages-part-3.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -446,7 +487,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2019/11/29/using-bigquery-stackoverflow-and-github-data-to-find-interesting-stats.html"  style="float:left;position:relative">4. Using BigQuery Stackoverflow and Github Data To Find Interesting Stats</a>
+                                                            <a href="/2019/11/29/using-bigquery-stackoverflow-and-github-data-to-find-interesting-stats.html"  style="float:left;position:relative">5. Using BigQuery Stackoverflow and Github Data To Find Interesting Stats</a>
                                                             <a href="/2019/11/29/using-bigquery-stackoverflow-and-github-data-to-find-interesting-stats.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -480,7 +521,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html"  style="float:left;position:relative">5. How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages-- Part 2</a>
+                                                            <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html"  style="float:left;position:relative">6. How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages-- Part 2</a>
                                                             <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -514,7 +555,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html"  style="float:left;position:relative">6. How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages -- Part1</a>
+                                                            <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html"  style="float:left;position:relative">7. How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages -- Part1</a>
                                                             <a href="/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -548,7 +589,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2019/08/07/some-useful-sql-scripts-which-i-came-across.html"  style="float:left;position:relative">7. Some Useful SQL Scripts Which I Came Across</a>
+                                                            <a href="/2019/08/07/some-useful-sql-scripts-which-i-came-across.html"  style="float:left;position:relative">8. Some Useful SQL Scripts Which I Came Across</a>
                                                             <a href="/2019/08/07/some-useful-sql-scripts-which-i-came-across.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -582,7 +623,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html"  style="float:left;position:relative">8. An error occurred while starting the application. .NET Core  | Microsoft.AspNetCore.Hosting version  | Microsoft Windows</a>
+                                                            <a href="/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html"  style="float:left;position:relative">9. An error occurred while starting the application. .NET Core  | Microsoft.AspNetCore.Hosting version  | Microsoft Windows</a>
                                                             <a href="/2019/07/31/an-error-occurred-while-starting-the-application-net-core-microsoftaspnetcorehosting-version-microsoft-windows.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -616,7 +657,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html"  style="float:left;position:relative">9. Auditing In SQL Server Using CDC Approach</a>
+                                                            <a href="/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html"  style="float:left;position:relative">10. Auditing In SQL Server Using CDC Approach</a>
                                                             <a href="/audit_sqlserver/cdc/tracking_changes_in_sqlserver/2019/07/17/auditing-in-sql-server-using-cdc-approach.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -656,7 +697,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/docker/dockerwindows/2019/07/08/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive.html"  style="float:left;position:relative">10. A firewall is blocking file Sharing between Windows and the containers</a>
+                                                            <a href="/docker/dockerwindows/2019/07/08/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive.html"  style="float:left;position:relative">11. A firewall is blocking file Sharing between Windows and the containers</a>
                                                             <a href="/docker/dockerwindows/2019/07/08/settings-to-windows-firewall-to-allow-docker-for-windows-to-share-drive.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -694,7 +735,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html"  style="float:left;position:relative">11. Making Use Of SQL Rest API In Elastic Search To Write Queries Easily</a>
+                                                            <a href="/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html"  style="float:left;position:relative">12. Making Use Of SQL Rest API In Elastic Search To Write Queries Easily</a>
                                                             <a href="/elasticsearch/2019/06/25/making-use-of-sql-rest-api-in-elastic-search-to-write-queries-easily.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -730,7 +771,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html"  style="float:left;position:relative">12. Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters</a>
+                                                            <a href="/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html"  style="float:left;position:relative">13. Failed to parse mapping [_doc]: Root mapping definition has unsupported parameters</a>
                                                             <a href="/elasticsearch/nest/2019/04/12/es-70-and-nest-mapping-error.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -768,7 +809,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/sqlserver/visualstudio/2019/03/31/generating-sql-server-stored-procedure-for-crud-operations.html"  style="float:left;position:relative">13. Automatically Generate Sql Server Stored Procedure for CRUD Operations</a>
+                                                            <a href="/sqlserver/visualstudio/2019/03/31/generating-sql-server-stored-procedure-for-crud-operations.html"  style="float:left;position:relative">14. Automatically Generate Sql Server Stored Procedure for CRUD Operations</a>
                                                             <a href="/sqlserver/visualstudio/2019/03/31/generating-sql-server-stored-procedure-for-crud-operations.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -806,7 +847,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/visualstudio/2019/03/28/backspace-in-visual-studio-not-working.html"  style="float:left;position:relative">14. Backspace In Visual Studio Not Working</a>
+                                                            <a href="/visualstudio/2019/03/28/backspace-in-visual-studio-not-working.html"  style="float:left;position:relative">15. Backspace In Visual Studio Not Working</a>
                                                             <a href="/visualstudio/2019/03/28/backspace-in-visual-studio-not-working.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -842,7 +883,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/jquery/2019/03/23/jquery-optimization-tip.html"  style="float:left;position:relative">15. Jquery optimization tip</a>
+                                                            <a href="/jquery/2019/03/23/jquery-optimization-tip.html"  style="float:left;position:relative">16. Jquery optimization tip</a>
                                                             <a href="/jquery/2019/03/23/jquery-optimization-tip.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -878,7 +919,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/javascript/2019/03/23/eval-with-multiple-mathematical-expressions-seperated-by-semi-colon.html"  style="float:left;position:relative">16. Eval with multiple mathematical expressions seperated by semi-colon</a>
+                                                            <a href="/javascript/2019/03/23/eval-with-multiple-mathematical-expressions-seperated-by-semi-colon.html"  style="float:left;position:relative">17. Eval with multiple mathematical expressions seperated by semi-colon</a>
                                                             <a href="/javascript/2019/03/23/eval-with-multiple-mathematical-expressions-seperated-by-semi-colon.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -914,7 +955,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/firebase/2019/03/17/firebase-real-time-database.html"  style="float:left;position:relative">17. Firebase Real time Database For My Static Website</a>
+                                                            <a href="/firebase/2019/03/17/firebase-real-time-database.html"  style="float:left;position:relative">18. Firebase Real time Database For My Static Website</a>
                                                             <a href="/firebase/2019/03/17/firebase-real-time-database.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -950,7 +991,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/codesnippets/github_pull_request_files_list/2019/03/14/javascript-code-snippet-for-getting-list-of-modified-files-in-a-github-pullrequest.html"  style="float:left;position:relative">18. Javascript Code Snippet For Getting List Of Modified Files In A Github PullRequest</a>
+                                                            <a href="/codesnippets/github_pull_request_files_list/2019/03/14/javascript-code-snippet-for-getting-list-of-modified-files-in-a-github-pullrequest.html"  style="float:left;position:relative">19. Javascript Code Snippet For Getting List Of Modified Files In A Github PullRequest</a>
                                                             <a href="/codesnippets/github_pull_request_files_list/2019/03/14/javascript-code-snippet-for-getting-list-of-modified-files-in-a-github-pullrequest.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -988,7 +1029,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html"  style="float:left;position:relative">19. CKEditor In Angular 6 And Adding Custom Items</a>
+                                                            <a href="/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html"  style="float:left;position:relative">20. CKEditor In Angular 6 And Adding Custom Items</a>
                                                             <a href="/ckeditor_angular6/ckeditor/2019/03/08/ckeditor-in-angular-6.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1026,7 +1067,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html"  style="float:left;position:relative">20. Getting Started With Kafka and C#</a>
+                                                            <a href="/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html"  style="float:left;position:relative">21. Getting Started With Kafka and C#</a>
                                                             <a href="/kafka/kafka_csharp/confluent_kafka/kafka_on_windows/2019/02/26/getting-started-with-kafka-and-c.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1068,7 +1109,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/2019/01/01/my-plans-for-year-2019.html"  style="float:left;position:relative">21. My Plans For Year 2019</a>
+                                                            <a href="/2019/01/01/my-plans-for-year-2019.html"  style="float:left;position:relative">22. My Plans For Year 2019</a>
                                                             <a href="/2019/01/01/my-plans-for-year-2019.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1102,7 +1143,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html"  style="float:left;position:relative">22. dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls</a>
+                                                            <a href="/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html"  style="float:left;position:relative">23. dnSpy- All In One Tool For Decompiling and Debugging .Net Dlls</a>
                                                             <a href="/dll_decompiling/decompiled_dll_debugging/dnspy/2018/06/07/dnSpy-For-DeCompiling,Debugging.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1142,7 +1183,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html"  style="float:left;position:relative">23. AWS VPC Peering Connection</a>
+                                                            <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html"  style="float:left;position:relative">24. AWS VPC Peering Connection</a>
                                                             <a href="/aws/vpc/vpc-peering/2018/05/15/AWS-VPC-Peering-connection.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1182,7 +1223,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/docker/2018/05/09/Docker-introduction.html"  style="float:left;position:relative">24. Installing Docker On Windows</a>
+                                                            <a href="/docker/2018/05/09/Docker-introduction.html"  style="float:left;position:relative">25. Installing Docker On Windows</a>
                                                             <a href="/docker/2018/05/09/Docker-introduction.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1218,7 +1259,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html"  style="float:left;position:relative">25. Exposing My API Hosted On Localhost To External World Through Internet</a>
+                                                            <a href="/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html"  style="float:left;position:relative">26. Exposing My API Hosted On Localhost To External World Through Internet</a>
                                                             <a href="/ngrok/2016/09/04/exposing-my-api-hosted-on-localhost-to-external-world-through-internet.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
@@ -1254,7 +1295,7 @@
 
                                                     <div class="title_content">
                                                         <div class="text_content" style="width:100%">
-                                                            <a href="/webresource.axd/2011/11/01/web-resources-axd.html"  style="float:left;position:relative">26. Web Resources axd</a>
+                                                            <a href="/webresource.axd/2011/11/01/web-resources-axd.html"  style="float:left;position:relative">27. Web Resources axd</a>
                                                             <a href="/webresource.axd/2011/11/01/web-resources-axd.html" style="float:right;position:relative">Read More </a>
                                                         </div>
                                                         
