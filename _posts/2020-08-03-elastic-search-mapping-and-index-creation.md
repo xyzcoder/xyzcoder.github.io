@@ -208,6 +208,27 @@ Get testindex1/_mapping
 ```
 We can see field3 is added and its datatype is integer.
 
+# That is Cool... So every time do I need to update this mapping manually whenever I want to add a new column. or Is it possible for Elastic search to guess the type and add it to mapping?
+Yes ofcource Elastic search can guess the datatype and simply add the new property to mapping when we add a new column at the time of document update or document insertion. Lets see how it does that.<br><br>
+
+Make sure that the new field you are trying to add is not present in existing mapping by issuing Get mapping command
+
+```
+Get testindex1/_mapping
+```
+
+Ok field5 is not present in mapping. Now lets try to add it to a new document
+
+```
+Post testindex1/_doc
+{
+  "field1":"aa",
+  "field5":"This is newly added field and Lets see if ES add it to mapping?"
+}
+```
+
+Now If we see mapping, we can see our new field5 is automatically added to mapping without us giving any mapping update command.
+
 <br>
 <br>
 Thanks,<br>
