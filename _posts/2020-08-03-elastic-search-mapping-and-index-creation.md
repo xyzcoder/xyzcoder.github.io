@@ -8,6 +8,9 @@ Categories:
 tags:
 - ''
 - ElasticSearch
+description: |-
+  We will see how to enable and disable Auto index creation, update mapping, create a mapping,
+  dynamic mapping creation in Elastic Search
 ---
 
 Hi,
