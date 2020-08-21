@@ -21,13 +21,13 @@ Did you ever think like it would be nice to learn and execute SQL queries on  38
 [https://data.stackexchange.com/](https://data.stackexchange.com/) is the place where you can execute an unlimited number of queries and find out interesting stats on Stackoverflow dataset?
 <br><br>
 
-I did write few queries to find out interesting stats on users from my city (Visakhapatnam). You can also play with site and learn SQL querying and at the same time findout nice stats. <br><br>
+I did write a few queries to find out interesting stats on users from my city (Visakhapatnam). You can also play with the site and learn SQL querying and at the same time find out nice stats. <br><br>
 
 Some of my queries:
 [https://data.stackexchange.com/users/32567/pavan-kumar-aryasomayajulu](https://data.stackexchange.com/users/32567/pavan-kumar-aryasomayajulu)
-# 1. How to use this dataset for learning purpose?<br>
+# 1. How to use this dataset for learning purposes?<br>
 [https://data.stackexchange.com/stackoverflow/query/1283225/get-top-questions-by-score](https://data.stackexchange.com/stackoverflow/query/1283225/get-top-questions-by-score)<br>
-For example: I want to find out all questions with a particular tag. So how does this help me, So I'll sort this query based on "score" count in desc order. Score count is nothing but number of upvotes for a question. So Questions with more upvotes are common problems related to that tech stack or they are some must to know basics in that area.
+For example, I want to find out all questions with a particular tag. So how does this help me, So I'll sort this query based on "score" count in desc order. Score count is nothing but a number of upvotes for a question. So Questions with more upvotes are common problems related to that tech stack or they are some must-know basics in that area.
 <br><br>
 This way for sure I'll try to learn in and outs about these top questions
 
