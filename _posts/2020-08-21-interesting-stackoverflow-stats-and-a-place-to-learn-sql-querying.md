@@ -89,6 +89,8 @@ from test1 ) as t1 where id=1415739
 Apart from these you can also find more queries that are already present and written by others<br><br>
 
 
+# If you have any interesting stats or other purposes please do share with me in comments section.
+
 #stack exchange data science <br>
 #stack exchange data explorer
 
