@@ -76,7 +76,7 @@ output {
 }
 ```
 																	 
-So, in the input plugin, we are specifying the path to our jar file. Note, this is the path in container. Don't get confused with D:\LogstashSamples\lib\mssql-jdbc-8.2.2.jre11.jar. We will map do that volume mounting in next steps.<br>
+So, in the input plugin, we are specifying the path to our jar file. Note, this is the path in container. Don't get confused with D:\LogstashSamples\lib\mssql-jdbc-8.2.2.jre11.jar. We will map to that volume mounting in next steps.<br>
 Next, as I am connecting to SqlServer I am using SQLServerDriver.<br><br>
 Now I am passing the JDBC connection string. As I am connecting to SQL Server that was hosted on my host machine(My windows machine) from logstash container, I can connect using **host.docker.internal** and this will resolve to my local ip address. In case, if you would like to connect to remote SQL Server, please do specify that IP address.<br><br>
 

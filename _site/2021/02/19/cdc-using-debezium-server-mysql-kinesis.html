@@ -1,0 +1,1387 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> 
+<html lang="no-js"> <!--<![endif]-->  
+      <head>
+
+          <title>CDC Using Debezium Server, MySql, Kinesis</title>
+
+          <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CDC Using Debezium Server, MySql, Kinesis | xyzcoder.github.io</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="CDC Using Debezium Server, MySql, Kinesis" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What is CDC/ Change Data Capture As per Wikipedia In databases, change data capture is a set of software design patterns used to determine and track the data that has changed so that action can be taken using the changed data So usually let’s take an example of Microservices, One of the basic principles of Microservices is to have Microservice specific Databases. For example, I have an Orders Microservices and Shipping Microservice and whenever a new order is placed, I need to create a record in the Order Microservice database and at the same time, I need to publish this event to Shipping Microservice for further processing. Now there is a change in order details and I’ll update these details in the Order Microservices database and at the same time, I need to push these details to Shipping Microservice. One way to do this is to have code-related changes in each microservices to publish events and subscribe to an event by passing payloads. So this requires a lot of code changes in the publishing microservice." />
+<meta property="og:description" content="What is CDC/ Change Data Capture As per Wikipedia In databases, change data capture is a set of software design patterns used to determine and track the data that has changed so that action can be taken using the changed data So usually let’s take an example of Microservices, One of the basic principles of Microservices is to have Microservice specific Databases. For example, I have an Orders Microservices and Shipping Microservice and whenever a new order is placed, I need to create a record in the Order Microservice database and at the same time, I need to publish this event to Shipping Microservice for further processing. Now there is a change in order details and I’ll update these details in the Order Microservices database and at the same time, I need to push these details to Shipping Microservice. One way to do this is to have code-related changes in each microservices to publish events and subscribe to an event by passing payloads. So this requires a lot of code changes in the publishing microservice." />
+<link rel="canonical" href="http://0.0.0.0:4000/2021/02/19/cdc-using-debezium-server-mysql-kinesis.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2021/02/19/cdc-using-debezium-server-mysql-kinesis.html" />
+<meta property="og:site_name" content="xyzcoder.github.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-19T17:16:51+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CDC Using Debezium Server, MySql, Kinesis" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2021/02/19/cdc-using-debezium-server-mysql-kinesis.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2021/02/19/cdc-using-debezium-server-mysql-kinesis.html","headline":"CDC Using Debezium Server, MySql, Kinesis","dateModified":"2021-02-19T17:16:51+00:00","datePublished":"2021-02-19T17:16:51+00:00","description":"What is CDC/ Change Data Capture As per Wikipedia In databases, change data capture is a set of software design patterns used to determine and track the data that has changed so that action can be taken using the changed data So usually let’s take an example of Microservices, One of the basic principles of Microservices is to have Microservice specific Databases. For example, I have an Orders Microservices and Shipping Microservice and whenever a new order is placed, I need to create a record in the Order Microservice database and at the same time, I need to publish this event to Shipping Microservice for further processing. Now there is a change in order details and I’ll update these details in the Order Microservices database and at the same time, I need to push these details to Shipping Microservice. One way to do this is to have code-related changes in each microservices to publish events and subscribe to an event by passing payloads. So this requires a lot of code changes in the publishing microservice.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+          <meta name="google-site-verification" content="LfPi7exaA4zufZ1K-jS-XMIWDVSAaczpPkTXXomezmc" />
+
+          <!-- CSS | bootstrap -->
+          <!-- Credits: http://getbootstrap.com/ -->
+          <link  rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+
+          <!-- CSS | font-awesome -->
+          <!-- Credits: http://fortawesome.github.io/Font-Awesome/icons/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css" />
+
+          <!-- CSS | animate -->
+          <!-- Credits: http://daneden.github.io/animate.css/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css" />
+
+          <!-- CSS | Normalize -->
+          <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css" />
+          
+          <!-- CSS | Colors -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/colors/DarkBlue.css" id="colors-style" />
+          
+          <!-- CSS | Style -->
+          <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+          <!-- CSS | prettyPhoto -->
+          <!-- Credits: http://www.no-margin-for-errors.com/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/prettyPhoto.css"/> 
+
+          <!-- CSS | Google Fonts -->
+          <!-- <link href='http://fonts.useso.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> -->
+          <!-- Favicon -->
+          <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+
+          <!--[if IE 7]>
+                  <link rel="stylesheet" type="text/css" href="assets/css/icons/font-awesome-ie7.min.css"/>
+          <![endif]-->
+
+          <style>
+              @media only screen and (max-width : 991px){
+                  .resp-vtabs .resp-tabs-container {
+                      margin-left: 13px;
+                  }
+              }
+              
+              @media only screen and (min-width : 800px) and (max-width : 991px){
+                  .resp-vtabs .resp-tabs-container {
+                      margin-left: 13px;
+                      width:89%;
+                  }
+              }  
+
+
+          </style>
+
+
+
+
+
+
+
+
+          <style>
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .topnav {
+              overflow: hidden;
+              background-color: #333;
+              position: fixed;
+              width: 100%;
+              z-index: 1;
+              top:0px;
+            }
+
+            .topnav a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+
+            .topnav a:hover {
+              background-color: #ddd;
+              color: black;
+            }
+
+            .active {
+              background-color: #4CAF50;
+              color: white;
+            }
+
+            .topnav .icon {
+              display: none;
+            }
+
+            @media screen and (max-width: 600px) {
+              .topnav a:not(:first-child) {display: none;}
+              .topnav a.icon {
+                float: right;
+                display: block;
+              }
+            }
+
+            @media screen and (max-width: 600px) {
+              .topnav.responsive {position: fixed;z-index: 100}
+              .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+              }
+              .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+              }
+            }
+      </style>
+
+      
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"></script>
+<script>
+var host = window.location.hostname;
+debugger;
+if(host.indexOf("localhost")>=0 || host.indexOf("127.0.0.1")>=0)
+{
+    //Ignore
+}
+else{
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119328598-1');
+}
+</script>
+
+
+      <script type="text/javascript">function add_chatinline(){var hccid=90341307;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+        add_chatinline(); </script>
+
+     
+</head>
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+      <a href="/index.html" class="active">Blog</a>
+      <a href="/about.html">About Me</a>
+      <a href="/tags">Posts By Tags</a>
+      <a href="#" onclick="subscribe()">Subscribe</a>
+      <a href="/tags#elasticsearch">Elastic Search</a>
+      <a href="/tags#100DayCode">Code EveryDay Challenge</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+    function subscribe(){
+        $("#myModal").modal("show");
+    }
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<div class="wrapper">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">   
+
+                    <!-- profile -->
+                    <div class="col-md-3 widget-profil">
+	<div class="row">
+
+		<div class="affix">
+			<!-- Profile Image -->
+			<div class="col-lg-12 col-md-12 col-sm-3 col-xs-12 ">
+
+				<div class="image-holder one" id="pic_prof_1" style="display:block">
+					<img class="head-image front circle" src="/images/img/0.jpg" width="150" height="150" alt="" />
+				</div>
+
+				<!-- style for simple image profile -->		
+				<div class="circle-img" id="pic_prof_2" style="display:none"></div>
+			</div>
+			<!-- End Profile Image -->
+
+			<!-- Begin profile information -->
+			<div class="col-lg-12 col-md-12 col-sm-9 col-xs-12">
+				<!-- Profile info -->
+				<div id="profile_info">
+					<h3 id="name" class="transition-02" style="color: white;text-align:  center;margin-top: 0px;">Pavan Kumar Aryasomayajulu</h3>
+				</div>
+				<!-- End Profile info -->  
+
+
+				<!-- Profile Description -->
+				<!-- <div id="profile_desc">
+					<p>
+						I am a passionate programmer with good experience in building various application both enterprise level and small scale. Apart from technology I like to travel. I visited many places in India and can help people choosing travel destinations.
+					</p>
+
+				</div> -->
+				<!-- End Profile Description -->  
+
+
+				<!-- Name -->
+				<div id="profile_social" style="padding-top: 0px;">
+					<div style="position:  relative;left: 30%">
+						<a href="https://www.facebook.com/paryasomayajulu"><i class="fa fa-facebook"></i></a>
+						<a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a>
+						<a href="https://www.linkedin.com/in/pavankumararya/"><i class="fa fa-linkedin"></i></a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<br>
+				<div id="profile_desc">
+					<h1 class="glow" style="font-size:20px;"><a href="#" onclick="subscribe()">Subscribe</a></h1>
+					<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-3300393120826046"
+				     data-ad-slot="6654590880"
+				     data-ad-format="auto">
+				     </ins>
+				</div>
+				<!-- End Name -->  
+
+			</div>
+			<!-- End profile information -->
+
+		</div>                                      
+	</div> 
+	<!-- end profile -->
+</div>
+                    <!--end profile -->
+
+                    <!-- blog content -->
+                    <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
+
+    <!-- verticalTab menu -->
+    <div id="verticalTab">
+        <!-- resp-tabs-container --> 
+        <div class="resp-tabs-container">
+
+            <div id="blog" class="content_2">
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <!-- Page Blog -->
+                        <div class="col-md-12" id="blog_page">
+                            <!-- start Page Blog -->
+                            <section id="post-1-page" class="content-post">
+                                <div class="row inner">
+
+                                    <div class="col-md-12" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;padding-left: 30px;">
+
+                                        <article class="postPage">
+
+                                            <div class="title_content">
+                                                <div class="text_content">
+                                                   
+                                                    
+                                                        CDC Using Debezium Server, MySql, Kinesis
+                                                    
+                                                    
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+
+                                            
+                                                <h1 id="what-is--cdc-change-data-capture">What is  CDC/ Change Data Capture<br /></h1>
+<p><em>As per Wikipedia In databases, change data capture is a set of software design patterns used to determine and track the data that has changed so that action can be taken using the changed data</em>
+<br /><br />
+So usually let’s take an example of Microservices, One of the basic principles of Microservices is to have Microservice specific Databases. For example, I have an Orders Microservices and Shipping Microservice and whenever a new order is placed, I need to create a record in the Order Microservice database and at the same time, I need to publish this event to Shipping Microservice for further processing.
+<br />
+Now there is a change in order details and I’ll update these details in the Order Microservices database and at the same time, I need to push these details to Shipping Microservice.
+<br />
+One way to do this is to have code-related changes in each microservices to publish events and subscribe to an event by passing payloads. So this requires a lot of code changes in the publishing microservice.</p>
+
+<p><br /></p>
+<h1 id="using-debezium-for-tracking-db-changes-and-publishing-them">Using Debezium For Tracking DB changes and Publishing them</h1>
+
+<p><a href="https://debezium.io/">https://debezium.io/</a></p>
+
+<p><b>Definition from Debezium </b>:  <em>Debezium is an open source distributed platform for change data capture. Start it up, point it at your databases, and your apps can start responding to all of the inserts, updates, and deletes that other apps commit to your databases. Debezium is durable and fast, so your apps can respond quickly and never miss an event, even when things go wrong.</em>
+<br /><br /></p>
+
+<p>Debezium is a CDC tool that captures any changes to Databases as events and sends these events to various sources like Kafka, Kinesis, Apache Pulsar, Google Pubsub. It supports a wide variety of Databases like Mysql, SQL Server, PostgreSQL.</p>
+
+<p><br /></p>
+<h1 id="architecture-of-debezium-server">Architecture Of Debezium Server:</h1>
+<p>In this post, we will see how we can use Debezium to send CDC events into Kinesis by making use of <b>Debezium Server</b>. This is a variant of Debezium deployment which makes use of Kinesis/Apache Pulsar/Google Pubsub
+<br />
+<img src="/assets/images/posts/debezium-server-architecture.png" style="max-width: 100%;height: auto;" alt="" /></p>
+
+<p>On a high level, the Debezium server is configured to use one of the Debezium source connectors to capture changes from the source database. Change events can be serialized to different formats like JSON or Apache Avro and then will be sent to one of a variety of messaging infrastructures such as Amazon Kinesis, Google Cloud Pub/Sub, or Apache Pulsar.</p>
+
+<h1 id="mysql-configuration">Mysql Configuration</h1>
+<ol>
+  <li>Before actually getting started with CDC in Mysql, make sure that we have CDC enabled in MySQL</li>
+  <li>In this example, I’ll be using the Mysql docker container to spin up the MySql instance with the latest version of Mysql</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw  -p 3308:3306 -d mysql:latest
+
+SHOW VARIABLES LIKE 'log_bin';  -- Value should be ON
+SHOW VARIABLES -- Display information about various config values
+SHOW VARIABLES like '%binlog_format%' -- This should be set to ROW or Mixed
+</code></pre></div></div>
+
+<p>With this, we are all set with the Mysql configuration.
+<br /><br /></p>
+
+<ol>
+  <li>Create a test database called “TestDB”</li>
+  <li>Create a test table called “Orders”
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE `TestDB`.`Orders` (
+  `Id` INT NOT NULL,
+  `ProductName` VARCHAR(150) NULL,
+  `OrderDate` DATETIME NULL,
+  PRIMARY KEY (`Id`));
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h1 id="create-an-ec2-instance-or-ubuntu-docker-conatiner-for-installing-debezium">Create an EC2 instance or Ubuntu Docker Conatiner for Installing Debezium:</h1>
+
+<p>I am creating a docker ubuntu container on my Windows machine and I’ll use that to run Debezium Server. Also, I am linking my MySQL container ( some-MySQL is my container name of MySql)
+<br /><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -it  --link some-mysql ubuntu bash
+</code></pre></div></div>
+
+<p><b> Install AWS CLI:</b></p>
+
+<p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html">https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get update
+apt-get  install awscli
+
+apt-get install wget
+
+aws configure 
+// Provide AWS Access keys and Secret keys
+</code></pre></div></div>
+
+<p><br /><br /></p>
+
+<h1 id="installing-debezium-server">Installing Debezium Server</h1>
+<p>To get started with Debezium Server( This is a bit different from actual Debezium deployment), download content from this URL</p>
+
+<p><a href="https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&amp;g=io.debezium&amp;a=debezium-server-dist&amp;v=LATEST&amp;e=tar.gz">https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&amp;g=io.debezium&amp;a=debezium-server-dist&amp;v=LATEST&amp;e=tar.gz</a>
+<br /><br />
+To download latest version you can browse to <a href="https://debezium.io/documentation/reference/operations/debezium-server.html">https://debezium.io/documentation/reference/operations/debezium-server.html</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget -O debezium.tar.gz  "https://repo1.maven.org/maven2/io/debezium/debezium-server-dist/1.5.0.Alpha1/debezium-server-dist-1.5.0.Alpha1.tar.gz"
+
+tar -xf debezium.tar.gz
+</code></pre></div></div>
+
+<ol>
+  <li>Unzip the content of the above file onto the disk</li>
+  <li>Make sure you have Java installed. If not install Java
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get install openjdk-8-jre
+</code></pre></div>    </div>
+  </li>
+  <li>Once we unzip content, create a config file called application.properties in conf\ folder, For example <b>‘/home/ubuntu/debezium-server/conf’</b></li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>touch conf/application.properties
+mkdir data
+touch data/offsets.dat
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>debezium.sink.type=kinesis
+debezium.sink.kinesis.region=ap-south-1
+debezium.sink.kinesis.credentials.profile=default
+debezium.source.connector.class=io.debezium.connector.mysql.MySqlConnector
+debezium.source.offset.storage.file.filename=data/offsets.dat
+debezium.source.offset.flush.interval.ms=0
+debezium.source.database.hostname=some-mysql
+debezium.source.database.port=3306
+debezium.source.database.user=root
+debezium.source.database.password=my-secret-pw
+debezium.source.database.dbname=TestDB
+debezium.source.database.server.name=debezium-tutorial
+debezium.source.database.history=io.debezium.relational.history.FileDatabaseHistory
+debezium.source.database.history.file.filename=history.dat
+</code></pre></div></div>
+
+<ol>
+  <li>Create a file called offsets.dat in the data folder ( Create data folder too)</li>
+  <li>
+    <p>Make sure you create required streams in Kinesis</p>
+
+    <p>i. debezium-tutorial (this is the name that we got from ‘debezium.source.database.server.name’ prop)</p>
+  </li>
+  <li>Now create Kinesis Streams for each table in this format («debezium.source.database.server.name».«debezium.source.database.dbname».«tablename»)
+For example:  debezium-tutorial.TestDB.Orders</li>
+</ol>
+
+<p>Note: For each table you need to have one stream created by default but we can override this by injecting our custom code which I’ll show in other blog post</p>
+
+<ol>
+  <li>Now run the file <b>run.sh</b> present in Debezium-server folder</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh run.sh
+</code></pre></div></div>
+<p><br /><br />
+Unfortunately, I am getting an exception when running this command</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2021-02-23 17:43:49,551 INFO  [io.deb.ser.BaseChangeConsumer] (main) Using 'io.debezium.server.BaseChangeConsumer$$Lambda$72/1809194904@73e9cf30' stream name mapper
+2021-02-23 17:43:49,755 ERROR [io.qua.run.Application] (main) Failed to start application (with profile prod): java.lang.ClassNotFoundException: org.apache.commons.logging.LogFactory
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:382)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+        at org.apache.http.conn.ssl.AbstractVerifier.&lt;init&gt;(AbstractVerifier.java:61)
+        at org.apache.http.conn.ssl.AllowAllHostnameVerifier.&lt;init&gt;(AllowAllHostnameVerifier.java:44)
+        at org.apache.http.conn.ssl.AllowAllHostnameVerifier.&lt;clinit&gt;(AllowAllHostnameVerifier.java:46)
+        at org.apache.http.conn.ssl.SSLConnectionSocketFactory.&lt;clinit&gt;(SSLConnectionSocketFactory.java:151)
+        at software.amazon.awssdk.http.apache.ApacheHttpClient$ApacheConnectionManagerFactory.getPreferredSocketFactory(ApacheHttpClient.java:615)
+        at software.amazon.awssdk.http.apache.ApacheHttpClient$ApacheConnectionManagerFactory.create(ApacheHttpClient.java:594)
+        at software.amazon.awssdk.http.apache.ApacheHttpClient.createClient(ApacheHttpClient.java:153)
+        at software.amazon.awssdk.http.apache.ApacheHttpClient.&lt;init&gt;(ApacheHttpClient.java:127)
+        at software.amazon.awssdk.http.apache.ApacheHttpClient.&lt;init&gt;(ApacheHttpClient.java:106)
+        at software.amazon.awssdk.http.apache.ApacheHttpClient$DefaultBuilder.buildWithDefaults(ApacheHttpClient.java:586)
+        at software.amazon.awssdk.core.internal.http.loader.DefaultSdkHttpClientBuilder.lambda$buildWithDefaults$0(DefaultSdkHttpClientBuilder.java:42)
+        at java.util.Optional.map(Optional.java:215)
+        at software.amazon.awssdk.core.internal.http.loader.DefaultSdkHttpClientBuilder.buildWithDefaults(DefaultSdkHttpClientBuilder.java:42)
+        at software.amazon.awssdk.core.client.builder.SdkDefaultClientBuilder.lambda$resolveSyncHttpClient$5(SdkDefaultClientBuilder.java:274)
+        at java.util.Optional.orElseGet(Optional.java:267)
+        at software.amazon.awssdk.core.client.builder.SdkDefaultClientBuilder.resolveSyncHttpClient(SdkDefaultClientBuilder.java:274)
+        at software.amazon.awssdk.core.client.builder.SdkDefaultClientBuilder.finalizeSyncConfiguration(SdkDefaultClientBuilder.java:225)
+        at software.amazon.awssdk.core.client.builder.SdkDefaultClientBuilder.syncClientConfiguration(SdkDefaultClientBuilder.java:158)
+        at software.amazon.awssdk.services.kinesis.DefaultKinesisClientBuilder.buildClient(DefaultKinesisClientBuilder.java:28)
+        at software.amazon.awssdk.services.kinesis.DefaultKinesisClientBuilder.buildClient(DefaultKinesisClientBuilder.java:22)
+        at software.amazon.awssdk.core.client.builder.SdkDefaultClientBuilder.build(SdkDefaultClientBuilder.java:129)
+        at io.debezium.server.kinesis.KinesisChangeConsumer.connect(KinesisChangeConsumer.java:77)
+        at io.debezium.server.kinesis.KinesisChangeConsumer_Bean.create(KinesisChangeConsumer_Bean.zig:835)
+        at io.debezium.server.kinesis.KinesisChangeConsumer_Bean.create(KinesisChangeConsumer_Bean.zig:851)
+        at io.debezium.server.DebeziumServer.start(DebeziumServer.java:111)
+        at io.debezium.server.DebeziumServer_Bean.create(DebeziumServer_Bean.zig:256)
+        at io.debezium.server.DebeziumServer_Bean.create(DebeziumServer_Bean.zig:272)
+        at io.quarkus.arc.impl.AbstractSharedContext.createInstanceHandle(AbstractSharedContext.java:96)
+        at io.quarkus.arc.impl.AbstractSharedContext.access$000(AbstractSharedContext.java:14)
+        at io.quarkus.arc.impl.AbstractSharedContext$1.get(AbstractSharedContext.java:29)
+        at io.quarkus.arc.impl.AbstractSharedContext$1.get(AbstractSharedContext.java:26)
+        at io.quarkus.arc.impl.LazyValue.get(LazyValue.java:26)
+        at io.quarkus.arc.impl.ComputingCache.computeIfAbsent(ComputingCache.java:69)
+        at io.quarkus.arc.impl.AbstractSharedContext.get(AbstractSharedContext.java:26)
+        at io.quarkus.arc.impl.ClientProxies.getApplicationScopedDelegate(ClientProxies.java:17)
+        at io.debezium.server.DebeziumServer_ClientProxy.arc$delegate(DebeziumServer_ClientProxy.zig:67)
+        at io.debezium.server.DebeziumServer_ClientProxy.arc_contextualInstance(DebeziumServer_ClientProxy.zig:82)
+        at io.debezium.server.DebeziumServer_Observer_Synthetic_d70cd75bf32ab6598217b9a64a8473d65e248c05.notify(DebeziumServer_Observer_Synthetic_d70cd75bf32ab6598217b9a64a8473d65e248c05.zig:94)
+        at io.quarkus.arc.impl.EventImpl$Notifier.notifyObservers(EventImpl.java:282)
+        at io.quarkus.arc.impl.EventImpl$Notifier.notify(EventImpl.java:267)
+        at io.quarkus.arc.impl.EventImpl.fire(EventImpl.java:69)
+        at io.quarkus.arc.runtime.LifecycleEventRunner.fireStartupEvent(LifecycleEventRunner.java:23)
+        at io.quarkus.arc.runtime.ArcRecorder.handleLifecycleEvents(ArcRecorder.java:60)
+        at io.quarkus.deployment.steps.LifecycleEventsBuildStep$startupEvent-858218658.deploy_0(LifecycleEventsBuildStep$startupEvent-858218658.zig:81)
+        at io.quarkus.deployment.steps.LifecycleEventsBuildStep$startupEvent-858218658.deploy(LifecycleEventsBuildStep$startupEvent-858218658.zig:40)
+        at io.quarkus.runner.ApplicationImpl.doStart(ApplicationImpl.zig:521)
+        at io.quarkus.runtime.Application.start(Application.java:90)
+        at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:97)
+        at io.quarkus.runtime.Quarkus.run(Quarkus.java:66)
+        at io.quarkus.runtime.Quarkus.run(Quarkus.java:42)
+        at io.quarkus.runtime.Quarkus.run(Quarkus.java:119)
+        at io.debezium.server.Main.main(Main.java:15)
+</code></pre></div></div>
+
+<p>This is because some how this version is missing some jar files related to <b>Apache Commons Logging 1.2</b>, Now download(commons-logging-1.2-bin.tar.gz) them from <a href="http://commons.apache.org/proper/commons-logging/download_logging.cgi">http://commons.apache.org/proper/commons-logging/download_logging.cgi</a></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> root@1f791b7db475:/debezium-server#wget -O apache.common.log.tar.gz https://downloads.apache.org//commons/logging/binaries/commons-logging-1.2-bin.tar.gz
+ 
+ root@1f791b7db475:/debezium-server#tar -xvf apache.common.log.tar.gz
+ 
+ root@1f791b7db475:/debezium-server#cp commons-logging-1.2/commons-logging-1.2.jar lib
+</code></pre></div></div>
+<p><br /><br />
+So, we are all set to stream our changes in DB to Kinesis. Debezium runs in the background and pushes events into Stream and we can have a sample python script to capture data from these streams.
+<br /><br />
+Here is the sample Python file to read data from Kinesis Stream</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install boto3
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from __future__ import print_function
+import boto3
+from datetime import datetime
+import time
+
+def main():
+
+    my_stream_name="debezium-tutorial.TestDB.Orders"
+
+    kinesis_client = boto3.client("kinesis", region_name='ap-south-1',
+                         aws_access_key_id="&lt;&lt;your_access_key&gt;&gt;", 
+                      aws_secret_access_key="&lt;&lt;your_secret_key&gt;&gt;")
+
+    response = kinesis_client.describe_stream(StreamName=my_stream_name)
+
+    my_shard_id = response['StreamDescription']['Shards'][0]['ShardId']
+
+    # We use ShardIteratorType of LATEST which means that we start to look
+    # at the end of the stream for new incoming data. Note that this means
+    # you should be running the this lambda before running any write lambdas
+    #
+    shard_iterator = kinesis_client.get_shard_iterator(StreamName=my_stream_name,
+                                                      ShardId=my_shard_id,
+                                                      ShardIteratorType='TRIM_HORIZON')
+
+    # get your shard number and set up iterator
+    my_shard_iterator = shard_iterator['ShardIterator']
+
+    record_response = kinesis_client.get_records(ShardIterator=my_shard_iterator,Limit=100)
+ 
+    while 'NextShardIterator' in record_response:
+        # read up to 100 records at a time from the shard number
+        record_response = kinesis_client.get_records(ShardIterator=record_response['NextShardIterator'],Limit=100)
+        # Print only if we have something
+        if(record_response['Records']):
+            print (record_response)
+
+        # wait for 1 seconds before looping back around to see if there is any more data to read
+        time.sleep(1)
+
+if __name__ == "__main__":
+   main()
+</code></pre></div></div>
+<p><br /><br />
+Here is a sample json that we get for each event
+<br /><br />
+<b>Insert Record equivalent Payload:</b></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Insert into Orders values (6,'Test',CurDate())
+
+
+{
+    "schema": {
+        "type": "struct",
+        "fields": [{
+                "type": "struct",
+                "fields": [{
+                        "type": "int32",
+                        "optional": false,
+                        "field": "Id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "ProductName"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "name": "io.debezium.time.Timestamp",
+                        "version": 1,
+                        "field": "OrderDate"
+                    }
+                ],
+                "optional": true,
+                "name": "debezium_tutorial.TestDB.Orders.Value",
+                "field": "before"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "int32",
+                        "optional": false,
+                        "field": "Id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "ProductName"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "name": "io.debezium.time.Timestamp",
+                        "version": 1,
+                        "field": "OrderDate"
+                    }
+                ],
+                "optional": true,
+                "name": "debezium_tutorial.TestDB.Orders.Value",
+                "field": "after"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "string",
+                        "optional": false,
+                        "field": "version"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "connector"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "name"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "ts_ms"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "name": "io.debezium.data.Enum",
+                        "version": 1,
+                        "parameters": {
+                            "allowed": "true,last,false"
+                        },
+                        "default": "false",
+                        "field": "snapshot"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "db"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "table"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "server_id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "gtid"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "file"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "pos"
+                    }, {
+                        "type": "int32",
+                        "optional": false,
+                        "field": "row"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "field": "thread"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "query"
+                    }
+                ],
+                "optional": false,
+                "name": "io.debezium.connector.mysql.Source",
+                "field": "source"
+            }, {
+                "type": "string",
+                "optional": false,
+                "field": "op"
+            }, {
+                "type": "int64",
+                "optional": true,
+                "field": "ts_ms"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "string",
+                        "optional": false,
+                        "field": "id"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "total_order"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "data_collection_order"
+                    }
+                ],
+                "optional": true,
+                "field": "transaction"
+            }
+        ],
+        "optional": false,
+        "name": "debezium_tutorial.TestDB.Orders.Envelope"
+    },
+    "payload": {
+        "before": null,
+        "after": {
+            "Id": 6,
+            "ProductName": "Test",
+            "OrderDate": 1614124800000
+        },
+        "source": {
+            "version": "1.5.0.Alpha1",
+            "connector": "mysql",
+            "name": "debezium-tutorial",
+            "ts_ms": 1614149085000,
+            "snapshot": "false",
+            "db": "TestDB",
+            "table": "Orders",
+            "server_id": 1,
+            "gtid": null,
+            "file": "binlog.000003",
+            "pos": 384,
+            "row": 0,
+            "thread": 9,
+            "query": null
+        },
+        "op": "c",
+        "ts_ms": 1614149085256,
+        "transaction": null
+    }
+}
+
+</code></pre></div></div>
+<p><br /><br />
+<b>Update record payload and we can see before and after values too</b><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update Orders set Productname='UpdatedProctuctName' where Id=6
+
+
+{
+    "schema": {
+        "type": "struct",
+        "fields": [{
+                "type": "struct",
+                "fields": [{
+                        "type": "int32",
+                        "optional": false,
+                        "field": "Id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "ProductName"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "name": "io.debezium.time.Timestamp",
+                        "version": 1,
+                        "field": "OrderDate"
+                    }
+                ],
+                "optional": true,
+                "name": "debezium_tutorial.TestDB.Orders.Value",
+                "field": "before"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "int32",
+                        "optional": false,
+                        "field": "Id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "ProductName"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "name": "io.debezium.time.Timestamp",
+                        "version": 1,
+                        "field": "OrderDate"
+                    }
+                ],
+                "optional": true,
+                "name": "debezium_tutorial.TestDB.Orders.Value",
+                "field": "after"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "string",
+                        "optional": false,
+                        "field": "version"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "connector"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "name"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "ts_ms"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "name": "io.debezium.data.Enum",
+                        "version": 1,
+                        "parameters": {
+                            "allowed": "true,last,false"
+                        },
+                        "default": "false",
+                        "field": "snapshot"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "db"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "table"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "server_id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "gtid"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "file"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "pos"
+                    }, {
+                        "type": "int32",
+                        "optional": false,
+                        "field": "row"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "field": "thread"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "query"
+                    }
+                ],
+                "optional": false,
+                "name": "io.debezium.connector.mysql.Source",
+                "field": "source"
+            }, {
+                "type": "string",
+                "optional": false,
+                "field": "op"
+            }, {
+                "type": "int64",
+                "optional": true,
+                "field": "ts_ms"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "string",
+                        "optional": false,
+                        "field": "id"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "total_order"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "data_collection_order"
+                    }
+                ],
+                "optional": true,
+                "field": "transaction"
+            }
+        ],
+        "optional": false,
+        "name": "debezium_tutorial.TestDB.Orders.Envelope"
+    },
+    "payload": {
+        "before": {
+            "Id": 6,
+            "ProductName": "Test",
+            "OrderDate": 1614124800000
+        },
+        "after": {
+            "Id": 6,
+            "ProductName": "UpdatedProctuctName",
+            "OrderDate": 1614124800000
+        },
+        "source": {
+            "version": "1.5.0.Alpha1",
+            "connector": "mysql",
+            "name": "debezium-tutorial",
+            "ts_ms": 1614149449000,
+            "snapshot": "false",
+            "db": "TestDB",
+            "table": "Orders",
+            "server_id": 1,
+            "gtid": null,
+            "file": "binlog.000003",
+            "pos": 695,
+            "row": 0,
+            "thread": 9,
+            "query": null
+        },
+        "op": "u",
+        "ts_ms": 1614149449810,
+        "transaction": null
+    }
+}
+
+</code></pre></div></div>
+
+<p><br /><br />
+<b>Delete record payload. We can see type of operation as ‘d’</b><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+delete from Orders where Id=6
+
+
+{
+    "schema": {
+        "type": "struct",
+        "fields": [{
+                "type": "struct",
+                "fields": [{
+                        "type": "int32",
+                        "optional": false,
+                        "field": "Id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "ProductName"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "name": "io.debezium.time.Timestamp",
+                        "version": 1,
+                        "field": "OrderDate"
+                    }
+                ],
+                "optional": true,
+                "name": "debezium_tutorial.TestDB.Orders.Value",
+                "field": "before"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "int32",
+                        "optional": false,
+                        "field": "Id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "ProductName"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "name": "io.debezium.time.Timestamp",
+                        "version": 1,
+                        "field": "OrderDate"
+                    }
+                ],
+                "optional": true,
+                "name": "debezium_tutorial.TestDB.Orders.Value",
+                "field": "after"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "string",
+                        "optional": false,
+                        "field": "version"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "connector"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "name"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "ts_ms"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "name": "io.debezium.data.Enum",
+                        "version": 1,
+                        "parameters": {
+                            "allowed": "true,last,false"
+                        },
+                        "default": "false",
+                        "field": "snapshot"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "db"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "table"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "server_id"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "gtid"
+                    }, {
+                        "type": "string",
+                        "optional": false,
+                        "field": "file"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "pos"
+                    }, {
+                        "type": "int32",
+                        "optional": false,
+                        "field": "row"
+                    }, {
+                        "type": "int64",
+                        "optional": true,
+                        "field": "thread"
+                    }, {
+                        "type": "string",
+                        "optional": true,
+                        "field": "query"
+                    }
+                ],
+                "optional": false,
+                "name": "io.debezium.connector.mysql.Source",
+                "field": "source"
+            }, {
+                "type": "string",
+                "optional": false,
+                "field": "op"
+            }, {
+                "type": "int64",
+                "optional": true,
+                "field": "ts_ms"
+            }, {
+                "type": "struct",
+                "fields": [{
+                        "type": "string",
+                        "optional": false,
+                        "field": "id"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "total_order"
+                    }, {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "data_collection_order"
+                    }
+                ],
+                "optional": true,
+                "field": "transaction"
+            }
+        ],
+        "optional": false,
+        "name": "debezium_tutorial.TestDB.Orders.Envelope"
+    },
+    "payload": {
+        "before": {
+            "Id": 6,
+            "ProductName": "UpdatedProctuctName",
+            "OrderDate": 1614124800000
+        },
+        "after": null,
+        "source": {
+            "version": "1.5.0.Alpha1",
+            "connector": "mysql",
+            "name": "debezium-tutorial",
+            "ts_ms": 1614149647000,
+            "snapshot": "false",
+            "db": "TestDB",
+            "table": "Orders",
+            "server_id": 1,
+            "gtid": null,
+            "file": "binlog.000003",
+            "pos": 1029,
+            "row": 0,
+            "thread": 9,
+            "query": null
+        },
+        "op": "d",
+        "ts_ms": 1614149647433,
+        "transaction": null
+    }
+}
+
+</code></pre></div></div>
+
+<p><br />
+<br />
+Thanks,<br />
+Pavan Kumar Aryasomayajulu</p>
+
+<p><br /><br /><br /></p>
+
+<div id="disqus_thread"></div>
+<script>
+	
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.identifier = 21082020312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xyzcoder1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                                            
+
+
+                                            <div class="col-md-12 first">
+                                                <div class="info">
+                                                    <div>
+
+
+                                                        
+
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>    
+
+                                                <div class="col-md-12" style="margin-top: 20px;">
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2020/08/21/interesting-stackoverflow-stats-and-a-place-to-learn-sql-querying.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                </div>
+
+                                                <div class="clear"></div>
+                                            </div>
+
+                                        </article>
+                                        <amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-3300393120826046">
+</amp-auto-ads>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div><!-- End verticalTab -->
+
+    </div><!-- End flexy_content -->
+
+
+</div><!-- End row -->
+                    <!--blog content -->
+
+                </div><!-- End col-md-12 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+        <!-- </section> -->
+        <!-- End Content -->
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" onclick="closeSubscribe()">&times;</button>
+                  <h4 class="modal-title" style="color: white;">Thank you for reading this article- Subscribe To Recieve My Future Articles</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Please Enter your email</p>
+                  <input type="text" id="email" style="width:100%">
+                  <br/>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
+                  <button type="button" class="btn btn-default" onclick="closeSubscribe()">Close</button>
+                </div>
+              </div>
+          
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        
+    <!-- jquery | jQuery 1.11.0 -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+    <!-- Js | bootstrap -->
+    <!-- Credits: http://getbootstrap.com/ -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script> 
+
+    <!-- Js | jquery.cycle -->
+    <!-- Credits: https://github.com/malsup/cycle2 -->
+    <script type="text/javascript" src="/assets/js/jquery.cycle2.min.js"></script>
+
+    <!-- jquery | rotate and portfolio -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script> 
+    <script type="text/javascript" src="/assets/js/HeadImage.js"></script>
+
+    <!-- Js | easyResponsiveTabs -->
+    <!-- Credits: http://webtrendset.com/demo/easy-responsive-tabs/Index.html -->
+    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script>  
+
+    <!-- Js | mCustomScrollbar -->
+    <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+    <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>     
+
+    <!-- jquery | prettyPhoto -->
+    <!-- Credits: http://www.no-margin-for-errors.com/ -->
+    <script type="text/javascript" src="/assets/js/jquery.prettyPhoto.js"></script>
+
+
+    <!-- Js | Js -->
+    <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+
+<script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
+    
+<script type="text/javascript">
+var isAdBoxDisplayed = false;
+
+if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+    isAdBoxDisplayed = true;
+}
+
+//In future I can add this to have pop on scroll bottom
+$(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+        $("#myModal").modal("show");
+        isAdBoxDisplayed = true;
+    }
+});
+</script>
+<script async custom-element="amp-auto-ads"
+src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
+                }
+            });
+           
+        }
+    }
+
+</script>
+
+
+<script>
+    [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
+    (adsbygoogle = window.adsbygoogle || []).push({});
+});
+//In future we can ad ads in popup
+$('#myModal').on('shown.bs.modal', function (e) {
+    $(".adsense-inject").each(function (i) {
+        if(!$(this).html().includes("<ins")){
+            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    });
+})
+
+
+</script>
+
+
+
+</body>
+</html> 
+
