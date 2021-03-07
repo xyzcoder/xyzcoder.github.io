@@ -4,9 +4,10 @@ title: Sql Server Query Optimization Series -- Part1( Pages in Sql Server)
 comments: true
 date: '2021-03-07 07:18:23'
 Categories:
-- MySessions
+- mysessions
 - Sql Server
-tags: []
+tags:
+- mysessions
 description: I presented this session at the Vizag Software Developers Meetup Group.
   Mainly discussed 8Kb Pages in SQL Server and How to optimize SQL queries
 ---
