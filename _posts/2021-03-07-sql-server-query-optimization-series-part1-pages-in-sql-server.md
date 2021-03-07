@@ -23,7 +23,7 @@ Hope you liked my session and please do comment at the bottom about the way you 
 
 <br><br>
 
-<iframe width="100%" height="345" src="https://www.youtube.com/embed/wBkxhIfnRNA">
+<iframe width="100%" height="345" allowFullScreen='allowFullScreen' src="https://www.youtube.com/embed/wBkxhIfnRNA">
 </iframe>
 
 <br>
