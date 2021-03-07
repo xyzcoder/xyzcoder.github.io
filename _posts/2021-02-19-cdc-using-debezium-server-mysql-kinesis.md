@@ -15,6 +15,10 @@ tags:
 - Kinesis
 - Debezium
 - DataPipeline
+description: |-
+  Did you ever think about how easy it is to capture any changes to Database records and stream to tools like Kafka or Kinesis using Debezium?
+
+  Debezium is an open-source tool that helps us to stream data from various sources and sends them back to many sources
 ---
 
 # What is  CDC/ Change Data Capture<br>
