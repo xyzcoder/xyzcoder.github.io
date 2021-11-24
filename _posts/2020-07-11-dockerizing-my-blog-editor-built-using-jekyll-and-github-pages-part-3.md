@@ -12,7 +12,7 @@ Categories:
 Before actually going through this post, I hope you got a chance to go through my previous 2 blog posts on how I am making using Jekyll (Static Site Generator and Github Pages) for hosting my blog.
 <br>
 <br>
-Part 1: [How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages -- Part1](http://https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html)
+Part 1: [How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages -- Part1](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages.html)
 <br>
 
 Part 2: [How I successfully created my Blog and maintaining at free of cost using Jekyll and Github Pages-- Part 2](https://xyzcoder.github.io/2019/11/10/how-i-successfully-created-my-blog-and-maintaining-at-free-of-cost-using-jekyll-and-github-pages-part-2.html)
