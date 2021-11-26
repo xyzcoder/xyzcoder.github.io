@@ -398,7 +398,7 @@ There are 3 basic commands which we use most of the time and they are<br /></p>
   </li>
 </ol>
 
-<h1 id="playing-with-this">Playing with this:</h1>
+<h1 id="play-time-scenario-1">Play time (Scenario 1):</h1>
 <ol>
   <li>
     <p>Initially run <code class="highlighter-rouge">terraform apply</code> and we can see the resource is created.
@@ -426,6 +426,23 @@ So here we are cheating :) Terraform to think like the content on file(disk) and
 </ol>
 
 <p><br /><br /></p>
+<h1 id="play-time-scenario-2-multiple-tf-files">Play time (Scenario 2: Multiple tf files):</h1>
+<p><code class="highlighter-rouge">main.tf</code></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>resource "local_file" "sample1" {
+  content = "This is sample file 1"
+  filename = "sample1.txt"
+}
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">child.tf</code></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>resource "local_file" "sample3" {
+  content = "This is sample text from sample3 resource in child.tf"
+  filename = "sample3.txt"
+}
+</code></pre></div></div>
+
+<p>Now run <code class="highlighter-rouge">terraform init</code> , <code class="highlighter-rouge">terraform plan</code> and <code class="highlighter-rouge">terraform apply</code> and we can observe that it creates 2 resources sample1.txt and sample3.txt</p>
+
 <h1 id="my-session-recording">My Session recording</h1>
 <iframe width="100%" height="500" allowfullscreen="allowFullScreen" src="https://www.youtube.com/embed/t1LKi7fhkF8">
 </iframe>

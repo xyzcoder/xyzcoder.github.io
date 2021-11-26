@@ -81,7 +81,7 @@ There are 3 basic commands which we use most of the time and they are<br>
 
 5. `terraform destroy` This will destroy resources that were created. We can observe destroy operation in the plan. Also, observe the statefile, text file resource is deleted from statefile when we run destroy command
 
-# Playing with this:
+# Play time (Scenario 1):
 1. Initially run `terraform apply` and we can see the resource is created.
 			** main.tf**
 		```
@@ -101,6 +101,25 @@ So here we are cheating :) Terraform to think like the content on file(disk) and
 5. Delete the statefile and run `terraform apply`. We observe a new resource is created. Since in this case, it is a physical file. It is overwritten but we can see the plan and observe it as a add operation. In case, if it is a AWS EC2 resource, It will create a duplicate resource
 
 <br><br>
+# Play time (Scenario 2: Multiple tf files):
+`main.tf`
+```
+resource "local_file" "sample1" {
+  content = "This is sample file 1"
+  filename = "sample1.txt"
+}
+```
+
+`child.tf`
+```
+resource "local_file" "sample3" {
+  content = "This is sample text from sample3 resource in child.tf"
+  filename = "sample3.txt"
+}
+```
+
+Now run `terraform init` , `terraform plan` and `terraform apply` and we can observe that it creates 2 resources sample1.txt and sample3.txt
+
 # My Session recording
 <iframe width="100%" height="500" allowFullScreen='allowFullScreen' src="https://www.youtube.com/embed/t1LKi7fhkF8">
 </iframe>
