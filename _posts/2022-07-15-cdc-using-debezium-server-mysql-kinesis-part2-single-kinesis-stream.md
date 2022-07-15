@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream)
+title: CDC Using Debezium Server, MySql, Kinesis -- Part2 (Single Kinesis Stream)
 comments: true
 date: '2022-07-15 18:15:27'
 Categories:

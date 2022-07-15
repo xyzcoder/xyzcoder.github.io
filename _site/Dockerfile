@@ -1,8 +1,9 @@
-FROM ubuntu:latest
+FROM paryasomayajulu/ubuntu_with_nano_pavan:1.0
 
 # Installing Ruby
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV MY_FIRST_ENV=pavanarya
 
 RUN apt-get update
 RUN apt-get install ruby-full make gcc nodejs build-essential patch -y
