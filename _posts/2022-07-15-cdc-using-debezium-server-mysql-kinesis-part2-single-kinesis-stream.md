@@ -2,7 +2,7 @@
 layout: post
 title: CDC Using Debezium Server, MySql, Kinesis -- Part2 (Single Kinesis Stream)
 comments: true
-date: '2022-07-15 18:15:27'
+date: '2022-07-15 21:43:23'
 Categories:
 - Change Date Capture
 - CDC
@@ -16,11 +16,12 @@ tags:
 - Debezium
 - DataPipeline
 - SingleStreamMultipleTables
-description: In my previous post, we saw how we can stream Mysql table changes to
-  Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis
-  stream for 1 table. So the number of streams are going to increase and maintainability
-  decreases. So in this post, we will see how we can address that problem and stream
-  multiple tables data into a single stream.
+description: |-
+  In my previous post, we saw how we can stream Mysql table changes to
+    Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis
+    stream for 1 table. So the number of streams are going to increase and maintainability
+    decreases. So in this post, we will see how we can address that problem and stream
+    multiple tables data into a single stream.
 ---
 
 # CDC Using Debezium Server, MySql, Kinesis - Using Single Kinesis Stream for Multiple tables<br>
@@ -36,13 +37,15 @@ In this post, we don't download debezium server but we use maven to build our cu
 
 # Code structure to inject our custom mapper class
 BaseFolder
-		|
-		|--->src\main\java\io\debezium\pavan\server\mapper\PavanAryaKinesisConsumer.java
-    |--->src\main\java\io\debezium\pavan\server\mapper\PrefixingNameMapper.java
-		|-->src\resources
-		|-->pom.xml
+
+```
+		src\main\java\io\debezium\pavan\server\mapper\PavanAryaKinesisConsumer.java
+    	src\main\java\io\debezium\pavan\server\mapper\PrefixingNameMapper.java
+		src\resources
+		pom.xml
 		
-		<br><br>
+```
+
 # **Sample code for this in github:**
 [https://github.com/pavanarya/BlogSampleCode/tree/master/Debezium/Debezium-Server-Overwriting-TopicName](https://github.com/pavanarya/BlogSampleCode/tree/master/Debezium/Debezium-Server-Overwriting-TopicName)
 
