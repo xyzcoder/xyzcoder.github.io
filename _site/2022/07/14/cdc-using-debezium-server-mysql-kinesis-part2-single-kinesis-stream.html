@@ -5,25 +5,25 @@
 <html lang="no-js"> <!--<![endif]-->  
       <head>
 
-          <title>CDC Using Debezium Server, MySql, Kinesis -- Part2 (Single Kinesis Stream)</title>
+          <title>CDC Using Debezium Server, Kinesis -- Part2 (Single Stream)</title>
 
           <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>CDC Using Debezium Server, MySql, Kinesis – Part2 (Single Kinesis Stream) | xyzcoder.github.io</title>
+<title>CDC Using Debezium Server, Kinesis – Part2 (Single Stream) | xyzcoder.github.io</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="CDC Using Debezium Server, MySql, Kinesis – Part2 (Single Kinesis Stream)" />
+<meta property="og:title" content="CDC Using Debezium Server, Kinesis – Part2 (Single Stream)" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure one kinesis stream for one table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream." />
 <meta property="og:description" content="In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure one kinesis stream for one table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream." />
-<link rel="canonical" href="http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html" />
+<link rel="canonical" href="http://0.0.0.0:4000/2022/07/14/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2022/07/14/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html" />
 <meta property="og:site_name" content="xyzcoder.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-07-15T21:43:23+00:00" />
+<meta property="article:published_time" content="2022-07-14T21:43:23+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="CDC Using Debezium Server, MySql, Kinesis – Part2 (Single Kinesis Stream)" />
+<meta property="twitter:title" content="CDC Using Debezium Server, Kinesis – Part2 (Single Stream)" />
 <meta name="twitter:site" content="@" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html","headline":"CDC Using Debezium Server, MySql, Kinesis – Part2 (Single Kinesis Stream)","dateModified":"2022-07-15T21:43:23+00:00","datePublished":"2022-07-15T21:43:23+00:00","description":"In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis stream for 1 table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream.","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2022/07/14/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2022/07/14/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html","headline":"CDC Using Debezium Server, Kinesis – Part2 (Single Stream)","dateModified":"2022-07-14T21:43:23+00:00","datePublished":"2022-07-14T21:43:23+00:00","description":"In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure one kinesis stream for one table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -314,7 +314,7 @@ else{
                                                 <div class="text_content">
                                                    
                                                     
-                                                        CDC Using Debezium Server, MySql, Kinesis -- Part2 (Single Kinesis Stream)
+                                                        CDC Using Debezium Server, Kinesis -- Part2 (Single Stream)
                                                     
                                                     
                                                 </div>

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: CDC Using Debezium Server, MySql, Kinesis -- Part2 (Single Kinesis Stream)
+title: CDC Using Debezium Server, Kinesis -- Part2 (Single Stream)
 comments: true
-date: '2022-07-15 21:43:23'
+date: '2022-07-14 21:43:23'
 Categories:
 - Change Date Capture
 - CDC
