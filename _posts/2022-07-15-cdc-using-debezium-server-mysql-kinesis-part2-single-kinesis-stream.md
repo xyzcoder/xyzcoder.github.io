@@ -10,16 +10,14 @@ Categories:
 - Kinesis
 - DataPipeline
 tags:
-- ''
 - CDC
 - Kinesis
 - Debezium
 - DataPipeline
-- SingleStreamMultipleTables
 description: |-
   In my previous post, we saw how we can stream Mysql table changes to
-    Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis
-    stream for 1 table. So the number of streams are going to increase and maintainability
+    Kinesis using Debezium. But the problem there is, that we need to configure one kinesis
+    stream for one table. So the number of streams are going to increase and maintainability
     decreases. So in this post, we will see how we can address that problem and stream
     multiple tables data into a single stream.
 ---
