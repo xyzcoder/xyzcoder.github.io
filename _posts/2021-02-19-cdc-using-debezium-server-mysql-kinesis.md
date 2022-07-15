@@ -32,8 +32,6 @@ One way to do this is to have code-related changes in each microservices to publ
 
 <br>
 
-# Part-2
-
 # Using Debezium For Tracking DB changes and Publishing them
 
 [https://debezium.io/](https://debezium.io/)
@@ -839,6 +837,12 @@ delete from Orders where Id=6
 }
 
 ```
+
+<br>
+# Part-2:
+In this part we will see how to customize debezium and use single stream for multiple tables and other custom changes
+
+[https://xyzcoder.github.io/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html](https://xyzcoder.github.io/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html)
 
 <br>
 <br>
