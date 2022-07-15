@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> 
+<html lang="no-js"> <!--<![endif]-->  
+      <head>
+
+          <title>CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream)</title>
+
+          <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream) | xyzcoder.github.io</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis stream for 1 table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream." />
+<meta property="og:description" content="In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis stream for 1 table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream." />
+<link rel="canonical" href="http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html" />
+<meta property="og:site_name" content="xyzcoder.github.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-07-15T18:15:27+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream)" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/2022/07/15/cdc-using-debezium-server-mysql-kinesis-part2-single-kinesis-stream.html","headline":"CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream)","dateModified":"2022-07-15T18:15:27+00:00","datePublished":"2022-07-15T18:15:27+00:00","description":"In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis stream for 1 table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+          <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+          <meta name="google-site-verification" content="LfPi7exaA4zufZ1K-jS-XMIWDVSAaczpPkTXXomezmc" />
+
+          <!-- CSS | bootstrap -->
+          <!-- Credits: http://getbootstrap.com/ -->
+          <link  rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+
+          <!-- CSS | font-awesome -->
+          <!-- Credits: http://fortawesome.github.io/Font-Awesome/icons/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css" />
+
+          <!-- CSS | animate -->
+          <!-- Credits: http://daneden.github.io/animate.css/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/animate.min.css" />
+
+          <!-- CSS | Normalize -->
+          <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css" />
+          
+          <!-- CSS | Colors -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/colors/DarkBlue.css" id="colors-style" />
+          
+          <!-- CSS | Style -->
+          <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+          <!-- CSS | prettyPhoto -->
+          <!-- Credits: http://www.no-margin-for-errors.com/ -->
+          <link rel="stylesheet" type="text/css" href="/assets/css/prettyPhoto.css"/> 
+
+          <!-- CSS | Google Fonts -->
+          <!-- <link href='http://fonts.useso.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'> -->
+          <!-- Favicon -->
+          <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+
+          <!--[if IE 7]>
+                  <link rel="stylesheet" type="text/css" href="assets/css/icons/font-awesome-ie7.min.css"/>
+          <![endif]-->
+
+          <style>
+              @media only screen and (max-width : 991px){
+                  .resp-vtabs .resp-tabs-container {
+                      margin-left: 13px;
+                  }
+              }
+              
+              @media only screen and (min-width : 800px) and (max-width : 991px){
+                  .resp-vtabs .resp-tabs-container {
+                      margin-left: 13px;
+                      width:89%;
+                  }
+              }  
+
+
+          </style>
+
+
+
+
+
+
+
+
+          <style>
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .topnav {
+              overflow: hidden;
+              background-color: #333;
+              position: fixed;
+              width: 100%;
+              z-index: 1;
+              top:0px;
+            }
+
+            .topnav a {
+              float: left;
+              display: block;
+              color: #f2f2f2;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+            }
+
+            .topnav a:hover {
+              background-color: #ddd;
+              color: black;
+            }
+
+            .active {
+              background-color: #4CAF50;
+              color: white;
+            }
+
+            .topnav .icon {
+              display: none;
+            }
+
+            @media screen and (max-width: 600px) {
+              .topnav a:not(:first-child) {display: none;}
+              .topnav a.icon {
+                float: right;
+                display: block;
+              }
+            }
+
+            @media screen and (max-width: 600px) {
+              .topnav.responsive {position: fixed;z-index: 100}
+              .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+              }
+              .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+              }
+            }
+      </style>
+
+      
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119328598-1"></script>
+<script>
+var host = window.location.hostname;
+
+if(host.indexOf("localhost")>=0 || host.indexOf("127.0.0.1")>=0)
+{
+    //Ignore
+}
+else{
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119328598-1');
+}
+</script>
+
+
+      <script type="text/javascript">function add_chatinline(){var hccid=90341307;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+        add_chatinline(); </script>
+
+     
+</head>
+
+<body>
+
+    <div class="topnav" id="myTopnav">
+      <a href="/index.html" class="active">Blog</a>
+      <a href="/about.html">About Me</a>
+      <a href="/tags">Posts By Tags</a>
+      <a href="#" onclick="subscribe()">Subscribe</a>
+      <a href="/tags#elasticsearch">Elastic Search</a>
+      <a href="/tags#mysessions">My Sessions</a>
+      <a href="/tags#terraform">Terraform</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+    function subscribe(){
+        $("#myModal").modal("show");
+    }
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+<div class="wrapper">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">   
+
+                    <!-- profile -->
+                    <div class="col-md-3 widget-profil">
+	<div class="row">
+
+		<div class="affix">
+			<!-- Profile Image -->
+			<div class="col-lg-12 col-md-12 col-sm-3 col-xs-12 ">
+
+				<div class="image-holder one" id="pic_prof_1" style="display:block">
+					<img class="head-image front circle" src="/images/img/0.jpg" width="150" height="150" alt="" />
+				</div>
+
+				<!-- style for simple image profile -->		
+				<div class="circle-img" id="pic_prof_2" style="display:none"></div>
+			</div>
+			<!-- End Profile Image -->
+
+			<!-- Begin profile information -->
+			<div class="col-lg-12 col-md-12 col-sm-9 col-xs-12">
+				<!-- Profile info -->
+				<div id="profile_info">
+					<h3 id="name" class="transition-02" style="color: white;text-align:  center;margin-top: 0px;">Pavan Kumar Aryasomayajulu</h3>
+				</div>
+				<!-- End Profile info -->  
+
+
+				<!-- Profile Description -->
+				<!-- <div id="profile_desc">
+					<p>
+						I am a passionate programmer with good experience in building various application both enterprise level and small scale. Apart from technology I like to travel. I visited many places in India and can help people choosing travel destinations.
+					</p>
+
+				</div> -->
+				<!-- End Profile Description -->  
+
+
+				<!-- Name -->
+				<div id="profile_social" style="padding-top: 0px;">
+					<div style="position:  relative;left: 30%">
+						<a href="https://www.facebook.com/paryasomayajulu"><i class="fa fa-facebook"></i></a>
+						<a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a>
+						<a href="https://www.linkedin.com/in/pavankumararya/"><i class="fa fa-linkedin"></i></a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<br>
+				<div id="profile_desc">
+					<h1 class="glow" style="font-size:20px;"><a href="#" onclick="subscribe()">Subscribe</a></h1>
+					<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-3300393120826046"
+				     data-ad-slot="6654590880"
+				     data-ad-format="auto">
+				     </ins>
+				</div>
+				<!-- End Name -->  
+
+			</div>
+			<!-- End profile information -->
+
+		</div>                                      
+	</div> 
+	<!-- end profile -->
+</div>
+                    <!--end profile -->
+
+                    <!-- blog content -->
+                    <div class="col-md-9 flexy_content" style="padding-left: 0;padding-right: 0;">
+
+    <!-- verticalTab menu -->
+    <div id="verticalTab">
+        <!-- resp-tabs-container --> 
+        <div class="resp-tabs-container">
+
+            <div id="blog" class="content_2">
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <!-- Page Blog -->
+                        <div class="col-md-12" id="blog_page">
+                            <!-- start Page Blog -->
+                            <section id="post-1-page" class="content-post">
+                                <div class="row inner">
+
+                                    <div class="col-md-12" style="width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;float: left;background: rgba(255, 255, 255, 0.8);padding-bottom: 15px;padding-top: 15px;padding-left: 30px;">
+
+                                        <article class="postPage">
+
+                                            <div class="title_content">
+                                                <div class="text_content">
+                                                   
+                                                    
+                                                        CDC Using Debezium Server, MySql, Kinesis - Part2 (Single Kinesis Stream)
+                                                    
+                                                    
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+
+                                            
+                                                <h1 id="cdc-using-debezium-server-mysql-kinesis---using-single-kinesis-stream-for-multiple-tables">CDC Using Debezium Server, MySql, Kinesis - Using Single Kinesis Stream for Multiple tables<br /></h1>
+<p>In my previous post, we saw how we can stream Mysql table changes to Kinesis using Debezium. But the problem there is, that we need to configure 1 kinesis stream for 1 table. So the number of streams are going to increase and maintainability decreases. So in this post, we will see how we can address that problem and stream multiple tables data into a single stream.
+<br /><br />
+So in this post, we are going to inject our custom class mapper and also any additional changes when writing to the Kinesis stream.
+<br /><br />
+Reference to previous article where we have debezium configured on a ubuntu docker container and set up MySQL to connect to debezium and then send events to Kinesis. 
+<a href="https://xyzcoder.github.io/2021/02/19/cdc-using-debezium-server-mysql-kinesis.html">https://xyzcoder.github.io/2021/02/19/cdc-using-debezium-server-mysql-kinesis.html</a></p>
+
+<p><br /><br />
+In this post, we don’t download debezium server but we use maven to build our custom mapper class and inject debezium dependency using pom.xml</p>
+
+<h1 id="code-structure-to-inject-our-custom-mapper-class">Code structure to inject our custom mapper class</h1>
+<p>BaseFolder
+		|
+		|—&gt;src\main\java\io\debezium\pavan\server\mapper\PavanAryaKinesisConsumer.java
+    |—&gt;src\main\java\io\debezium\pavan\server\mapper\PrefixingNameMapper.java
+		|–&gt;src\resources
+		|–&gt;pom.xml</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	&lt;br&gt;&lt;br&gt; # **Sample code for this in github:** [https://github.com/pavanarya/BlogSampleCode/tree/master/Debezium/Debezium-Server-Overwriting-TopicName](https://github.com/pavanarya/BlogSampleCode/tree/master/Debezium/Debezium-Server-Overwriting-TopicName)
+</code></pre></div></div>
+
+<h2 id="pavanaryakinesisconsumerjava"><strong>PavanAryaKinesisConsumer.java</strong>:</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">/*</span>
+ <span class="p">*</span> <span class="n">Copyright</span> <span class="n">Debezium</span> <span class="n">Authors</span><span class="p">.</span>
+ <span class="p">*</span>
+ <span class="p">*</span> <span class="n">Licensed</span> <span class="n">under</span> <span class="n">the</span> <span class="n">Apache</span> <span class="n">Software</span> <span class="n">License</span> <span class="k">version</span> <span class="m">2.0</span><span class="p">,</span> <span class="n">available</span> <span class="n">at</span> <span class="n">http</span><span class="p">://</span><span class="n">www</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">licenses</span><span class="p">/</span><span class="n">LICENSE</span><span class="p">-</span><span class="m">2.0</span>
+ <span class="p">*/</span>
+<span class="k">package</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">kinesis</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="k">List</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">File</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">FileWriter</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">IOException</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">annotation</span><span class="p">.</span><span class="n">PostConstruct</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">annotation</span><span class="p">.</span><span class="n">PreDestroy</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">enterprise</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">Dependent</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">enterprise</span><span class="p">.</span><span class="n">inject</span><span class="p">.</span><span class="n">Instance</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">inject</span><span class="p">.</span><span class="n">Inject</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">inject</span><span class="p">.</span><span class="n">Named</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">eclipse</span><span class="p">.</span><span class="n">microprofile</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">Config</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">eclipse</span><span class="p">.</span><span class="n">microprofile</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">ConfigProvider</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">eclipse</span><span class="p">.</span><span class="n">microprofile</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">inject</span><span class="p">.</span><span class="n">ConfigProperty</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">slf4j</span><span class="p">.</span><span class="n">Logger</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">slf4j</span><span class="p">.</span><span class="n">LoggerFactory</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">ChangeEvent</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">DebeziumEngine</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">DebeziumEngine</span><span class="p">.</span><span class="n">RecordCommitter</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">BaseChangeConsumer</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">CustomConsumerBuilder</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">software</span><span class="p">.</span><span class="n">amazon</span><span class="p">.</span><span class="n">awssdk</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">credentials</span><span class="p">.</span><span class="n">DefaultCredentialsProvider</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">software</span><span class="p">.</span><span class="n">amazon</span><span class="p">.</span><span class="n">awssdk</span><span class="p">.</span><span class="n">core</span><span class="p">.</span><span class="n">SdkBytes</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">software</span><span class="p">.</span><span class="n">amazon</span><span class="p">.</span><span class="n">awssdk</span><span class="p">.</span><span class="n">regions</span><span class="p">.</span><span class="n">Region</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">software</span><span class="p">.</span><span class="n">amazon</span><span class="p">.</span><span class="n">awssdk</span><span class="p">.</span><span class="n">services</span><span class="p">.</span><span class="n">kinesis</span><span class="p">.</span><span class="n">KinesisClient</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">software</span><span class="p">.</span><span class="n">amazon</span><span class="p">.</span><span class="n">awssdk</span><span class="p">.</span><span class="n">services</span><span class="p">.</span><span class="n">kinesis</span><span class="p">.</span><span class="k">model</span><span class="p">.</span><span class="n">PutRecordRequest</span><span class="p">;</span>
+
+<span class="p">/**</span>
+ <span class="p">*</span> <span class="n">Implementation</span> <span class="k">of</span> <span class="n">the</span> <span class="n">consumer</span> <span class="n">that</span> <span class="n">delivers</span> <span class="n">the</span> <span class="n">messages</span> <span class="n">into</span> <span class="n">Amazon</span> <span class="n">Kinesis</span> <span class="n">destination</span><span class="p">.</span>
+ <span class="p">*</span>
+ <span class="p">*</span> <span class="p">@</span><span class="n">author</span> <span class="n">Pavan</span> <span class="n">Kumar</span> <span class="n">Aryasomayajulu</span>
+ <span class="p">*</span>
+ <span class="p">*/</span>
+<span class="p">@</span><span class="n">Named</span><span class="p">(</span><span class="s2">"pavankinesis"</span><span class="p">)</span>
+<span class="p">@</span><span class="n">Dependent</span>
+<span class="k">public</span> <span class="n">class</span> <span class="n">PavanAryaKinesisConsumer</span> <span class="n">extends</span> <span class="n">BaseChangeConsumer</span> <span class="n">implements</span> <span class="n">DebeziumEngine</span><span class="p">.</span><span class="n">ChangeConsumer</span><span class="p">&lt;</span><span class="n">ChangeEvent</span><span class="p">&lt;</span><span class="n">Object</span><span class="p">,</span> <span class="n">Object</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
+
+    <span class="n">private</span> <span class="n">static</span> <span class="n">final</span> <span class="n">Logger</span> <span class="n">LOGGER</span> <span class="p">=</span> <span class="n">LoggerFactory</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">PavanAryaKinesisConsumer</span><span class="p">.</span><span class="n">class</span><span class="p">);</span>
+
+    <span class="n">private</span> <span class="n">static</span> <span class="n">final</span> <span class="k">String</span> <span class="n">PROP_PREFIX</span> <span class="p">=</span> <span class="s2">"debezium.sink.kinesis."</span><span class="p">;</span>
+    <span class="n">private</span> <span class="n">static</span> <span class="n">final</span> <span class="k">String</span> <span class="n">PROP_REGION_NAME</span> <span class="p">=</span> <span class="n">PROP_PREFIX</span> <span class="p">+</span> <span class="s2">"region"</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="k">String</span> <span class="n">region</span><span class="p">;</span>
+
+    <span class="p">@</span><span class="n">ConfigProperty</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="n">PROP_PREFIX</span> <span class="p">+</span> <span class="s2">"credentials.profile"</span><span class="p">,</span> <span class="n">defaultValue</span> <span class="p">=</span> <span class="s2">"default"</span><span class="p">)</span>
+    <span class="k">String</span> <span class="n">credentialsProfile</span><span class="p">;</span>
+
+    <span class="p">@</span><span class="n">ConfigProperty</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="n">PROP_PREFIX</span> <span class="p">+</span> <span class="s2">"null.key"</span><span class="p">,</span> <span class="n">defaultValue</span> <span class="p">=</span> <span class="s2">"default"</span><span class="p">)</span>
+    <span class="k">String</span> <span class="n">nullKey</span><span class="p">;</span>
+	
+	<span class="p">@</span><span class="n">ConfigProperty</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="n">PROP_PREFIX</span> <span class="p">+</span> <span class="s2">"kinesis.error.log"</span><span class="p">,</span> <span class="n">defaultValue</span> <span class="p">=</span> <span class="s2">"kinesis_error.txt"</span><span class="p">)</span>
+    <span class="k">String</span> <span class="n">errorLogFile</span><span class="p">;</span>
+
+    <span class="n">private</span> <span class="n">KinesisClient</span> <span class="n">client</span> <span class="p">=</span> <span class="n">null</span><span class="p">;</span>
+
+    <span class="p">@</span><span class="n">Inject</span>
+    <span class="p">@</span><span class="n">CustomConsumerBuilder</span>
+    <span class="n">Instance</span><span class="p">&lt;</span><span class="n">KinesisClient</span><span class="p">&gt;</span> <span class="n">customClient</span><span class="p">;</span>
+
+    <span class="p">@</span><span class="n">PostConstruct</span>
+    <span class="n">void</span> <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">customClient</span><span class="p">.</span><span class="n">isResolvable</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">client</span> <span class="p">=</span> <span class="n">customClient</span><span class="p">.</span><span class="n">get</span><span class="p">();</span>
+            <span class="n">LOGGER</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Obtained custom configured KinesisClient '{}'"</span><span class="p">,</span> <span class="n">client</span><span class="p">);</span>
+            <span class="n">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">final</span> <span class="n">Config</span> <span class="n">config</span> <span class="p">=</span> <span class="n">ConfigProvider</span><span class="p">.</span><span class="n">getConfig</span><span class="p">();</span>
+        <span class="n">region</span> <span class="p">=</span> <span class="n">config</span><span class="p">.</span><span class="nf">getValue</span><span class="p">(</span><span class="n">PROP_REGION_NAME</span><span class="p">,</span> <span class="k">String</span><span class="p">.</span><span class="n">class</span><span class="p">);</span>
+        <span class="n">client</span> <span class="p">=</span> <span class="n">KinesisClient</span><span class="p">.</span><span class="n">builder</span><span class="p">()</span>
+                <span class="p">.</span><span class="n">region</span><span class="p">(</span><span class="n">Region</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="n">region</span><span class="p">))</span>
+                <span class="p">.</span><span class="n">credentialsProvider</span><span class="p">(</span><span class="n">DefaultCredentialsProvider</span><span class="p">.</span><span class="nb">create</span><span class="p">())</span>
+                <span class="p">.</span><span class="n">build</span><span class="p">();</span>
+        <span class="n">LOGGER</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Using default KinesisClient_Pavan '{}'"</span><span class="p">,</span> <span class="n">client</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="p">@</span><span class="n">PreDestroy</span>
+    <span class="n">void</span> <span class="n">close</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">try</span> <span class="p">{</span>
+            <span class="n">client</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">LOGGER</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Exception while closing Kinesis client: {}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="p">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="n">void</span> <span class="n">handleBatch</span><span class="p">(</span><span class="k">List</span><span class="p">&lt;</span><span class="n">ChangeEvent</span><span class="p">&lt;</span><span class="n">Object</span><span class="p">,</span> <span class="n">Object</span><span class="p">&gt;&gt;</span> <span class="n">records</span><span class="p">,</span> <span class="n">RecordCommitter</span><span class="p">&lt;</span><span class="n">ChangeEvent</span><span class="p">&lt;</span><span class="n">Object</span><span class="p">,</span> <span class="n">Object</span><span class="p">&gt;&gt;</span> <span class="n">committer</span><span class="p">)</span>
+            <span class="n">throws</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+        <span class="n">for</span> <span class="p">(</span><span class="n">ChangeEvent</span><span class="p">&lt;</span><span class="n">Object</span><span class="p">,</span> <span class="n">Object</span><span class="p">&gt;</span> <span class="k">record</span> <span class="p">:</span> <span class="n">records</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">try</span><span class="p">{</span>
+				<span class="n">LOGGER</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"Received event '{}'"</span><span class="p">,</span> <span class="k">record</span><span class="p">);</span>
+				<span class="n">final</span> <span class="n">PutRecordRequest</span> <span class="n">putRecord</span> <span class="p">=</span> <span class="n">PutRecordRequest</span><span class="p">.</span><span class="n">builder</span><span class="p">()</span>
+						<span class="p">.</span><span class="n">partitionKey</span><span class="p">((</span><span class="k">record</span><span class="p">.</span><span class="n">key</span><span class="p">()</span> <span class="c1">!= null) ? getString(record.key()) : nullKey)
+</span>						<span class="p">.</span><span class="n">streamName</span><span class="p">(</span><span class="n">streamNameMapper</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="k">record</span><span class="p">.</span><span class="n">destination</span><span class="p">()))</span>
+						<span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="n">SdkBytes</span><span class="p">.</span><span class="n">fromByteArray</span><span class="p">(</span><span class="n">getBytes</span><span class="p">(</span><span class="k">record</span><span class="p">.</span><span class="n">value</span><span class="p">())))</span>
+						<span class="p">.</span><span class="n">build</span><span class="p">();</span>
+				<span class="n">client</span><span class="p">.</span><span class="n">putRecord</span><span class="p">(</span><span class="n">putRecord</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">LOGGER</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Received event '{}'"</span><span class="p">,</span> <span class="k">record</span><span class="p">);</span>
+				<span class="n">LOGGER</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Exception while putting Kinesis record: {}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+				<span class="n">appendUsingFileWriter</span><span class="p">(</span><span class="n">errorLogFile</span><span class="p">,</span><span class="s2">"Received event "</span><span class="p">+</span><span class="k">record</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
+				<span class="n">appendUsingFileWriter</span><span class="p">(</span><span class="n">errorLogFile</span><span class="p">,</span><span class="s2">"Exception while putting Kinesis record: "</span><span class="p">+</span><span class="n">e</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
+				<span class="n">appendUsingFileWriter</span><span class="p">(</span><span class="n">errorLogFile</span><span class="p">,</span><span class="s2">"======================================="</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="n">try</span><span class="p">{</span>
+				<span class="n">committer</span><span class="p">.</span><span class="n">markProcessed</span><span class="p">(</span><span class="k">record</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="n">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">LOGGER</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Exception while comitting Kinesis record: {}"</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+			<span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">committer</span><span class="p">.</span><span class="n">markBatchFinished</span><span class="p">();</span>
+    <span class="p">}</span>
+	
+	<span class="n">private</span> <span class="n">void</span> <span class="n">appendUsingFileWriter</span><span class="p">(</span><span class="k">String</span> <span class="n">filePath</span><span class="p">,</span> <span class="k">String</span> <span class="n">text</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">File</span> <span class="n">file</span> <span class="p">=</span> <span class="n">new</span> <span class="n">File</span><span class="p">(</span><span class="n">filePath</span><span class="p">);</span>
+		<span class="n">FileWriter</span> <span class="n">fr</span> <span class="p">=</span> <span class="n">null</span><span class="p">;</span>
+		<span class="n">try</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="nb">exists</span><span class="p">())</span>
+			<span class="p">{</span>
+			   <span class="n">fr</span> <span class="p">=</span> <span class="n">new</span> <span class="n">FileWriter</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="nb">true</span><span class="p">);//</span><span class="k">if</span> <span class="n">file</span> <span class="nb">exists</span> <span class="n">append</span> <span class="k">to</span> <span class="n">file</span><span class="p">.</span> <span class="n">Works</span> <span class="n">fine</span><span class="p">.</span>
+			<span class="p">}</span>
+			<span class="k">else</span>
+			<span class="p">{</span>
+			   <span class="n">file</span><span class="p">.</span><span class="n">createNewFile</span><span class="p">();</span>
+			   <span class="n">fr</span> <span class="p">=</span> <span class="n">new</span> <span class="n">FileWriter</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="p">//</span> <span class="n">Below</span> <span class="n">constructor</span> <span class="n">argument</span> <span class="n">decides</span> <span class="n">whether</span> <span class="k">to</span> <span class="n">append</span> <span class="k">or</span> <span class="n">override</span>
+			<span class="p">//</span><span class="n">fr</span> <span class="p">=</span> <span class="n">new</span> <span class="n">FileWriter</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+			<span class="n">fr</span><span class="p">.</span><span class="nb">write</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+
+		<span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">e</span><span class="p">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+		<span class="p">}</span> <span class="n">finally</span> <span class="p">{</span>
+			<span class="n">try</span> <span class="p">{</span>
+				<span class="n">fr</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+			<span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">e</span><span class="p">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><br /><br />
+This class extends <strong>BaseChangeConsumer</strong> and implements <strong>DebeziumEngine.ChangeConsumer&lt;ChangeEvent&lt;Object, Object»</strong>
+<br /><br />
+We annotate this class <strong>@Named(“pavankinesis”)</strong>. This “pavankinesis” is actually the key thing that lets Debezium server pick  this injected class instead of the default implementation at<br />
+<a href="https://github.com/debezium/debezium/blob/95a4576df422d14199c61aacb6ea971888015910/debezium-server/debezium-server-kinesis/src/main/java/io/debezium/server/kinesis/KinesisChangeConsumer.java#L44">https://github.com/debezium/debezium/blob/95a4576df422d14199c61aacb6ea971888015910/debezium-server/debezium-server-kinesis/src/main/java/io/debezium/server/kinesis/KinesisChangeConsumer.java#L44</a>
+<br /><br />
+usually this <strong>@Named(“kinesis”)</strong> which is the default sink type for kinesis. We provided that value in application.properties, <strong>debezium.sink.type=kinesis</strong>. Refer to my previous article.
+<br />
+<br /></p>
+
+<p><strong>So how is Debezium server identifying our class with this @named annotation?</strong><br />
+In the class <a href="https://github.com/debezium/debezium/blob/f8d4307155a208aeb151c46f6faa1cfe1e8ab151/debezium-server/debezium-server-core/src/main/java/io/debezium/server/DebeziumServer.java#L102"> <strong>DebeziumServer.java</strong></a>, <strong>PROP_SINK_TYPE</strong> is nothing but <strong>debezium.sink.type</strong> which we are passing this via application.properties.</p>
+
+<p>Now we are overriding the default Kinesis implementation with our custom implementation <strong>PavanAryaKinesisConsumer.java</strong> and instructing Debezium server to pick our new class  in application.properties as
+<strong>debezium.sink.type=pavankinesis</strong>
+<br /><br /></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final PutRecordRequest putRecord = PutRecordRequest.builder()
+						.partitionKey((record.key() != null) ? getString(record.key()) : nullKey)
+						.streamName(streamNameMapper.map(record.destination()))
+						.data(SdkBytes.fromByteArray(getBytes(record.value())))
+						.build();
+				client.putRecord(putRecord);
+</code></pre></div></div>
+<p>In the above code, we are sending our record into the Kinesis stream. We are getting stream name from <strong>streamNameMapper.map()</strong> by passing topic details.
+<br /><br />
+Also, I added a little bit of sample code to write to logs. You can compare code between the original code <strong>KinesisChangeConsumer.java and  PavanAryaKinesisConsumer.java</strong></p>
+
+<h2 id="prefixingnamemapperjava">PrefixingNameMapper.java</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">/*</span>
+ <span class="p">*</span> <span class="n">Copyright</span> <span class="n">Debezium</span> <span class="n">Authors</span><span class="p">.</span>
+ <span class="p">*</span>
+ <span class="p">*</span> <span class="n">Licensed</span> <span class="n">under</span> <span class="n">the</span> <span class="n">Apache</span> <span class="n">Software</span> <span class="n">License</span> <span class="k">version</span> <span class="m">2.0</span><span class="p">,</span> <span class="n">available</span> <span class="n">at</span> <span class="n">http</span><span class="p">://</span><span class="n">www</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">licenses</span><span class="p">/</span><span class="n">LICENSE</span><span class="p">-</span><span class="m">2.0</span>
+ <span class="p">*/</span>
+<span class="k">package</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">pavan</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">mapper</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="n">enterprise</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">Dependent</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="n">eclipse</span><span class="p">.</span><span class="n">microprofile</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">inject</span><span class="p">.</span><span class="n">ConfigProperty</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">io</span><span class="p">.</span><span class="n">debezium</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">StreamNameMapper</span><span class="p">;</span>
+
+<span class="p">@</span><span class="n">Dependent</span>
+<span class="k">public</span> <span class="n">class</span> <span class="n">PrefixingNameMapper</span> <span class="n">implements</span> <span class="n">StreamNameMapper</span> <span class="p">{</span>
+
+    <span class="p">@</span><span class="n">ConfigProperty</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s2">"mapper.streamname"</span><span class="p">)</span>
+    <span class="k">String</span> <span class="n">streamname</span><span class="p">;</span>
+
+    <span class="p">@</span><span class="n">Override</span>
+    <span class="k">public</span> <span class="k">String</span> <span class="n">map</span><span class="p">(</span><span class="k">String</span> <span class="n">topic</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">return</span> <span class="n">streamname</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>In my case since I want to push all my records into a single stream, I am not using topic details and simply reading my stream name from application.properties and reading it in the above code.<br />
+<strong>mapper.streamname=pavan.sample.stream</strong>
+<br /><br />
+For the original Debezium implementation for stream name, you can see this class<br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/5d09c3c0440274a0de4c6f6b1fea79685d2d6a02/debezium-server/debezium-server-core/src/main/java/io/debezium/server/BaseChangeConsumer.java">https://github.com/debezium/debezium/blob/5d09c3c0440274a0de4c6f6b1fea79685d2d6a02/debezium-server/debezium-server-core/src/main/java/io/debezium/server/BaseChangeConsumer.java</a></p>
+
+<h1 id="done-with-our-custom-code-so-how-do-we-use-this-code-along-with-debezium">Done with our custom code, So how do we use this code along with Debezium</h1>
+<p>In order to use our custom code(you can download it from my GitHub link provided above), we need to have java, and maven installed on our machine. In <strong>pom.xml</strong> we specify dependencies for the quarkus server, debezium. I am using <strong>1.9.5.Final</strong> version of Debezium.
+<br /><br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;io.debezium.pavan&lt;/groupId&gt;
+    &lt;artifactId&gt;debezium-server-custom-topic-name-mapper&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.compiler.source&gt;11&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;11&lt;/maven.compiler.target&gt;
+
+        &lt;version.debezium&gt;1.9.5.Final&lt;/version.debezium&gt;
+		&lt;version.debezium.tag&gt;1.8&lt;/version.debezium.tag&gt;
+        &lt;version.quarkus&gt;2.9.2.Final&lt;/version.quarkus&gt;
+        &lt;version.jandex&gt;1.1.0&lt;/version.jandex&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+			&lt;dependency&gt;
+                &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+                &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
+                &lt;version&gt;${version.quarkus}&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;io.debezium&lt;/groupId&gt;
+                &lt;artifactId&gt;debezium-server-kinesis&lt;/artifactId&gt;
+                &lt;version&gt;${version.debezium}&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;io.debezium&lt;/groupId&gt;
+                &lt;artifactId&gt;debezium-connector-mysql&lt;/artifactId&gt;
+                &lt;version&gt;${version.debezium}&lt;/version&gt;
+            &lt;/dependency&gt;
+			&lt;dependency&gt;
+                &lt;groupId&gt;io.debezium&lt;/groupId&gt;
+                &lt;artifactId&gt;debezium-connector-postgres&lt;/artifactId&gt;
+                &lt;version&gt;${version.debezium}&lt;/version&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+    &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;io.debezium&lt;/groupId&gt;
+                &lt;artifactId&gt;debezium-server-kinesis&lt;/artifactId&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;io.debezium&lt;/groupId&gt;
+                &lt;artifactId&gt;debezium-connector-mysql&lt;/artifactId&gt;
+            &lt;/dependency&gt;
+			&lt;dependency&gt;
+                &lt;groupId&gt;io.debezium&lt;/groupId&gt;
+                &lt;artifactId&gt;debezium-connector-postgres&lt;/artifactId&gt;
+            &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+                &lt;artifactId&gt;quarkus-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${version.quarkus}&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;build&lt;/goal&gt;
+							&lt;goal&gt;generate-code&lt;/goal&gt;
+                            &lt;goal&gt;generate-code-tests&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.jboss.jandex&lt;/groupId&gt;
+                &lt;artifactId&gt;jandex-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;${version.jandex}&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;make-index&lt;/id&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;jandex&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre></div></div>
+
+<p>Once we have everything ready, we need to do maven install <br /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean install -e
+</code></pre></div></div>
+
+<p>This will build the code on your local machine into <strong>target</strong> folder. Now we need to add our config files like</p>
+<ol>
+  <li><strong>application.properties</strong> – target\config\application.properties</li>
+  <li>target\data\offsets.dat</li>
+  <li>target\history.dat
+<br />
+Files 2,3 are used by Debezium to track offsets read from Mysql DB.
+<br /><br />
+Now copy this target folder to the ubuntu container or if you are on an ubuntu machine, then you can run debezium on your host machine itself. In my case, I would like to copy these files to the docker ubuntu container and run debezium inside the container.
+<br /><br />
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker cp target/. 6039ae3a3d62:/debezium-pavan-custom
+</code></pre></div>    </div>
+    <p>I am copying the target folder to my container folder debezium-pavan-custom.</p>
+  </li>
+</ol>
+
+<h1 id="running-debezium-server-using-quarkus">Running Debezium Server using Quarkus</h1>
+<p>Inside the container navigate to /debezium-pavan-custom/ and run the following command. This will start the Quarkus server and which in turn will start the Debezium server.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java -jar quarkus-app/quarkus-run.jar
+</code></pre></div></div>
+<p><br />
+This will make use of application.properties for invoking our custom class.</p>
+
+<h2 id="applicationproperties">Application.properties</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>debezium.sink.type=pavankinesis
+debezium.sink.kinesis.region=ap-southeast-1
+debezium.source.connector.class=io.debezium.connector.mysql.MySqlConnector
+debezium.source.offset.storage.file.filename=data/offsets.dat
+debezium.source.offset.flush.interval.ms=0
+debezium.source.database.port=3306
+debezium.source.database.user=root
+debezium.source.database.hostname=some-mysql
+debezium.source.database.password=my-secret-pw
+debezium.source.database.dbname=TestDB
+debezium.source.database.server.name=localhost
+debezium.source.schema.include=TestDB
+debezium.source.database.history=io.debezium.relational.history.FileDatabaseHistory
+debezium.source.database.history.file.filename=history.dat
+quarkus.http.port=8089
+quarkus.index-dependency.kinesis.group-id=io.debezium
+quarkus.index-dependency.kinesis.artifact-id=debezium-server-custom-topic-name-mapper
+mapper.streamname=pavan.sample.stream
+debezium.sink.kinesis.kinesis.error.log=/home/ubuntu/Debezium/target/kinesis_errors.txt
+debezium.source.snapshot.new.tables=parallel
+snapshot.new.tables=parallel
+debezium.snapshot.new.tables=parallel
+debezium.tombstones.on.delete=true
+debezium.decimal.handling.mode=double
+decimal.handling.mode=double
+debezium.source.decimal.handling.mode=double
+debezium.source.table.include=TestDB.Orders
+snapshot.locking.mode=none
+debezium.snapshot.locking.mode=none
+debezium.source.snapshot.locking.mode=none
+</code></pre></div></div>
+<p><strong>Some important items here:</strong></p>
+<ol>
+  <li><strong>debezium.sink.type</strong> this value should match @Named property in our custom class <strong>PavanAryaKinesisConsumer.java</strong></li>
+  <li><strong>debezium.source.schema.include</strong> this will whitelist the DB for which we want to stream CDC events.</li>
+  <li>All quarkus related entries are for Quarkus server</li>
+  <li><strong>debezium.source.table.include</strong> tables we want to stream. Let’s say I have 10 tables and I want to stream only a few then I can proved them as a comma seperated values.</li>
+  <li><strong>mapper.streamname</strong> this is the stream name to which we want to push events. We read this value in <strong>PrefixingNameMapper.java</strong></li>
+</ol>
+
+<p><br /><br />
+If you would like to dig deep into Debezium code on how default stream name is formed, you can refer to these link in Debezium source code</p>
+
+<p><a href="https://github.com/debezium/debezium/blob/9f7ede0e0695f012c6c4e715e96aed85eecf6b5f/debezium-connector-mysql/src/main/java/io/debezium/connector/mysql/MySqlTopicSelector.java">https://github.com/debezium/debezium/blob/9f7ede0e0695f012c6c4e715e96aed85eecf6b5f/debezium-connector-mysql/src/main/java/io/debezium/connector/mysql/MySqlTopicSelector.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/a900ababcd6d66da98978994f6181839098a7fd3/debezium-connector-mysql/src/main/java/io/debezium/connector/mysql/MySqlConnectorTask.java">https://github.com/debezium/debezium/blob/a900ababcd6d66da98978994f6181839098a7fd3/debezium-connector-mysql/src/main/java/io/debezium/connector/mysql/MySqlConnectorTask.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/9f7ede0e0695f012c6c4e715e96aed85eecf6b5f/debezium-core/src/main/java/io/debezium/schema/TopicSelector.java">https://github.com/debezium/debezium/blob/9f7ede0e0695f012c6c4e715e96aed85eecf6b5f/debezium-core/src/main/java/io/debezium/schema/TopicSelector.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/68a78f73bb323fe8e781f00cbb7626a9290df47a/debezium-core/src/main/java/io/debezium/pipeline/EventDispatcher.java">https://github.com/debezium/debezium/blob/68a78f73bb323fe8e781f00cbb7626a9290df47a/debezium-core/src/main/java/io/debezium/pipeline/EventDispatcher.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/9f7ede0e0695f012c6c4e715e96aed85eecf6b5f/debezium-core/src/main/java/io/debezium/schema/TopicSelector.java">https://github.com/debezium/debezium/blob/9f7ede0e0695f012c6c4e715e96aed85eecf6b5f/debezium-core/src/main/java/io/debezium/schema/TopicSelector.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/d7f08a2656654e94dcb95ca75ca2a0743d326a1f/debezium-embedded/src/main/java/io/debezium/embedded/ConvertingEngineBuilder.java">https://github.com/debezium/debezium/blob/d7f08a2656654e94dcb95ca75ca2a0743d326a1f/debezium-embedded/src/main/java/io/debezium/embedded/ConvertingEngineBuilder.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/f8d4307155a208aeb151c46f6faa1cfe1e8ab151/debezium-server/debezium-server-core/src/main/java/io/debezium/server/DebeziumServer.java">https://github.com/debezium/debezium/blob/f8d4307155a208aeb151c46f6faa1cfe1e8ab151/debezium-server/debezium-server-core/src/main/java/io/debezium/server/DebeziumServer.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/main/debezium-server/debezium-server-kinesis/src/main/java/io/debezium/server/kinesis/KinesisChangeConsumer.java">https://github.com/debezium/debezium/blob/main/debezium-server/debezium-server-kinesis/src/main/java/io/debezium/server/kinesis/KinesisChangeConsumer.java</a><br /><br /></p>
+
+<p><a href="https://github.com/debezium/debezium/blob/04941330c3e0141ab89589229fdaf7168f5db150/debezium-embedded/src/main/java/io/debezium/embedded/EmbeddedEngineChangeEvent.java#L41">https://github.com/debezium/debezium/blob/04941330c3e0141ab89589229fdaf7168f5db150/debezium-embedded/src/main/java/io/debezium/embedded/EmbeddedEngineChangeEvent.java#L41</a><br /><br /></p>
+
+<p>Thanks,<br />
+Pavan Kumar Aryasomayajulu</p>
+
+<p><br /><br /><br /></p>
+
+<div id="disqus_thread"></div>
+<script>
+	
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.identifier = 15072022312; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://xyzcoder1.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                                            
+
+
+                                            <div class="col-md-12 first">
+                                                <div class="info">
+                                                    <div>
+
+
+                                                        
+
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>    
+
+                                                <div class="col-md-12" style="margin-top: 20px;">
+                                                    <a href="" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                                                    <a href="/2021/11/25/terraform-installation-basics-statefile.html" class="readmore" id="pagination"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                                                </div>
+
+                                                <div class="clear"></div>
+                                            </div>
+
+                                        </article>
+                                        <amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-3300393120826046">
+</amp-auto-ads>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div><!-- End verticalTab -->
+
+    </div><!-- End flexy_content -->
+
+
+</div><!-- End row -->
+                    <!--blog content -->
+
+                </div><!-- End col-md-12 -->
+
+            </div><!-- End row -->
+
+        </div><!-- End container -->
+
+        <!-- </section> -->
+        <!-- End Content -->
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" onclick="closeSubscribe()">&times;</button>
+                  <h4 class="modal-title" style="color: white;">Thank you for reading this article- Subscribe To Recieve My Future Articles</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Please Enter your email</p>
+                  <input type="text" id="email" style="width:100%">
+                  <br/>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" onclick="saveSubscribe()">Subscribe</button>
+                  <button type="button" class="btn btn-default" onclick="closeSubscribe()">Close</button>
+                </div>
+              </div>
+          
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        
+    <!-- jquery | jQuery 1.11.0 -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+    <!-- Js | bootstrap -->
+    <!-- Credits: http://getbootstrap.com/ -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script> 
+
+    <!-- Js | jquery.cycle -->
+    <!-- Credits: https://github.com/malsup/cycle2 -->
+    <script type="text/javascript" src="/assets/js/jquery.cycle2.min.js"></script>
+
+    <!-- jquery | rotate and portfolio -->
+    <!-- Credits: http://jquery.com -->
+    <script type="text/javascript" src="/assets/js/jquery.mixitup.min.js"></script> 
+    <script type="text/javascript" src="/assets/js/HeadImage.js"></script>
+
+    <!-- Js | easyResponsiveTabs -->
+    <!-- Credits: http://webtrendset.com/demo/easy-responsive-tabs/Index.html -->
+    <script type="text/javascript" src="/assets/js/easyResponsiveTabs.min.js"></script>  
+
+    <!-- Js | mCustomScrollbar -->
+    <!-- Credits: http://manos.malihu.gr/jquery-custom-content-scroller -->
+    <script type="text/javascript" src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>     
+
+    <!-- jquery | prettyPhoto -->
+    <!-- Credits: http://www.no-margin-for-errors.com/ -->
+    <script type="text/javascript" src="/assets/js/jquery.prettyPhoto.js"></script>
+
+
+    <!-- Js | Js -->
+    <!-- Credits: http://themeforest.net/user/FlexyCodes -->
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+
+<script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5c8e2fa0d07e6e0011f1849d&product="sticky-share-buttons"></script>
+    
+<script type="text/javascript">
+var isAdBoxDisplayed = false;
+
+if(sessionStorage.getItem('email') || sessionStorage.getItem('userNotInterested')){
+    isAdBoxDisplayed = true;
+}
+
+//In future I can add this to have pop on scroll bottom
+$(window).on("scroll", function () {
+    var scrollHeight = $(document).height();
+    var scrollPosition = $(window).height() + $(window).scrollTop();
+    console.log((scrollHeight - scrollPosition) / scrollHeight + "  "+ (scrollHeight - scrollPosition + "  "+scrollPosition+" "+$(window).scrollTop()))
+    if ((scrollHeight - scrollPosition) / scrollHeight <= 0.25 && !isAdBoxDisplayed) {
+        $("#myModal").modal("show");
+        isAdBoxDisplayed = true;
+    }
+});
+</script>
+<script async custom-element="amp-auto-ads"
+src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDKDi7cfb9-MQtr-S_JpXfMoTZSgGLdm18",
+        authDomain: "xyzcoder-887ac.firebaseapp.com",
+        databaseURL: "https://xyzcoder-887ac.firebaseio.com",
+        projectId: "xyzcoder-887ac",
+        storageBucket: "xyzcoder-887ac.appspot.com",
+        messagingSenderId: "64107824790"
+    };
+    var defaultApp = firebase.initializeApp(config);
+
+    // firebase.database().ref('/').set({
+    //     email: "pavan"
+    // });
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function closeSubscribe(){
+        $("#myModal").modal("hide");
+        sessionStorage.setItem('userNotInterested', "true");
+    }
+
+    function saveSubscribe(){
+        var id = $("#email").val();
+
+        if(!validateEmail(id)){
+            alert("Enter valid email");
+        }
+        else{
+            var timestamp = new Date().valueOf();
+            var obj = {};
+            obj[timestamp] = id;
+
+            firebase.database().ref('/').update(obj, function(error) {
+                if (error) {
+                    alert("Invalid email");
+                } else {
+                    $("#myModal").modal("hide");
+                    alert("Thank you for subscribing and happy learning");
+
+                    sessionStorage.setItem('email', JSON.stringify(obj));
+                }
+            });
+           
+        }
+    }
+
+</script>
+
+
+<script>
+    [].forEach.call(document.querySelectorAll('.adsbygoogle'), function(){
+    (adsbygoogle = window.adsbygoogle || []).push({});
+});
+//In future we can ad ads in popup
+$('#myModal').on('shown.bs.modal', function (e) {
+    $(".adsense-inject").each(function (i) {
+        if(!$(this).html().includes("<ins")){
+            $(this).append('<ins class="adsbygoogle"style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-3300393120826046" data-ad-slot="9095096865"></ins>');  
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    });
+})
+
+
+</script>
+
+
+
+</body>
+</html>

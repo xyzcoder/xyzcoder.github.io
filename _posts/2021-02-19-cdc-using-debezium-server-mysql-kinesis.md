@@ -31,6 +31,9 @@ Now there is a change in order details and I'll update these details in the Orde
 One way to do this is to have code-related changes in each microservices to publish events and subscribe to an event by passing payloads. So this requires a lot of code changes in the publishing microservice.
 
 <br>
+
+# Part-2
+
 # Using Debezium For Tracking DB changes and Publishing them
 
 [https://debezium.io/](https://debezium.io/)
